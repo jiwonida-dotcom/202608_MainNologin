@@ -404,14 +404,12 @@ svg{display:block}
   transition:background var(--dur) var(--ease)}
 .colhd:hover{background:var(--n-25)}
 .colhd:active{background:var(--n-50)}
-.colhd[aria-expanded="true"]{background:var(--surface-2)}
 .colhd b{font-size:var(--fs-16); font-weight:600; color:var(--text); letter-spacing:var(--tr-base)}
 .colhd .cc{margin-left:auto; width:17px; height:17px; color:var(--n-400); fill:none;
   stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
   transition:transform var(--dur) var(--ease)}
 .colhd[aria-expanded="true"] .cc{transform:rotate(180deg)}
-.colbody{padding:var(--s-5) var(--pad) var(--s-6); display:none; background:var(--surface-2);
-  border-bottom:1px solid var(--hairline)}
+.colbody{padding:var(--s-4) var(--pad) var(--s-5); display:none; background:transparent}
 .colbody.on{display:block; animation:acc .22s var(--ease)}
 @keyframes acc{from{opacity:0; transform:translateY(-5px)}to{opacity:1; transform:none}}
 /* 세그먼트 — 트랙 안에서 하나가 떠오르는 형태. 무채색으로만 처리(M-06은 NDV) */
