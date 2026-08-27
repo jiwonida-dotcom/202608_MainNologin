@@ -22,6 +22,32 @@ Clarity·GA4 행동 데이터로 재분석하고 설계한 개편안이다.
 - 프로토타입은 모바일 폭(≤640px)에서 디바이스 프레임 없이 전체화면으로 렌더된다.
 - 우하단 톱니 버튼 = 검증용 Drawer. 기본 실행 화면은 실제 서비스 화면만 보여준다.
 
+## 개발 명세 (PHASE 9)
+
+리포트가 **왜·무엇을**이라면, 아래 문서는 **어떻게 만들 것인가**다. 정본 식별자는 `SPEC-01`~`SPEC-05`이며 새 PHASE 번호를 부여하지 않는다.
+
+| ID | 파일 | 담는 것 |
+|---|---|---|
+| SPEC-01 | [SPEC-01_Screen.md](./SPEC-01_Screen.md) | 화면 · 모듈 `M-01~M-11` · 컴포넌트 `C-01~C-11` · 반응형 · 접근성 · 목적지 |
+| SPEC-02 | [SPEC-02_Functional.md](./SPEC-02_Functional.md) | 기능 정의 `F-01~F-12` |
+| SPEC-03 | [SPEC-03_State_Exception.md](./SPEC-03_State_Exception.md) | 모듈별 상태 · 예외 · 진입 상태(RS-01 · WebView · 로그인 오류 복귀) |
+| SPEC-04 | [SPEC-04_Data_Handoff.md](./SPEC-04_Data_Handoff.md) | 5구간 ↔ `dan2 0~4` 매핑 · 조건 전달 `TR-01~04` · SAMPLE 경계 |
+| SPEC-05 | [SPEC-05_Measurement.md](./SPEC-05_Measurement.md) | 측정 범위 · 분모 정의 · 프로토타입 로그와 운영 이벤트 구분 |
+
+검토 기록은 별도 문서로 남겼다.
+
+| 파일 | 역할 |
+|---|---|
+| [PHASE9_SPEC_READINESS.md](./PHASE9_SPEC_READINESS.md) | 명세 착수 전 GAP 분석 |
+| [SPEC_PREFLIGHT.md](./SPEC_PREFLIGHT.md) | 착수 조건 점검 |
+| [SPEC_CROSS_QA.md](./SPEC_CROSS_QA.md) | 문서 간 정합 검사 (R1) |
+| [SPEC_CROSS_QA_R2.md](./SPEC_CROSS_QA_R2.md) | 보완 후 재검증 (R2 · 현행) |
+| [SPEC_DECISION_REQUEST.md](./SPEC_DECISION_REQUEST.md) | 미확정 33건 결정 요청 |
+
+- **SPEC-02~05는 조건부 완결**, **SPEC-01은 초안**이다. 확정판은 BLOCKER 8건이 해소되어야 낸다.
+- 결정 대기 항목은 `SPEC_DECISION_REQUEST.md` 한 곳에 모았다 — BLOCKER 8 · HIGH 16 · NORMAL 9.
+- 명세 안의 `CONFIRMED` / `OBSERVED` / `RENDERED FACT` / `PROTOTYPE-ONLY` / `UNVERIFIED` / `OPEN` 은 서로 다른 강도다. 프로토타입에 있다는 이유만으로 확정된 것은 없다.
+
 ## 서체
 
 본문 서체는 운영과 동일하게 **Pretendard**(SIL OFL 1.1)를 사용한다.
@@ -49,3 +75,6 @@ Clarity·GA4 행동 데이터로 재분석하고 설계한 개편안이다.
 프로토타입은 **확정 디자인이 아니라 검증용 산출물**이다.
 실제 상품 가격·상품명·이벤트·프로모션은 확정값이 아니며,
 근거 등급(OBSERVED / SAMPLE / UNVERIFIED)은 화면 내 Drawer에서 확인할 수 있다.
+
+개발 명세(`SPEC-01~05`) 역시 확정판이 아니다. 화면 치수·라벨·브랜드 토큰 등
+**결정이 필요한 항목은 `SPEC_DECISION_REQUEST.md`에 미확정으로 남겨 두었다.**
