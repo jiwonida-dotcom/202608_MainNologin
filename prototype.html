@@ -395,7 +395,9 @@ svg{display:block}
 .notice b{font-weight:600}
 
 /* ══════════════ M-06 휴대폰 ══════════════ */
-.collap{margin-top:var(--s-6); background:transparent; border-top:1px solid var(--hairline); border-bottom:none}
+/* 3차 섹션 묶음(M-06~M-08)은 접혀 있을 때도 하나의 면 위에 놓인다 — 펼칠 때 바닥이
+   새로 생기지 않으므로 열림/닫힘이 면의 신축으로만 읽힌다. 열린 본문은 그 안에서 한 톤 낮다. */
+.collap{margin-top:var(--s-6); background:var(--surface); border-top:1px solid var(--hairline); border-bottom:none}
 /* [REFINE VP-1] 인접한 접힘 모듈은 간격 없이 헤어라인 하나로 잇는다 — 갭 밴드 불균일 제거.
    확대·강조 없음(DD-11 준수). 구분은 colhd의 기존 border-bottom이 담당한다. */
 .mod:has(>.collap)+.mod>.collap{margin-top:0; border-top:0}
