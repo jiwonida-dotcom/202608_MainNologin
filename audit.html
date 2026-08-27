@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Alignment 결정 무결성 감사</title>
+<meta name="description" content="U+유모바일 비로그인 메인 개편 Alignment 문서의 결정 무결성 감사 (PHASE 8.5)">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css">
+<style>
+/* PHASE 8 — 의사결정용 문서. 단일 라이트 테마를 의도적으로 고정한다(인쇄·회의 공유 전제) */
+:root{
+  --paper:#FBFBFD; --card:#FFFFFF; --ink:#1A1A21; --ink2:#45454F; --mut:#6E6E7A;
+  --line:#E4E4EC; --line2:#EFEFF5;
+  --acc:#4A3FB5; --acc-soft:#EEEDFA; --acc-line:#D8D5F2;
+  --ok:#1F6B45; --ok-soft:#E3F1E9;
+  --warn:#8A5A00; --warn-soft:#F7EDD8;
+  --stop:#9E2F28; --stop-soft:#F6E3E1;
+  --hold:#5A5A66; --hold-soft:#ECECF1;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  font-size:15px; line-height:1.7; word-break:keep-all; -webkit-font-smoothing:antialiased}
+main{max-width:920px; margin:0 auto; padding:48px 24px 90px}
+h1,h2,h3,h4,p,figure,ul,ol{margin:0}
+a{color:var(--acc)}
+.mono{font-family:var(--mono); font-size:.86em}
+.small{font-size:12.5px; color:var(--mut)}
+
+/* 헤더 */
+.dochd{border-bottom:2px solid var(--ink); padding-bottom:26px; margin-bottom:8px}
+.dochd .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; color:var(--mut);
+  text-transform:uppercase; display:block; margin-bottom:14px}
+.dochd h1{font-size:31px; font-weight:700; letter-spacing:-.022em; line-height:1.3; text-wrap:balance}
+.dochd .sub{margin-top:12px; font-size:15px; color:var(--ink2); max-width:640px}
+.docmeta{display:flex; flex-wrap:wrap; gap:6px 22px; margin-top:20px;
+  font-family:var(--mono); font-size:11.5px; color:var(--mut)}
+
+/* 목차 */
+.toc{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:2px 28px;
+  padding:20px 0 6px; border-bottom:1px solid var(--line); margin-bottom:10px}
+.toc a{display:flex; gap:10px; padding:4.5px 0; text-decoration:none; color:var(--ink2); font-size:13.5px}
+.toc a:hover{color:var(--acc)}
+.toc .n{font-family:var(--mono); font-size:11px; color:var(--mut); min-width:20px; padding-top:2px}
+
+/* 섹션 */
+section{padding:44px 0 8px; border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.snum{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; color:var(--acc); display:block; margin-bottom:8px}
+section>h2{font-size:22px; font-weight:700; letter-spacing:-.018em; margin-bottom:6px; text-wrap:balance}
+.lede{color:var(--ink2); max-width:680px; margin-bottom:22px}
+h3{font-size:16px; font-weight:700; letter-spacing:-.012em; margin:30px 0 10px}
+h4{font-size:14px; font-weight:600; margin:20px 0 8px}
+p{margin-bottom:14px; max-width:760px}
+
+/* 뱃지 */
+.b{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.05em;
+  padding:2px 8px; border-radius:5px; white-space:nowrap; vertical-align:1px}
+.b-keep{background:var(--ok-soft); color:var(--ok)}
+.b-chg{background:var(--warn-soft); color:var(--warn)}
+.b-rm{background:var(--stop-soft); color:var(--stop)}
+.b-hold{background:var(--hold-soft); color:var(--hold)}
+.b-nv{background:var(--acc-soft); color:var(--acc)}
+.b-obs{background:var(--ok-soft); color:var(--ok)}
+.b-unv{background:var(--warn-soft); color:var(--warn)}
+.b-open{background:var(--stop-soft); color:var(--stop)}
+.b-conf{background:var(--acc-soft); color:var(--acc)}
+
+/* 표 */
+.tw{overflow-x:auto; margin:14px 0 22px; border:1px solid var(--line); border-radius:10px; background:var(--card)}
+table{border-collapse:collapse; width:100%; font-size:13px; line-height:1.55}
+th{background:#F5F5F9; text-align:left; font-weight:600; padding:9px 12px;
+  border-bottom:1px solid var(--line); white-space:nowrap; font-size:12px; color:var(--ink2)}
+td{padding:9px 12px; border-bottom:1px solid var(--line2); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.id{font-family:var(--mono); font-size:11.5px; color:var(--mut); white-space:nowrap}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+.tw.tight td{padding:7px 10px}
+
+/* 흐름 카드 (OBSERVED → MEANS → PROBLEM) */
+.flow{border:1px solid var(--line); border-left:3px solid var(--acc); border-radius:10px;
+  background:var(--card); padding:16px 18px; margin:0 0 12px}
+.flow .fh{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:8px}
+.flow .fh b{font-size:14.5px; letter-spacing:-.01em}
+.flow dl{display:grid; grid-template-columns:118px 1fr; gap:5px 14px; margin:0; font-size:13.5px}
+.flow dt{font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; color:var(--mut); padding-top:3px}
+.flow dd{margin:0; color:var(--ink2)}
+.flow dd b{color:var(--ink)}
+
+/* 결정 카드 */
+.dec{border:1px solid var(--acc-line); border-radius:12px; background:var(--card);
+  padding:18px 20px; margin:0 0 14px}
+.dec .dh{display:flex; align-items:baseline; gap:12px; margin-bottom:10px}
+.dec .dh .n{font-family:var(--mono); font-size:11.5px; color:var(--acc); font-weight:600; white-space:nowrap}
+.dec .dh b{font-size:15.5px; letter-spacing:-.012em}
+.dec dl{display:grid; grid-template-columns:128px 1fr; gap:6px 14px; margin:0; font-size:13.5px}
+.dec dt{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--mut); padding-top:3px}
+.dec dd{margin:0; color:var(--ink2)}
+.dec dd b{color:var(--ink)}
+
+/* 인용 문장 */
+.claim{border-left:3px solid var(--acc); background:var(--acc-soft); border-radius:0 10px 10px 0;
+  padding:13px 18px; margin:0 0 12px; font-size:14.5px; color:var(--ink)}
+.claim .mono{color:var(--acc)}
+
+/* 안내/주의 박스 */
+.note{border:1px solid var(--line); border-radius:10px; background:#F7F7FA;
+  padding:13px 16px; margin:14px 0 20px; font-size:13.5px; color:var(--ink2)}
+.note.warn{background:var(--warn-soft); border-color:#EAD9B5; color:#5C4A17}
+.note b{color:inherit}
+
+/* 상태 범례 */
+.legend{display:flex; flex-wrap:wrap; gap:8px 18px; font-size:12.5px; color:var(--mut); margin:8px 0 4px}
+
+@media (max-width:640px){
+  main{padding:34px 16px 70px}
+  .dochd h1{font-size:25px}
+  .flow dl,.dec dl{grid-template-columns:1fr; gap:2px}
+  .flow dt,.dec dt{padding-top:8px}
+}
+@media print{
+  body{background:#fff}
+  .toc{display:none}
+  section{break-inside:avoid-page}
+}
+</style>
+
+<main>
+<header class="dochd">
+  <span class="eyebrow">PHASE 8.5 · Decision Integrity Review</span>
+  <h1>Alignment Document 결정 무결성 감사</h1>
+  <p class="sub">alignment.html의 모든 핵심 주장에 대해 "근거가 끊기는 지점이 없는가"를 검사한 감사 기록이다. 새로운 UX·IA·데이터 분석을 추가하지 않았다. 발견된 결함과 수정 내역, 최종 판정을 담는다.</p>
+  <div class="docmeta">
+    <span>대상 alignment.html + PHASE 1~7 산출물</span>
+    <span>감사 2026-08-27</span>
+    <span>결과 Critical 3 · Minor 3 — 전건 수정 반영</span>
+  </div>
+</header>
+
+<section id="a01">
+<span class="snum">01 · 핵심 개선안 전수 역추적</span>
+<h2>Executive Summary 5건 — 근거 사슬 검증</h2>
+<p class="lede">각 제안을 Existing Request → Evidence → Observation → Interpretation → Problem → Objective → Proposal → Prototype → Decision 9단계로 역추적했다. 없는 단계는 채우지 않고 그대로 판정했다.</p>
+<div class="tw"><table>
+<thead><tr><th>제안</th><th>사슬 확인</th><th>끊긴 지점</th><th>판정</th></tr></thead>
+<tbody>
+<tr><td><b>타임딜 우선 → 요금제 상단</b></td><td>REQ-04 → SearchFee y1802 실측 → 도달선 대조(Clarity) → "미노출" 해석(해석임을 명시) → P-07 → 목적 2 → IA 순서 → 프로토타입 M-03 상단 구현 → D-02</td><td>없음. 상충은 DATA CONFLICT로 명시</td><td><span class="b b-keep">PASS</span></td></tr>
+<tr><td><b>주메뉴 7개 → 퀵메뉴 3종</b></td><td>REQ-01 → QuickMenu 0.101/0.106(GA4) → 7개 구성 근거 부재 + 시안 내 메뉴 잘림(문서 관찰) → 판단 → G-03 → M-02 3종 구현 → D-03</td><td>없음</td><td><span class="b b-keep">PASS</span></td></tr>
+<tr><td><b>이벤트 3순위 → P1</b></td><td>REQ-21 → 경로 8.4/15.8%(GA4) + 배너 격차 3% → 즉시복귀 0% → G-04 → M-04 배치 → D-04</td><td>즉시복귀 0%가 <b>녹화 표본 B 이동 9건</b>의 소표본 — 주 근거(GA4 경로 비중)는 유효하므로 결론은 유지하되 표본 한정을 문서에 주석</td><td><span class="b b-nv">CONDITIONAL</span></td></tr>
+<tr><td><b>휴대폰 2순위 → 축소+측정</b></td><td>REQ-12~14 → 상위 경로 부재(FIRST 0.3% 미만 = 상한 추정) → 원인 미분리 명시 → D-05 → 측정 조건부 제안</td><td>없음 — "제거"가 아니라 "측정 후 재평가"로 데이터 한계에 맞게 제안 강도를 낮춘 구조</td><td><span class="b b-keep">PASS</span></td></tr>
+<tr><td><b>팝업 정책 선행 과제 추가</b></td><td>요청 없음(신규 발견) → 78.2%·90.2%(GA4 동일 도구·기간) → P-01 → 목적 1 → D-07</td><td><b>PopupTop 매핑이 GTM 소스 미확정 추정</b>에서 출발 — 90.2%는 CONDITIONAL. 제안이 "확인(DV-03) 후 재설계"라 사슬은 안전하나 수치 등급을 문서에 명시해야 했음(수정 반영)</td><td><span class="b b-nv">CONDITIONAL</span></td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="a02">
+<span class="snum">02 · 27건 전수 검증</span>
+<h2>요청사항 대조 결과 — 발견 결함</h2>
+<p class="lede">27건 전건을 원문(PHASE 1 구조화) 기준으로 대조했다. 판정 논리가 끊긴 곳은 없었으나, 집계와 누락에서 결함이 나왔다.</p>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>결함</th><th>내용</th><th>조치</th></tr></thead>
+<tbody>
+<tr><td class="id">C-1</td><td><span class="b b-rm">CRITICAL</span> 판정 집계 오류</td><td>Exec Summary가 "KEEP 8 · CHANGE 8 · REMOVE 2 · HOLD 3 · NV 6"으로 기재 — 실제 표를 개별 REQ로 전개하면 <b>KEEP 6 · CHANGE 7 · REMOVE 3 · HOLD 6 · NV 3 = 25건</b>으로 어느 기준으로도 불일치</td><td>집계 재산출 후 수정. 집계 기준(개별 REQ·묶음 행 전개)을 09절에 명시</td></tr>
+<tr><td class="id">C-2</td><td><span class="b b-rm">CRITICAL</span> REQ-C·REQ-D 누락</td><td>"27건 전건 대조"를 표방했으나 표에는 25건 — REQ-C(타임딜 협의)·REQ-D(메뉴 가칭)가 빠져 있었다</td><td>2행 추가(REQ-C→NV·REQ-05 흡수 / REQ-D→HOLD·명칭 잔존). 최종 집계 <b>6 · 7 · 3 · 7 · 4 = 27</b>로 정합</td></tr>
+<tr><td class="id">M-1</td><td><span class="b b-warn" style="background:var(--warn-soft);color:var(--warn)">MINOR</span> KEEP 오해 방지</td><td>"KEEP = 검증됨" 오해 가능성 — 판단 성격 열이 이미 분리하고 있어 구조는 통과. lede 문구도 명시돼 있음</td><td>추가 조치 없음 (통과)</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="a03">
+<span class="snum">03 · CHANGE 집중 검증</span>
+<h2>CHANGE 7건 — 한 문장 설명 성립 여부</h2>
+<p class="lede">"기존 요청 → 왜 그대로 채택하지 않았나 → 어떤 데이터 → 어떤 판단 → 무엇으로 변경"이 한 번에 설명되는지 검사했다. 지정된 3건의 결과다 (나머지 4건 — REQ-07·REQ-09·REQ-12~13 — 동일 구조로 성립).</p>
+<div class="flow"><div class="fh"><b>REQ-04 타임딜 우선</b><span class="b b-rm">DATA CONFLICT</span></div>
+<dl><dt>불채택 이유</dt><dd>근거가 확인된 P0 목적(요금제)을 근거가 없는 콘텐츠 아래로 내리는 구조이기 때문</dd>
+<dt>영향 데이터</dt><dd>요금제 = 공통 2위 목적 + 전용 영역 도달선 밖 vs 타임딜 = 미운영·데이터 없음</dd>
+<dt>판단·변경</dt><dd>요금제 상단 고정 제안, 최종 순서는 D-02로 관계자 결정에 회부</dd>
+<dt>감사 소견</dt><dd>상충을 완곡하게 표현하지 않았는지 검사 — 기존 문서는 "데이터와 요청이 상충" 텍스트였음. <b>DATA CONFLICT 라벨로 격상 수정</b></dd></dl></div>
+<div class="flow"><div class="fh"><b>REQ-01 주메뉴 7개 → QuickMenu 3종</b></div>
+<dl><dt>불채택 이유</dt><dd>탐색 수요는 실재하나 "7개"라는 구성·순서·승격 대상에 근거가 없고, 시안 이미지에서 이미 메뉴가 화면 밖으로 잘림</dd>
+<dt>영향 데이터</dt><dd>QuickMenu 세션당 0.101/0.106 (두 집단 격차 6%) — 수요의 존재만 증명, 7개 구성은 미증명</dd>
+<dt>판단·변경</dt><dd>실사용 순 3종. 이벤트는 M-04가 전담하므로 중복 제거</dd>
+<dt>감사 소견</dt><dd>초기 분석의 "전체메뉴 5배" 근거가 이 판단에 잔존하는지 전문 검색 — <b>잔존 없음 확인.</b> 성립</dd></dl></div>
+<div class="flow"><div class="fh"><b>REQ-E 3탭 → 관측 2축 5구간</b><span class="small">부분 상충</span></div>
+<dl><dt>불채택 이유</dt><dd>제안된 3축 중 "혜택 많이"가 실제 필터·정렬·클릭 어디에도 관측되지 않음 (데이터·요금 2축만 관측)</dd>
+<dt>영향 데이터</dt><dd>필터 1위 데이터 축 14,484 · 정렬 91.4% 가격 낮은 순 · 운영 dan2 5구간 실측</dd>
+<dt>판단·변경</dt><dd>관측 2축 기반 5구간 진입으로 재정의. 8/25에서 규칙 설명이 삭제된 경위는 미확인으로 남김</dd>
+<dt>감사 소견</dt><dd>판단 성격이 "유효하나 방향 조정"으로 적혀 있었음 — 1축 미관측은 부분 상충이므로 <b>"부분 상충"으로 수정</b></dd></dl></div>
+</section>
+
+<section id="a04">
+<span class="snum">04 · 팝업 수치 감사</span>
+<h2>78.2% / 90% — 분자·분모·등급</h2>
+<div class="tw tight"><table>
+<thead><tr><th>수치</th><th>분자 / 분모</th><th>도구·기간</th><th>구분</th><th>등급</th></tr></thead>
+<tbody>
+<tr><td class="num"><b>78.2%</b></td><td class="num">133,059 / 170,053</td><td>GA4 · <span class="mono">LK_GTM_CA=MAIN_NOTLOGIN</span> · 7/28~8/24 · 이벤트 건수 단위</td><td>OBSERVED FACT</td><td><span class="b b-keep">STRONG</span></td></tr>
+<tr><td class="num"><b>90.2%</b></td><td class="num">1 − 13,020 / 132,834<br><span class="small">(PopupTop 11,260+1,760 / PopupTop+PopupClose)</span></td><td>GA4 동일 필터·기간 — <b>동일 도구 내 파생</b>이므로 교차모수 금지 원칙 위반 아님</td><td>OBSERVED + 매핑 가정</td><td><span class="b b-nv">CONDITIONAL</span> — PopupTop="팝업 내 콘텐츠 클릭" 매핑이 GTM 소스 미확정 추정</td></tr>
+<tr><td>"미클릭 = 불필요"</td><td colspan="2">데이터가 증명하지 않는다 — 노출만으로 고지 목적을 달성하는 팝업이 있을 수 있음</td><td>INTERPRETATION 금지 확인</td><td><span class="b b-keep">준수</span> — 문서 제안은 "제거"가 아니라 "규칙 확인 후 재설계"</td></tr>
+<tr><td>PROPOSED ACTION</td><td colspan="2">DV-03(운영 규칙 확인) 선행 → 개수·주기·우선순위 정책 재설계 → D-07 결정</td><td>PROPOSED</td><td>사슬 정상</td></tr>
+</tbody>
+</table></div>
+<p class="small">수정 반영 — alignment 05절 발견 1에 분자/분모·매핑 등급·증명 범위("미클릭≠무용") 문장을 추가했고, Appendix A에 산식 2행을 추가했다.</p>
+</section>
+
+<section id="a05">
+<span class="snum">05 · REQ-B 복원 검증</span>
+<h2>8/25 삭제분 복원 제안 감사</h2>
+<div class="tw tight"><table>
+<tbody>
+<tr><td class="id">원 요청</td><td>"메인에서 요금 정보·혜택 → 신청서 바로 진입 동선으로 효율화 검토" (8/14 p16 ⑧)</td><td><span class="b b-obs">확인</span></td></tr>
+<tr><td class="id">삭제 사실</td><td>8/25 버전에서 항목 소멸 — PHASE 1 대조로 확인</td><td><span class="b b-obs">확인</span></td></tr>
+<tr><td class="id">삭제 이유</td><td><b>어느 자료에도 기록 없음</b></td><td><span class="b b-unv">UNVERIFIED</span></td></tr>
+<tr><td class="id">복원 근거</td><td>Quick back 54.8%/39.3%와 <b>방향 일치</b> · 가입 경로가 요금제 대비 절반 수준(7.8/12.3% vs 13.3/17.2%) — 인과 증명은 아님</td><td>MODERATE</td></tr>
+<tr><td class="id">개선안 관계</td><td>G-02(5구간 진입)와 독립 — 목록 이후 동선 과제로, 이번 프로토타입 범위 밖</td><td><span class="b b-obs">확인</span></td></tr>
+</tbody>
+</table></div>
+<div class="note warn"><b>감사 결론 (CRITICAL → 수정 반영)</b> — 기존 문서는 "삭제된 것이 오히려 문제 · 데이터가 지지하는 몇 안 되는 항목"으로 단정했다. 삭제 이유가 UNVERIFIED인 상태에서 이 표현은 과잉이다. <b>"복원을 제안하되 삭제 사유를 요청자에게 먼저 확인한다 — 기술·정책 제약으로 뺐다면 복원 판단 자체가 달라진다"</b>로 수정했다.</div>
+</section>
+
+<section id="a06">
+<span class="snum">06 · Evidence Strength Audit</span>
+<h2>핵심 주장별 근거 강도</h2>
+<p class="lede">STRONG = 동일 도구·기간·직접 관측 / MODERATE = 단일 출처·제한조건 / CONDITIONAL = 표본·기간·정의 제한 / UNVERIFIED = 재현 불가. 교차모수 파생 비율과 철회 근거는 최종 판단에 사용되지 않았음을 전문 검색으로 확인했다.</p>
+<div class="tw tight"><table>
+<thead><tr><th>주장·수치</th><th>출처</th><th>제한</th><th>강도</th></tr></thead>
+<tbody>
+<tr><td>로그인 1위 43.9 / 21.6%</td><td>GA4 직접 + Clarity 클릭 교차 일치</td><td>—</td><td><span class="b b-keep">STRONG</span></td></tr>
+<tr><td>PopupClose 0.766 / 0.714 · 팝업 78.2%</td><td>GA4 직접</td><td>—</td><td><span class="b b-keep">STRONG</span></td></tr>
+<tr><td>SearchFee 0.0079 / 0.0067</td><td>GA4 직접</td><td>—</td><td><span class="b b-keep">STRONG</span></td></tr>
+<tr><td>스크롤 도달 44.5 / 39.2% · Quick back 54.8 / 39.3%</td><td>Clarity 직접</td><td>지표 정의는 도구 정의를 따름</td><td><span class="b b-keep">STRONG</span></td></tr>
+<tr><td>필터 1위 14,484 · 정렬 91.4% · dan2 5구간</td><td>Clarity(pricList) + 운영 화면 실측</td><td>메인이 아니라 목록 페이지의 관측</td><td><span class="b b-keep">STRONG</span></td></tr>
+<tr><td>휴대폰 상위 경로 부재 (0.3% 미만)</td><td>GA4 다음 페이지 상위 목록</td><td>상한 추정 — 정확값 아님</td><td><span class="b b-chg" style="background:var(--warn-soft);color:var(--warn)">MODERATE</span></td></tr>
+<tr><td>분기 가치 근거 없음</td><td>GTM 시그니처·행동·판정 복수 관측 수렴</td><td>부재의 증명은 불가 — "근거가 없다"까지만</td><td><span class="b b-chg" style="background:var(--warn-soft);color:var(--warn)">MODERATE</span></td></tr>
+<tr><td>미클릭률 90.2%</td><td>GA4 동일 도구 내 파생</td><td>PopupTop 매핑 추정</td><td><span class="b b-nv">CONDITIONAL</span></td></tr>
+<tr><td>평균 도달선 y1461~1658</td><td>Clarity 도달률 × 문서 높이 환산</td><td>파생값 + 뷰포트 가정 (OI-10)</td><td><span class="b b-nv">CONDITIONAL</span></td></tr>
+<tr><td>전체메뉴→로그인 78~88%</td><td>녹화 300건 표본 (해당 세션 90 / 60건)</td><td>표본 조사 · nologfirst 한정</td><td><span class="b b-nv">CONDITIONAL</span></td></tr>
+<tr><td>이벤트·셀프개통·로그인 즉시복귀 0%</td><td>녹화 표본 B (이동 9 / 11 / 71건)</td><td>이벤트·셀프개통은 소표본 — 방향성만</td><td><span class="b b-nv">CONDITIONAL</span></td></tr>
+<tr><td>ProductBanner +74%</td><td>GA4 직접</td><td>원인 미분리 — <b>보조 근거로만 사용됨 확인</b></td><td><span class="b b-nv">CONDITIONAL</span></td></tr>
+<tr><td>검색 4,765 / 1,185</td><td>Clarity</td><td>URL 필터 세션 범위 — 과대추정 가능</td><td><span class="b b-nv">CONDITIONAL (INTERPRETATION)</span></td></tr>
+<tr><td>REQ-B 삭제 이유</td><td>—</td><td>기록 부재</td><td><span class="b b-unv">UNVERIFIED</span></td></tr>
+</tbody>
+</table></div>
+<p class="small">철회 근거 4건("전체메뉴 5배" · "검색=퀵메뉴급" · 교차모수 기여율 · "1/10 규모")의 본문 잔존 여부를 전문 검색 — <b>Appendix 철회 기록 외 사용처 0건.</b></p>
+</section>
+
+<section id="a07">
+<span class="snum">07 · WHY 문장 검사</span>
+<h2>"기존 요청은 A였으나, B가 확인되었기 때문에 C를 제안한다"</h2>
+<div class="tw tight"><table>
+<thead><tr><th>영역</th><th>성립</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>Header · 요금제 탐색 · 이벤트 · 가입개통 · 퀵메뉴 · 휴대폰 · 유심 링크 · 팝업 · 검색</td><td><span class="b b-keep">성립 9건</span></td><td>Exec Summary 5문장 + 09절 변경 이유로 커버</td></tr>
+<tr><td>브랜드·혜택</td><td><span class="b b-keep">성립</span></td><td>변형 — "데이터 근거는 없으나 조직 확정 제약이므로 위치를 한정해 수용한다" (제약 수용형 WHY)</td></tr>
+<tr><td>Footer · 고객지원</td><td>N/A</td><td>변경을 제안하지 않음 — WHY 불요. GAP 아님</td></tr>
+</tbody>
+</table></div>
+<p><b>WHY GAP: 0건.</b></p>
+</section>
+
+<section id="a08">
+<span class="snum">08 · 의사결정 10건 검증</span>
+<h2>D-01~D-10 — 미결정 시 보류되는 것</h2>
+<p class="lede">각 결정 카드에 Topic·Existing·Evidence·Proposed·Needed·Risk가 전건 존재함을 확인했다. 감사에서 보강한 것은 "결정하지 않으면 무엇이 멈추는가"다.</p>
+<div class="tw tight"><table>
+<thead><tr><th>D</th><th>미결정 시 보류되는 것</th><th>추가 확인</th></tr></thead>
+<tbody>
+<tr><td class="id">D-01 화면 통합</td><td>IA 적용 단위 — 프로토타입을 어느 화면에 적용할지 미정</td><td>—</td></tr>
+<tr><td class="id">D-02 타임딜 순서</td><td><b>IA 순서 전체</b> — M-03/M-04 배치가 조건부로 남음</td><td>타임딜 운영 주기 (OPEN-08)</td></tr>
+<tr><td class="id">D-03 퀵메뉴 3종</td><td>M-02 구성 확정</td><td>—</td></tr>
+<tr><td class="id">D-04 이벤트 P1</td><td>M-04 위치 확정</td><td>—</td></tr>
+<tr><td class="id">D-05 휴대폰</td><td>M-06 설계 심도 · 유픽 배치</td><td>태깅(DV-01) · 측정 기간</td></tr>
+<tr><td class="id">D-06 유심 링크</td><td>REQ-11 구현 여부</td><td>—</td></tr>
+<tr><td class="id">D-07 팝업 정책</td><td><b>P-01 대응 전체가 이월</b> — 최대 문제 미착수</td><td>운영 규칙 자료 (DV-03)</td></tr>
+<tr><td class="id">D-08 혜택 통합</td><td>REQ-08 범위 산정 불가 — 개발 견적 불가</td><td>비교 판단 기준 (DC-02)</td></tr>
+<tr><td class="id">D-09 검색</td><td>Header 구성 확정</td><td>페이지 스코프 태깅(승격 재론 시)</td></tr>
+<tr><td class="id">D-10 컬러</td><td>비주얼 토큰 확정 불가 — 미확정 상태 개발 이관 시 재작업 위험</td><td>CI 원본 (OI-11)</td></tr>
+</tbody>
+</table></div>
+<p class="small">최우선 D-01·D-02·D-07 재검증 — 셋 다 Evidence가 STRONG 등급 관측에 기반하고, 제안이 결론 강제가 아니라 결정 회부 형태임을 확인. D-02는 REQ-04와의 상충이 라벨로 명시됨.</p>
+</section>
+
+<section id="a09">
+<span class="snum">09~10 · 설득/강요 구분 · Exec 재검토</span>
+<h2>문장 수준 점검</h2>
+<div class="tw tight"><table>
+<thead><tr><th>검사</th><th>결과</th></tr></thead>
+<tbody>
+<tr><td>데이터 부족 항목을 확정안처럼 표현한 곳</td><td>2곳 발견·수정 — REQ-B("삭제된 것이 오히려 문제" → 확인 선행으로 완화) · REQ-E 판단 성격("방향 조정" → "부분 상충")</td></tr>
+<tr><td>DATA → ANALYSIS → PROPOSAL → DECISION 분리</td><td>유지 확인 — 모든 CHANGE가 D-XX 결정으로 회부되는 구조. 제안 강제 문장 없음</td></tr>
+<tr><td>Exec Summary만 읽은 사람의 ①~⑤ 이해</td><td>①②③⑤ 통과. <b>④(무엇이 달라졌나)의 집계 수치가 오류</b> — 수정 반영(C-1). 문장 구조는 유지, 새 근거 추가 없음</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="a10">
+<span class="snum">11~12 · 최종 감사 결과</span>
+<h2>Decision Integrity Score</h2>
+<div class="tw tight"><table>
+<thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td><b>Evidence integrity</b></td><td><span class="b b-nv">CONDITIONAL</span></td><td><span class="b b-keep">PASS</span></td><td>90.2% 등급·산식 명시, 소표본 주석, 철회·교차모수 근거 사용 0건</td></tr>
+<tr><td><b>Request traceability</b></td><td><span class="b b-rm">FAIL</span></td><td><span class="b b-keep">PASS</span></td><td>REQ-C·D 누락 복구, 집계 27건 정합 (6·7·3·7·4)</td></tr>
+<tr><td><b>WHY clarity</b></td><td><span class="b b-keep">PASS</span></td><td><span class="b b-keep">PASS</span></td><td>WHY GAP 0건 (변경 없는 2개 영역은 N/A)</td></tr>
+<tr><td><b>Proposal clarity</b></td><td><span class="b b-keep">PASS</span></td><td><span class="b b-keep">PASS</span></td><td>27건 전건 판정 + 변경 이유, DATA CONFLICT 라벨</td></tr>
+<tr><td><b>Decision clarity</b></td><td><span class="b b-nv">CONDITIONAL</span></td><td><span class="b b-keep">PASS</span></td><td>Decision Matrix 추가 (RECOMMEND 4 · W/ VALIDATION 2 · HOLD 1 · NEEDS DECISION 3)</td></tr>
+<tr><td><b>Uncertainty transparency</b></td><td><span class="b b-nv">CONDITIONAL</span></td><td><span class="b b-keep">PASS</span></td><td>REQ-B 삭제 사유 UNVERIFIED 명시, 미확정 12건 유지</td></tr>
+</tbody>
+</table></div>
+
+<h3>B. Critical Issues — 회의 전 필수 (전건 수정 완료)</h3>
+<div class="tw tight"><table>
+<tbody>
+<tr><td class="id">C-1</td><td>Exec 판정 집계 오류 (8·8·2·3·6 → 실제와 불일치)</td><td><span class="b b-keep">수정</span> 6·7·3·7·4 = 27로 재산출·기준 명시</td></tr>
+<tr><td class="id">C-2</td><td>REQ-C·REQ-D 대조 누락 (25/27건)</td><td><span class="b b-keep">수정</span> 2행 추가</td></tr>
+<tr><td class="id">C-3</td><td>REQ-B 복원 제안이 삭제 사유 미기록(UNVERIFIED)을 표기하지 않고 단정 표현 사용</td><td><span class="b b-keep">수정</span> UNVERIFIED 명시 + 사유 확인 선행으로 완화</td></tr>
+</tbody>
+</table></div>
+
+<h3>C. Minor Issues (전건 수정 완료)</h3>
+<div class="tw tight"><table>
+<tbody>
+<tr><td class="id">M-1</td><td>팝업 90.2%의 분자·분모·매핑 등급 미명시</td><td><span class="b b-keep">수정</span> 산식·CONDITIONAL 등급·증명 범위 문장 추가</td></tr>
+<tr><td class="id">M-2</td><td>녹화 기반 수치(88% · 즉시복귀 0%)의 표본 한정 미표기</td><td><span class="b b-keep">수정</span> 표본 규모·범위(300건 · nologfirst) 주석 6곳</td></tr>
+<tr><td class="id">M-3</td><td>상충 항목의 완곡 표현 · Decision Matrix 부재</td><td><span class="b b-keep">수정</span> DATA CONFLICT 라벨 2건 + Matrix 신설</td></tr>
+</tbody>
+</table></div>
+
+<h3>D. Final Recommendation</h3>
+<div class="claim"><b>READY FOR STAKEHOLDER ALIGNMENT</b> — 수정 반영 기준. 단 이는 문서 품질 판정이며, 회의 전에 확보되면 논의가 빨라지는 자료 2건이 남아 있다: <b>REQ-B의 8/25 삭제 사유</b>(요청자)와 <b>팝업 운영 규칙</b>(DV-03, 운영 부서). 둘 다 문서 결함이 아니라 미결 확인 사항으로 15절에 등재되어 있다.</div>
+</section>
+</main>
+
+</html>
