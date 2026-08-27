@@ -45,7 +45,7 @@
   /* GPT 시안 반영: 소프트 라벤더 그라운드 + 흰 카드 */
   --bg:#F4F3FF; --bg-deep:#EAE8FB; --surface:var(--n-0); --surface-2:var(--n-25);
   --hairline:#E6E4F7; --lav:#EFEDFF;
-  --card-sh:0 2px 10px rgba(68,46,161,.05), 0 1px 3px rgba(68,46,161,.04);
+  --card-sh:0 12px 32px -24px rgba(68,46,161,.22), 0 1px 3px rgba(68,46,161,.05);
   --text:var(--n-900); --text-2:var(--n-700); --text-3:var(--n-500);
   --border:var(--n-100); --border-strong:var(--n-200);
   --icon-deco:var(--n-400);          /* 장식 전용 — 텍스트 금지 (대비 2.76:1) */
@@ -172,14 +172,12 @@ svg{display:block}
 .appbar{height:56px; background:var(--surface); display:flex; align-items:center;
   gap:var(--s-1); padding:0 var(--pad); transition:box-shadow var(--dur) var(--ease)}
 #m01.scrolled .appbar{box-shadow:0 1px 0 var(--border), 0 4px 14px -10px rgba(22,25,29,.35)}
-/* BI — 형태·색을 임의로 바꾸지 않는다 */
+/* [R2] BI — 원본 로고 이미지를 변형 없이 그대로 사용한다(2026-08-27 지시).
+   형태·색·비율을 CSS로 재구성하지 않는다. 원본 174×40을 20px 높이로만 축소 표시. */
 .bi{display:inline-flex; align-items:center; margin-right:auto; padding:6px 2px; line-height:1}
-.bi-up{display:inline-flex; align-items:flex-start; font-size:17px; font-weight:800;
-  color:var(--bi-magenta); letter-spacing:-.03em; line-height:1}
-.bi-up i{font-style:normal; font-size:11px; font-weight:800; line-height:1; margin-top:1px}
-.bi-c{width:22px; height:22px; margin:0 1px 0 3px; border-radius:50%; background:var(--bi-purple);
-  color:#fff; font-size:14px; font-weight:800; line-height:1; display:inline-grid; place-items:center}
-.bi-m{margin-left:1px; font-size:15px; font-weight:800; color:var(--bi-purple); line-height:1}
+.bi-img{display:block; height:20px; width:auto}
+/* [R2] 화면 내부 포커스 링은 브랜드로 — 문서 크롬(pink)과 분리 */
+.screen :focus-visible{outline:2px solid var(--brand-500); outline-offset:2px}
 .iconbtn{width:44px; height:44px; display:grid; place-items:center; border-radius:var(--r-full);
   color:var(--text-2); transition:background var(--dur) var(--ease)}
 .iconbtn:hover{background:var(--n-50)}
@@ -199,7 +197,7 @@ svg{display:block}
 /* 흰 카드 숏컷 바 — 플랫 아이콘 + 타이틀 */
 .quick{background:var(--surface); display:grid; grid-template-columns:repeat(3,1fr);
   margin:var(--s-3) var(--pad) 0; padding:var(--s-2) var(--s-1);
-  border-radius:var(--r-lg); box-shadow:var(--card-sh)}
+  border:1px solid var(--hairline); border-radius:var(--r-xl); box-shadow:var(--card-sh)}
 /* 구분선 없음 — 항목 사이 빈 간격(39~45px)이 아이콘·라벨 간격(7px)의 6배라
    근접성만으로 이미 3개로 읽힌다. 경계는 누름 상태의 배경 하이라이트가 알린다 */
 .qitem{min-height:56px; display:flex; align-items:center; justify-content:center; gap:7px;
@@ -234,16 +232,17 @@ svg{display:block}
 .sec.flush{margin-top:0}
 /* P0는 넉넉하게, P3는 조밀하게 — 균일한 spacing을 깬다 */
 .sec{background:transparent}
-.sec.p0{padding-top:var(--s-6); padding-bottom:var(--s-4)}
+/* [R2] P0는 가장 넉넉하게(28px) — 헤드라인이 숨 쉴 공간 */
+.sec.p0{padding-top:var(--s-7); padding-bottom:var(--s-4)}
 /* P1 = 흰 카드 섹션 (시안) */
 .sec.p1{background:var(--surface); margin:var(--s-4) var(--pad) 0;
-  border-radius:var(--r-lg); box-shadow:var(--card-sh);
+  border:1px solid var(--hairline); border-radius:var(--r-xl); box-shadow:var(--card-sh);
   padding:var(--s-5) var(--s-4) var(--s-4)}
-.sechd{display:flex; align-items:baseline; gap:var(--s-2); margin-bottom:var(--s-3)}
+.sechd{display:flex; align-items:baseline; gap:var(--s-2); margin-bottom:var(--s-4)}
 .sechd h2{font-size:var(--fs-15); font-weight:600; letter-spacing:var(--tr-tight);
   line-height:var(--lh-tight); color:var(--text)}
-.sec.p1 .sechd h2{font-size:var(--fs-16); font-weight:700; letter-spacing:var(--tr-tight)}
-.sechd .more{margin-left:auto; align-self:center; height:44px; padding:0 2px; display:inline-flex;
+.sec.p1 .sechd h2{font-size:17px; font-weight:800; letter-spacing:var(--tr-tight)}
+.sechd .more{margin-left:auto; height:44px; margin-block:-14px; padding:0 2px; display:inline-flex;
   align-items:center; gap:2px; font-size:var(--fs-13); font-weight:500; color:var(--text-3)}
 .sechd .more:hover{color:var(--brand-600)}
 .sechd .more svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:2;
@@ -253,9 +252,10 @@ svg{display:block}
 
 /* ══════════════ M-03 요금제 탐색 (GPT 시안 반영) ══════════════ */
 /* 서브 카피·SIM 그래픽 제거 후 헤드라인 단독. 비워진 만큼 상하 여백을 조였다 */
-.hero{padding:var(--s-1) 0 var(--s-4)}
-.heroT{font-size:var(--fs-22); font-weight:700; line-height:1.42; letter-spacing:var(--tr-tight); color:var(--text)}
-.heroT em{font-style:normal; color:var(--brand-500)}
+/* [R2] 헤드라인을 화면의 유일한 디스플레이 타입으로 — 스케일 22→24, 자간 display */
+.hero{padding:var(--s-2) 0 var(--s-5)}
+.heroT{font-size:var(--fs-24); font-weight:800; line-height:1.34; letter-spacing:var(--tr-display); color:var(--text)}
+.heroT em{font-style:normal; color:var(--brand-600)}
 .m03card{background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--card-sh); overflow:hidden}
 .m03foot{display:flex; gap:6px; align-items:flex-start; padding:var(--s-3) var(--s-4);
   border-top:1px solid var(--hairline); font-size:var(--fs-11); color:var(--text-3); line-height:1.5}
@@ -311,36 +311,37 @@ svg{display:block}
 .rp[data-empty="1"] b{color:var(--text-3)}
 
 /* ══════════════ M-04 이벤트 ══════════════ */
-.carousel{position:relative; margin:0; border-radius:var(--r-md); overflow:hidden;
+.carousel{position:relative; margin:0; border-radius:var(--r-lg); overflow:hidden;
   background:var(--brand-700); touch-action:pan-y}
 .track{display:flex; will-change:transform}
 .track.anim{transition:transform .34s var(--ease)}
 .slide{position:relative; min-width:100%; min-height:176px; display:flex; flex-direction:column;
   justify-content:center; gap:var(--s-2); padding:var(--s-5); color:#fff;
   text-align:left; overflow:hidden}
-.slide .deco{position:absolute; inset:0; pointer-events:none; opacity:.6}
+.slide .deco{position:absolute; inset:0; pointer-events:none; opacity:.3}
 .slide::after{content:""; position:absolute; inset:0; pointer-events:none;
   background:linear-gradient(95deg, rgba(8,10,14,.18) 0%, rgba(8,10,14,0) 60%)}
 .slide .st{position:relative; z-index:2; align-self:flex-start; font-size:var(--fs-11);
-  font-weight:600; letter-spacing:.03em; color:#fff; padding:4px 10px;
-  border-radius:var(--r-full); border:1px solid rgba(255,255,255,.45); background:rgba(255,255,255,.12)}
-.slide b{position:relative; z-index:2; font-size:var(--fs-20); font-weight:700;
-  line-height:1.35; letter-spacing:var(--tr-tight); max-width:84%}
-.slide span{position:relative; z-index:2; font-size:var(--fs-13); font-weight:400; opacity:.94; max-width:86%}
+  font-weight:700; letter-spacing:.05em; color:#fff; padding:3px 9px;
+  border-radius:var(--r-full); border:1px solid rgba(255,255,255,.4); background:rgba(255,255,255,.09)}
+.slide b{position:relative; z-index:2; font-size:var(--fs-20); font-weight:800;
+  line-height:1.32; letter-spacing:var(--tr-tight); max-width:86%}
+.slide span{position:relative; z-index:2; font-size:var(--fs-13); font-weight:400; opacity:.82; max-width:86%}
 .slide .scta{margin-top:var(--s-2); align-self:flex-start; display:inline-flex; align-items:center; gap:6px;
-  height:34px; padding:0 var(--s-4); border-radius:var(--r-full); font-size:var(--fs-12); font-weight:600;
-  color:#fff; border:1px solid rgba(255,255,255,.55); background:rgba(255,255,255,.08); opacity:1}
+  height:36px; padding:0 var(--s-4); border-radius:var(--r-full); font-size:var(--fs-12); font-weight:700;
+  color:#fff; border:1px solid rgba(255,255,255,.6); background:rgba(255,255,255,.12); opacity:1}
 .slide .scta svg{width:11px; height:11px; fill:none; stroke:currentColor; stroke-width:2.6;
   stroke-linecap:round; stroke-linejoin:round}
-.sl1{background:linear-gradient(105deg,#6757D4 0%,#5542BA 48%,#433594 100%)}
-.sl2{background:linear-gradient(105deg,#2A6BA8 0%,#1B4B80 55%,#123458 100%)}
-.sl3{background:linear-gradient(105deg,#1B8A72 0%,#116353 55%,#0C463F 100%)}
+/* [R2] 3색 중간톤 그라디언트 → 채도 낮춘 딥 2-stop. 배너가 소리치지 않아도 대비로 읽힌다 */
+.sl1{background:linear-gradient(120deg,#4B3AA6 0%,#372A7E 100%)}
+.sl2{background:linear-gradient(120deg,#1F5583 0%,#153E62 100%)}
+.sl3{background:linear-gradient(120deg,#146B58 0%,#0E4A3E 100%)}
 /* 캐러셀 컨트롤 — 배너 아래 별도 행.
    배너 위 오버레이는 좌우 화살표가 제목을 가리고, 44px 히트 영역이 서로 겹친다. */
 .carbar{display:flex; align-items:center; height:44px; margin:2px -6px -6px}
-.dots{display:flex; align-items:center; gap:18px; margin-right:auto; padding-left:9px}
+.dots{display:flex; align-items:center; gap:16px; margin-right:auto; padding-left:9px}
 .dot{position:relative; width:6px; height:6px; border-radius:var(--r-full);
-  background:var(--n-300); transition:width var(--dur) var(--ease), background var(--dur) var(--ease)}
+  background:var(--n-200); transition:width var(--dur) var(--ease), background var(--dur) var(--ease)}
 .dot::after{content:""; position:absolute; inset:-19px -9px}
 .dot[aria-current="true"]{width:18px; background:var(--brand-500)}
 .carnav{display:flex; align-items:center; gap:2px}
@@ -360,8 +361,8 @@ svg{display:block}
 /* ══════════════ M-05 가입·개통 ══════════════ */
 /* GPT 시안 — 라벤더 틴트 타일 (모바일은 1열 스택) */
 .acards{display:grid; grid-template-columns:1fr; gap:var(--s-2)}
-.acard{position:relative; text-align:left; min-height:64px; border-radius:var(--r-md);
-  background:#F3EFFA; padding:var(--s-3) var(--s-4);
+.acard{position:relative; text-align:left; min-height:64px; border-radius:14px;
+  background:var(--brand-50); border:1px solid var(--brand-100); padding:var(--s-3) var(--s-4);
   display:flex; flex-direction:row; align-items:center; gap:var(--s-3);
   transition:background var(--dur) var(--ease), transform .12s var(--ease)}
 .acard:hover{background:var(--brand-100)}
@@ -370,20 +371,23 @@ svg{display:block}
 .acard .at{flex-direction:row; align-items:baseline; gap:8px; flex-wrap:wrap}
 .acard p{margin-top:0}
 .acard .at{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
-.acard b{font-size:var(--fs-15); font-weight:600; letter-spacing:var(--tr-base); color:var(--text); line-height:1.35}
+.acard b{font-size:var(--fs-15); font-weight:700; letter-spacing:var(--tr-base); color:var(--text); line-height:1.35}
 .acard p{font-size:var(--fs-13); color:var(--text-3); line-height:1.45}
 .acard .ac{flex:none; width:15px; height:15px;
   color:var(--icon-deco); fill:none; stroke:currentColor; stroke-width:2.2;
   stroke-linecap:round; stroke-linejoin:round; transition:transform var(--dur) var(--ease)}
 .acard:hover .ac{transform:translateX(2px); color:var(--text-3)}
-.acard[aria-disabled="true"]{cursor:not-allowed; opacity:.6}
-.acard[aria-disabled="true"]:hover{background:transparent}
+/* [R2] 비활성 상태 언어를 M-03 행과 통일: 회색 바닥 + 3단계 텍스트 + 이동 표식 숨김 */
+.acard[aria-disabled="true"]{cursor:not-allowed; background:var(--n-25); border-color:var(--n-100)}
+.acard[aria-disabled="true"]:hover{background:var(--n-25)}
+.acard[aria-disabled="true"] p{color:var(--n-400)}
+.acard[aria-disabled="true"] .ac{visibility:hidden}
 .acard[aria-disabled="true"] b{color:var(--text-2)}
 .acard[aria-disabled="true"] .ac{color:var(--n-300)}
 .acard[aria-disabled="true"] .i3d{background:var(--ico-n-fill)}
 .acard[aria-disabled="true"] .i3d svg{stroke:var(--text-3)}
 .notice{margin-top:var(--s-3); display:flex; gap:var(--s-2); align-items:flex-start;
-  padding:10px var(--s-3); border-radius:var(--r-sm); background:var(--n-50);
+  padding:10px var(--s-3); border-radius:var(--r-md); background:var(--n-50);
   color:var(--text-2); font-size:var(--fs-12); line-height:1.5}
 .notice.caution{background:var(--caution-bg); color:var(--caution)}
 .notice svg{width:15px; height:15px; flex:none; margin-top:2px; fill:none; stroke:currentColor;
@@ -391,7 +395,7 @@ svg{display:block}
 .notice b{font-weight:600}
 
 /* ══════════════ M-06 휴대폰 ══════════════ */
-.collap{margin-top:var(--s-4); background:transparent; border-top:1px solid var(--hairline); border-bottom:none}
+.collap{margin-top:var(--s-6); background:transparent; border-top:1px solid var(--hairline); border-bottom:none}
 /* [REFINE VP-1] 인접한 접힘 모듈은 간격 없이 헤어라인 하나로 잇는다 — 갭 밴드 불균일 제거.
    확대·강조 없음(DD-11 준수). 구분은 colhd의 기존 border-bottom이 담당한다. */
 .mod:has(>.collap)+.mod>.collap{margin-top:0; border-top:0}
@@ -399,8 +403,8 @@ svg{display:block}
   padding:0 var(--pad); text-align:left; border-bottom:1px solid var(--hairline)}
 .colhd:hover{background:var(--n-25)}
 .colhd b{font-size:var(--fs-16); font-weight:600; color:var(--text); letter-spacing:var(--tr-base)}
-.colhd .cc{margin-left:auto; width:16px; height:16px; color:var(--text-3); fill:none;
-  stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+.colhd .cc{margin-left:auto; width:17px; height:17px; color:var(--n-400); fill:none;
+  stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
   transition:transform var(--dur) var(--ease)}
 .colhd[aria-expanded="true"] .cc{transform:rotate(180deg)}
 .colbody{padding:var(--s-3) var(--pad) var(--s-6); display:none; border-bottom:1px solid var(--hairline)}
@@ -416,10 +420,10 @@ svg{display:block}
 .tab[aria-selected="true"]{background:var(--surface); color:var(--text); font-weight:600;
   box-shadow:0 1px 2px rgba(25,25,25,.06), 0 1px 1px rgba(25,25,25,.04)}
 .pcards{display:grid; grid-template-columns:1fr 1fr; gap:var(--s-3)}
-.pcard{text-align:left; border:1px solid var(--border); border-radius:var(--r-md);
+.pcard{text-align:left; border:1px solid var(--hairline); border-radius:var(--r-md);
   background:var(--surface); padding:var(--s-3); transition:border-color var(--dur) var(--ease)}
 .pcard:hover{border-color:var(--border-strong)}
-.ph{height:88px; border-radius:var(--r-sm); background:linear-gradient(160deg,var(--n-25),var(--n-100));
+.ph{height:88px; border-radius:var(--r-sm); background:linear-gradient(160deg,var(--n-25),var(--n-50));
   margin-bottom:var(--s-2); display:grid; place-items:center}
 .ph .i3d{--i3d-size:52px}
 .pcard b{display:block; font-size:var(--fs-13); font-weight:600; color:var(--text);
@@ -428,10 +432,16 @@ svg{display:block}
 .pcard .pp em{font-style:normal; font-weight:700; color:var(--brand-600)}
 /* [REFINE VP-4] 실패 화면의 유일한 유효 행동 — 비활성 요소와 구분되도록 기존 토큰으로 보조 채움.
    구조·동작·토큰 값 불변. 토큰 자체는 B-05 미확정이므로 reference로만 사용. */
-#m03retry{background:var(--brand-50); border-color:var(--brand-200); color:var(--brand-600); font-weight:700}
-#m03retry:hover{background:var(--brand-100)}
+/* [R2] 오류 조합: 원인(경고) → 행동(재시도)의 수직 구성. 재시도는 화면의 유일한 유효
+   행동이므로 1차 버튼(채움)으로 승격 — 토큰은 B-05 확정 전 reference. */
+#m03err:not(:empty){padding:0 var(--s-4) var(--s-4)}
+#m03err .notice{margin-top:var(--s-3); border-radius:var(--r-md); padding:var(--s-3) var(--s-4)}
+#m03retry{min-height:48px; border:none; border-radius:var(--r-md); background:var(--brand-600);
+  color:#fff; font-size:var(--fs-14); font-weight:700; letter-spacing:var(--tr-base)}
+#m03retry:hover{background:var(--brand-700)}
+#m03retry:active{transform:translateY(1px)}
 .colmore{margin-top:var(--s-4); width:100%; min-height:44px; border:1px solid var(--border-strong);
-  border-radius:var(--r-sm); font-size:var(--fs-13); font-weight:600; color:var(--text-2);
+  border-radius:var(--r-md); font-size:var(--fs-13); font-weight:600; color:var(--text-2);
   display:flex; align-items:center; justify-content:center; gap:4px}
 .colmore:hover{background:var(--n-25)}
 .colmore svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -452,7 +462,7 @@ svg{display:block}
 /* ══════════════ M-08 고객지원 ══════════════ */
 .links{display:flex; flex-direction:column}
 .link{min-height:52px; display:flex; align-items:center; gap:var(--s-3); text-align:left;
-  width:100%; border-bottom:1px solid var(--border); font-size:var(--fs-14); color:var(--text)}
+  width:100%; border-bottom:1px solid var(--hairline); font-size:var(--fs-14); color:var(--text)}
 .links .link:last-child{border-bottom:none}
 /* P2 지원 링크 — 2열 사이트맵. 카드화하지 않되 면적은 절반으로 */
 .links.two{display:grid; grid-template-columns:1fr 1fr; column-gap:var(--s-5)}
@@ -474,7 +484,7 @@ svg{display:block}
 .appdl button:hover{background:var(--n-25); border-color:var(--n-300)}
 .appdl svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .flinks{display:flex; flex-wrap:wrap; gap:0 var(--s-5); padding-top:var(--s-4);
-  border-top:1px solid var(--n-100)}
+  border-top:1px solid var(--hairline)}
 .flinks button{min-height:44px; font-size:var(--fs-12); font-weight:500; color:var(--text-2)}
 .flinks button:hover{color:var(--brand-600)}
 .fnote{margin-top:var(--s-2); font-size:var(--fs-11); color:var(--text-2); line-height:1.65; max-width:44ch}
@@ -488,10 +498,10 @@ svg{display:block}
   background:var(--surface); display:flex; flex-direction:column; animation:slide .24s var(--ease)}
 @keyframes slide{from{transform:translateX(24px); opacity:.4}to{transform:none; opacity:1}}
 .sheethd{height:56px; display:flex; align-items:center; padding:0 var(--s-2) 0 var(--pad);
-  border-bottom:1px solid var(--border)}
+  border-bottom:1px solid var(--hairline)}
 .sheethd b{font-size:var(--fs-16); font-weight:600; flex:1; letter-spacing:var(--tr-base)}
 .sheetbody{flex:1; overflow-y:auto; padding:var(--s-5) var(--pad) var(--s-8)}
-.gnbcta{width:100%; min-height:48px; border-radius:var(--r-sm); background:var(--brand-600);
+.gnbcta{width:100%; min-height:50px; border-radius:var(--r-md); background:var(--brand-600);
   color:#fff; font-size:var(--fs-14); font-weight:700; display:flex; align-items:center;
   justify-content:center; gap:6px; box-shadow:var(--sh-brand)}
 .gnbcta:hover{background:var(--brand-700)}
@@ -537,7 +547,7 @@ svg{display:block}
   background:var(--brand-50); color:var(--brand-700); border:1px solid var(--brand-100)}
 .achip.plain{background:var(--n-50); color:var(--text-2); border-color:var(--border)}
 .plist{padding:var(--s-4) var(--pad) var(--s-10); display:grid; gap:var(--s-3)}
-.pitem{text-align:left; border:1px solid var(--border); border-radius:var(--r-md);
+.pitem{text-align:left; border:1px solid var(--hairline); border-radius:var(--r-md);
   background:var(--surface); padding:var(--s-4); transition:border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease)}
 .pitem{transition:border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform .12s var(--ease)}
 .pitem:hover{border-color:var(--brand-200); box-shadow:var(--sh-2)}
@@ -549,7 +559,7 @@ svg{display:block}
 .pitem .pn{font-size:var(--fs-15); font-weight:600; color:var(--text); line-height:1.4;
   letter-spacing:var(--tr-base); display:block}
 .pitem .pmeta{margin-top:var(--s-1); font-size:var(--fs-12); color:var(--text-3)}
-.pitem .prow{margin-top:var(--s-3); padding-top:var(--s-3); border-top:1px solid var(--border);
+.pitem .prow{margin-top:var(--s-3); padding-top:var(--s-3); border-top:1px solid var(--hairline);
   display:flex; align-items:baseline; gap:3px}
 .pitem .prow i{font-style:normal; font-size:var(--fs-12); color:var(--text-3); margin-right:auto; font-weight:500}
 .pitem .prow b{font-size:var(--fs-22); font-weight:700; color:var(--text);
@@ -787,7 +797,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
         <div class="mod" id="m01">
           <span class="anno">M-01 · P0</span>
           <header class="appbar">
-            <span class="bi" role="img" aria-label="U+유모바일"><span class="bi-up">U<i>+</i></span><span class="bi-c">U</span><span class="bi-m">MOBILE</span></span>
+            <span class="bi" role="img" aria-label="U+유모바일"><img class="bi-img" src="data:image/png;base64,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" alt=""></span>
             <button type="button" class="iconbtn" id="btnSearch" aria-label="검색">
               <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5L16.2 16.2"/></svg>
             </button>
