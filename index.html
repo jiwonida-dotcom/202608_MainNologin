@@ -198,14 +198,15 @@ svg{display:block}
   stroke-linecap:round; stroke-linejoin:round}
 
 /* ══════════════ M-02 QuickMenu ══════════════ */
-/* GPT 시안 — 흰 카드 숏컷 바: 3D 아이콘 + 타이틀 + 서브카피 + chevron */
+/* 흰 카드 숏컷 바 — 플랫 아이콘 + 타이틀 */
 .quick{background:var(--surface); display:grid; grid-template-columns:repeat(3,1fr);
   margin:var(--s-3) var(--pad) 0; padding:var(--s-2) var(--s-1);
   border-radius:var(--r-lg); box-shadow:var(--card-sh)}
+/* 구분선 없음 — 항목 사이 빈 간격(39~45px)이 아이콘·라벨 간격(7px)의 6배라
+   근접성만으로 이미 3개로 읽힌다. 경계는 누름 상태의 배경 하이라이트가 알린다 */
 .qitem{min-height:56px; display:flex; align-items:center; justify-content:center; gap:7px;
-  border-left:1px solid var(--hairline); padding:0 2px;
+  padding:0 2px; border-radius:var(--r-md);
   transition:background var(--dur) var(--ease)}
-.qitem:first-child{border-left:none}
 .qitem:hover{background:var(--surface-2)}
 .qitem:active{background:var(--n-50)}
 .qitem .i3d{display:grid; --i3d-size:30px}
