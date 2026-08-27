@@ -128,7 +128,7 @@ td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 }
 
 /* ═══ PHASE 9.5 · 프로젝트 공통 내비게이션 (자체 완결 — 문서 토큰에 의존하지 않는다) ═══ */
-.pjnav{background:#14121F;color:#E8E6F2;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+.pjnav{min-width:0; background:#14121F;color:#E8E6F2;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 .pjnav a{color:inherit;text-decoration:none}
 .pjnav .in{max-width:1040px;margin:0 auto;padding:0 20px}
 .pjnav .id{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:13px 0 9px}
@@ -143,7 +143,7 @@ td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 .pjnav li a[aria-current="page"]{color:#fff;border-bottom-color:#8878E6}
 .pjnav li a i{display:block;font-style:normal;font-size:10px;font-weight:400;color:#7E77A8;margin-top:1px}
 .pjnav li a[aria-current="page"] i{color:#B9B2DE}
-.pjfoot{background:#F2F1F7;border-top:1px solid #DEDCE8;
+.pjfoot{min-width:0; background:#F2F1F7;border-top:1px solid #DEDCE8;
   font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 .pjfoot .in{max-width:1040px;margin:0 auto;padding:22px 20px 30px}
 .pjfoot .lb{font-size:10.5px;letter-spacing:.14em;color:#6E6A85;font-family:ui-monospace,monospace;
@@ -167,6 +167,7 @@ td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 <li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
 <li><a href="./audit.html" aria-current="page">AUDIT<i>그 근거가 검증되었는가</i></a></li>
 <li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
+<li><a href="./targetuser.html">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
 <li><a href="./timedeal.html">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
 </ul>
 </div></nav>
@@ -384,6 +385,7 @@ td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 <li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
 <li><a href="./audit.html" aria-current="page">AUDIT<i>그 근거가 검증되었는가</i></a></li>
 <li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
+<li><a href="./targetuser.html">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
 <li><a href="./timedeal.html">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
 </ul>
 <p class="note">이 다섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
