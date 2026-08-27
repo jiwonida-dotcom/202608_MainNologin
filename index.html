@@ -1047,7 +1047,31 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
 <div class="docwrap">
 
 <section class="doc">
-  <div class="sechead"><span class="secno">1</span><h2>Design Token 구조</h2><span class="en">single source</span></div>
+  <div class="sechead"><span class="secno">1</span><h2>영역 배치 순서 근거 — 요금제(M-03) &gt; 이벤트(M-04)</h2>
+<p class="dnote">현행은 <strong>반대 순서</strong>다 — 이벤트 배너 캐러셀 y204, 요금제 추천 y336, 그리고 <strong>요금제 전용 탐색 영역(<span class="mono">SearchFee</span>)은 y1802</strong>. PHASE 5 IA에서 요금제 탐색을 <strong>Z-02 · P0</strong>, 이벤트를 <strong>Z-03 · P1</strong>로 두어 순서를 바꿨다.</p>
+<div class="tw"><table>
+  <thead><tr><th style="width:190px">판단</th><th style="width:290px">지표</th><th>값</th></tr></thead>
+  <tbody>
+    <tr><td><strong>요금제 전용 영역이 도달 범위 밖이다</strong><br><span class="mono">P-07</span></td><td>SearchFee 위치 vs 평균 스크롤 도달선</td><td><strong>y1802~2202 vs y1461~1658</strong> — 영역 전체가 도달선 아래</td></tr>
+    <tr><td>낮은 클릭은 무관심이 아니라 <strong>미노출</strong>이다</td><td>SearchFee 세션당 클릭</td><td><strong>0.0079 / 0.0067</strong> (F/R, 관측 이벤트 중 최하위권)</td></tr>
+    <tr><td>하단 절반은 아예 보이지 않는다</td><td>스크롤 도달률</td><td><strong>44.5% / 39.2%</strong></td></tr>
+    <tr><td>요금제 선택 축은 실재한다</td><td>목록 필터 1위 · 정렬 적용</td><td>데이터 축 <strong>14,484</strong> · 가격 낮은 순 <strong>91.4%</strong></td></tr>
+    <tr><td>다음 페이지 행동에서 요금제가 앞선다</td><td>메인 → 다음 경로 비중</td><td>요금제 <strong>13.3% / 17.2%</strong> vs 이벤트 <strong>8.4% / 15.8%</strong></td></tr>
+    <tr><td>배너 반응도 요금제가 앞선다</td><td>세션당 배너 클릭</td><td>ProductBanner(요금제) <strong>0.0437 / 0.0758</strong> vs ProductProBanner(이벤트) <strong>0.0303 / 0.0294</strong></td></tr>
+    <tr><td><strong>이벤트는 현행에서 이미 목적을 달성한다</strong></td><td>이벤트 상세 복귀율 · 체류</td><td><strong>복귀율 0%</strong> · 13.6~61.2초 — 고칠 문제가 없는 영역</td></tr>
+  </tbody>
+</table></div>
+<p class="dnote"><strong>순서의 논리는 "이벤트가 덜 중요하다"가 아니다.</strong> 이벤트는 시안의 3순위에서 <strong>P1로 상향</strong>했다. 두 영역 중 <strong>요금제만 구조적으로 실패하고 있어서</strong>(P-07) 상단 자리를 먼저 받는 것이며, 이벤트는 이미 작동 중이라 한 칸 아래에서도 손실이 작다. 실측상 배너 상단은 <strong>758px</strong>로 뷰포트(844px) 안에 남는다.</p>
+<div class="tw"><table>
+  <thead><tr><th style="width:150px">한계</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td><span class="badge b-warn">요구 충돌</span></td><td><strong>REQ-04는 "타임딜 운영 시 요금제 영역보다 우선 노출"을 명시한다.</strong> 타임딜은 이 프로토타입 범위 밖이고 운영 주기도 미확인(<span class="mono">OPEN-08</span>)이라 반영하지 않았다. 타임딜이 켜지면 이 순서는 뒤집힌다 — 요청자 확정 필요</td></tr>
+    <tr><td><span class="badge b-warn">사후 검증</span></td><td>"미노출이 원인"은 <strong>위치와 클릭률을 함께 관측해 얻은 해석</strong>이지 인과 증명이 아니다. 순서를 바꿔 실제로 요금제 진입이 느는지는 <strong>개선 후 측정으로만</strong> 확인된다</td></tr>
+    <tr><td><span class="badge b-warn">원인 미확정</span></td><td>ProductBanner의 재방문 <strong>+74%</strong>는 화면 효과인지 사용자 구성 효과인지 분리되지 않아 <span class="mono">DIFFERENCE WITHOUT EVIDENCE</span>로 분류돼 있다. <strong>순서의 보조 근거로만</strong> 쓰고 주 근거로 삼지 않았다</td></tr>
+  </tbody>
+</table></div>
+
+<h2>Design Token 구조</h2><span class="en">single source</span></div>
   <p>화면의 모든 색·간격·라운드·그림자는 <span class="mono">:root</span> 토큰에서만 나온다. 개별 규칙에 값을 직접 쓴 곳은 없으므로 <strong>실제 브랜드 토큰 확보 시 이 블록만 교체</strong>하면 된다.</p>
   <div class="tw"><table>
     <thead><tr><th style="width:120px">그룹</th><th style="width:200px">토큰</th><th>용도 · 제약</th></tr></thead>
