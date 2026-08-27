@@ -760,6 +760,12 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <dt>OWNER</dt><dd>요청자</dd><dt>IMPACT</dt><dd>D-02 · M-03/M-04 순서</dd><dt>STATUS</dt><dd>PHASE 8.6에서 정의 복원 완료 · 확정 대기</dd></dl>
 <div class="xref"><a href="./timedeal.html">타임딜 분석 전문</a></div></div></details>
 
+<details><summary><span class="id">ME-01</span>진입 맥락을 구분하는 측정 차원이 없다 <span class="b b-open" style="background:var(--stop-soft);color:var(--stop)">OPEN</span></summary><div class="bd">
+<dl><dt>WHAT</dt><dd>일반 · 앱 웹뷰 · 로그인 오류 복귀 · <b>가입 완료 후 복귀</b>를 구분하는 차원을 태깅에 추가할 수 있는가</dd>
+<dt>WHY</dt><dd>리퍼러 집계로 <b>규모</b>는 안다(가입 완료 복귀 4,654 sessions). 그러나 <b>그 세션들이 무엇을 했는지</b>는 볼 수 없다 — 리퍼러 집계와 행동 집계가 서로 붙지 않는다. <b>복귀 목적은 현재 UNVERIFIED다</b></dd>
+<dt>IMPACT</dt><dd>PHASE 11 <span class="mono">RS-01</span> 복귀 상태의 다음 설계 · 앱 웹뷰 진입(3,494 sessions) 처리</dd>
+<dt>STATUS</dt><dd>제안 — 이 측정 전에는 회원가입 링크 억제 이상을 확정하지 않는다 <a href="./index.html">프로토타입 5절</a></dd></dl></div></details>
+
 <details><summary><span class="id">DV-03</span>팝업 운영 규칙 <span class="b b-open" style="background:var(--stop-soft);color:var(--stop)">OPEN</span></summary><div class="bd">
 <dl><dt>WHAT</dt><dd>팝업 개수·재노출 주기·우선순위 규칙 미확인</dd>
 <dt>WHY</dt><dd>D-07(정책 재설계)의 선행 조건 — 규칙을 모르면 재설계 범위를 정할 수 없음</dd>

@@ -198,6 +198,9 @@ svg{display:block}
   transition:color var(--dur) var(--ease)}
 .joinlink:hover{color:var(--brand-600)}
 .screen[data-bp="s"] .joinlink{display:none}
+/* PHASE 11 · 가입 완료 후 복귀(joinComplete 리퍼러) 맥락에서는
+   회원가입 동선을 억제한다. 억제만 하고 무엇도 더하지 않는다 (DD-14) */
+.screen[data-ctx="joined"] .joinlink{display:none}
 .loginbtn:active{background:var(--brand-100)}
 .loginbtn svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8;
   stroke-linecap:round; stroke-linejoin:round}
@@ -646,6 +649,8 @@ td.c,th.c{text-align:center}
 .call.stop{border-left-color:var(--doc-stop)} .call.ok{border-left-color:var(--doc-ok)}
 .call.info{border-left-color:var(--doc-accent)}
 .call h4{font-size:15px; font-weight:600; margin-bottom:6px}
+.docwrap h3.s3{font-size:15px; font-weight:600; margin:26px 0 2px; color:var(--doc-ink)}
+.docwrap h3.s3+p,.docwrap h3.s3+.tw{margin-top:8px}
 .call p{font-size:14px; color:var(--doc-ink-2); max-width:70ch}
 .call p+p{margin-top:8px}
 footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
@@ -1098,8 +1103,12 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
       <button type="button" data-op="0" aria-pressed="false">불가 시간</button>
       <span class="lbl">M-10 팝업 · 구조만</span>
       <button type="button" id="btnPop">레이어 호출</button>
+      <span class="lbl">진입 맥락 · M-01</span>
+      <button type="button" data-ectx="normal" aria-pressed="true">일반 진입</button>
+      <button type="button" data-ectx="joined" aria-pressed="false">가입 완료 후 복귀</button>
     </div>
     <p class="dnote" style="margin-top:10px">팝업의 <strong>노출 조건·개수·재노출 주기는 구현하지 않았다.</strong> 진입 시 자동 노출도 없다. <code>DV-03</code></p>
+    <p class="dnote" style="margin-top:8px"><strong>진입 맥락</strong> — <code>/util/join/joinComplete</code> 리퍼러 <strong>4,654세션</strong>(F 2,465 / R 2,189)의 상태다. 이 상태에서 달라지는 것은 <strong>M-01 회원가입 링크 억제 1건</strong>뿐이다. <strong>이들이 무엇을 하러 돌아왔는지는 관측되지 않았으므로</strong>(UNVERIFIED) 그 이상은 바꾸지 않는다. 문서 5절 참조</p>
   </div>
 
   <div class="dblock">
@@ -1175,7 +1184,8 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
       <tr><td><strong>Overlay</strong><br><span class="src">M-10 · M-11 · 검색</span></td><td>open / close · 배경 스크롤 잠금 · <strong>focus trap</strong> · ESC · 닫은 뒤 <strong>호출 지점 복귀</strong> · 팝업 닫기 3종 구분 로그</td></tr>
       <tr><td><strong>Icon3D</strong><br><span class="src">M-02 · M-05 · M-06</span></td><td>브랜드 variant / <strong>중성 variant</strong>(P3·비활성) · <span class="mono">--i3d-size</span> 36 / 38 / 52px · 카드 비활성 시 중성으로 자동 전환</td></tr>
       <tr><td><strong>AppBar</strong><br><span class="src">M-01</span></td><td>sticky · <strong>스크롤 시 그림자 전환</strong> · 로그인 hover/pressed</td></tr>
-      <tr><td><strong>Navigation</strong></td><td>화면 전환 · 뒤로가기 · <strong>스크롤 위치 복원</strong> · 선택 구간 유지 · 접힘 상태 유지</td></tr>
+      <tr><td><strong>EntryContext</strong><br><span class="src">M-01 · PHASE 11</span></td><td>일반 진입(기본) · <strong>가입 완료 후 복귀</strong>. 복귀 맥락에서 <strong>회원가입 링크만 억제</strong>하고 그 외 모듈은 전부 현행과 동일하다. 검증 Drawer에서 전환 · <span class="mono">data-ctx</span> 속성 1개로만 제어. 자세한 정의는 <strong>5절</strong></td></tr>
+    <tr><td><strong>Navigation</strong></td><td>화면 전환 · 뒤로가기 · <strong>스크롤 위치 복원</strong> · 선택 구간 유지 · 접힘 상태 유지</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -1296,6 +1306,7 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
       <tr><td class="mono">CH-25</td><td><strong>브랜드 컬러 계열</strong></td><td class="src">임시 마젠타</td><td><strong>레퍼런스 바이올렛</strong>(#8C63F4 / #A99BFF)으로 전면 교체. 요청자 확정 사항이며 토큰 블록만 교체했다</td><td class="c"><span class="badge b-warn">교체</span></td></tr>
       <tr><td class="mono">CH-26</td><td><strong>3D 아이콘 시스템</strong></td><td class="src">선 아이콘</td><td>M-02·M-05·M-06 진입점을 <strong>3D 칩</strong>으로. P3(M-07)와 텍스트 링크(M-08)는 <strong>플랫 유지</strong> — 3D를 우선순위 신호로 쓴다(UI-P4)</td><td class="c"><span class="badge b-new">추가</span></td></tr>
       <tr><td class="mono">CH-34</td><td><strong>QuickMenu 재디자인</strong></td><td class="src">세로 아이콘 그리드(65px)</td><td>요청자 피드백 반영 — <strong>가로 필 3개</strong>(3D 칩 26px + 인라인 라벨, 영역 70px). 아이콘 런처가 아니라 숏컷 바로 읽힌다. 3종 구성·순서·목적지는 불변</td><td class="c"><span class="badge b-warn">변경</span></td></tr>
+      <tr><td class="mono">CH-62</td><td><strong>진입 맥락 상태 · 가입 완료 후 복귀</strong></td><td class="src">PHASE 6에 상태로만 정의 · 화면 미구현</td><td><strong>RS-01 신설.</strong> <span class="mono">/util/join/joinComplete</span> 리퍼러 <strong>4,654세션</strong>(F 2,465 / R 2,189)의 복귀 상태를 <strong>기존 모듈의 상태 변형으로만</strong> 정의했다. 실제 변형은 <strong>M-01 회원가입 링크 억제 1건</strong>이며, 자리를 다른 것으로 채우지 않아 <strong>콘텐츠 총량은 늘지 않는다</strong>(DD-14). <strong>복귀 목적은 관측되지 않았으므로</strong>(UNVERIFIED) 로그인 강조·개통 우선 배치·완료 안내 문구는 <strong>기각</strong>했고, 기각 사유를 문서 5절에 남겼다. 인지 방법(리퍼러/파라미터/저장소)은 <strong>검토만</strong> 하고 확정하지 않았다 — <strong>저장소·쿠키 신설은 제안 범위 밖</strong>이다. 프로토타입은 검증 Drawer의 토글로 상태만 재현하며 <strong>기본 화면은 현행 유지</strong>다. 측정 제안 4건(ME-01~04) 동반</td><td class="c"><span class="badge b-new">추가</span></td></tr>
       <tr><td class="mono">CH-61</td><td><strong>M-01 가입 동선 병기</strong></td><td class="src">로그인 버튼 단독</td><td><strong>D-12 · OPEN-05 = "병행" 확정에 따른 최소 수정.</strong> 로그인은 최상위 진입점으로 <strong>현행 유지</strong>하고, 그 옆에 회원가입 동선을 <strong>부가 표기</strong>로 추가했다(텍스트 링크 · 44px 타깃 · 360px에서는 숨김). 버튼 비중·구조·순서는 바꾸지 않았다. 목적지 <span class="mono">/util/join/joinIntro</span>는 GNB에 이미 존재하는 경로다</td><td class="c"><span class="badge b-new">추가</span></td></tr>
       <tr><td class="mono">CH-60</td><td><strong>요소 정리 · 어쿠스틱 리스트</strong></td><td class="src">퀵메뉴 서브카피 · 히어로 서브카피+SIM 그래픽 · 라디오 · "요금제 N종"</td><td>요청자 지시로 4종을 제거하고 비워진 만큼 영역을 재조정했다. <strong>① M-02</strong> 퀵메뉴 서브카피 3건 삭제 — 목적지 이름만 남는다. <strong>② M-03 히어로</strong> 서브카피와 CSS 3D SIM 그래픽 삭제, 상하 여백을 조여 <strong>배너 상단이 폴드 쪽으로 회수됐다</strong>(CH-58에서 기록한 스필오버 소멸의 부분 복구). <strong>③ 구간 행</strong> 라디오 컴포넌트 삭제 — 선택 상태는 배경·링·색으로만 표시한다(터치 타깃은 행 전체라 손실 없음). <strong>④ "요금제 N종" 재제거</strong> — CH-14에서 철회했다가 CH-58에서 요청자 지시로 복원했던 항목을 다시 뺀다. CH-14의 원래 판단(상품 수는 구간 선택의 판단 축이 아니다)으로 돌아가는 것이며 <strong>구간 보조 설명(dan2 라벨 승계, CH-44)은 유지</strong>한다. <strong>⑤ 어쿠스틱 톤</strong> — 셰브런을 2.2→1.6 굵기·옅은 회색으로 낮춰 호버에서만 진해지게 하고, 행 구분선을 전폭에서 <strong>콘텐츠 시작선 인셋</strong>으로 바꿨다. 격자가 아니라 리듬으로 읽힌다. 좌우 여백은 라디오가 빠진 만큼 12→16px로 통일</td><td class="c"><span class="badge b-warn">정리</span></td></tr>
       <tr><td class="mono">CH-59</td><td><strong>A타입 컬러·아이콘 전환</strong></td><td class="src">운영 실측 퍼플 #662D91 · 3D 그라디언트 아이콘</td><td><span class="badge b-warn">UNVERIFIED</span> 요청자 지시로 첨부 시안(A)의 <strong>인디고 #6B55E6</strong>과 <strong>플랫 단색 아이콘</strong>으로 전환. <strong>① 컬러</strong> — hue 307°→284°, 스케일 8단 재생성. 흰 글씨 대비가 8.94:1 → 5.16:1로 내려가 채운 버튼은 600(7.00:1)으로 올렸다. <strong>② 아이콘</strong> — 그라디언트·인셋·글로 제거, solid/tint/neutral 3종. <strong>③ 구간 타일</strong> — 5색(보라·초록·파랑·빨강·보라)을 단일 인디고 틴트로 통일. 단일 강조색 원칙에 맞고 5구간 동일 강도(DD-03)와도 합치한다. <strong>남는 문제</strong>: BI(<span class="mono">#4A1972</span>/<span class="mono">#CD0769</span>)는 hue 305°/1°로 그대로라 본문 인디고와 계열이 갈린다 — 로고만 색이 튀는 것은 <strong>미해소</strong>. <strong>되돌리기</strong>: 토큰 블록 8줄만 실측값으로 교체하면 원복된다</td><td class="c"><span class="badge b-warn">전환</span></td></tr>
@@ -1332,6 +1343,88 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
   <div class="call ok"><h4>변경하지 않은 것</h4><p>M-01~M-11 구조와 순서 · QuickMenu 3종 · 이벤트 퀵메뉴 미추가 · M-03 5구간과 경계값 · 메인 내 필터 없음 · 하단 고정 CTA 없음 · M-06 접힘 기본과 강조 금지 · 검색 아이콘 유지 · 팝업 자동 노출 없음 · 신규 영역 0개 · 철회 근거 미사용 · DD-05 전달 수단 미확정. <strong>12개 유지 조건 전부 준수.</strong></p></div>
 
   <div class="call"><h4>이월</h4><p><strong>결정 필요</strong> DC-01(중복 목적지 라벨) · DC-02(REQ-08 공백) · DC-03(M-07 슬롯 규칙) · DC-04(목적지 화면 주체)<br><strong>데이터·기술</strong> DV-01(태깅) · DV-03(팝업 규칙) · DV-05(배치 순서) · TR-03(뒤로가기 유지)<br><strong>실측</strong> OI-10(실효 뷰포트) · <strong>OI-11(BI 원본 CI 벡터)</strong> · GNB 실제 구조<br><strong>해소</strong> <span class="mono">TR-01·TR-02·TR-04 · DV-02 · DV-04 · OI-01</span><br><strong>사용자 검증</strong> 첫 5초 인지 · 구간 이해도 · 스크롤 유도 효과</p></div>
+</section>
+
+<section class="doc">
+  <div class="sechead"><span class="secno">5</span><h2>진입 맥락 상태 — 가입 완료 후 복귀</h2><span class="en">entry context · RS-01</span></div>
+  <p>PHASE 6에서 <strong>상태로만 정의되고 화면으로 구현되지 않았던 항목</strong>이다 — "가입 완료 후 복귀 · 완료 맥락 인지 — 신규 가입 유도를 반복하지 않음 · <span class="mono">/util/join/joinComplete</span> 4,654세션". PHASE 11에서 이 공백을 최소 범위로 채운다.</p>
+
+  <div class="call info"><h4>먼저 · 이 4,654세션이 무엇을 마친 사람인가</h4>
+    <p>리퍼러 경로는 <span class="mono">util/join</span> 하위다. 현행 전체메뉴에서 <span class="mono">/util/join/joinIntro</span>는 <strong>"회원가입"</strong>으로, 상품 가입은 <span class="mono">/shop/mobile/mobileJoinIntro</span>로 <strong>서로 다른 경로 체계에 있다.</strong> 따라서 이 세션들은 <strong>사이트 계정 생성을 마치고 돌아온 것</strong>으로 읽는 편이 경로 체계와 일치하며, PHASE 6의 "신규 가입 유도"는 <strong>개통이 아니라 계정 생성 유도</strong>를 가리킨다.</p>
+    <p><span class="badge b-hold">CONDITIONAL</span> 완료 페이지의 실제 내용은 확인하지 않았다. 이 해석이 뒤집히면 아래 RS-1의 대상도 함께 바뀐다.</p>
+  </div>
+
+  <div class="call stop"><h4>이 상태에서 알 수 없는 것</h4>
+    <p><strong>4,654세션은 규모일 뿐, 이들이 무엇을 하러 돌아왔는지는 관측되지 않았다.</strong> <span class="badge b-hold">UNVERIFIED</span> 현재 태깅에는 진입 맥락 차원이 없어서, 복귀 세션만 떼어 다음 행동을 볼 수단이 없다. 그래서 이 상태는 <strong>목적을 추측해 화면을 재구성하지 않고, 논리적으로 무의미해진 것 하나만 걷어낸다.</strong> 나머지는 측정을 붙인 뒤 판단한다(아래 측정 제안).</p>
+  </div>
+
+  <h3 class="s3">RS-01 · 상태 정의</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:110px">항목</th><th>정의</th></tr></thead>
+    <tbody>
+      <tr><td><strong>상태 ID</strong></td><td><span class="mono">RS-01</span> — 가입 완료 후 복귀 (entry context: <span class="mono">joined</span>)</td></tr>
+      <tr><td><strong>진입 조건</strong></td><td>직전 문서가 <span class="mono">/util/join/joinComplete</span>인 상태로 비로그인 메인에 도착</td></tr>
+      <tr><td><strong>범위</strong></td><td>화면 구조가 아니라 <strong>진입 시 처리</strong>. M-01~M-11의 배치·순서·개수는 변경하지 않는다</td></tr>
+      <tr><td><strong>지속</strong></td><td>해당 진입 1회. 세션 전체로 확장하지 않는다 — 확장하려면 저장소가 필요하고, 그 필요를 정당화할 관측이 없다</td></tr>
+      <tr><td><strong>기본값</strong></td><td><strong>일반 진입.</strong> 판정에 실패하면 현행 화면을 그대로 보여준다(안전한 쪽이 기본)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="s3">복귀 맥락을 인지하는 방법 — 3안 검토</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:150px">방법</th><th>필요한 것</th><th>한계</th><th class="c" style="width:100px">판단</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A · 리퍼러 판정</strong><br><span class="src">document.referrer</span></td><td>추가 저장소·쿠키 <strong>없음</strong>. 진입 시 1회 비교</td><td>리다이렉트를 거치면 유실 · 앱 웹뷰에서는 비어 있는 경우가 많음 · 다음 페이지로 이동하면 소실</td><td class="c"><span class="badge b-ok">1차안</span></td></tr>
+      <tr><td><strong>B · 완료 페이지에서 파라미터 부여</strong></td><td>완료 페이지의 링크 1곳 수정</td><td>공유·북마크로 URL이 퍼지면 맥락이 오염된다 · 노출된 파라미터</td><td class="c"><span class="badge b-hold">보류</span></td></tr>
+      <tr><td><strong>C · 세션 저장소 플래그</strong></td><td><strong>신규 저장소 신설</strong></td><td>지속성은 가장 좋으나 <strong>이 문서에서 확정하지 않는다</strong> — 저장소·쿠키 신설은 제안 범위 밖이다</td><td class="c"><span class="badge b-hold">제안만</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="dnote">프로토타입은 <strong>어느 방법도 구현하지 않는다.</strong> 검증 Drawer의 토글로 상태만 재현한다 — 인지 방법은 관계자 확인 후 결정할 사항이다.</p>
+
+  <h3 class="s3">복귀 상태에서 달라지는 것 — 1건</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:74px">ID</th><th style="width:130px">대상</th><th>처리</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">RS-1</td><td><strong>M-01 회원가입 링크</strong></td><td><strong>억제(숨김).</strong> 자리를 다른 것으로 채우지 않는다 — 로그인 버튼은 위치·크기·비중 모두 현행 유지</td><td>계정 생성을 마친 사람에게 계정 생성 링크는 <strong>목적지가 이미 소진된 동선</strong>이다. 이 판단에는 복귀 목적에 대한 추측이 필요 없다</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="s3">하지 않는 것 — 그리고 그 이유</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:210px">검토한 변형</th><th>기각 사유</th></tr></thead>
+    <tbody>
+      <tr><td>로그인 영역 강조 확대</td><td>복귀 목적이 로그인이라는 관측이 없다 <span class="badge b-hold">UNVERIFIED</span>. 로그인은 이미 최상위 진입점이며, 맥락에 따라 크기가 변하면 같은 화면이 두 얼굴을 갖는다</td></tr>
+      <tr><td>개통·가입 안내(M-05) 우선 배치</td><td><strong>계정 생성 완료가 상품 가입 임박을 뜻한다는 근거가 없다.</strong> 두 경로는 체계가 다르다. 배치 변경은 구조 변경이기도 하다</td></tr>
+      <tr><td>완료 확인 · 환영 문구 노출</td><td><strong>신규 콘텐츠 영역 추가 금지 · 콘텐츠 총량 증가 금지</strong> <span class="mono">DD-14</span>. 완료 안내는 완료 페이지의 역할이다</td></tr>
+      <tr><td>전체메뉴 안의 회원가입 항목도 억제</td><td>전체메뉴는 <strong>사용자가 스스로 열어 찾는 곳</strong>이다. 찾은 항목이 없으면 그 자체로 마찰이 된다. 상시 노출된 부가 링크(RS-1)와 성격이 다르다</td></tr>
+      <tr><td>M-10 팝업 억제</td><td>방향은 타당하나 <strong>현재 운영 팝업의 내용·조건·주기를 확인하지 못했다</strong> <span class="mono">DV-03</span>. "가입 유도 성격 팝업이 있다면 이 맥락에서 제외한다"는 <strong>조건부 제안</strong>으로만 남긴다</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="s3">조건 · 예외</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:190px">상황</th><th>처리</th></tr></thead>
+    <tbody>
+      <tr><td>리퍼러 유실 · 판정 실패</td><td><strong>일반 진입으로 처리.</strong> 억제하지 못해 생기는 손실이 잘못 억제해 생기는 손실보다 작다</td></tr>
+      <tr><td>새로고침 · 뒤로가기 재진입</td><td>A안에서는 맥락이 해제되어 회원가입 링크가 다시 보인다. <strong>이것이 문제인지 판단할 근거가 없다</strong> — 측정 후 재검토</td></tr>
+      <tr><td>앱 웹뷰 진입과 동시 발생</td><td>앱 맥락이 우선한다. 앱 웹뷰 진입(3,494세션)은 <strong>별도 상태로 남아 있는 미착수 항목</strong>이다</td></tr>
+      <tr><td>접근 경로 손실 여부</td><td><strong>없다.</strong> 억제되는 것은 헤더의 부가 표기이고, 전체메뉴에 동일 경로가 그대로 남는다</td></tr>
+      <tr><td>360px 이하</td><td>해당 링크는 <strong>원래 숨김</strong>이므로(CH-61) 이 폭에서는 복귀 맥락에서도 화면 차이가 없다</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="s3">측정 제안 — 현행 태깅에 없는 항목</h3>
+  <p class="dnote">아래는 <strong>제안이며 확정된 이벤트 사양이 아니다.</strong> 현재 <span class="mono">MAIN_NOTLOGIN</span> 태깅에는 진입 맥락을 구분하는 차원이 없어, 복귀 세션만 분리해 행동을 보는 것이 불가능하다. 이 측정이 붙기 전에는 RS-1 이상의 변형을 확정하지 않는다.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:74px">ID</th><th style="width:200px">측정 대상</th><th>이것으로 답할 수 있는 것</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">ME-01</td><td><strong>진입 맥락 차원</strong><br><span class="src">일반 / 앱 웹뷰 / 로그인 오류 / 가입 완료 복귀</span></td><td>4,654라는 숫자를 <strong>행동과 연결할 수 있게 된다.</strong> 지금은 리퍼러 집계와 행동 집계가 서로 붙지 않는다</td></tr>
+      <tr><td class="mono">ME-02</td><td>복귀 세션의 <strong>첫 상호작용</strong></td><td>복귀 목적 — 로그인인가, 요금제 탐색인가, 개통인가, 곧바로 이탈인가. <strong>RS-01의 다음 설계는 전부 이 값에 달려 있다</strong></td></tr>
+      <tr><td class="mono">ME-03</td><td>복귀 → <strong>로그인 성공까지</strong></td><td>가입 직후 로그인이 실제로 이어지는지. 로그인 오류 복귀 1,128세션과 겹치는지도 함께 본다</td></tr>
+      <tr><td class="mono">ME-04</td><td>회원가입 링크 클릭 <strong>맥락별 분리</strong></td><td>RS-1 억제의 전후 비교. 억제 대상이 실제로 눌리고 있었는지를 먼저 확인할 수 있다</td></tr>
+    </tbody>
+  </table></div>
+  <p class="dnote"><strong>측정 없이 확정하지 않는 것</strong> — 복귀 세션의 이탈률·다음 단계 전환율을 이 상태의 성과 지표로 쓰려면 ME-01이 선행되어야 한다. 지금 그 값을 KPI로 세우면 <strong>측정할 수 없는 목표</strong>가 된다.</p>
 </section>
 
 <footer>
@@ -1398,7 +1491,7 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
   /* ─────────── 상태 ─────────── */
   var S = {
     screen:"main", range:null, sort:"priceAsc",
-    m3:"ok", evState:"normal", openOK:true,
+    m3:"ok", evState:"normal", openOK:true, ctx:"normal",
     phoneOpen:false, phoneLoaded:false, phoneTab:"zero",
     slide:0, playing:true,
     mainScroll:0, anno:false, guide:false, lastFocus:null
@@ -1959,12 +2052,13 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
     log("ATF_GUIDE", S.guide ? "ON · 700px 가정값" : "OFF");
   });
   $("btnReset").addEventListener("click", function(){
-    S.range = null; S.mainScroll = 0; S.m3 = "ok";
+    S.range = null; S.mainScroll = 0; S.m3 = "ok"; S.ctx = "normal";
     S.phoneOpen = false; S.phoneLoaded = false; S.phoneTab = "zero";
     $("phoneHd").setAttribute("aria-expanded","false");
     $("phoneBody").classList.remove("on");
     if(openOvl) closeOverlay(openOvl,"reset");
     syncScenario("[data-m3]","m3","ok");
+    syncScenario("[data-ectx]","ectx","normal"); applyCtx();
     buildRanges(); goMain(); $("paneMain").scrollTop = 0;
     $("m01").classList.remove("scrolled");
     log("RESET","초기 상태");
@@ -1997,6 +2091,17 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
     S.openOK = b.dataset.op === "1"; syncOpening();
     log("M05_STATE", S.openOK ? "개통 가능" : "개통 불가 · 인라인 안내 (팝업 아님)");
   });
+  grp("[data-ectx]", function(b){ S.ctx = b.dataset.ectx; applyCtx(); });
+
+  /* PHASE 11 — 진입 맥락 반영. 억제만 수행하고 아무것도 더하지 않는다 */
+  function applyCtx(){
+    $("screen").setAttribute("data-ctx", S.ctx);
+    if(S.ctx === "joined"){
+      log("ENTRY_CTX", "가입 완료 후 복귀 · M-01 회원가입 링크 억제 (그 외 현행 유지)");
+    } else {
+      log("ENTRY_CTX", "일반 진입 · 현행");
+    }
+  }
 
   /* ═════════ 정합성 감사 ═════════ */
   function auditPrices(){
