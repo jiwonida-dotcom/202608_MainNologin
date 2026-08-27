@@ -919,7 +919,7 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 <dt>영향 범위<i>IMPACT</i></dt><dd>연결 구현 1건 — UX 설계 변경은 불필요 (상세는 개발 범위 정의 단계로 이관)</dd><dt>상태<i>STATUS</i></dt><dd>개발 단계 이관</dd></dl></div></details>
 
 <details><summary><span class="id">OI-01 / D-10</span>브랜드 토큰 <span class="b b-unv">아직 확인 안 됨<i>UNVERIFIED</i></span></summary><div class="bd">
-<dl><dt>무엇을<i>WHAT</i></dt><dd>현재 인디고는 임시 토큰 — 운영 실측값(#662D91)과 다르고 BI 정합 미해소. 원본 CI 벡터·컬러값 미확보(OI-11)</dd>
+<dl><dt>무엇을<i>WHAT</i></dt><dd>현재 인디고는 임시 토큰 — 운영 실측값(#662D91)과 다르고 BI 정합 미해소. 원본 CI 벡터·컬러값 미확보(OI-11)<br><b>2026-08-27 부분 변화</b> — 프로토타입의 BI는 CSS로 재구성한 형태를 걷어내고 <b>제공받은 원본 로고 이미지를 변형 없이 적용</b>했다. 다만 확보된 것은 <b>이미지 1점</b>이며 <b>벡터·컬러값은 여전히 미확보</b>다(OI-11 유지). 브랜드 강조색(D-10)과는 별개 사안이다</dd>
 <dt>왜 이 방향인가<i>WHY</i></dt><dd>확정 전 개발 이관 시 재작업</dd>
 <dt>확인 주체<i>OWNER</i></dt><dd>브랜드 주관 부서 (기존 자료 명시)</dd><dt>영향 범위<i>IMPACT</i></dt><dd>전체 비주얼 토큰</dd><dt>상태<i>STATUS</i></dt><dd>D-10 결정 대기</dd></dl></div></details>
 
@@ -932,6 +932,26 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 <dl><dt>무엇을<i>WHAT</i></dt><dd>검색 4,765/1,185 clicks는 요금제찾기와 유사 규모이나, 집계 필터가 세션 범위라 과대추정 가능</dd>
 <dt>왜 이 방향인가<i>WHY</i></dt><dd>D-09(승격 보류)의 이유 — 승격 재론에는 페이지 스코프 태깅 필요</dd>
 <dt>영향 범위<i>IMPACT</i></dt><dd>M-01 구성</dd><dt>상태<i>STATUS</i></dt><dd>유보 유지</dd></dl></div></details>
+
+<details><summary><span class="id">M-01 배치</span>헤더 배치 변경 — 정렬 규정·운영 승계 확인 <span class="b b-unv">아직 확인 안 됨<i>UNVERIFIED</i></span></summary><div class="bd">
+<dl><dt>무엇을<i>WHAT</i></dt><dd>2026-08-27 프로토타입에서 헤더를 <b>좌 로그인 · 중앙 BI · 우 검색/전체메뉴</b>로 재배치하고 로그인의 테두리를 제거했다. SPEC-01 M-01에서 <span class="mono">CONFIRMED</span>인 것은 <b>구성 요소</b>(로고·검색·로그인·전체메뉴)이며 <b>배치 순서를 못 박은 기록은 확인되지 않았다</b></dd>
+<dt>왜 이 방향인가<i>WHY</i></dt><dd>DD-01 「로그인 진입을 최상위로 노출」은 <b>위치</b>가 담보하므로 테두리는 노출이 아니라 강조 장치였다. 다만 <b>PHASE 7-1 C-01에 정렬 규정이 있는지</b>, <b>운영 헤더의 로고 위치</b>(UI-P6 시각 언어 승계), <b>로고가 홈 링크인지</b> 세 가지가 확인되지 않았다 — 로고가 링크라면 중앙 배치 판단이 달라진다</dd>
+<dt>확인 주체<i>OWNER</i></dt><dd>요청자 · 개발</dd>
+<dt>영향 범위<i>IMPACT</i></dt><dd>M-01 구성 · D-09</dd>
+<dt>상태<i>STATUS</i></dt><dd>확인 대기 — <b>효과 측정은 현재 불가</b>하다. 헤더 요소는 <span class="mono">UTIL_TOP</span>·<span class="mono">GNB</span> 스코프라 <span class="mono">MAIN_NOTLOGIN</span>과 분리되어 Before/After 비교가 되지 않는다 <a href="./prototype.html">프로토타입 확인</a></dd></dl></div></details>
+
+<details><summary><span class="id">M-01 간격</span>헤더 아이콘 인접 간격 4px — 규정값 8px <span class="b b-open">미결<i>OPEN</i></span></summary><div class="bd">
+<dl><dt>무엇을<i>WHAT</i></dt><dd>검색·전체메뉴의 인접 간격이 <b>실측 4px</b>이다. SPEC-01 M-01 접근성 항목의 <span class="mono">CONFIRMED</span> 규정(PHASE 7-1 G)은 <b>「아이콘 타깃 44×44 · 인접 간격 8」</b>이다 — 현재가 규정보다 <b>4px 좁다</b></dd>
+<dt>왜 이 방향인가<i>WHY</i></dt><dd>규정을 따르면 두 아이콘이 지금보다 <b>벌어진다</b>. 좁히는 방향과 규정이 반대라 임의로 정하지 않았다. 44px 타깃끼리 붙을수록 오탭 위험이 올라간다</dd>
+<dt>영향 범위<i>IMPACT</i></dt><dd>M-01 접근성 정합</dd>
+<dt>상태<i>STATUS</i></dt><dd>결정 대기 — 규정값 8px 적용 / 현행 4px 유지 중 택일</dd></dl></div></details>
+
+<details><summary><span class="id">M-06 상품표시</span>실제 기기명과 예시 조건이 함께 표시된다 <span class="b b-open">미결<i>OPEN</i></span></summary><div class="bd">
+<dl><dt>무엇을<i>WHAT</i></dt><dd>2026-08-27 프로토타입 M-06 카드에 <b>운영 이미지 자산</b>(<span class="mono">/upload/img/dev/</span>)을 연결하고 기기명을 <b>실제 모델명</b>으로 교체했다. 그러나 <b>월 할부금(0원 · 반값)은 여전히 예시값</b>이고, <b>탭별 기기 편성 기준도 없다</b>. 자산 출처는 유픽(인증 중고) 카테고리다</dd>
+<dt>왜 이 방향인가<i>WHY</i></dt><dd>기기명이 실제로 바뀌면서 <b>예시 조건이 실제 판매 조건으로 오독될 소지</b>가 커졌다. 대표 가격 소스·정의는 <span class="mono">OI-06</span>으로 여전히 미확정이다</dd>
+<dt>확인 주체<i>OWNER</i></dt><dd>요청자 · 상품 운영</dd>
+<dt>영향 범위<i>IMPACT</i></dt><dd>D-05 M-06 설계 심도 · 유픽 배치 · 이미지 자산 사용 범위</dd>
+<dt>상태<i>STATUS</i></dt><dd>확인 대기 — ① 표시할 조건값의 출처 ② 탭별 편성 기준 ③ 이미지 자산의 참조 방식(운영 서버 직접 참조 여부)</dd></dl></div></details>
 
 <details><summary><span class="id">기타</span>audit.html 미결 항목 <span class="b b-open">미결<i>OPEN</i></span></summary><div class="bd">
 <dl><dt>무엇을<i>WHAT</i></dt><dd>DV-05 M-02/M-03 상하 순서(개편 후 검증) · TR-03 목록→메인 복귀 시 선택 유지 · OI-10 실효 뷰포트 분포 · DC-01 중복 목적지 라벨 · DC-03 M-07 슬롯 규칙(제휴영업팀 — 기존 자료 명시) · DC-04 목적지 화면 주체 · 사용자 테스트 3건(첫 5초 인지·구간 이해도·스크롤 유도) · 유픽/제휴혜택/타임딜 데이터 부재</dd>
