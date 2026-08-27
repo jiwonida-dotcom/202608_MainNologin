@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light">
 <title>비로그인 메인 개편안</title>
-<meta name="description" content="U+유모바일 비로그인 메인 개편안 — 관계자 협의용 Data-driven UX Proposal (Stakeholder Alignment)">
+<meta name="description" content="U+유모바일 비로그인 메인 개편안 — 관계자 협의용 Data-driven UX Proposal">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css">
 <style>
@@ -281,7 +281,7 @@ details dd{margin:0; color:var(--ink2)}
   </div>
 
   <h3 style="margin-top:44px">핵심 개선안 5건</h3>
-  <div class="claim">기존 요청은 <b>타임딜을 요금제보다 우선 노출</b>하는 것이었으나, 분석 결과 <b>요금제 전용 탐색 영역이 평균 스크롤 도달선 밖에 있어 실패 중인 P0 목적</b>임이 확인되었기 때문에, <b>요금제 탐색을 첫 화면 직후로 올리는 방향</b>을 제안합니다. <span class="mono">D-02</span></div>
+  <div class="claim">기존 요청은 <b>타임딜을 요금제보다 우선 노출</b>하는 것이었으나, 분석 결과 <b>요금제 전용 탐색 영역이 평균 스크롤 도달선 밖에 있어 실패 중인 P0 목적</b>임이 확인되었기 때문에, <b>요금제 탐색을 첫 화면 직후로 올리는 방향</b>을 제안합니다. 다만 타임딜 쪽은 <b>"우선"의 정의가 원문에서 확정되지 않아</b>, 배치가 아니라 <b>정의 확정이 선행</b>되어야 합니다. <span class="mono">D-02</span></div>
   <div class="claim">기존 요청은 <b>주메뉴 7개 신설</b>이었으나, 분석 결과 <b>탐색 수요는 확인되되 7개 구성의 근거가 없고 시안에서 이미 메뉴가 잘려 있음</b>이 확인되었기 때문에, <b>실사용 순 퀵메뉴 3종으로 정비하는 방향</b>을 제안합니다. <span class="mono">D-03</span></div>
   <div class="claim">기존 요청은 <b>이벤트를 3순위</b>로 배정했으나, 분석 결과 <b>이벤트는 상위 이동 목적이고 상세 진입 후 즉시복귀가 관측되지 않았음(녹화 소표본)</b>이 확인되었기 때문에, <b>P1로 상향하되 요금제 아래에 두는 방향</b>을 제안합니다. <span class="mono">D-04</span></div>
   <div class="claim">기존 요청은 <b>휴대폰을 2순위 대영역</b>으로 두는 것이었으나, 분석 결과 <b>메인→휴대폰 이동이 상위 경로에 나타나지 않음</b>이 확인되었기 때문에, <b>영역은 유지하되 비중을 줄이고 측정 후 고도화하는 방향</b>을 제안합니다. <span class="mono">D-05</span></div>
@@ -410,13 +410,13 @@ details dd{margin:0; color:var(--ink2)}
 <section id="c06"><div class="wrap">
 <div class="shead"><span class="sn">06 · REQUEST vs DATA</span>
 <h2>요청과 데이터를 대조한 결과</h2>
-<p class="lede">개별 REQ 기준 27건 — <b>KEEP 6 · CHANGE 7 · REMOVE 3 · HOLD 7 · NEEDS VALIDATION 4</b>. <b>KEEP은 "데이터로 완전히 검증됐다"는 뜻이 아니라 "유지를 제안한다"는 뜻</b>이며, 판단 성격 열이 그 차이를 담습니다. 요청과 데이터가 상충하는 곳은 DATA CONFLICT로 표시했습니다.</p></div>
+<p class="lede">개별 REQ 기준 27건 — <b>KEEP 6 · CHANGE 6 · REMOVE 3 · HOLD 8 · NEEDS VALIDATION 4</b>. <b>KEEP은 "데이터로 완전히 검증됐다"는 뜻이 아니라 "유지를 제안한다"는 뜻</b>이며, 판단 성격 열이 그 차이를 담습니다. 요청과 데이터가 상충하는 곳은 DATA CONFLICT로 표시했습니다.</p></div>
 <div class="chips" role="group" aria-label="판정 필터">
 <button aria-pressed="true" data-f="all">전체 27</button>
 <button aria-pressed="false" data-f="KEEP">KEEP 6</button>
-<button aria-pressed="false" data-f="CHANGE">CHANGE 7</button>
+<button aria-pressed="false" data-f="CHANGE">CHANGE 6</button>
 <button aria-pressed="false" data-f="REMOVE">REMOVE 3</button>
-<button aria-pressed="false" data-f="HOLD">HOLD 7</button>
+<button aria-pressed="false" data-f="HOLD">HOLD 8</button>
 <button aria-pressed="false" data-f="NV">NEEDS VALIDATION 4</button>
 <button aria-pressed="false" data-f="CF">DATA CONFLICT</button>
 </div>
@@ -426,7 +426,7 @@ details dd{margin:0; color:var(--ink2)}
 <tr data-a="CHANGE"><td class="id">REQ-01</td><td>주메뉴 7개 신설</td><td>탐색 수요 실재(0.101/0.106 events/session) — 7개 구성 근거 없음, 시안에서 메뉴 잘림</td><td><span class="b b-chg">CHANGE</span><br><span class="small">방향 조정</span></td><td>실사용 순 퀵메뉴 3종</td></tr>
 <tr data-a="KEEP"><td class="id">REQ-02</td><td>이벤트 배너 + 전체보기</td><td>이벤트 상위 이동 목적(8.4/15.8% of sessions) · 직행 경로 실사용</td><td><span class="b b-keep">KEEP</span><br><span class="small">방향 일치</span></td><td>유지 — 단 3순위가 아니라 P1</td></tr>
 <tr data-a="KEEP"><td class="id">REQ-03</td><td>로그인 영역 신설</td><td>가장 강하게 확인됨 — 이동 1위, GA4·Clarity 교차 일치</td><td><span class="b b-keep">KEEP</span><br><span class="small">방향 일치</span></td><td>부가 영역이 아니라 헤더 최상위 진입점으로</td></tr>
-<tr data-a="CHANGE CF"><td class="id">REQ-04</td><td>타임딜 운영 시 <b>요금제보다 우선</b> 노출</td><td>요금제 = 확인된 P0 vs 타임딜 = 미운영·데이터 없음. on/off 시 상단 구조가 두 형태로 갈림</td><td><span class="b b-cf">DATA CONFLICT</span><br><span class="b b-chg">CHANGE</span></td><td>요금제 상단 고정 제안 — 순서는 D-02로 결정</td></tr>
+<tr data-a="HOLD"><td class="id">REQ-04</td><td>타임딜 운영 시 <b>요금제보다 우선</b> 노출</td><td><b>정의 재분석(8.6)</b> — "우선"의 대상이 원문 버전 간 상이(영역/상품) · "우선=첫 화면" 표현은 원문에 없음 · 전용 영역 데이터는 없으나 <b>동명 콘텐츠가 현재 팝업으로 운영</b>됨</td><td><span class="b b-hold">HOLD</span><br><span class="small">정의 미확정 — 상충 단정 불가</span></td><td>운영 시에만 켜지는 단일 슬롯으로 반영 · 정의와 위치는 D-02</td></tr>
 <tr data-a="NV"><td class="id">REQ-05</td><td>타임딜 상세항목</td><td>미운영 — 판단 데이터 없음</td><td><span class="b b-nv">NEEDS VALIDATION</span><br><span class="small">판단 불가</span></td><td>오픈 시 측정 설계 동반</td></tr>
 <tr data-a="NV"><td class="id">REQ-06</td><td>카테고리 프로모션 / 듀얼 등록</td><td>현행에 카테고리 구분이 없어 비교군 부재</td><td><span class="b b-nv">NEEDS VALIDATION</span><br><span class="small">판단 불가</span></td><td>도입하되 사후 측정 조건</td></tr>
 <tr data-a="CHANGE"><td class="id">REQ-07</td><td>필터 — 통신망·데이터·소진속도</td><td>실측 — 사용 1위 축은 데이터(14,484 uses), 정렬 91.4%는 가격</td><td><span class="b b-chg">CHANGE</span><br><span class="small">방향 조정</span></td><td>메인 진입은 데이터 5구간 단일 축, 나머지는 목록에서</td></tr>
@@ -454,12 +454,12 @@ details dd{margin:0; color:var(--ink2)}
 <h2>최종 개선안 5건</h2></div>
 
 <div class="prop"><div class="phd"><span class="no">01</span><b>요금제 탐색을 첫 화면 직후로 — 도달선 밖의 P0를 가시권으로</b></div>
-<dl><dt>CURRENT</dt><dd>REQ-04 — 타임딜 운영 시 요금제보다 우선 노출</dd>
+<dl><dt>CURRENT</dt><dd>REQ-04 — 타임딜 운영 시 요금제보다 우선 노출 <span class="small">(단 "우선"의 대상은 원문 미확정 — 8.6)</span></dd>
 <dt>EVIDENCE</dt><dd>SearchFee y1802px vs 도달선 y1461~1658px(파생) · 0.0079 events/session · 요금제는 공통 2위 목적 13.3/17.2% of sessions</dd>
 <dt>PROBLEM</dt><dd>P0 목적의 전용 수단이 구조적으로 노출되지 않음 (P-07)</dd>
 <dt>PROPOSAL</dt><dd class="hot">M-03 요금제 탐색을 AtF 직후 고정 배치. 타임딜은 이벤트 슬롯 또는 요금제 아래 한정</dd>
 <dt>WHY</dt><dd>두 영역 중 요금제만 실패 중 — 이벤트·타임딜 자리는 이미 작동하거나 데이터가 없음</dd>
-<dt>DECISION</dt><dd><b>D-02</b> — REQ-04 원문 유지 여부. 이 결정이 IA 순서를 좌우</dd>
+<dt>DECISION</dt><dd><b>D-02</b> — "우선"의 대상 확정 + 순서. 이 결정이 IA 순서를 좌우</dd>
 <dt>RISK</dt><dd>"미노출이 원인"은 해석 — 순서 변경의 효과는 개편 후 측정으로만 확인됨</dd></dl></div>
 
 <div class="prop"><div class="phd"><span class="no">02</span><b>진입 조건 선택형 요금제 탐색 — 관측된 2축(데이터·가격) 기반 5구간</b></div>
@@ -591,12 +591,14 @@ details dd{margin:0; color:var(--ink2)}
 <dt>IMPACT</dt><dd>IA 적용 단위 · 운영/QA 부담 · 콘텐츠 등록 체계</dd>
 <dt>RISK</dt><dd>ProductBanner 재방문 우위(+74%)가 화면 효과였을 가능성 — 원인 미분리라 보조 근거로만 취급, 통합 후 측정으로 확인</dd></dl></div>
 
-<div class="dfeat"><div class="dhd"><span class="n">D-02</span><b>타임딜 운영 시에도 요금제를 위에 둘 것인가</b><span class="st"><span class="b b-rm">NEEDS DECISION</span></span></div>
-<dl class="dl2"><dt>REQUEST</dt><dd>REQ-04 — "타임딜 운영 시 요금제 영역보다 우선 노출" <span class="b b-cf">DATA CONFLICT</span></dd>
-<dt>EVIDENCE</dt><dd>요금제 = 확인된 P0(공통 2위 목적 · 전용 영역 도달선 밖) vs 타임딜 = 미운영 · 데이터 없음</dd>
-<dt>PROPOSAL</dt><dd><b>요금제 상단 고정</b>, 타임딜은 이벤트 슬롯 또는 요금제 아래 한정</dd>
-<dt>IMPACT</dt><dd><b>IA 순서 전체</b> — 미결정 시 M-03/M-04 배치가 조건부로 남음</dd>
-<dt>RISK</dt><dd>프로모션 소진 목표와의 상충 — 비즈니스 우선순위 판단 필요 (운영 주기 OPEN-08)</dd></dl></div>
+<div class="dfeat"><div class="dhd"><span class="n">D-02</span><b>타임딜 — "우선"의 정의를 확정하고, 요금제와의 순서를 정한다</b><span class="st"><span class="b b-rm">NEEDS DECISION</span></span></div>
+<dl class="dl2"><dt>REQUEST</dt><dd>8/25 "요금제 <b>영역</b>보다 우선 노출" / 이전 ver "요금제 <b>상품</b>보다 우선하여 노출" — <b>대상이 버전 간 다르다</b></dd>
+<dt>DEFINITION</dt><dd>타임딜 = <b>캠페인 기간에만 켜지는 운영 슬롯형 프로모션 오퍼</b>(마감시간·기본료·최종혜택가·이벤트코드 등 6종, on/off). 탐색 진입점이 아니다 — 원문 확인</dd>
+<dt>EVIDENCE</dt><dd>요금제 = 확인된 P0(공통 2위 목적 · 전용 영역 도달선 밖). 타임딜 = <b>전용 영역 데이터 없음</b>(현행에 영역이 없어 생성 불가), 단 <b>동명 콘텐츠가 팝업으로 운영 중</b>(<span class="mono">Popup_79</span> 깜짝타임딜 62 sessions) — 본문 영역화는 P-01과 정합 가능</dd>
+<dt>PROPOSAL</dt><dd>운영 시에만 켜지는 <b>단일 슬롯</b> — 기본안 M-03·M-04 사이, 대안 M-04 배너 고정 슬롯. <b>어느 안도 "요금제보다 위"는 충족하지 않는다</b></dd>
+<dt>NEEDED</dt><dd>① "우선"의 대상(영역/상품) ② 요금제보다 아래여도 수용 가능한지 ③ 운영 주기(OPEN-08) ④ 타임세일 정의 ⑤ <span class="mono">Popup_79</span>와 동일 캠페인인지</dd>
+<dt>IMPACT</dt><dd><b>①이 IA 충돌 여부 자체를 좌우한다</b> — "영역"이면 M-03/M-04 순서 문제, "상품"이면 요금제 목록 정렬 문제로 IA와 무관해진다</dd>
+<dt>RISK</dt><dd>원문대로 요금제 위에 두면 <b>이번 개편이 고치려던 P-07(요금제가 도달선 밖)을 다시 만드는 구조</b>가 된다. 반대로 데이터가 없다는 이유로 요구를 제거하지도 않는다</dd></dl></div>
 
 <div class="dfeat"><div class="dhd"><span class="n">D-07</span><b>팝업 운영 정책 재설계를 개편 범위에 포함할 것인가</b><span class="st"><span class="b b-rm">NEEDS DECISION</span></span></div>
 <dl class="dl2"><dt>REQUEST</dt><dd>요청 문서에 없음 — 분석에서 발견된 최대 문제</dd>
@@ -635,6 +637,11 @@ details dd{margin:0; color:var(--ink2)}
 <dl><dt>WHAT</dt><dd>신청서 직행 동선이 8/25 버전에서 삭제된 이유가 어느 자료에도 없음</dd>
 <dt>WHY</dt><dd>복원 제안(06절)의 전제 — 기술·정책 제약으로 뺐다면 복원 판단이 달라짐</dd>
 <dt>OWNER</dt><dd>요청자</dd><dt>IMPACT</dt><dd>REQ-B 복원 여부</dd><dt>STATUS</dt><dd>확인 대기</dd></dl></div></details>
+
+<details><summary><span class="id">REQ-04</span>타임딜 "우선"의 대상 · 사업 목적 <span class="b b-open" style="background:var(--stop-soft);color:var(--stop)">OPEN</span></summary><div class="bd">
+<dl><dt>WHAT</dt><dd>"우선"의 대상이 원문 버전 간 상이(요금제 영역 / 요금제 상품). 사업 목적·"우선"의 이유·타임세일 정의·운영 주기가 원문에 없음. 타임딜의 IA 귀착 모듈도 명시적 결정으로 기록되지 않음</dd>
+<dt>WHY</dt><dd>대상이 확정되어야 IA 충돌 여부를 판정할 수 있다 — 확정 전에는 상충을 단정하지 않는다</dd>
+<dt>OWNER</dt><dd>요청자</dd><dt>IMPACT</dt><dd>D-02 · M-03/M-04 순서</dd><dt>STATUS</dt><dd>PHASE 8.6에서 정의 복원 완료 · 확정 대기</dd></dl></div></details>
 
 <details><summary><span class="id">DV-03</span>팝업 운영 규칙 <span class="b b-open" style="background:var(--stop-soft);color:var(--stop)">OPEN</span></summary><div class="bd">
 <dl><dt>WHAT</dt><dd>팝업 개수·재노출 주기·우선순위 규칙 미확인</dd>
