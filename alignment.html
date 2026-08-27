@@ -366,7 +366,8 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <thead><tr><th>구분</th><th>GA4</th><th>Clarity</th></tr></thead>
 <tbody>
 <tr><td class="id">기간</td><td>2026-07-28 ~ 08-24</td><td>2026-07-29 ~ 08-25 (1일 어긋남)</td></tr>
-<tr><td class="id">모수</td><td class="num">FIRST 126,749 · REVISIT 31,861 세션</td><td class="num">FIRST 104,367 · REVISIT 29,198 세션</td></tr>
+<tr><td class="id">모수</td><td class="num"><b>세션</b> FIRST 126,749 · REVISIT 31,861<br><b>경로탐색 시작 세션</b> FIRST 130,607 · REVISIT 33,402</td><td class="num">FIRST 104,367 · REVISIT 29,198 세션</td></tr>
+<tr><td class="id">분모 구분</td><td><b>GA4 리포트마다 세션 집계가 다르다.</b> 같은 기간인데도 참여도 리포트는 126,749, 경로탐색 리포트는 130,607을 준다(원자료 기록 — 이탈률 126,749 / 경로탐색 130,607 / 채널 126,421).<br><b>다음 행동 비율</b>(로그인 43.9% 등)은 <b>경로탐색 시작 세션</b>이 분모다. <b>세션당 발생률</b>(팝업 닫기 0.766회/세션 등)과 <b>유입 경로 비율</b>(계정 흔적 7.4% 등)은 <b>세션</b>이 분모다. 두 분모를 섞어 계산하지 않는다. <b>차이의 GA4 내부 원인은 확인되지 않았다</b> — 확인 필요 항목이다</td><td>—</td></tr>
 <tr><td class="id">주 용도</td><td>진입·경로·전환·이벤트 규모</td><td>클릭 좌표·스크롤 도달·세션 녹화·Frustration</td></tr>
 <tr><td class="id">한계</td><td><span class="mono">MAIN_NOTLOGIN</span> 태깅 요소만 — 햄버거·로그인·검색·푸터 이벤트 미포함. 이탈률 컬럼 정합성 불일치로 방향성만 사용</td><td>URL 필터가 세션 범위라 화면 밖 행동이 섞일 수 있음 — 검색 수치는 INTERPRETATION 등급</td></tr>
 </tbody>
@@ -753,11 +754,12 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <div class="tw tight"><table>
 <thead><tr><th>항목</th><th>FIRST</th><th>REVISIT</th><th>출처</th></tr></thead>
 <tbody>
-<tr><td>세션</td><td class="num">126,749</td><td class="num">31,861</td><td>GA4</td></tr>
-<tr><td>다음 행동 — 로그인</td><td class="num">43.9%</td><td class="num">21.6%</td><td>GA4</td></tr>
-<tr><td>다음 행동 — 요금제</td><td class="num">13.3%</td><td class="num">17.2%</td><td>GA4</td></tr>
-<tr><td>다음 행동 — 이벤트</td><td class="num">8.4%</td><td class="num">15.8%</td><td>GA4</td></tr>
-<tr><td>다음 행동 — 가입·개통</td><td class="num">7.8%</td><td class="num">12.3%</td><td>GA4</td></tr>
+<tr><td>세션 <span class="small">(세션당 발생률·유입 경로 비율의 분모)</span></td><td class="num">126,749</td><td class="num">31,861</td><td>GA4 참여도</td></tr>
+<tr><td>경로탐색 시작 세션 <span class="small">(다음 행동 비율의 분모)</span></td><td class="num">130,607</td><td class="num">33,402</td><td>GA4 경로탐색</td></tr>
+<tr><td>다음 행동 — 로그인 <span class="small">57,311 / 7,207</span></td><td class="num">43.9%</td><td class="num">21.6%</td><td>GA4 경로탐색</td></tr>
+<tr><td>다음 행동 — 요금제 <span class="small">17,409 / 5,752</span></td><td class="num">13.3%</td><td class="num">17.2%</td><td>GA4 경로탐색</td></tr>
+<tr><td>다음 행동 — 이벤트 <span class="small">10,933 / 5,280</span></td><td class="num">8.4%</td><td class="num">15.8%</td><td>GA4 경로탐색</td></tr>
+<tr><td>다음 행동 — 가입·개통 <span class="small">10,156 / 4,099</span></td><td class="num">7.8%</td><td class="num">12.3%</td><td>GA4 경로탐색</td></tr>
 <tr><td>PopupClose /세션</td><td class="num">0.766</td><td class="num">0.714</td><td>GA4</td></tr>
 <tr><td>QuickMenu /세션</td><td class="num">0.101</td><td class="num">0.106</td><td>GA4</td></tr>
 <tr><td>SearchFee /세션</td><td class="num">0.0079</td><td class="num">0.0067</td><td>GA4</td></tr>
