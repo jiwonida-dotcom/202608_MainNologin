@@ -370,7 +370,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
     <div class="tw" style="margin-top:12px"><table>
       <tbody>
         <tr><td style="width:210px"><b>왜 바꾸는가</b></td>
-            <td>요금제를 찾으려는 사람이 <b>요금제 전용 영역에 닿지 못합니다.</b> 그 영역은 화면 y1802~2202px에 있고, 평균 스크롤은 y1461~1658px에서 멈춥니다 <a href="#c02">01절</a></td></tr>
+            <td>요금제를 찾으려는 사람이 <b>요금제 전용 영역에 닿지 못합니다.</b> 그 영역은 <b>화면 아래쪽</b>(y1802~2202px)에 있는데, 사람들의 평균 스크롤은 <b>그보다 위</b>(y1461~1658px)에서 멈춥니다 <a href="#c02">01절</a></td></tr>
         <tr><td><b>무엇을 요청받았는가</b></td>
             <td>요구 <b>27건</b>과 화면 시안입니다. 목적·성과 지표·대상 사용자 정의는 없었습니다 <a href="#c05">02절</a></td></tr>
         <tr><td><b>데이터가 확인한 것</b></td>
@@ -479,14 +479,14 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
   <div class="card"><b>일부 항목은 현재 검증이 불가능</b><p style="margin:8px 0 0;font-size:13.5px;color:var(--ink2)">타임딜·유픽·제휴혜택은 미운영/신규 서비스라 판단할 데이터 자체가 없습니다. 이런 항목은 판단하지 않고 NEEDS VALIDATION으로 분리했습니다.</p></div>
   <div class="card"><b>대상 사용자 정의가 요청에 없었다</b><p style="margin:8px 0 0;font-size:13.5px;color:var(--ink2)">요청 문서에 페르소나도 세그먼트도 없습니다. "신규 고객 중심"이라는 전제는 시안 구성에서 되짚어 만든 것이고, 이 화면은 로그인 전이라 계정 보유를 확인할 수단이 없습니다. 그래서 대상을 <b>목적 중심으로 재정의</b>해 <span class="mono">D-12</span>로 확정했습니다. <a href="./targetuser.html">타깃 재검증</a></p></div>
 </div>
-<p style="margin-top:20px"><b>따라서 요청사항을 그대로 구현하기 전에, 데이터로 확인된 것과 확인되지 않은 것을 구분하고 우선순위와 역할을 재정의할 필요가 있습니다.</b> 이 문서가 그 재정의안이며, 최종 확정은 11절의 의사결정으로 이뤄집니다.</p>
+<p style="margin-top:20px"><b>따라서 요청사항을 그대로 구현하기 전에, 데이터로 확인된 것과 확인되지 않은 것을 구분하고 우선순위와 역할을 재정의할 필요가 있습니다.</b> 이 문서가 그 재정의안이며, 최종 확정은 <a href="#c11">07절</a>의 의사결정으로 이뤄집니다.</p>
 </div></section>
 
 
 <section id="c05"><div class="wrap">
 <div class="shead"><span class="sn">02 · CURRENT REQUEST</span>
 <h2>원래 무엇을 요청받았는가</h2>
-<p class="lede">「20260825_모바일 메인화면 개편안」의 요구를 원문 의미대로 기록합니다. 이 절에서는 평가하지 않습니다 — 평가는 06절에서 합니다.</p></div>
+<p class="lede">「20260825_모바일 메인화면 개편안」의 요구를 원문 의미대로 기록합니다. 이 절에서는 평가하지 않습니다 — 평가는 <a href="#c06">05절</a>에서 합니다.</p></div>
 <div class="tw"><table>
 <thead><tr><th>ID</th><th>요청 내용</th><th>순위</th></tr></thead>
 <tbody>
@@ -553,16 +553,16 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 <section id="c03"><div class="wrap">
 <div class="shead"><span class="sn">04 · WHAT DATA SHOWS</span>
 <h2>데이터에서 확인된 것</h2>
-<p class="lede">의사결정에 필요한 관측만 담았습니다. GA4와 Clarity는 모수 정의가 달라 도구 간 절대값을 직접 비교하지 않으며, 교차 도구 파생 비율은 사용하지 않습니다.<br><b>이 문서의 비율에는 두 가지 분모가 있습니다.</b> ① <b>경로탐색 시작 세션</b> — FIRST 130,607 / REVISIT 33,402. "다음 행동" 비율(로그인 43.9% 등)이 이 분모를 씁니다. ② <b>세션</b> — FIRST 126,749 / REVISIT 31,861. 세션당 발생률(팝업 닫기 0.766회/세션 등)과 유입 경로 비율이 이 분모를 씁니다.<br><span class="small">둘 다 GA4, 같은 기간(2026-07-28~08-24)입니다. <b>GA4 리포트마다 세션 집계가 달라 값이 다릅니다</b> — 이 차이의 GA4 내부 원인은 확인되지 않았습니다. 그래서 두 분모를 섞어 계산하지 않고, 각 수치에 어느 분모인지 표기합니다.</span></p></div>
+<p class="lede">의사결정에 필요한 관측만 담았습니다. GA4와 Clarity는 모수 정의가 달라 도구 간 절대값을 직접 비교하지 않으며, 교차 도구 파생 비율은 사용하지 않습니다.<br><b>이 문서의 비율에는 두 가지 분모가 있습니다.</b> ① <b>경로탐색 시작 세션</b> — FIRST 130,607 / REVISIT 33,402. "다음 행동" 비율(로그인 43.9% 등)이 이 분모를 씁니다. ② <b>세션</b> — FIRST 126,749 / REVISIT 31,861. 세션당 발생률(팝업 닫기 0.766회/세션 등)과 유입 경로 비율이 이 분모를 씁니다.<br><span class="small"><b>FIRST</b>는 첫 방문으로 분류된 세션(<span class="mono">/nologfirst</span>), <b>REVISIT</b>은 재방문으로 분류된 세션(<span class="mono">/nologrevisit</span>)입니다. 이 분류는 <b>쿠키로 판정한 방문 이력</b>이며 사람의 가입 여부가 아닙니다 — 판정 자체가 도구마다 다릅니다(03절).</span><br><span class="small">둘 다 GA4, 같은 기간(2026-07-28~08-24)입니다. <b>GA4 리포트마다 세션 집계가 달라 값이 다릅니다</b> — 이 차이의 GA4 내부 원인은 확인되지 않았습니다. 그래서 두 분모를 섞어 계산하지 않고, 각 수치에 어느 분모인지 표기합니다.</span></p></div>
 <div class="legend"><span><span class="b b-ga">GA4</span> 세션 126,749(FIRST) + 31,861(REVISIT)</span><span><span class="b b-cl">Clarity</span> 세션 104,367 + 29,198 · 녹화 표본 300건</span></div>
 <div class="grid g3">
   <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
-    <div class="num">43.9<u>% of FIRST sessions</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
+    <div class="num">43.9<u>% of 경로탐색 시작 세션(FIRST)</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
     <p class="obs">메인에서의 다음 이동 1위는 로그인 (REVISIT 21.6%). Clarity 클릭 집계 53,278 clicks와 교차 일치.<br><span class="small"><b>주의</b> — 이 화면은 로그인 전이라 <b>계정 보유 여부는 확인되지 않습니다</b>. 43.9%를 기존 고객 비율로 바꿔 읽지 않습니다.</span></p>
     <p class="imp">→ <b>로그인은 헤더의 보조 기능이 아니라 최상위 진입점으로 검토할 가치가 있음</b></p></div>
   <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
     <div class="num">0.766<u>회/세션 (팝업 닫기)</u></div><a class="mini" href="./audit.html#a04">검증 · 수치 감사</a>
-    <p class="obs">팝업 닫기가 단일 최대 행동 (REVISIT 0.714/session). 태깅 이벤트의 78.2%(133,059/170,053 events)가 팝업 관련.<br><span class="small"><b>읽는 법</b> — 세션 100건당 닫기 약 77회(97,067 events ÷ 126,749 sessions)라는 뜻이며, <b>"세션의 76.6%가 닫았다"는 의미가 아닙니다</b>. 한 세션에서 여러 번 닫으면 중복 집계됩니다. 같은 단위로 퀵메뉴는 0.101 — 약 7.6배입니다.</span></p>
+    <p class="obs">팝업 닫기가 단일 최대 행동 (REVISIT 0.714 회/세션). 태깅 이벤트의 78.2%(133,059/170,053 events)가 팝업 관련.<br><span class="small"><b>읽는 법</b> — 세션 100건당 닫기 약 77회(97,067 events ÷ 126,749 sessions)라는 뜻이며, <b>"세션의 76.6%가 닫았다"는 의미가 아닙니다</b>. 한 세션에서 여러 번 닫으면 중복 집계됩니다. 같은 단위로 퀵메뉴는 0.101 — 약 7.6배입니다.</span></p>
     <p class="imp">→ <b>영역 재배치 이전에, 진입 마찰 자체를 선행 과제로 검토할 필요</b> — 미클릭이 곧 "불필요"를 뜻하지는 않음</p></div>
   <div class="card stat"><div class="src"><span class="b b-cl">Clarity</span></div>
     <div class="num">y1802<u>px vs 도달선 y1461~1658px</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
@@ -581,7 +581,7 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
     <p class="obs">Quick back(빠른 되돌아옴). Dead click 2.4%·Rage click 0.1%로 낮음 — 요소 고장이 아니라 기대 불일치 계열. 녹화 표본(300건)에서 즉시복귀는 요금제 탐색 경로에 집중.</p>
     <p class="imp">→ <b>요금제 진입 시 도착 화면이 기대와 일치하도록 진입 구조를 재검토</b></p></div>
 </div>
-<p class="small" style="margin-top:14px">스크롤 도달률 44.5% / 39.2% of sessions(F/R), 화면 분기 관련 관측(구성 동일 · 행동 10개 중 5개 ±10% 이내)은 04·11절에서 해당 문제·결정과 함께 다룹니다.</p>
+<p class="small" style="margin-top:14px">스크롤 도달률 44.5% / 39.2% of sessions(F/R), 화면 분기 관련 관측(구성 동일 · 행동 10개 중 5개 ±10% 이내)은 <a href="#c04">04-1절</a>·<a href="#c11">07절</a>에서 해당 문제·결정과 함께 다룹니다.</p>
 </div></section>
 
 
@@ -591,10 +591,10 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 <p class="lede">각 문제에서 FACT(관측)와 INTERPRETATION(해석)을 분리했습니다. 해석은 제안의 이유이지 증명이 아닙니다.</p></div>
 <div class="grid g2">
 <div class="card prob"><div class="ph"><span class="pid">P-01</span><b>목적 시작 전에 화면부터 치워야 한다</b></div>
-<dl><dt>확인된 사실<i>FACT</i></dt><dd>팝업 닫기 0.766 / 0.714 closes/session(GA4, F/R) — 단일 최대 행동. 미클릭률 90.2%(동일 도구 내 파생 · 매핑 추정 조건부)</dd>
+<dl><dt>확인된 사실<i>FACT</i></dt><dd>팝업 닫기 0.766 / 0.714 회/세션(GA4, F/R) — 단일 최대 행동. 미클릭률 90.2%(동일 도구 내 파생 · 매핑 추정 조건부)</dd>
 <dt>데이터 해석<i>INTERPRETATION</i></dt><dd>모든 목적의 앞단에 공통 마찰이 있다 — 단 "미클릭 = 불필요"로 해석하지 않는다</dd>
 <dt>개선안<i>PROPOSAL</i></dt><dd><b>운영 규칙 확인(DV-03) 후 팝업 정책 재설계</b>를 선행 과제로 → D-07</dd></dl></div>
-<div class="card prob"><div class="ph"><span class="pid">P-07</span><b>P0 목적의 전용 영역이 도달 범위 밖이다</b></div>
+<div class="card prob"><div class="ph"><span class="pid">P-07</span><b>P0 목적의 전용 영역이 도달 범위 밖이다</b><span class="small" style="display:block;font-weight:400;margin-top:2px">P0~P3은 <b>화면 영역의 우선순위 등급</b>입니다. P0이 가장 높습니다</span></div>
 <dl><dt>확인된 사실<i>FACT</i></dt><dd>SearchFee y1802~2202px vs 평균 도달선 y1461~1658px(파생) · 클릭 0.0079 / 0.0067 회/세션</dd>
 <dt>데이터 해석<i>INTERPRETATION</i></dt><dd>낮은 클릭은 무관심이 아니라 미노출로 해석할 여지</dd>
 <dt>개선안<i>PROPOSAL</i></dt><dd><b>요금제 탐색을 첫 화면 직후로</b> → D-02</dd></dl></div>
@@ -670,7 +670,7 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 <dl><dt>현재 요청<i>CURRENT</i></dt><dd>REQ-04 — 타임딜 운영 시 요금제보다 우선 노출 <span class="small">(단 "우선"의 대상은 원문 미확정 — 8.6)</span></dd>
 <dt>근거<i>EVIDENCE</i></dt><dd>SearchFee y1802px vs 도달선 y1461~1658px(파생) · 0.0079 회/세션 · 요금제는 공통 2위 목적 13.3/17.2% of 경로탐색 시작 세션</dd>
 <dt>문제<i>PROBLEM</i></dt><dd>P0 목적의 전용 수단이 구조적으로 노출되지 않음 (P-07)</dd>
-<dt>개선안<i>PROPOSAL</i></dt><dd class="hot">M-03 요금제 탐색을 AtF 직후 고정 배치. 타임딜은 이벤트 슬롯 또는 요금제 아래 한정</dd>
+<dt>개선안<i>PROPOSAL</i></dt><dd class="hot">M-03 요금제 탐색을 AtF(첫 화면에서 스크롤 없이 보이는 영역) 직후 고정 배치. 타임딜은 이벤트 슬롯 또는 요금제 아래 한정</dd>
 <dt>왜 이 방향인가<i>WHY</i></dt><dd>두 영역 중 요금제만 실패 중 — 이벤트·타임딜 자리는 이미 작동하거나 데이터가 없음. <b>목적이 갈린 방문자에게 "요금제 확인"이라는 목적의 최단 경로를 여는 것</b>이 이 제안의 역할이다 <span class="mono">D-12</span></dd>
 <dt>결정 내용<i>DECISION</i></dt><dd><b>D-02</b> — "우선"의 대상 확정 + 순서. 이 결정이 IA 순서를 좌우</dd>
 <dt>유의점<i>RISK</i></dt><dd>"미노출이 원인"은 해석 — 순서 변경의 효과는 개편 후 측정으로만 확인됨</dd></dl>
@@ -683,7 +683,7 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 <dt>문제<i>PROBLEM</i></dt><dd>Quick back 54.8% of sessions — 진입 후 도착 화면이 기대와 어긋나는 문제 (P-02)</dd>
 <dt>개선안<i>PROPOSAL</i></dt><dd class="hot">데이터 5구간 + 구간별 최저가로 조건을 먼저 선택 → 조건 적용된 목록으로 이동. 5구간 동일 강도(추천 없음)</dd>
 <dt>왜 이 방향인가<i>WHY</i></dt><dd>"혜택 많이" 축은 관측되지 않음 — 관측된 축만 사용하고, 목록 도착 시 화면이 기대와 일치하도록. <b>신규에게 상품을 잘 보여주는 것이 아니라, 요금제를 보러 온 사람이 조건을 먼저 좁히게 하는 것</b>이 목적이다 <span class="mono">D-12</span></dd>
-<dt>결정 내용<i>DECISION</i></dt><dd>REQ-E 재정의 수용 (06절 CHANGE)</dd>
+<dt>결정 내용<i>DECISION</i></dt><dd>REQ-E 재정의 수용 (05절 CHANGE)</dd>
 <dt>유의점<i>RISK</i></dt><dd>Quick back 감소는 기대 — 개편 후 검증 필요. 구간 이해도는 사용자 테스트 미수행</dd></dl>
 <div class="xref"><a href="./alignment.html#s09">REQ-07 · REQ-E 대조</a><a href="./prototype.html">5구간 직접 조작</a>
 <span class="why">5구간이 실제로 어떻게 동작하는지는 프로토타입에서 눌러보는 편이 빠릅니다.</span></div></div>
@@ -710,7 +710,7 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 
 <div class="prop"><div class="phd"><span class="no">05</span><b>팝업 정책 재설계를 선행 과제로 — 요청에 없던 최대 문제</b></div>
 <dl><dt>현재 요청<i>CURRENT</i></dt><dd>요청 문서에 팝업 정책 없음</dd>
-<dt>근거<i>EVIDENCE</i></dt><dd>태깅 이벤트의 78.2%(133,059/170,053 events)가 팝업 관련 · 닫기 0.766/0.714 closes/session · 미클릭률 90.2%(매핑 추정 — 조건부)</dd>
+<dt>근거<i>EVIDENCE</i></dt><dd>태깅 이벤트의 78.2%(133,059/170,053 events)가 팝업 관련 · 닫기 0.766/0.714 회/세션 · 미클릭률 90.2%(매핑 추정 — 조건부)</dd>
 <dt>문제<i>PROBLEM</i></dt><dd>모든 목적의 앞단에 공통 마찰 (P-01) — 영역을 재배치해도 앞단에서 상쇄될 수 있음</dd>
 <dt>개선안<i>PROPOSAL</i></dt><dd class="hot">운영 규칙 확인(DV-03) → 개수 상한·재노출 주기·우선순위 정책 정의</dd>
 <dt>왜 이 방향인가<i>WHY</i></dt><dd>미클릭이 곧 "불필요"는 아니므로 제거가 아니라 정책 재설계 — 개별 팝업 효율 산출(Popup_79~95 단위)이 가능</dd>
@@ -844,7 +844,7 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 
 <div class="dfeat"><div class="dhd"><span class="n">D-07</span><b>팝업 운영 정책 재설계를 개편 범위에 포함할 것인가</b><span class="st"><span class="b b-rm">결정 필요<i>NEEDS DECISION</i></span></span></div>
 <dl class="dl2"><dt>현재 요청<i>REQUEST</i></dt><dd>요청 문서에 없음 — 분석에서 발견된 최대 문제</dd>
-<dt>근거<i>EVIDENCE</i></dt><dd>태깅 이벤트의 78.2%가 팝업 관련 · 닫기 0.766/0.714 closes/session · 미클릭률 90.2%(조건부)</dd>
+<dt>근거<i>EVIDENCE</i></dt><dd>태깅 이벤트의 78.2%가 팝업 관련 · 닫기 0.766/0.714 회/세션 · 미클릭률 90.2%(조건부)</dd>
 <dt>개선안<i>PROPOSAL</i></dt><dd>운영 규칙 확인(DV-03) → 개수 상한 · 재노출 주기 · 우선순위 정책 정의</dd>
 <dt>영향 범위<i>IMPACT</i></dt><dd>미결정 시 <b>P-01 대응 전체가 이월</b> — 최대 문제 미착수 상태로 개편 진행</dd>
 <dt>유의점<i>RISK</i></dt><dd>팝업 의존 캠페인 노출 감소 — 개별 팝업 효율 산출로 보완 가능</dd><dt class="hot">결정하지 않으면</dt><dd><b>P-01 대응 전체가 이월됩니다.</b> 데이터에서 확인된 최대 문제를 손대지 못한 채 개편이 진행됩니다</dd></dl>
@@ -883,7 +883,7 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 
 <details><summary><span class="id">REQ-B</span>8/25 삭제 사유 <span class="b b-unv">아직 확인 안 됨<i>UNVERIFIED</i></span></summary><div class="bd">
 <dl><dt>무엇을<i>WHAT</i></dt><dd>신청서 직행 동선이 8/25 버전에서 삭제된 이유가 어느 자료에도 없음</dd>
-<dt>왜 이 방향인가<i>WHY</i></dt><dd>복원 제안(06절)의 전제 — 기술·정책 제약으로 뺐다면 복원 판단이 달라짐</dd>
+<dt>왜 이 방향인가<i>WHY</i></dt><dd>복원 제안(05절)의 전제 — 기술·정책 제약으로 뺐다면 복원 판단이 달라짐</dd>
 <dt>확인 주체<i>OWNER</i></dt><dd>요청자</dd><dt>영향 범위<i>IMPACT</i></dt><dd>REQ-B 복원 여부</dd><dt>상태<i>STATUS</i></dt><dd>확인 대기</dd></dl></div></details>
 
 <details><summary><span class="id">계정 데이터</span>로그인 성공 세션에 계정 생성일을 붙일 수 있는가 <span class="b b-open">미결<i>OPEN</i></span></summary><div class="bd">
@@ -945,7 +945,7 @@ U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·
 <p class="lede">이 문서의 다음 단계는 개발 착수가 아닙니다.</p></div>
 <div class="steps">
 <div class="s now"><div><b>Stakeholder Alignment</b><span>이 문서로 개편 방향 협의 — 특히 D-01 · D-02 · D-07</span></div></div>
-<div class="s"><div><b>Open Issue Resolution</b><span>REQ-B 삭제 사유 · DV-03 팝업 규칙 · OI-01 브랜드 토큰 등 12절 해소</span></div></div>
+<div class="s"><div><b>Open Issue Resolution</b><span>REQ-B 삭제 사유 · DV-03 팝업 규칙 · OI-01 브랜드 토큰 등 07-1절 해소</span></div></div>
 <div class="s"><div><b>Final UX / IA Confirmation</b><span>결정 반영한 IA·프로토타입 확정판</span></div></div>
 <div class="s"><div><b>Development Scope Definition</b><span>기능 정의 · 요구사항 정의서 · 테스트 케이스 — 이때 비로소 개발 문서화</span></div></div>
 <div class="s"><div><b>Development</b><span>확정된 범위로 착수</span></div></div>
