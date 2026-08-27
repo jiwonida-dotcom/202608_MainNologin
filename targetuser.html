@@ -312,7 +312,7 @@ td.src,.src{color:var(--mut)}
 </tbody>
 </table></div>
 <p>브랜드를 모르는 상태에서 들어오는 경로는 자연유입과 검색광고다. 두 화면 모두 <b>한 자릿수</b>다. <span class="g g-f">FACT</span></p>
-<p>즉 이 화면의 방문자는 대부분 <b>U+유모바일을 이미 알고 찾아온 사람</b>이다. 처음 알게 되어 들어오는 사람이 주류가 아니다. <span class="g g-i">INTERPRETATION</span></p>
+<p>즉 이 화면의 방문자는 <b>U+유모바일을 이미 알고 찾아온 사람이 다수</b>인 것으로 보인다. 처음 알게 되어 들어오는 사람이 주류로 보이지 않는다. 유입 경로에서 읽은 것이며, 개인별 인지 여부를 센 값은 아니다. <span class="g g-i">INTERPRETATION</span></p>
 
 <h3>축 3 · 주요 다음 행동 — 두 화면 모두 로그인이 1위</h3>
 <div class="tw tight"><table>
@@ -353,7 +353,7 @@ td.src,.src{color:var(--mut)}
 </table></div>
 <p>상품을 보고 가입하러 가는 행동이 더 많은 쪽은 <b>재방문용 화면</b>이다. <span class="g g-f">FACT</span></p>
 <p>기존 전제는 "첫 방문자에게 상품을 집중 노출한다"였다. 관측은 그 반대 방향을 가리킨다. <span class="g g-i">INTERPRETATION</span></p>
-<p class="small">보조 관측 — 요금제 배너 클릭도 재방문 쪽이 높다(0.0437 vs 0.0758 events/session, +74%). 다만 이 차이가 화면 때문인지 사람 구성 때문인지 나뉘지 않아 보조로만 쓴다.</p>
+<p class="small">보조 관측 — 요금제 배너 클릭도 재방문 쪽이 높다(0.0437 vs 0.0758 회/세션, +74%). 다만 이 차이가 화면 때문인지 사람 구성 때문인지 나뉘지 않아 보조로만 쓴다.</p>
 
 <h3>축 6 · 화면 분기와 실제 행동의 관계</h3>
 <p>두 화면의 구성 요소는 같다. GTM 태그 집합과 문서 높이가 일치한다. <span class="g g-f">FACT</span></p>
@@ -430,7 +430,7 @@ td.src,.src{color:var(--mut)}
 <h4 style="color:var(--ok)">데이터로 확인된 사실</h4>
 <div class="tw tight"><table><tbody>
 <tr><td class="id">1</td><td>두 화면 모두 다음 행동 1위가 로그인이다 — 43.9% / 21.6% of sessions</td></tr>
-<tr><td class="id">2</td><td>방문자 대부분이 브랜드를 알고 온다 — 브랜드를 모르는 경로는 두 화면 모두 한 자릿수</td></tr>
+<tr><td class="id">2</td><td>방문자 다수가 브랜드를 알고 온 것으로 보인다 — 브랜드를 모르는 경로는 두 화면 모두 한 자릿수</td></tr>
 <tr><td class="id">3</td><td>다음 행동이 여러 갈래로 나뉜다 — 특히 재방문 쪽은 12~22%로 분산된다</td></tr>
 <tr><td class="id">4</td><td>계정 사용 흔적을 가진 유입이 첫 방문용 화면에 9,381 sessions 있다</td></tr>
 <tr><td class="id">5</td><td>가입을 마친 뒤 이 화면으로 돌아온 세션이 <b>4,654 sessions</b> 있다</td></tr>
@@ -458,7 +458,7 @@ td.src,.src{color:var(--mut)}
 <tr><td><b>문제 정의</b><br><span class="small">P-01~P-07</span></td><td><span class="badge b-warn">해석만 수정</span></td><td>P-04가 이미 <b>이 전제와 관측의 불일치를 문제로 잡고 있다.</b> 결론은 그대로 두고 정량 근거만 보강한다. 나머지 P는 팝업·스크롤·도달 문제라 타깃과 무관하다</td></tr>
 <tr><td><b>개선 목표</b><br><span class="small">G-01~G-05</span></td><td><span class="badge b-warn">해석만 수정</span></td><td>다섯 목표 모두 관측된 행동에서 나왔다. 전제에 기대지 않는다. G-01의 설명이 "목적별 최단 경로"로 더 분명해질 뿐이다</td></tr>
 <tr><td><b>IA</b><br><span class="small">M-01~M-11</span></td><td><span class="badge b-ok">KEEP</span></td><td>배치 근거가 도달선과 경로 비중이다. 타깃 전제가 들어간 자리가 없다</td></tr>
-<tr><td><b>QuickMenu</b></td><td><span class="badge b-ok">KEEP</span></td><td>수요가 두 집단에서 거의 같다(0.101 / 0.106 events/session). 타깃이 바뀌어도 값이 그대로다</td></tr>
+<tr><td><b>QuickMenu</b></td><td><span class="badge b-ok">KEEP</span></td><td>수요가 두 집단에서 거의 같다(0.101 / 0.106 회/세션). 타깃이 바뀌어도 값이 그대로다</td></tr>
 <tr><td><b>요금제 영역</b></td><td><span class="badge b-ok">KEEP</span></td><td>근거는 도달선(y1802 vs y1461~1658)과 필터·정렬 실측이다. "신규에게 상품을"이라는 문장이 근거로 쓰인 적이 없다</td></tr>
 <tr><td><b>이벤트 · 프로모션</b></td><td><span class="badge b-ok">KEEP</span></td><td>경로 비중(8.4% / 15.8%)이 근거다</td></tr>
 <tr><td><b>로그인</b></td><td><span class="badge b-nv" style="background:var(--acc-soft);color:var(--acc-deep)">재검증</span></td><td>승격 근거는 <b>더 강해진다.</b> 다만 PHASE 1의 OPEN-05(로그인 영역의 목적이 신규 전환인지 기가입자 편의인지)가 아직 미정이다. 이 답에 따라 <b>로그인 영역의 문구와 비중</b>이 달라진다</td></tr>
@@ -484,7 +484,7 @@ td.src,.src{color:var(--mut)}
 
 <dt>데이터가<br>확인한 것</dt>
 <dd>㉠ 두 화면 모두 다음 행동 1위가 <b>로그인</b>이다 — 43.9% / 21.6% of sessions<br>
-㉡ 방문자 대부분이 <b>브랜드를 알고</b> 온다 — 모르는 경로는 두 화면 다 한 자릿수<br>
+㉡ 방문자 다수가 <b>브랜드를 알고</b> 온 것으로 보인다 — 모르는 경로는 두 화면 다 한 자릿수<br>
 ㉢ 상품·가입 행동이 더 많은 쪽은 첫 방문용이 아니라 <b>재방문용 화면</b>이다 — 21.1% vs 29.5%<br>
 ㉣ 첫 방문용 화면에 <b>계정 사용 흔적을 가진 유입</b>이 9,381 sessions 있다<br>
 ㉤ 가입을 마치고 <b>돌아온 세션</b>이 4,654 sessions 있다<br>
