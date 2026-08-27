@@ -409,7 +409,9 @@ svg{display:block}
   stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
   transition:transform var(--dur) var(--ease)}
 .colhd[aria-expanded="true"] .cc{transform:rotate(180deg)}
-.colbody{padding:var(--s-4) var(--pad) var(--s-5); display:none; background:transparent}
+/* 펼친 본문은 지면과 다른 면으로 둔다 — "열린 구간"을 알리는 것은 면의 시작과 끝이다.
+   면이 톤으로 끝나므로 바닥 구분선은 두지 않는다(선 + 톤 변화는 중복). */
+.colbody{padding:var(--s-4) var(--pad) var(--s-5); display:none; background:var(--surface-2)}
 .colbody.on{display:block; animation:acc .22s var(--ease)}
 @keyframes acc{from{opacity:0; transform:translateY(-5px)}to{opacity:1; transform:none}}
 /* 세그먼트 — 트랙 안에서 하나가 떠오르는 형태. 무채색으로만 처리(M-06은 NDV) */
