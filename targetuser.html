@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Target User 검증</title>
+<title>Target 재검증</title>
 <meta name="description" content="/nologin 메인의 실제 이용자 검증 — 타깃 정의와 페이지 목적의 적합성">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard-dynamic-subset.css">
@@ -160,16 +160,23 @@ td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 
 </style>
 <style>
-.grade{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:1.5px 6px;
- border-radius:4px;vertical-align:2px;margin-left:5px}
+.g{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:1.5px 6px;
+ border-radius:4px;vertical-align:2px;margin-left:5px;white-space:nowrap}
 .g-f{background:var(--ok-soft);color:var(--ok)}
 .g-i{background:var(--acc-soft);color:var(--acc)}
-.g-h{background:var(--warn-soft);color:var(--warn)}
+.g-p{background:var(--warn-soft);color:var(--warn)}
 .g-x{background:var(--stop-soft);color:var(--stop)}
-.verdict{border:2px solid var(--acc);border-radius:14px;background:var(--card);padding:20px 22px;margin:16px 0 20px}
-.verdict b.v{display:block;font-size:19px;letter-spacing:-.02em;margin-bottom:6px;color:var(--acc-ink)}
+.head1{border:2px solid var(--acc);border-radius:14px;background:var(--card);padding:22px 24px;margin:14px 0 22px}
+.head1 b.v{display:block;font-size:20px;letter-spacing:-.02em;line-height:1.35;margin-bottom:10px;color:var(--acc-ink)}
+.head1 p{margin:0 0 8px;font-size:14.5px}
+.head1 p:last-child{margin-bottom:0}
 .deftext{border-left:3px solid var(--acc);background:var(--acc-soft);border-radius:0 12px 12px 0;
  padding:18px 22px;margin:12px 0 16px;font-size:16px;line-height:1.75}
+.kv{display:grid;grid-template-columns:132px 1fr;gap:7px 16px;margin:0 0 16px;font-size:13.5px}
+.kv dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--mut);padding-top:3px}
+.kv dd{margin:0;color:var(--ink2)}
+.kv dd b{color:var(--ink)}
+@media (max-width:640px){ .kv{grid-template-columns:1fr;gap:2px} .kv dt{padding-top:8px} }
 
 /* ═══ PHASE 9.5 · 프로젝트 공통 내비게이션 (자체 완결 — 문서 토큰에 의존하지 않는다) ═══ */
 .pjnav{min-width:0; background:#14121F;color:#E8E6F2;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
@@ -218,233 +225,318 @@ td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 <main>
 
 <header class="dochd">
-  <span class="eyebrow">PHASE 9.X · Target User Verification</span>
-  <h1>이 페이지의 실제 이용자는 누구인가</h1>
-  <p class="sub">"신규 고객에게 상품·프로모션을 집중 노출하고 가입을 유도한다"는 기획 전제를 데이터로 검증한다. UI 설계가 아니라 <b>타깃 정의와 페이지 목적의 적합성</b>을 판정하는 분석이다.</p>
-  <p class="small" style="margin-top:10px">결정 항목은 <a href="./stakeholder.html">FINAL REPORT</a>, 요청 대조 원본은 <a href="./alignment.html#s09">EVIDENCE</a>, 수치 검증은 <a href="./audit.html#a06">AUDIT</a>에 있다.</p>
+  <span class="eyebrow">PHASE 9.5 · Target Revalidation Report</span>
+  <h1>"신규 고객 중심"이라는 전제는 유지할 수 있는가</h1>
+  <p class="sub">기존 기획은 이 페이지를 신규 고객용으로 본다. 그 전제가 데이터로 버티는지 따로 확인했다. 디자인은 손대지 않는다. 타깃을 바꿀지도 여기서 정하지 않는다.</p>
+  <p class="small" style="margin-top:10px">결정 항목은 <a href="./stakeholder.html">FINAL REPORT</a>, 요청 대조는 <a href="./alignment.html#s09">EVIDENCE</a>, 수치 검증은 <a href="./audit.html#a06">AUDIT</a>에 있다.</p>
   <div class="docmeta">
-    <span>GA4 2026-07-28~08-24 · F 126,749 / R 31,861 sessions</span>
-    <span>Clarity 2026-07-29~08-25 · 녹화 표본 300</span>
-    <span>분기 교차 CSV 2026-07-30~08-26 · 39,957 sessions</span>
-    <span>분석 2026-08-27</span>
+    <span>GA4 2026-07-28~08-24 · FIRST 126,749 / REVISIT 31,861 sessions</span>
+    <span>Clarity 2026-07-29~08-25</span>
+    <span>방문 횟수 교차 2026-07-30~08-26 · 39,957 sessions</span>
+    <span>2026-08-27</span>
   </div>
 </header>
 
-<section id="v01">
-<span class="snum">판정</span>
-<h2>최종 판정</h2>
-<div class="verdict">
-<b class="v">C — 데이터로 규정할 수 없음 <span style="font-size:14px;color:var(--mut)">(주 판정)</span></b>
-<b class="v" style="font-size:16px">D — 관측된 최대 행동과 방향이 다름 <span style="font-size:13px;color:var(--mut)">(부분 판정)</span></b>
-<p style="margin:10px 0 0;font-size:14px">신규 고객 중심 타깃을 <b>데이터로 규정할 수 없으며</b>, 규정 가능한 범위 안에서는 <b>관측된 최대 행동이 그 전제와 방향이 다르다</b>. 단일 판정으로 떨어지지 않는다는 것 자체가 이번 분석의 결과다.</p>
+<section id="r00">
+<span class="snum">결론</span>
+<h2>먼저 결론</h2>
+<div class="head1">
+<b class="v">"신규 고객 중심"은 데이터로 유지할 수 없다.<br>그러나 다시 해야 할 분석은 없다.</b>
+<p><b>①</b> 이 화면은 로그인 전이라 계정을 확인하지 않는다. 그래서 방문자가 고객인지 아닌지 알 수 없다. <span class="g g-f">FACT</span></p>
+<p><b>②</b> "신규"를 판정하는 쿠키가 세 종류인데, 셋이 서로 다른 답을 준다. <span class="g g-f">FACT</span></p>
+<p><b>③</b> 그런데 우리 분석은 처음부터 이 전제를 쓰지 않았다. 판단 근거는 전부 관측된 행동이었다. <span class="g g-f">FACT</span></p>
+<p><b>④</b> 그래서 전제가 바뀌어도 <b>재분석이 필요한 항목은 0건</b>이다. 바뀌는 것은 일부 설명 문장과, 이미 보류 중인 요청 2건이다. <span class="g g-i">INTERPRETATION</span></p>
 </div>
-
-<h3>판정 근거 FACT 5</h3>
-<div class="tw"><table>
-<thead><tr><th style="width:36px">#</th><th>사실</th><th style="width:190px">수치</th></tr></thead>
-<tbody>
-<tr><td class="id">1</td><td>두 화면 공통 <b>1위 다음 행동이 로그인</b> — 로그인은 계정 보유자만 할 수 있는 행동이다</td><td class="num">43.9% / 21.6% of sessions</td></tr>
-<tr><td class="id">2</td><td>FIRST에서는 로그인이 상품경로보다 크고, <b>REVISIT에서는 역전된다</b> — 상품 행동이 우세한 쪽은 첫 방문 화면이 아니라 재방문 화면이다</td><td class="num">F 2.08배 / R 0.73배</td></tr>
-<tr><td class="id">3</td><td><b>nologfirst 유입 중 기존 고객임이 리퍼러로 확정</b>되는 세션 — 앱 웹뷰·로그인 상태 메인·가입 완료 복귀·로그인 오류</td><td class="num">9,381 sessions (7.4%)</td></tr>
-<tr><td class="id">4</td><td><b>가입을 마친 고객이 비로그인 메인으로 복귀</b>한다</td><td class="num">4,654 sessions (F 2,465 / R 2,189)</td></tr>
-<tr><td class="id">5</td><td>화면 분기와 방문 이력 판정이 <b>어긋난다</b> — 의도한 대상에게 의도한 화면이 가지 않는다</td><td class="num">23.9% 불일치</td></tr>
-</tbody>
-</table></div>
-<p class="small">근거 등급 — <span class="grade g-f">FACT</span> 관측 · <span class="grade g-i">INTERP</span> 해석 · <span class="grade g-h">HYPO</span> 가설 · <span class="grade g-x">확인 불가</span>. 도구 간 절대값 비교와 교차 도구 파생 비율은 사용하지 않았고, 검증에서 철회된 수치도 재사용하지 않았다.</p>
+<p class="small">이 문서에서 "증명"이라는 말을 쓰지 않는다. 데이터는 무엇을 확인시켜 줄 뿐이다. 로그인 클릭을 기존 고객 비율로 바꿔 계산하지 않았다. GA4와 Clarity의 서로 다른 분모를 섞지 않았다.</p>
 </section>
 
-<section id="v02">
-<span class="snum">01 · 핵심 질문</span>
-<h2>7개 질문에 대한 답</h2>
+<section id="r01">
+<span class="snum">01</span>
+<h2>이 전제를 어디에서 쓰고 있나</h2>
+<p class="lede">프로젝트 파일 전체를 검색했다. 분석 문서 12개와 산출물 9개가 대상이다.</p>
 <div class="tw"><table>
-<thead><tr><th style="width:44px">Q</th><th>질문</th><th>답</th></tr></thead>
+<thead><tr><th style="width:170px">위치</th><th>어떻게 쓰였나</th><th style="width:110px">성격</th></tr></thead>
 <tbody>
-<tr><td class="id">Q1</td><td>실제 핵심 이용자를 데이터로 어떻게 정의할 수 있는가</td><td>정의 가능한 범위는 <b>방문 이력과 유입 맥락</b>까지다. 계정 보유·가입 여부는 로그인 전이라 원천적으로 식별되지 않는다 <span class="grade g-f">FACT</span></td></tr>
-<tr><td class="id">Q2</td><td>"신규 고객"이라는 표현을 쓸 수 있는가</td><td><b>쓸 수 없다.</b> 데이터가 구분하는 것은 쿠키 기준 <b>방문 이력</b>뿐이고, 그 두 판정조차 23.9% 어긋난다. "신규 고객"은 이 데이터에 존재하지 않는 개념이다 <span class="grade g-f">FACT</span></td></tr>
-<tr><td class="id">Q3</td><td>확인되는 것은 방문자인가 고객인가</td><td>직접 확인되는 것은 <b>방문자</b>다. 다만 로그인은 계정 보유자만 하는 행동이고 그것이 1위이며, 리퍼러로 기존 고객이 확정되는 유입도 실재한다 — 아래 표 <span class="grade g-f">FACT</span></td></tr>
-<tr><td class="id">Q4</td><td>신규 방문자에게 상품·가입 행동이 우세한가</td><td><b>아니다.</b> 우세한 쪽은 재방문 화면이다 — 기획 전제와 방향이 반대다 <span class="grade g-f">FACT</span></td></tr>
-<tr><td class="id">Q5</td><td>재방문자의 주요 목적은 무엇인가</td><td>하나가 아니라 <b>분산</b>이다. 로그인 21.6 / 요금제 17.2 / 이벤트 15.8 / 가입·개통 12.3 / 종료 21.5 <span class="grade g-f">FACT</span></td></tr>
-<tr><td class="id">Q6</td><td>"신규 고객 중심 상품·가입 유도" 전제가 데이터와 일치하는가</td><td><b>부분적으로만, 그리고 대상이 뒤바뀌어 있다.</b> 상품·가입 수요는 실재하나 "신규에게 우세하다"는 부분이 관측과 반대다</td></tr>
-<tr><td class="id">Q7</td><td>부분적으로만 맞다면 어떻게 재정의해야 하는가</td><td>나누는 축을 <b>방문 이력이 아니라 목적</b>으로 — 04절 참조 <span class="grade g-i">INTERP</span></td></tr>
+<tr><td>PHASE 1 · BIZ-1</td><td>"신규 가입 전환" — <b>요청 문서의 CTA 구성에서 역산한 사업 의도</b>다. 문서가 그렇게 쓴 것이 아니다</td><td><span class="badge b-warn">역산</span></td></tr>
+<tr><td>PHASE 1 · OPEN-05</td><td>"로그인 영역의 목적 — 신규 전환 유도인지 기가입자 편의인지" <b>미정으로 남겨둔 항목</b></td><td><span class="badge b-warn">미정</span></td></tr>
+<tr><td>PHASE 1 · R-3</td><td>"메인의 목적이 신규 가입 전환이라면 로그인 블록이 주요 CTA와 경쟁할 수 있다" — <b>조건문</b>이다</td><td><span class="badge b-warn">조건부</span></td></tr>
+<tr><td>PHASE 3 · F-2</td><td>절 제목이 <b>"nologfirst는 신규 탐색 화면이 아니다"</b> — 전제를 쓴 것이 아니라 <b>반박한 것</b>이다</td><td><span class="badge b-ok">반박</span></td></tr>
+<tr><td>alignment · P-04</td><td>"최대 수요는 로그인인데 화면은 신규 탐색 전제로 설계돼 있다" — <b>전제와 관측의 불일치를 문제로 등록</b>했다</td><td><span class="badge b-ok">문제로 등록</span></td></tr>
+<tr><td>PHASE 6 · STATE</td><td>"가입 완료 후 복귀 — 신규 가입 유도를 반복하지 않음" (4,654 sessions). <b>전제를 부정하는 방향</b>의 처리다</td><td><span class="badge b-ok">반영됨</span></td></tr>
+<tr><td>요청 REQ-04</td><td>타임딜을 신규에게 우선 노출 — <b>전제에 기대는 요청</b>. 이미 HOLD</td><td><span class="badge b-stop">전제 의존</span></td></tr>
+<tr><td>요청 REQ-A</td><td>메인 요금제를 신규용으로 차별화 — <b>전제에 기대는 요청</b>. 이미 HOLD</td><td><span class="badge b-stop">전제 의존</span></td></tr>
 </tbody>
 </table></div>
+<div class="note"><b>검색 결과 요약</b> — 이 전제를 <b>판단의 근거로 쓴 우리 분석은 없다.</b> 등장하는 곳은 전부 ㉠ 요청 문서에서 역산한 의도, ㉡ 미정으로 남긴 항목, ㉢ 전제와 관측이 어긋난다는 지적이다. 전제에 기대는 것은 <b>요청 2건(REQ-04 · REQ-A)뿐</b>이며 둘 다 이미 HOLD 상태다. <span class="g g-f">FACT</span></div>
 </section>
 
-<section id="v03">
-<span class="snum">02 · 데이터</span>
-<h2>관측 — 무엇이 보이는가</h2>
+<section id="r02">
+<span class="snum">02</span>
+<h2>현재 타깃 정의를 한 문장으로</h2>
+<div class="deftext">이 페이지는 <b>아직 가입하지 않은 사람</b>이 방문하여 <b>상품과 프로모션을 보고 가입을 신청하는 곳</b>이다.</div>
+<p>단, 이 문장은 <b>요청 문서에 그대로 쓰여 있지 않다.</b> 요청 문서에는 대상 사용자 정의가 없다. 페르소나도 세그먼트도 없다. 위 문장은 시안의 구성(가입신청 CTA, 상품 카드, 프로모션 영역)에서 되짚어 만든 것이다. <span class="g g-f">FACT</span></p>
+<p>그래서 이 전제는 <b>요청자가 명시한 것이 아니라, 우리가 시안을 보고 추정한 것</b>일 수 있다. 요청자 확인이 필요하다. <span class="g g-p">PROPOSAL</span></p>
+</section>
 
-<h3>FIRST / REVISIT 다음 행동 <span class="b b-ga" style="font-size:10px;background:#E8EEF6;color:#28517E;padding:2px 8px;border-radius:5px">GA4</span></h3>
+<section id="r03">
+<span class="snum">03</span>
+<h2>6개 축으로 다시 확인</h2>
+
+<h3>축 1 · 방문 이력 — 판정 도구가 셋이고, 셋이 다르다</h3>
 <div class="tw tight"><table>
-<thead><tr><th>다음 행동</th><th>FIRST</th><th>REVISIT</th><th>메모</th></tr></thead>
+<thead><tr><th>판정 도구</th><th>/nologfirst 의 "신규" 비율</th><th>/nologrevisit 의 "신규" 비율</th></tr></thead>
 <tbody>
-<tr><td><b>로그인</b></td><td class="num"><b>43.9%</b> (55,643)</td><td class="num"><b>21.6%</b> (6,882)</td><td>두 화면 공통 1위. Clarity 클릭 53,278과 교차 일치</td></tr>
-<tr><td>요금제</td><td class="num">13.3% (16,858)</td><td class="num">17.2% (5,480)</td><td>재방문에서 더 큼</td></tr>
-<tr><td>이벤트</td><td class="num">8.4% (10,647)</td><td class="num">15.8% (5,034)</td><td>재방문 1.9배</td></tr>
-<tr><td>가입·개통</td><td class="num">7.8% (9,886)</td><td class="num">12.3% (3,919)</td><td>재방문 1.6배</td></tr>
-<tr><td>종료</td><td class="num">18.8%</td><td class="num">21.5%</td><td>—</td></tr>
-<tr><td>기타</td><td class="num">7.8%</td><td class="num">11.6%</td><td>잔여</td></tr>
+<tr><td>서비스 분기 쿠키 (설계 의도)</td><td class="num">100%</td><td class="num">0%</td></tr>
+<tr><td>Clarity 자체 쿠키</td><td class="num">96.5% (101,514 / 105,164 sessions)</td><td class="num">36.0% (10,562 / 29,290 sessions)</td></tr>
+<tr><td>GA4 <span class="mono">_ga</span> 방문 횟수</td><td class="num">77.6% (20,611 / 26,550 sessions)</td><td class="num">26.9% (3,602 / 13,407 sessions)</td></tr>
 </tbody>
 </table></div>
-<div class="note warn"><b>결정적 대비</b> — 로그인 대 상품경로(요금제+가입)의 비율이 두 화면에서 뒤집힌다.<br>
-<b>FIRST</b> 로그인 43.9% vs 상품 21.1% → 로그인이 <b>2.08배</b> &nbsp;·&nbsp; <b>REVISIT</b> 로그인 21.6% vs 상품 29.5% → 상품이 <b>1.37배</b><br>
-즉 <b>상품 탐색·가입 행동이 우세한 쪽은 첫 방문 화면이 아니라 재방문 화면</b>이다. <span class="grade g-f">FACT</span></div>
+<p>세 도구가 같은 화면을 놓고 서로 다른 답을 준다. <span class="g g-f">FACT</span></p>
+<p>쿠키는 사람을 세지 않는다. 브라우저를 센다. 쿠키가 지워지면 같은 사람도 새 사람이 된다. 세 쿠키는 수명과 설정 시점이 다르므로 값이 다른 것이 자연스럽다. <span class="g g-i">INTERPRETATION</span></p>
+<p>따라서 어느 값도 "신규가 몇 %다"의 답이 될 수 없다. 세 값을 평균 내는 것도 안 된다. 분모가 서로 다르기 때문이다. <span class="g g-f">FACT</span></p>
+<p class="small">참고 — 서비스 분기와 GA4 방문 횟수가 어긋난 세션은 39,957건 중 9,541건(23.9%)이다. 한 세션에서 두 화면을 모두 본 경우는 1.2%이며, Clarity 관측(1.2%)과 값이 같다.</p>
 
-<h3>기존 고객임이 리퍼러로 확정되는 유입 <span class="b b-ga" style="font-size:10px;background:#E8EEF6;color:#28517E;padding:2px 8px;border-radius:5px">GA4</span></h3>
-<div class="tw tight"><table>
-<thead><tr><th>리퍼러</th><th>nologfirst</th><th>nologrevisit</th><th>의미</th></tr></thead>
-<tbody>
-<tr><td class="mono">?userAgent=aos/ios</td><td class="num">3,118</td><td class="num">319</td><td>앱 웹뷰 진입 — 앱 사용자</td></tr>
-<tr><td class="mono">/my/main</td><td class="num">2,867</td><td class="num">700</td><td>로그인 상태 메인에서 이동</td></tr>
-<tr><td class="mono">/util/join/joinComplete</td><td class="num">2,465</td><td class="num">2,189</td><td><b>가입 완료 후 복귀</b></td></tr>
-<tr><td class="mono">/error?url=…api/login/after</td><td class="num">931</td><td class="num">197</td><td>로그인 후처리 오류</td></tr>
-<tr><td><b>합계</b></td><td class="num"><b>9,381 (7.4%)</b></td><td class="num"><b>3,405 (10.7%)</b></td><td>—</td></tr>
-</tbody>
-</table></div>
-<p><b>첫 방문 화면 유입의 최소 7.4%는 기존 고객임이 리퍼러로 확정된다.</b> <span class="grade g-f">FACT</span> 실제 규모는 이보다 클 것으로 보인다 — 로그인으로 가는 43.9%의 상당수가 계정 보유자일 것이기 때문이다. <span class="grade g-i">INTERP</span> 다만 <b>로그인 클릭이 계정 보유를 확정하지는 않는다.</b></p>
-
-<h3>콘텐츠 이용 <span class="b b-ga" style="font-size:10px;background:#E8EEF6;color:#28517E;padding:2px 8px;border-radius:5px">GA4 events/session</span></h3>
-<div class="tw tight"><table>
-<thead><tr><th>이벤트</th><th>FIRST</th><th>REVISIT</th><th>격차</th></tr></thead>
-<tbody>
-<tr><td>PopupClose</td><td class="num">0.766</td><td class="num">0.714</td><td class="num">−7%</td></tr>
-<tr><td>QuickMenu</td><td class="num">0.101</td><td class="num">0.106</td><td class="num">+6%</td></tr>
-<tr><td>PopupTop</td><td class="num">0.0888</td><td class="num">0.0552</td><td class="num">−38%</td></tr>
-<tr><td><b>ProductBanner</b></td><td class="num">0.0437</td><td class="num">0.0758</td><td class="num"><b>+74%</b></td></tr>
-<tr><td>ProductProBanner</td><td class="num">0.0303</td><td class="num">0.0294</td><td class="num">−3%</td></tr>
-<tr><td>RecommendGroup</td><td class="num">0.0234</td><td class="num">0.0209</td><td class="num">−11%</td></tr>
-<tr><td>CustomerCenter</td><td class="num">0.0101</td><td class="num">0.0102</td><td class="num">0%</td></tr>
-<tr><td>BenefitService</td><td class="num">0.0091</td><td class="num">0.0095</td><td class="num">+4%</td></tr>
-<tr><td>SearchFee</td><td class="num">0.0079</td><td class="num">0.0067</td><td class="num">−16%</td></tr>
-</tbody>
-</table></div>
-<p class="small">검색은 GA4 <span class="mono">MAIN_NOTLOGIN</span> 태깅 범위 밖이라 이 표에 없다. Clarity 관측(4,765/1,185 clicks)은 URL 필터가 세션 범위라 <b>INTERPRETATION 등급</b>이며 타깃 판정에 쓰지 않았다. <b>ProductBanner +74%</b>는 화면 효과인지 사용자 구성 효과인지 분리되지 않아 <b>보조 근거로만</b> 쓴다 — 다만 <b>상품 반응이 재방문에서 더 크다</b>는 방향은 다음 행동 데이터와 일치한다. <span class="grade g-i">INTERP</span></p>
-
-<h3>유입 채널 <span class="b b-ga" style="font-size:10px;background:#E8EEF6;color:#28517E;padding:2px 8px;border-radius:5px">GA4</span></h3>
+<h3>축 2 · 유입 경로 — 두 집단 모두 브랜드를 알고 온다</h3>
 <div class="tw tight"><table>
 <thead><tr><th>채널</th><th>FIRST</th><th>REVISIT</th></tr></thead>
 <tbody>
-<tr><td>직접유입</td><td class="num"><b>80.5%</b> (101,821)</td><td class="num">43.8% (13,670)</td></tr>
-<tr><td>브랜드검색광고</td><td class="num">10.1% (12,733)</td><td class="num"><b>32.3%</b> (10,074)</td></tr>
-<tr><td>추천유입</td><td class="num">4.6% (5,828)</td><td class="num">12.7% (3,977)</td></tr>
-<tr><td>자연유입</td><td class="num">2.6% (3,339)</td><td class="num">5.3% (1,667)</td></tr>
-<tr><td>검색광고</td><td class="num">2.1% (2,700)</td><td class="num">5.9% (1,830)</td></tr>
+<tr><td>직접유입 (URL·북마크·앱)</td><td class="num"><b>80.5%</b> (101,821 sessions)</td><td class="num">43.8% (13,670 sessions)</td></tr>
+<tr><td>브랜드검색광고</td><td class="num">10.1% (12,733 sessions)</td><td class="num"><b>32.3%</b> (10,074 sessions)</td></tr>
+<tr><td>추천유입</td><td class="num">4.6% (5,828 sessions)</td><td class="num">12.7% (3,977 sessions)</td></tr>
+<tr><td>자연유입</td><td class="num">2.6% (3,339 sessions)</td><td class="num">5.3% (1,667 sessions)</td></tr>
+<tr><td>검색광고</td><td class="num">2.1% (2,700 sessions)</td><td class="num">5.9% (1,830 sessions)</td></tr>
 </tbody>
 </table></div>
-<p><b>두 집단 모두 브랜드를 이미 알고 온다.</b> FIRST는 직접유입 80.5%(URL·북마크·앱), REVISIT은 브랜드검색광고가 FIRST의 3.2배다. <b>브랜드를 모르는 상태에서 유입되는 경로(자연·검색광고)는 양쪽 다 한 자릿수</b>다. <span class="grade g-f">FACT</span></p>
+<p>브랜드를 모르는 상태에서 들어오는 경로는 자연유입과 검색광고다. 두 화면 모두 <b>한 자릿수</b>다. <span class="g g-f">FACT</span></p>
+<p>즉 이 화면의 방문자는 대부분 <b>U+유모바일을 이미 알고 찾아온 사람</b>이다. 처음 알게 되어 들어오는 사람이 주류가 아니다. <span class="g g-i">INTERPRETATION</span></p>
 
-<h3>화면 분기 검증 <span class="b b-ga" style="font-size:10px;background:#E8EEF6;color:#28517E;padding:2px 8px;border-radius:5px">GA4 별도 CSV</span></h3>
+<h3>축 3 · 주요 다음 행동 — 두 화면 모두 로그인이 1위</h3>
 <div class="tw tight"><table>
-<thead><tr><th>화면</th><th>세션</th><th>성격과 일치</th><th>어긋남</th></tr></thead>
+<thead><tr><th>다음 행동</th><th>FIRST</th><th>REVISIT</th></tr></thead>
 <tbody>
-<tr><td class="mono">/nologfirst</td><td class="num">26,550</td><td class="num">1회 방문 20,611 (77.6%)</td><td class="num"><b>재방문 5,939 (22.4%)</b></td></tr>
-<tr><td class="mono">/nologrevisit</td><td class="num">13,407</td><td class="num">2회 이상 9,805 (73.1%)</td><td class="num"><b>1회 방문 3,602 (26.9%)</b></td></tr>
+<tr><td><b>로그인</b></td><td class="num"><b>43.9%</b> of sessions</td><td class="num"><b>21.6%</b> of sessions</td></tr>
+<tr><td>요금제</td><td class="num">13.3%</td><td class="num">17.2%</td></tr>
+<tr><td>이벤트</td><td class="num">8.4%</td><td class="num">15.8%</td></tr>
+<tr><td>가입·개통</td><td class="num">7.8%</td><td class="num">12.3%</td></tr>
+<tr><td>종료</td><td class="num">18.8%</td><td class="num">21.5%</td></tr>
+<tr><td>기타</td><td class="num">7.8%</td><td class="num">11.6%</td></tr>
 </tbody>
 </table></div>
-<p><b>39,957 sessions 중 9,541(23.9%)이 화면 성격과 어긋난다.</b> 별도로 <b>491 sessions(1.2%)</b>은 한 세션에서 두 화면을 모두 봤다. 단 <b>GA4의 방문 횟수도 <span class="mono">_ga</span> 쿠키 기반</b>이므로 이 수치는 "서비스 분기가 틀렸다"가 아니라 <b>서로 다른 두 쿠키의 판정이 23.9% 어긋난다</b>까지만 말한다. <span class="grade g-f">FACT</span> 기간·모수가 본 분석과 달라(39,957 vs 158,610) <b>비율과 방향으로만</b> 사용했다.</p>
+<p>로그인은 계정이 있어야 할 수 있는 행동이다. 그 행동이 두 화면 모두 1위다. <span class="g g-f">FACT</span></p>
+<p><b>주의 — 43.9%를 "기존 고객 43.9%"로 바꿔 읽지 않는다.</b> 로그인 버튼을 눌렀다고 계정이 있다고 확정할 수 없다. 로그인 화면에서 회원가입으로 갈 수도 있다. <span class="g g-f">FACT</span></p>
 
-<h3>가입 완료까지 연결되는 행동</h3>
-<p><b>확인된 것</b> — <span class="mono">/util/join/joinComplete</span>에서 메인으로 <b>복귀</b>하는 세션 4,654건. 이는 가입 완료자가 이 화면을 <b>다시 본다</b>는 사실이다. <span class="grade g-f">FACT</span><br>
-<b>확인되지 않은 것</b> — 이 화면에서 출발해 가입을 <b>완주</b>한 세션의 규모. 리퍼러 방향이 반대라 역추적이 되지 않는다. <span class="grade g-x">확인 불가</span><br>
-따라서 <b>가입 페이지 진입(7.8% / 12.3%)을 가입 의도나 가입 성과로 해석하지 않는다.</b></p>
+<h3>축 4 · 기존 고객 신호 — 어디에서 왔는지로 확인된다</h3>
+<div class="tw tight"><table>
+<thead><tr><th>직전 페이지</th><th>/nologfirst</th><th>/nologrevisit</th><th>왜 기존 고객 신호인가</th></tr></thead>
+<tbody>
+<tr><td class="mono">?userAgent=aos/ios</td><td class="num">3,118</td><td class="num">319</td><td>앱에서 들어왔다 — 앱을 쓰는 사람</td></tr>
+<tr><td class="mono">/my/main</td><td class="num">2,867</td><td class="num">700</td><td>로그인한 상태의 화면에서 왔다</td></tr>
+<tr><td class="mono">/util/join/joinComplete</td><td class="num">2,465</td><td class="num">2,189</td><td>가입을 마치고 돌아왔다</td></tr>
+<tr><td class="mono">/error?url=…api/login/after</td><td class="num">931</td><td class="num">197</td><td>로그인 처리 중 오류로 떨어졌다</td></tr>
+<tr><td><b>합계</b></td><td class="num"><b>9,381 sessions</b><br>(FIRST의 7.4%)</td><td class="num"><b>3,405 sessions</b><br>(REVISIT의 10.7%)</td><td>—</td></tr>
+</tbody>
+</table></div>
+<p>첫 방문용 화면으로 들어온 세션 중 최소 9,381건은 직전 페이지가 이미 계정 사용 흔적을 보인다. <span class="g g-f">FACT</span></p>
+<p>이것은 <b>하한선</b>이다. 위 네 경로 밖에도 계정 보유자가 있을 수 있다. 다만 그 규모는 이 데이터로 알 수 없다. <span class="g g-x">확인 불가</span></p>
+
+<h3>축 5 · 상품 탐색과 가입 행동 — 우세한 쪽이 뒤바뀐다</h3>
+<div class="tw tight"><table>
+<thead><tr><th>화면</th><th>로그인</th><th>요금제 + 가입·개통</th><th>어느 쪽이 큰가</th></tr></thead>
+<tbody>
+<tr><td>FIRST (첫 방문용)</td><td class="num">43.9%</td><td class="num">21.1%</td><td><b>로그인이 2.08배</b></td></tr>
+<tr><td>REVISIT (재방문용)</td><td class="num">21.6%</td><td class="num">29.5%</td><td><b>상품이 1.37배</b></td></tr>
+</tbody>
+</table></div>
+<p>상품을 보고 가입하러 가는 행동이 더 많은 쪽은 <b>재방문용 화면</b>이다. <span class="g g-f">FACT</span></p>
+<p>기존 전제는 "첫 방문자에게 상품을 집중 노출한다"였다. 관측은 그 반대 방향을 가리킨다. <span class="g g-i">INTERPRETATION</span></p>
+<p class="small">보조 관측 — 요금제 배너 클릭도 재방문 쪽이 높다(0.0437 vs 0.0758 events/session, +74%). 다만 이 차이가 화면 때문인지 사람 구성 때문인지 나뉘지 않아 보조로만 쓴다.</p>
+
+<h3>축 6 · 화면 분기와 실제 행동의 관계</h3>
+<p>두 화면의 구성 요소는 같다. GTM 태그 집합과 문서 높이가 일치한다. <span class="g g-f">FACT</span></p>
+<p>행동 이벤트 10개 중 5개가 ±10% 이내로 사실상 같다. <span class="g g-f">FACT</span></p>
+<p>다른 점은 유입 구성이다. 재방문 화면은 브랜드검색광고가 3.2배 많다. 그래서 행동 차이가 <b>화면 때문인지 사람 구성 때문인지 나뉘지 않는다.</b> <span class="g g-x">확인 불가</span></p>
 </section>
 
-<section id="v04">
-<span class="snum">03~04 · 타깃</span>
-<h2>기획 Target vs 관측 User</h2>
+<section id="r04">
+<span class="snum">04</span>
+<h2>"신규 고객"이라는 말을 쓸 수 있는가</h2>
+<div class="head1" style="border-color:var(--stop)">
+<b class="v" style="color:var(--stop)">쓸 수 없다.</b>
+<p><b>①</b> 이 화면은 로그인 전이다. 계정을 확인하지 않는다. 그래서 고객인지 아닌지 알 수 없다.</p>
+<p><b>②</b> 데이터가 나누는 것은 <b>브라우저의 방문 이력</b>이다. 사람의 가입 여부가 아니다.</p>
+<p><b>③</b> 그 방문 이력조차 판정 도구 셋이 서로 다른 답을 준다(축 1).</p>
+</div>
+<div class="tw tight"><table>
+<thead><tr><th style="width:210px">쓸 수 없는 말</th><th>대신 쓸 수 있는 말</th></tr></thead>
+<tbody>
+<tr><td>신규 고객 / 기존 고객</td><td>계정 보유 여부는 이 화면에서 확인되지 않는다</td></tr>
+<tr><td>신규 방문자 (단정)</td><td><b>첫 방문으로 판정된 세션</b> (어느 쿠키 기준인지 함께 표기)</td></tr>
+<tr><td>기존 고객 43.9%</td><td>로그인으로 이동한 세션 43.9% of FIRST sessions</td></tr>
+<tr><td>신규 고객 비율</td><td>현재 데이터로는 산출할 수 없다</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="r05">
+<span class="snum">05</span>
+<h2>타깃 후보 3개를 놓고 비교</h2>
 <div class="tw"><table>
-<thead><tr><th style="width:150px">구분</th><th>내용</th></tr></thead>
+<thead><tr><th style="width:132px">후보</th><th>데이터가 지지하는 것</th><th>데이터가 반대하는 것</th><th>확인 불가</th><th style="width:96px">종합</th></tr></thead>
 <tbody>
-<tr><td><b>기획상 Target</b></td><td>"신규 고객에게 상품·프로모션을 집중 노출하고 가입 신청을 유도한다". 단 <b>요청 문서에 대상 사용자 정의·페르소나·세그먼트가 없다</b> — 이 전제는 시안 구조에서 역산한 것이다 <span class="grade g-f">FACT</span></td></tr>
-<tr><td><b>데이터상 Observed User</b></td><td>브랜드를 이미 알고 <b>직접 찾아온</b> 방문자(FIRST 직접유입 80.5%)이며, <b>계정 보유자가 상당수 섞여 있고</b>(로그인 1위·리퍼러 9,381), 목적이 <b>로그인·요금제·혜택으로 갈라져</b> 있다. 세션/사용자 FIRST 1.02 · REVISIT 1.62</td></tr>
+<tr>
+<td><b>A. 신규 고객 중심</b><br><span class="small">아직 가입하지 않은 사람</span></td>
+<td>상품과 가입으로 가는 행동이 실재한다 — 요금제 13.3%, 가입·개통 7.8% of FIRST sessions</td>
+<td>1위 행동이 로그인(43.9%)이다 · 상품 행동은 재방문 쪽이 더 크다 · 계정 흔적이 있는 유입이 9,381 sessions</td>
+<td>가입 여부 자체를 확인할 수단이 없다</td>
+<td><span class="badge b-stop">유지 불가</span></td>
+</tr>
+<tr>
+<td><b>B. 신규·기존 혼합</b><br><span class="small">둘이 섞여 있다</span></td>
+<td>계정 흔적 유입 9,381 sessions · 가입 완료 후 복귀 4,654 sessions · 로그인 1위</td>
+<td>딱히 없다 — 관측과 어긋나지 않는다</td>
+<td><b>섞인 비율을 알 수 없다.</b> 그래서 설계에 쓸 기준이 안 나온다</td>
+<td><span class="badge b-warn">사실이나<br>설계 불가</span></td>
+</tr>
+<tr>
+<td><b>C. 방문 목적 중심</b><br><span class="small">목적이 갈린 방문자</span></td>
+<td>다음 행동이 로그인·요금제·이벤트·가입으로 <b>실제로 갈린다</b> · 재방문 쪽은 한 목적이 지배하지 않고 12~22%로 분산 · 목적별 규모가 GA4에서 직접 측정된다</td>
+<td>딱히 없다</td>
+<td>한 사람이 여러 목적을 함께 갖는지는 알 수 없다</td>
+<td><span class="badge b-ok">가장 설명력 높음</span></td>
+</tr>
 </tbody>
 </table></div>
 
-<h3>일치 / 불일치</h3>
+<h3>후보 A를 유지하려면 무엇이 더 필요한가</h3>
 <div class="tw tight"><table>
-<thead><tr><th>기획 전제</th><th>판정</th><th>근거</th></tr></thead>
+<thead><tr><th style="width:230px">필요한 데이터</th><th>얻을 수 있는 답</th></tr></thead>
 <tbody>
-<tr><td>상품 탐색 수요가 있다</td><td><span class="badge b-ok">일치</span></td><td>요금제 13.3% / 17.2%</td></tr>
-<tr><td>가입 진입 수요가 있다</td><td><span class="badge b-ok">일치</span></td><td>가입·개통 7.8% / 12.3%</td></tr>
-<tr><td>그 수요가 <b>신규에게 우세하다</b></td><td><span class="badge b-stop">불일치</span></td><td>상품 우세는 REVISIT (0.73배 역전)</td></tr>
-<tr><td>방문자 = 신규 고객</td><td><span class="badge b-warn">확인 불가</span> + 반대 신호</td><td>로그인 1위 · 리퍼러 9,381 · 가입 완료 복귀 4,654</td></tr>
-<tr><td>화면을 나누면 대상이 갈린다</td><td><span class="badge b-stop">불일치</span></td><td>23.9% 오분류</td></tr>
+<tr><td>로그인 성공 세션에 <b>계정 생성일</b> 결합</td><td>계정을 가진 사람의 비율. A를 유지할지 판단하는 <b>핵심 자료</b></td></tr>
+<tr><td><span class="mono">joinComplete</span> 세션의 <b>진입 화면</b> 역추적</td><td>이 화면에서 출발해 가입을 마친 규모. 지금은 진입만 알고 완료를 모른다</td></tr>
+<tr><td>서비스 분기 쿠키의 <b>이름·수명·설정 시점</b></td><td>판정이 어긋나는 주된 이유</td></tr>
 </tbody>
 </table></div>
-
-<h3>Recommended Target Definition</h3>
-<div class="deftext">이 페이지는 <b>U+유모바일을 이미 알고 직접 찾아온 사람</b>(계정 보유자가 상당수 포함된다)이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 상태</b>에서 방문하여 <b>자기 목적을 최단 경로로 처리하려는 것</b>을 중심으로 설계하는 것이 데이터상 가장 타당하다.</div>
-<p>핵심은 <b>"신규냐 기존이냐"가 아니라 "목적이 갈린다"</b>는 것이다. 나누는 축이 <b>방문 이력이 아니라 목적</b>이어야 한다는 뜻이며, 이는 P-06(분기 가치 근거 없음)과 같은 방향을 가리킨다. <span class="grade g-i">INTERP</span></p>
 </section>
 
-<section id="v05">
-<span class="snum">05~06 · 영향</span>
-<h2>기존 요청사항과 개선 방향에 미치는 영향</h2>
-<div class="tw"><table>
-<thead><tr><th style="width:130px">구분</th><th>기존 요청 의도</th><th>데이터 관측</th><th>판정</th><th>제안</th></tr></thead>
-<tbody>
-<tr><td><b>전제 자체</b></td><td>신규 고객 중심 상품·가입 유도</td><td>1위 행동은 로그인, 상품 우세는 재방문</td><td><span class="badge b-stop">상충(부분)</span></td><td>타깃을 <b>"목적이 갈린 방문자"</b>로 재정의</td></tr>
-<tr><td class="id">REQ-03</td><td>로그인 영역 신설 (부가)</td><td>최대 수요 · GA4·Clarity 교차 일치</td><td><span class="badge b-ok">근거 강화</span></td><td>이미 KEEP — 승격 근거가 더 강해짐</td></tr>
-<tr><td class="id">REQ-01</td><td>주메뉴 7개 (카테고리 탐색)</td><td>수요 실재 · 구성 근거 없음</td><td><span class="badge b-warn">영향 없음</span></td><td>CHANGE 유지</td></tr>
-<tr><td class="id">REQ-04</td><td>신규에 프로모션(타임딜) 집중</td><td>전제의 "신규" 자체가 미확인</td><td><span class="badge b-warn">HOLD 강화</span></td><td>D-02에 <b>타깃 미확정</b> 사유 추가</td></tr>
-<tr><td class="id">REQ-A</td><td>메인 = 신규용 상품 노출 차별화</td><td>신규 구분 자체가 불가</td><td><span class="badge b-warn">HOLD 유지</span></td><td>타깃 확정 후 재검토</td></tr>
-<tr><td class="id">REQ-E</td><td>신규의 요금제 선택 3탭</td><td>선택 축은 확인 · 대상은 미확인</td><td><span class="badge b-warn">영향 없음</span></td><td>CHANGE 유지</td></tr>
-<tr><td><b>화면 분기</b></td><td>신규/재방문 차등 제공</td><td>23.9% 오분류</td><td><span class="badge b-stop">상충</span></td><td>D-01 통합 근거 강화</td></tr>
-</tbody>
-</table></div>
+<section id="r06">
+<span class="snum">06</span>
+<h2>가장 설명력이 높은 정의</h2>
+<p class="lede">아래는 <b>제안</b>이다. 데이터로 확정된 사실이 아니다. 둘을 구분해서 읽어야 한다.</p>
 
-<h3>메인 화면 개선 방향에 대한 영향</h3>
-<p><b>현행 개선안의 방향은 바뀌지 않는다.</b> 로그인 승격(M-01)·요금제 상단화(M-03)·이벤트 P1 유지(M-04)는 모두 "목적별 최단 경로"라는 재정의와 오히려 더 잘 맞는다. 바뀌는 것은 <b>개선안의 설명 근거</b>다 — "신규에게 상품을 잘 보여준다"가 아니라 <b>"갈라진 목적을 각각 최단 경로로 처리한다"</b>가 된다.</p>
-<div class="note warn"><b>어느 개선안에도 아직 반영되지 않은 관측 1건</b> — <span class="mono">/util/join/joinComplete</span>에서 메인으로 복귀하는 <b>4,654 sessions</b>. 가입을 마친 고객이 비로그인 메인을 다시 보고 있으나, 현재 IA는 이 맥락을 다루지 않는다. PHASE 6의 STATE 정의에 "가입 완료 후 복귀 — 신규 가입 유도를 반복하지 않음"이 있으나 <b>화면 설계로는 연결되지 않았다.</b></div>
-</section>
-
-<section id="v06">
-<span class="snum">07~08 · 경계</span>
-<h2>확정할 수 있는 것과 단정하면 안 되는 것</h2>
-
-<h3>추가 데이터가 있으면 확정 가능</h3>
-<div class="tw tight"><table>
-<thead><tr><th style="width:230px">필요 데이터</th><th>확정되는 것</th></tr></thead>
-<tbody>
-<tr><td>로그인 성공 후 <b>계정 생성일</b> 결합</td><td>기존/신규 <b>고객</b> 실비율 — 이 분석의 최대 공백이 해소된다</td></tr>
-<tr><td><span class="mono">joinComplete</span> 세션의 <b>진입 화면 역추적</b></td><td>화면별 <b>실제 가입 기여</b>. 지금은 진입만 알고 완주를 모른다</td></tr>
-<tr><td>서비스 분기 <b>쿠키 이름·만료·설정 시점</b></td><td>23.9% 불일치의 주원인 — 만료 차이인지 직접 URL 진입인지</td></tr>
-<tr><td>앱 웹뷰 진입의 <b>앱 내 맥락</b></td><td>3,437 sessions가 무엇을 하러 왔는지</td></tr>
-</tbody>
-</table></div>
-
-<h3>현재 단계에서 절대 단정하면 안 되는 것</h3>
+<h4 style="color:var(--ok)">데이터로 확인된 사실</h4>
 <div class="tw tight"><table><tbody>
-<tr><td class="id">1</td><td>"방문자의 43.9%가 기존 고객이다" — <b>로그인 클릭 ≠ 계정 보유 확정</b></td></tr>
-<tr><td class="id">2</td><td>"nologfirst는 사실상 기존 고객 화면이다" — 확정된 것은 <b>최소 7.4%</b>뿐</td></tr>
-<tr><td class="id">3</td><td>"신규 고객이 적다" — <b>신규 고객을 세는 수단 자체가 없다</b></td></tr>
-<tr><td class="id">4</td><td>"상품 노출이 불필요하다" — 상품 수요는 <b>양쪽 모두에서 확인</b>된다</td></tr>
-<tr><td class="id">5</td><td>"GA4 방문 횟수가 진실이다" — <b>그것도 쿠키 기반</b>이다</td></tr>
-<tr><td class="id">6</td><td>가입 페이지 <b>진입을 가입 의도·가입 성과로 해석</b>하는 것</td></tr>
+<tr><td class="id">1</td><td>두 화면 모두 다음 행동 1위가 로그인이다 — 43.9% / 21.6% of sessions</td></tr>
+<tr><td class="id">2</td><td>방문자 대부분이 브랜드를 알고 온다 — 브랜드를 모르는 경로는 두 화면 모두 한 자릿수</td></tr>
+<tr><td class="id">3</td><td>다음 행동이 여러 갈래로 나뉜다 — 특히 재방문 쪽은 12~22%로 분산된다</td></tr>
+<tr><td class="id">4</td><td>계정 사용 흔적을 가진 유입이 첫 방문용 화면에 9,381 sessions 있다</td></tr>
+<tr><td class="id">5</td><td>가입을 마친 뒤 이 화면으로 돌아온 세션이 4,654건 있다</td></tr>
 </tbody></table></div>
+
+<h4 style="color:var(--acc)">제안하는 정의 <span class="g g-p">PROPOSAL</span></h4>
+<div class="deftext">이 페이지는 <b>U+유모바일을 이미 알고 직접 찾아온 사람</b>이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채</b> 방문하여 <b>자기 목적을 가장 빠른 길로 처리하려는 것</b>을 중심으로 설계하는 것이 데이터상 가장 타당하다.</div>
+<p>핵심은 <b>"신규냐 기존이냐"가 아니라 "목적이 갈린다"</b>는 것이다. 나누는 기준을 <b>방문 이력이 아니라 목적</b>으로 바꾸자는 제안이다.</p>
+<p>이 정의의 장점은 <b>측정할 수 있다</b>는 점이다. 목적별 규모가 GA4 경로에서 바로 나온다. 반면 "신규 고객 비율"은 지금 셀 수단이 없다. <span class="g g-i">INTERPRETATION</span></p>
 </section>
 
-<section id="v07">
-<span class="snum">09 · 후속</span>
-<h2>문서 수정 대상 — 아직 반영하지 않았다</h2>
-<p class="lede">이번 분석은 <b>타깃 정의</b>까지만 다룬다. 아래는 D-12(타깃 정의 확정) 이후에 한 번에 반영할 목록이며, 지금 고치면 근거 문장이 두 번 바뀌어 추적이 흐려진다.</p>
+<section id="r07">
+<span class="snum">07</span>
+<h2>Impact Map — 어디까지 다시 해야 하나</h2>
+<div class="legend">
+<span><span class="badge b-ok">KEEP</span> 그대로</span>
+<span><span class="badge b-warn">해석만 수정</span> 결론 유지 · 설명 문장만</span>
+<span><span class="badge b-nv" style="background:var(--acc-soft);color:var(--acc-deep)">재검증</span> 판단 다시 확인</span>
+<span><span class="badge b-stop">재분석</span> 데이터부터 다시</span>
+<span><span class="badge b-hold">재설계 가능</span> 화면 구성 영향</span>
+</div>
 <div class="tw"><table>
-<thead><tr><th style="width:190px">위치</th><th>수정 성격</th></tr></thead>
+<thead><tr><th style="width:130px">항목</th><th style="width:104px">분류</th><th>이유</th></tr></thead>
 <tbody>
-<tr><td>stakeholder 01 Exec</td><td>발견 3(로그인 1위)에 <b>타깃 함의</b> 추가 — 현재는 배치 근거로만 쓰임</td></tr>
-<tr><td>stakeholder 02 Why</td><td>"요청에 대상 사용자 정의가 없다"를 구조 문제로 명시</td></tr>
-<tr><td>stakeholder 03 Data</td><td>43.9% 카드에 "계정 보유 시사" 한 줄 · 리퍼러 9,381 신규 카드 검토</td></tr>
-<tr><td>stakeholder 04 P-04</td><td>"설계 전제는 신규 가입 탐색"을 <b>정량 근거로 보강</b>(2.08배 / 역전)</td></tr>
-<tr><td>stakeholder 06</td><td>REQ-A·REQ-04 판단 성격에 "타깃 미확정" 사유 추가</td></tr>
-<tr><td>stakeholder 07 제안 01·02</td><td>WHY 문장을 <b>"목적별 최단 경로"</b>로 교체 <span class="badge b-warn">D-12 확정 후</span></td></tr>
-<tr><td>stakeholder 11 D-01</td><td>근거에 23.9% + 리퍼러 9,381 추가 → <b>Status 상향 검토</b></td></tr>
-<tr><td>stakeholder 11</td><td><b>신규 D-12(타깃 정의 확정) 신설</b></td></tr>
-<tr><td>stakeholder 12</td><td>분기 쿠키 사양 · 계정 생성일 결합 가능 여부 <b>2건 등재</b></td></tr>
-<tr><td>alignment 04·05·06</td><td>데이터 Summary · 발견 · 문제(P-04/P-06)에 동일 반영</td></tr>
-<tr><td>audit 06</td><td>근거 강도 표에 신규 관측 3건 등급 부여</td></tr>
+<tr><td><b>문제 정의</b><br><span class="small">P-01~P-07</span></td><td><span class="badge b-warn">해석만 수정</span></td><td>P-04가 이미 <b>이 전제와 관측의 불일치를 문제로 잡고 있다.</b> 결론은 그대로 두고 정량 근거만 보강한다. 나머지 P는 팝업·스크롤·도달 문제라 타깃과 무관하다</td></tr>
+<tr><td><b>개선 목표</b><br><span class="small">G-01~G-05</span></td><td><span class="badge b-warn">해석만 수정</span></td><td>다섯 목표 모두 관측된 행동에서 나왔다. 전제에 기대지 않는다. G-01의 설명이 "목적별 최단 경로"로 더 분명해질 뿐이다</td></tr>
+<tr><td><b>IA</b><br><span class="small">M-01~M-11</span></td><td><span class="badge b-ok">KEEP</span></td><td>배치 근거가 도달선과 경로 비중이다. 타깃 전제가 들어간 자리가 없다</td></tr>
+<tr><td><b>QuickMenu</b></td><td><span class="badge b-ok">KEEP</span></td><td>수요가 두 집단에서 거의 같다(0.101 / 0.106 events/session). 타깃이 바뀌어도 값이 그대로다</td></tr>
+<tr><td><b>요금제 영역</b></td><td><span class="badge b-ok">KEEP</span></td><td>근거는 도달선(y1802 vs y1461~1658)과 필터·정렬 실측이다. "신규에게 상품을"이라는 문장이 근거로 쓰인 적이 없다</td></tr>
+<tr><td><b>이벤트 · 프로모션</b></td><td><span class="badge b-ok">KEEP</span></td><td>경로 비중(8.4% / 15.8%)이 근거다</td></tr>
+<tr><td><b>로그인</b></td><td><span class="badge b-nv" style="background:var(--acc-soft);color:var(--acc-deep)">재검증</span></td><td>승격 근거는 <b>더 강해진다.</b> 다만 PHASE 1의 OPEN-05(로그인 영역의 목적이 신규 전환인지 기가입자 편의인지)가 아직 미정이다. 이 답에 따라 <b>로그인 영역의 문구와 비중</b>이 달라진다</td></tr>
+<tr><td><b>팝업</b></td><td><span class="badge b-ok">KEEP</span></td><td>타깃과 무관하다</td></tr>
+<tr><td><b>타임딜</b></td><td><span class="badge b-nv" style="background:var(--acc-soft);color:var(--acc-deep)">재검증</span></td><td>REQ-04가 "신규에게 프로모션 집중"이라는 전제에 기댄다. 이미 HOLD 상태이므로 <b>새로 멈출 것은 없다.</b> D-02에 사유를 한 줄 더한다</td></tr>
+<tr><td><b>휴대폰 영역</b></td><td><span class="badge b-ok">KEEP</span></td><td>근거는 경로가 상위에 없다는 관측이다. 이미 등급 미부여(NDV)다</td></tr>
+<tr><td><b>요청사항 27건</b></td><td><span class="badge b-nv" style="background:var(--acc-soft);color:var(--acc-deep)">재검증 2건</span></td><td><b>REQ-04 · REQ-A</b>만 전제에 기댄다. 둘 다 이미 HOLD다. REQ-03은 근거가 강해진다. 나머지 24건은 영향이 없다</td></tr>
+<tr><td><b>Decision 10건</b></td><td><span class="badge b-warn">2건 보강 + 1건 신설</span></td><td><b>D-01</b> 통합 근거가 강해진다 · <b>D-02</b> 사유 한 줄 추가 · <b>D-12(타깃 정의) 신설이 필요</b>하다. 나머지 8건은 영향이 없다</td></tr>
+<tr><td><b>가입 완료 후 복귀</b><br><span class="small">4,654 sessions</span></td><td><span class="badge b-hold">재설계 가능</span></td><td>PHASE 6에 상태로는 정의돼 있다("신규 가입 유도를 반복하지 않음"). 그러나 <b>화면으로 구현되지 않았다.</b> 이 전제 논의에서 드러난 유일한 설계 공백이다</td></tr>
 </tbody>
 </table></div>
-<p style="margin:18px 0 0"><a href="./stakeholder.html#c11" style="display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:9px 15px;border:1px solid var(--acc-line);border-radius:999px;background:var(--card);font-size:12.5px;font-weight:600;color:var(--acc);text-decoration:none">← FINAL REPORT 의사결정 항목으로</a></p>
+<div class="note"><b>재분석이 필요한 항목: 0건.</b> 이유는 단순하다. 우리 분석이 전제에서 출발하지 않고 <b>관측된 행동에서 출발</b>했기 때문이다. 타깃이 바뀌어도 관측값은 그대로다. <span class="g g-i">INTERPRETATION</span></div>
+</section>
+
+<section id="r08">
+<span class="snum">08 · 한 페이지 정리</span>
+<h2>그래서 우리는 이 페이지의 대상을 누구라고 정의할 것인가</h2>
+
+<dl class="kv">
+<dt>기존 타깃</dt>
+<dd>아직 가입하지 않은 사람이 방문해서 <b>상품과 프로모션을 보고 가입을 신청하는 곳</b>.<br>
+단, 이 문장은 요청 문서에 없다. 시안 구성에서 되짚어 만든 것이다.</dd>
+
+<dt>데이터가<br>확인한 것</dt>
+<dd>㉠ 두 화면 모두 다음 행동 1위가 <b>로그인</b>이다 — 43.9% / 21.6% of sessions<br>
+㉡ 방문자 대부분이 <b>브랜드를 알고</b> 온다 — 모르는 경로는 두 화면 다 한 자릿수<br>
+㉢ 상품·가입 행동이 더 많은 쪽은 첫 방문용이 아니라 <b>재방문용 화면</b>이다 — 21.1% vs 29.5%<br>
+㉣ 첫 방문용 화면에 <b>계정 사용 흔적을 가진 유입</b>이 9,381 sessions 있다<br>
+㉤ 가입을 마치고 <b>돌아온 세션</b>이 4,654건 있다<br>
+㉥ 방문 이력을 판정하는 <b>쿠키 셋이 서로 다른 답</b>을 준다</dd>
+
+<dt>데이터가<br>확인하지 못한 것</dt>
+<dd>· 방문자 중 <b>계정을 가진 사람의 비율</b> — 이 화면은 로그인 전이라 확인 수단이 없다<br>
+· 이 화면에서 출발해 <b>가입을 마친 규모</b> — 진입만 보이고 완료는 역추적되지 않는다<br>
+· 재방문 화면의 상품 반응이 <b>화면 덕분인지 사람 구성 덕분인지</b><br>
+· 판정 불일치의 <b>주된 이유</b> — 쿠키 수명인지 직접 URL 진입인지</dd>
+
+<dt>가장 타당한<br>타깃 정의 <span class="g g-p">PROPOSAL</span></dt>
+<dd style="font-size:15px;line-height:1.7"><b>U+유모바일을 이미 알고 직접 찾아온 사람</b>이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채</b> 방문하여 <b>자기 목적을 가장 빠른 길로 처리하려는 것</b>을 중심으로 설계한다.</dd>
+
+<dt>채택하면<br>달라지는 것</dt>
+<dd>· <b>개선안의 방향은 그대로다.</b> 로그인 승격·요금제 상단화·이벤트 유지는 이 정의와 더 잘 맞는다<br>
+· 바뀌는 것은 <b>설명 문장</b>이다 — "신규에게 상품을 잘 보여준다" → "갈라진 목적을 각각 빠르게 처리한다"<br>
+· <b>재분석은 0건</b>이다. 근거가 관측값이라 타깃이 바뀌어도 값이 그대로다<br>
+· <b>재검증 3건</b> — 로그인 영역의 목적(OPEN-05) · REQ-04 · REQ-A. 셋 다 이미 미정이거나 HOLD다<br>
+· <b>새 결정 1건</b> — D-12(타깃 정의 확정)<br>
+· <b>설계 공백 1건</b> — 가입 완료 후 돌아온 4,654 sessions를 화면이 다루지 않는다</dd>
+
+<dt>아직 결정하면<br>안 되는 것</dt>
+<dd>· <b>타깃을 바꾸는 것 자체</b> — 이 문서는 검증이지 결정이 아니다. D-12에서 정한다<br>
+· "신규 고객이 적다" — <b>셀 수단이 없다</b><br>
+· "상품 노출을 줄인다" — 상품 수요는 두 화면 모두에서 확인된다<br>
+· "이 화면은 기존 고객용이다" — 확인된 것은 <b>하한선 7.4%</b>뿐이다<br>
+· 가입 페이지 <b>진입을 가입 성과로</b> 읽는 것<br>
+· 세 쿠키 값 중 <b>하나를 정답으로</b> 고르는 것</dd>
+</dl>
+
+<div class="note warn"><b>이 문서가 요청하는 것은 하나다.</b> 타깃 정의를 <b>D-12</b>로 의사결정 항목에 올리고, 요청자에게 두 가지를 확인받는 것 — ㉠ "신규 고객 중심"이 요청자가 실제로 의도한 전제가 맞는지, ㉡ 로그인 영역의 목적이 신규 전환인지 기가입자 편의인지(OPEN-05).</div>
+
+<p style="margin:22px 0 0"><a href="./stakeholder.html#c11" style="display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:9px 15px;border:1px solid var(--acc-line);border-radius:999px;background:var(--card);font-size:12.5px;font-weight:600;color:var(--acc);text-decoration:none">← FINAL REPORT 의사결정 항목으로</a></p>
+</section>
+
+<section id="r09">
+<span class="snum">09</span>
+<h2>아직 하지 않은 일</h2>
+<p class="lede">지시대로 <b>stakeholder · alignment · audit 본문을 수정하지 않았다.</b> 아래는 D-12 확정 후 한 번에 반영할 목록이다.</p>
+<div class="tw tight"><table>
+<thead><tr><th style="width:200px">위치</th><th>할 일</th></tr></thead>
+<tbody>
+<tr><td>stakeholder 01 Exec</td><td>로그인 1위 발견에 <b>타깃 함의</b> 한 줄</td></tr>
+<tr><td>stakeholder 02 Why</td><td>"요청에 대상 정의가 없다"를 구조 문제로 명시</td></tr>
+<tr><td>stakeholder 03 Data</td><td>43.9% 카드에 "계정 보유는 확인되지 않음" 주의 한 줄</td></tr>
+<tr><td>stakeholder 04 P-04</td><td>정량 근거 보강 — 2.08배 / 1.37배 역전</td></tr>
+<tr><td>stakeholder 06</td><td>REQ-04 · REQ-A 판단 성격에 "타깃 미확정" 사유</td></tr>
+<tr><td>stakeholder 07 제안 01·02</td><td>설명 문장을 "목적별 최단 경로"로 <span class="badge b-warn">D-12 확정 후</span></td></tr>
+<tr><td>stakeholder 11</td><td>D-01 근거 보강 · D-02 사유 추가 · <b>D-12 신설</b></td></tr>
+<tr><td>stakeholder 12</td><td>계정 생성일 결합 가능 여부 · 분기 쿠키 사양 <b>2건 등재</b></td></tr>
+<tr><td>alignment 04·05·06</td><td>동일 반영</td></tr>
+<tr><td>audit 06</td><td>근거 강도 표에 신규 관측 등급 부여</td></tr>
+<tr><td>IA / 프로토타입</td><td>가입 완료 후 복귀(4,654 sessions) 처리 <span class="badge b-hold">별도 검토</span></td></tr>
+</tbody>
+</table></div>
 </section>
 </main>
 <footer class="pjfoot"><div class="in">
