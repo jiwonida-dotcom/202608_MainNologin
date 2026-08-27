@@ -194,17 +194,21 @@ td.src,.src{color:var(--mut)}
 .pjnav li a[aria-current="page"]{color:#fff;border-bottom-color:#8878E6}
 .pjnav li a i{display:block;font-style:normal;font-size:10px;font-weight:400;color:#7E77A8;margin-top:1px}
 .pjnav li a[aria-current="page"] i{color:#B9B2DE}
+.pjnav li a b{display:inline-block;font-size:9.5px;font-weight:700;color:#7E77A8;margin-right:5px;
+  font-family:ui-monospace,monospace;vertical-align:1px}
+.pjnav li a[aria-current="page"] b{color:#B9B2DE}
 .pjfoot{min-width:0; background:#F2F1F7;border-top:1px solid #DEDCE8;
   font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 .pjfoot .in{max-width:1040px;margin:0 auto;padding:22px 20px 30px}
 .pjfoot .lb{font-size:10.5px;letter-spacing:.14em;color:#6E6A85;font-family:ui-monospace,monospace;
   text-transform:uppercase;display:block;margin-bottom:10px}
-.pjfoot ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:8px;margin:0;padding:0;list-style:none}
-.pjfoot li a{display:block;padding:10px 12px;background:#fff;border:1px solid #DEDCE8;border-radius:9px;
+.pjfoot ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.pjfoot li a{display:block;padding:11px 13px;background:#fff;border:1px solid #DEDCE8;border-radius:9px;
   text-decoration:none;color:#33304A;font-size:12.5px;font-weight:600}
 .pjfoot li a:hover{border-color:#8878E6}
-.pjfoot li a i{display:block;font-style:normal;font-size:11px;font-weight:400;color:#6E6A85;margin-top:2px}
-.pjfoot li a[aria-current="page"]{background:#EFEDFB;border-color:#C7BFF0}
+.pjfoot li a i{display:block;font-style:normal;font-size:11.5px;font-weight:400;color:#6E6A85;margin-top:3px}
+.pjfoot li a em{font-style:normal;font-size:9.5px;font-weight:700;color:#8A85A3;
+  font-family:ui-monospace,monospace;display:block;margin-bottom:3px;letter-spacing:.08em}
 .pjfoot .note{margin:14px 0 0;font-size:11.5px;color:#6E6A85;line-height:1.6}
 @media (max-width:640px){ .pjnav .in,.pjfoot .in{padding-left:14px;padding-right:14px} }
 @media print{ .pjnav,.pjfoot{display:none} }
@@ -213,12 +217,12 @@ td.src,.src{color:var(--mut)}
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
 <div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
 <ul>
-<li><a href="./stakeholder.html">FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
-<li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./audit.html">AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
-<li><a href="./targetuser.html">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
-<li><a href="./timedeal.html" aria-current="page">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
+<li><a href="./stakeholder.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./targetuser.html"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
+<li><a href="./timedeal.html" aria-current="page"><b>03</b>TIME DEAL<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
+<li><a href="./alignment.html"><b>04</b>EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
+<li><a href="./audit.html"><b>05</b>AUDIT<i>그 근거가 검증되었는가</i></a></li>
+<li><a href="./index.html"><b>06</b>PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
 </ul>
 </div></nav>
 <main>
@@ -226,7 +230,7 @@ td.src,.src{color:var(--mut)}
   <span class="eyebrow">PHASE 8.6 · Time Deal Definition &amp; Reflection</span>
   <h1>타임딜 정의 분석</h1>
   <p class="sub">REQ-04 "타임딜 우선"을 배치 문제로 다루기 전에, 요청 원문에서 타임딜이 무엇이고 어떤 역할로 요구되었는지 복원한다. 원문에 없는 의미를 이커머스 관행으로 채우지 않는다.</p>
-<p class="small" style="margin-top:10px">이 분석의 결론은 <a href="./stakeholder.html#c11">D-02</a>로 이어지고, REQ-04 판정은 <a href="./alignment.html#s09">EVIDENCE</a>에 반영되어 있다.</p>
+<p class="small" style="margin-top:10px">이 분석의 결론은 <a href="./stakeholder.html#c11">FINAL REPORT 07절 D-02</a>로 이어지고, REQ-04 판정은 <a href="./alignment.html#s09">EVIDENCE</a>에 반영되어 있다. <b>대상 이용자 전제와도 맞물린다</b> — <a href="./targetuser.html">TARGET USER</a> 참조.</p>
   <div class="docmeta">
     <span>원문 20260825_모바일 메인화면 개편안.pptx (16 slides)</span>
     <span>분석 2026-08-27</span>
@@ -235,6 +239,23 @@ td.src,.src{color:var(--mut)}
 </header>
 
 <section id="t00">
+<span class="snum">읽는 법</span>
+<h2>타임딜 요청을 다섯 단계로 나눠 본다</h2>
+<p class="lede">이 문서는 <b>타임딜의 최종 결론을 내리는 문서가 아니다.</b> 요청 원문이 무엇을 말했고, 데이터가 어디까지 말할 수 있으며, 무엇을 더 확인해야 하는지를 나눈다. <b>최종 판정은 HOLD + NEEDS VALIDATION이며 이 문서에서 바꾸지 않는다.</b></p>
+<div class="tw"><table>
+<thead><tr><th style="width:130px">단계</th><th>현재 상태</th><th class="c" style="width:96px">상세</th></tr></thead>
+<tbody>
+<tr><td><b>REQUEST</b><br><span class="small">무엇을 요청받았나</span></td><td>"타임딜/타임세일 운영 시 <b>요금제 영역보다 우선 노출</b>"(8/25) · "타임딜 운영시에만 노출(on/off)" · 상세항목 6종. <b>원문에서 확인된다</b></td><td class="c"><a href="#t01">01~02</a></td></tr>
+<tr><td><b>DATA</b><br><span class="small">데이터가 있는가</span></td><td><b>전용 영역 데이터는 없다</b> — 현행에 그 영역이 없으므로 생성될 수 없다. 다만 동명 콘텐츠 '깜짝타임딜'이 <span class="mono">Popup_79</span>와 배너 캐러셀 항목으로 <b>실재</b>한다</td><td class="c"><a href="#t04">05</a></td></tr>
+<tr><td><b>INTERPRETATION</b><br><span class="small">데이터가 말할 수 있는 범위</span></td><td>현행 운영 방식은 관측된다. 그러나 <b>"요금제보다 위"라는 배치를 직접 지지하는 행동 데이터는 확인되지 않았다.</b> 데이터 부재는 <b>불필요의 근거가 아니다</b></td><td class="c"><a href="#t05">06~07</a></td></tr>
+<tr><td><b>VALIDATION</b><br><span class="small">더 확인해야 하는 것</span></td><td>① "우선"의 대상(영역 vs 상품 — <b>원문 버전 간 상이</b>) ② 요금제보다 아래여도 수용 가능한지 ③ 운영 주기 ④ 타임세일 정의 ⑤ <span class="mono">Popup_79</span>와 동일 캠페인인지</td><td class="c"><a href="#t09">12</a></td></tr>
+<tr><td><b>PROPOSAL</b><br><span class="small">선택 가능한 방향</span></td><td>운영 시에만 켜지는 <b>단일 슬롯</b>이 기본안, 배너 고정 슬롯이 대안. <b>어느 쪽도 확정하지 않는다</b> — 위 5건이 정해진 뒤 재판정한다</td><td class="c"><a href="#t06">08~09</a></td></tr>
+</tbody>
+</table></div>
+<p class="small">타임딜의 사업적 중요성을 낮추지 않는다. <b>"데이터가 없다"와 "필요하지 않다"는 다르다.</b> 이 문서 어디에서도 데이터 부재를 이유로 제거를 제안하지 않는다.</p>
+</section>
+
+<section id="t00b">
 <span class="snum">요약</span>
 <h2>발견 3건</h2>
 <div class="tw tight"><table><tbody>
@@ -466,16 +487,13 @@ td.src,.src{color:var(--mut)}
 </section>
 </main>
 <footer class="pjfoot"><div class="in">
-<span class="lb">U+유모바일 · 비로그인 메인 개편 · 문서 이동</span>
+<span class="lb">다음으로 볼 문서</span>
 <ul>
-<li><a href="./stakeholder.html">FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
-<li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./audit.html">AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
-<li><a href="./targetuser.html">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
-<li><a href="./timedeal.html" aria-current="page">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
+<li><a href="./targetuser.html"><em>02 TARGET USER</em>대상 이용자 분석 보기 →<i>이 화면의 실제 이용자는 누구인가</i></a></li>
+<li><a href="./alignment.html"><em>04 EVIDENCE</em>수치와 근거 확인하기 →<i>왜 그렇게 판단했는가</i></a></li>
+<li><a href="./stakeholder.html"><em>01 FINAL REPORT</em>결정해야 할 항목으로 돌아가기 →<i>무엇을 결정해야 하는가</i></a></li>
 </ul>
-<p class="note">이 다섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
+<p class="note">이 여섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. <b>결론은 FINAL REPORT, 근거는 EVIDENCE, 검증은 AUDIT</b>에 있다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
 </div></footer>
 
 </html>

@@ -194,17 +194,21 @@ td.src,.src{color:var(--mut)}
 .pjnav li a[aria-current="page"]{color:#fff;border-bottom-color:#8878E6}
 .pjnav li a i{display:block;font-style:normal;font-size:10px;font-weight:400;color:#7E77A8;margin-top:1px}
 .pjnav li a[aria-current="page"] i{color:#B9B2DE}
+.pjnav li a b{display:inline-block;font-size:9.5px;font-weight:700;color:#7E77A8;margin-right:5px;
+  font-family:ui-monospace,monospace;vertical-align:1px}
+.pjnav li a[aria-current="page"] b{color:#B9B2DE}
 .pjfoot{min-width:0; background:#F2F1F7;border-top:1px solid #DEDCE8;
   font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 .pjfoot .in{max-width:1040px;margin:0 auto;padding:22px 20px 30px}
 .pjfoot .lb{font-size:10.5px;letter-spacing:.14em;color:#6E6A85;font-family:ui-monospace,monospace;
   text-transform:uppercase;display:block;margin-bottom:10px}
-.pjfoot ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:8px;margin:0;padding:0;list-style:none}
-.pjfoot li a{display:block;padding:10px 12px;background:#fff;border:1px solid #DEDCE8;border-radius:9px;
+.pjfoot ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.pjfoot li a{display:block;padding:11px 13px;background:#fff;border:1px solid #DEDCE8;border-radius:9px;
   text-decoration:none;color:#33304A;font-size:12.5px;font-weight:600}
 .pjfoot li a:hover{border-color:#8878E6}
-.pjfoot li a i{display:block;font-style:normal;font-size:11px;font-weight:400;color:#6E6A85;margin-top:2px}
-.pjfoot li a[aria-current="page"]{background:#EFEDFB;border-color:#C7BFF0}
+.pjfoot li a i{display:block;font-style:normal;font-size:11.5px;font-weight:400;color:#6E6A85;margin-top:3px}
+.pjfoot li a em{font-style:normal;font-size:9.5px;font-weight:700;color:#8A85A3;
+  font-family:ui-monospace,monospace;display:block;margin-bottom:3px;letter-spacing:.08em}
 .pjfoot .note{margin:14px 0 0;font-size:11.5px;color:#6E6A85;line-height:1.6}
 @media (max-width:640px){ .pjnav .in,.pjfoot .in{padding-left:14px;padding-right:14px} }
 @media print{ .pjnav,.pjfoot{display:none} }
@@ -213,12 +217,12 @@ td.src,.src{color:var(--mut)}
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
 <div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
 <ul>
-<li><a href="./stakeholder.html">FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
-<li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./audit.html" aria-current="page">AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
-<li><a href="./targetuser.html">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
-<li><a href="./timedeal.html">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
+<li><a href="./stakeholder.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./targetuser.html"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
+<li><a href="./timedeal.html"><b>03</b>TIME DEAL<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
+<li><a href="./alignment.html"><b>04</b>EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
+<li><a href="./audit.html" aria-current="page"><b>05</b>AUDIT<i>그 근거가 검증되었는가</i></a></li>
+<li><a href="./index.html"><b>06</b>PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
 </ul>
 </div></nav>
 <main>
@@ -433,16 +437,12 @@ td.src,.src{color:var(--mut)}
 </section>
 </main>
 <footer class="pjfoot"><div class="in">
-<span class="lb">U+유모바일 · 비로그인 메인 개편 · 문서 이동</span>
+<span class="lb">다음으로 볼 문서</span>
 <ul>
-<li><a href="./stakeholder.html">FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
-<li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./audit.html" aria-current="page">AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
-<li><a href="./targetuser.html">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
-<li><a href="./timedeal.html">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
+<li><a href="./alignment.html"><em>04 EVIDENCE</em>수치와 근거 확인하기 →<i>왜 그렇게 판단했는가</i></a></li>
+<li><a href="./stakeholder.html"><em>01 FINAL REPORT</em>결정해야 할 항목으로 돌아가기 →<i>무엇을 결정해야 하는가</i></a></li>
 </ul>
-<p class="note">이 다섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
+<p class="note">이 여섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. <b>결론은 FINAL REPORT, 근거는 EVIDENCE, 검증은 AUDIT</b>에 있다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
 </div></footer>
 
 </html>

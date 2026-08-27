@@ -264,17 +264,21 @@ details dd{margin:0; color:var(--ink2)}
 .pjnav li a[aria-current="page"]{color:#fff;border-bottom-color:#8878E6}
 .pjnav li a i{display:block;font-style:normal;font-size:10px;font-weight:400;color:#7E77A8;margin-top:1px}
 .pjnav li a[aria-current="page"] i{color:#B9B2DE}
+.pjnav li a b{display:inline-block;font-size:9.5px;font-weight:700;color:#7E77A8;margin-right:5px;
+  font-family:ui-monospace,monospace;vertical-align:1px}
+.pjnav li a[aria-current="page"] b{color:#B9B2DE}
 .pjfoot{min-width:0; background:#F2F1F7;border-top:1px solid #DEDCE8;
   font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 .pjfoot .in{max-width:1040px;margin:0 auto;padding:22px 20px 30px}
 .pjfoot .lb{font-size:10.5px;letter-spacing:.14em;color:#6E6A85;font-family:ui-monospace,monospace;
   text-transform:uppercase;display:block;margin-bottom:10px}
-.pjfoot ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:8px;margin:0;padding:0;list-style:none}
-.pjfoot li a{display:block;padding:10px 12px;background:#fff;border:1px solid #DEDCE8;border-radius:9px;
+.pjfoot ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.pjfoot li a{display:block;padding:11px 13px;background:#fff;border:1px solid #DEDCE8;border-radius:9px;
   text-decoration:none;color:#33304A;font-size:12.5px;font-weight:600}
 .pjfoot li a:hover{border-color:#8878E6}
-.pjfoot li a i{display:block;font-style:normal;font-size:11px;font-weight:400;color:#6E6A85;margin-top:2px}
-.pjfoot li a[aria-current="page"]{background:#EFEDFB;border-color:#C7BFF0}
+.pjfoot li a i{display:block;font-style:normal;font-size:11.5px;font-weight:400;color:#6E6A85;margin-top:3px}
+.pjfoot li a em{font-style:normal;font-size:9.5px;font-weight:700;color:#8A85A3;
+  font-family:ui-monospace,monospace;display:block;margin-bottom:3px;letter-spacing:.08em}
 .pjfoot .note{margin:14px 0 0;font-size:11.5px;color:#6E6A85;line-height:1.6}
 @media (max-width:640px){ .pjnav .in,.pjfoot .in{padding-left:14px;padding-right:14px} }
 @media print{ .pjnav,.pjfoot{display:none} }
@@ -305,28 +309,28 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
 <div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
 <ul>
-<li><a href="./stakeholder.html" aria-current="page">FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
-<li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./audit.html">AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
-<li><a href="./targetuser.html">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
-<li><a href="./timedeal.html">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
+<li><a href="./stakeholder.html" aria-current="page"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./targetuser.html"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
+<li><a href="./timedeal.html"><b>03</b>TIME DEAL<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
+<li><a href="./alignment.html"><b>04</b>EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
+<li><a href="./audit.html"><b>05</b>AUDIT<i>그 근거가 검증되었는가</i></a></li>
+<li><a href="./index.html"><b>06</b>PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
 </ul>
 </div></nav>
 <nav class="nav" aria-label="문서 내비게이션"><div class="wrap">
-<a href="#c01"><span class="n">01</span>Summary</a>
-<a href="#c02"><span class="n">02</span>Why</a>
-<a href="#c03"><span class="n">03</span>Data</a>
-<a href="#c04"><span class="n">04</span>Problems</a>
-<a href="#c05"><span class="n">05</span>Request</a>
-<a href="#c06"><span class="n">06</span>Req vs Data</a>
-<a href="#c07"><span class="n">07</span>Proposal</a>
-<a href="#c08"><span class="n">08</span>IA</a>
-<a href="#c09"><span class="n">09</span>UI</a>
-<a href="#c10"><span class="n">10</span>Before/After</a>
-<a href="#c11"><span class="n">11</span>Decisions</a>
-<a href="#c12"><span class="n">12</span>Open Issues</a>
-<a href="#c13"><span class="n">13</span>Next</a>
+<a href="#c01"><span class="n">—</span>Summary</a>
+<a href="#c02"><span class="n">01</span>Why Change</a>
+<a href="#c05"><span class="n">02</span>Request</a>
+<a href="#c14"><span class="n">03</span>Who Uses</a>
+<a href="#c03"><span class="n">04</span>Data</a>
+<a href="#c04"><span class="n">04-1</span>Problems</a>
+<a href="#c06"><span class="n">05</span>Req vs Data</a>
+<a href="#c07"><span class="n">06</span>Proposal</a>
+<a href="#c08"><span class="n">06-1</span>IA</a>
+<a href="#c10"><span class="n">06-3</span>Before/After</a>
+<a href="#c11"><span class="n">07</span>Decisions</a>
+<a href="#c12"><span class="n">07-1</span>Open Issues</a>
+<a href="#c13"><span class="n">08</span>Next</a>
 </div></nav>
 
 <header class="cover" id="c01">
@@ -334,11 +338,8 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
   <span class="eyebrow">U+유모바일 · Stakeholder Alignment</span>
   <h1>비로그인 메인 개편안<br><em>Data-driven UX Proposal</em></h1>
   <p class="sub">기존 요청사항을 사용자 행동 데이터와 대조하여 개편 방향과 의사결정 항목을 제안합니다. 이 문서는 개발 명세가 아니라, 개발 착수 전에 방향을 합의하기 위한 자료입니다.</p>
-  <div class="claim" style="margin-top:20px;max-width:700px"><b>이 페이지의 대상</b> <span class="b b-nv">D-12 확정 · 2026-08-27</span><br>
-  U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채</b> 방문하여 <b>자기 목적을 가장 빠른 길로 처리하려는 것</b>을 중심으로 설계한다.
-  <span class="small" style="display:block;margin-top:6px">나누는 축은 방문 이력이 아니라 <b>목적</b>이다. 두 화면 공통 1위 행동이 로그인(43.9% / 21.6% of sessions)이라는 관측이 이 재정의의 출발점이다. <a href="./targetuser.html#r08">검증 과정</a></span></div>
   <div class="chain" aria-label="문서 논리 흐름">
-    <b>CURRENT REQUEST</b><i>→</i><b>DATA ANALYSIS</b><i>→</i><b>PROBLEM</b><i>→</i><b>PROPOSAL</b><i>→</i><b class="hot">DECISION</b>
+    <b>REQUEST</b><i>→</i><b>WHO</b><i>→</i><b>DATA</b><i>→</i><b>DIFFERENCE</b><i>→</i><b>PROPOSAL</b><i>→</i><b class="hot">DECISION</b>
   </div>
   <div class="covermeta">
     <span>대상 /nologfirst · /nologrevisit</span>
@@ -368,7 +369,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 </header>
 
 <section id="c02"><div class="wrap">
-<div class="shead"><span class="sn">02 · WHY CHANGE</span>
+<div class="shead"><span class="sn">01 · WHY CHANGE</span>
 <h2>왜 요청을 그대로 구현하지 않고, 방향부터 다시 정의하는가</h2>
 <p class="lede">현재 화면에 대한 디자인 평가가 아닙니다. 개편 <b>요청의 구조</b>에 관한 문제입니다.</p></div>
 <div class="grid g2">
@@ -381,75 +382,9 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <p style="margin-top:20px"><b>따라서 요청사항을 그대로 구현하기 전에, 데이터로 확인된 것과 확인되지 않은 것을 구분하고 우선순위와 역할을 재정의할 필요가 있습니다.</b> 이 문서가 그 재정의안이며, 최종 확정은 11절의 의사결정으로 이뤄집니다.</p>
 </div></section>
 
-<section id="c03"><div class="wrap">
-<div class="shead"><span class="sn">03 · WHAT DATA TELLS US</span>
-<h2>데이터에서 확인된 것</h2>
-<p class="lede">의사결정에 필요한 관측만 담았습니다. GA4와 Clarity는 모수 정의가 달라 도구 간 절대값을 직접 비교하지 않으며, 교차 도구 파생 비율은 사용하지 않습니다.</p></div>
-<div class="legend"><span><span class="b b-ga">GA4</span> 세션 126,749(FIRST) + 31,861(REVISIT)</span><span><span class="b b-cl">Clarity</span> 세션 104,367 + 29,198 · 녹화 표본 300건</span></div>
-<div class="grid g3">
-  <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
-    <div class="num">43.9<u>% of FIRST sessions</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
-    <p class="obs">메인에서의 다음 이동 1위는 로그인 (REVISIT 21.6%). Clarity 클릭 집계 53,278 clicks와 교차 일치.<br><span class="small"><b>주의</b> — 이 화면은 로그인 전이라 <b>계정 보유 여부는 확인되지 않습니다</b>. 43.9%를 기존 고객 비율로 바꿔 읽지 않습니다.</span></p>
-    <p class="imp">→ <b>로그인은 헤더의 보조 기능이 아니라 최상위 진입점으로 검토할 가치가 있음</b></p></div>
-  <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
-    <div class="num">0.766<u>popup closes/session</u></div><a class="mini" href="./audit.html#a04">검증 · 수치 감사</a>
-    <p class="obs">팝업 닫기가 단일 최대 행동 (REVISIT 0.714/session). 태깅 이벤트의 78.2%(133,059/170,053 events)가 팝업 관련.<br><span class="small"><b>읽는 법</b> — 세션 100건당 닫기 약 77회(97,067 events ÷ 126,749 sessions)라는 뜻이며, <b>"세션의 76.6%가 닫았다"는 의미가 아닙니다</b>. 한 세션에서 여러 번 닫으면 중복 집계됩니다. 같은 단위로 퀵메뉴는 0.101 — 약 7.6배입니다.</span></p>
-    <p class="imp">→ <b>영역 재배치 이전에, 진입 마찰 자체를 선행 과제로 검토할 필요</b> — 미클릭이 곧 "불필요"를 뜻하지는 않음</p></div>
-  <div class="card stat"><div class="src"><span class="b b-cl">Clarity</span></div>
-    <div class="num">y1802<u>px vs 도달선 y1461~1658px</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
-    <p class="obs">요금제 전용 탐색 영역(SearchFee)이 평균 스크롤 도달선 아래. 클릭은 0.0079 events/session(FIRST)으로 최하위권. ※도달선은 도달률×문서 높이 환산 파생값.</p>
-    <p class="imp">→ <b>낮은 클릭은 무관심이 아니라 미노출로 해석할 여지</b> — 위치 재검토 대상</p></div>
-  <div class="card stat"><div class="src"><span class="b b-cl">Clarity</span><span class="small">pricList 목록 페이지</span></div>
-    <div class="num">91.4<u>% of sort usage</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
-    <p class="obs">요금제 목록에서 정렬은 '가격 낮은 순'에 집중. 필터 1위는 데이터 축(14,484 uses).</p>
-    <p class="imp">→ <b>사용자의 요금제 판단 축은 데이터 구간 + 가격 2축으로 관측됨</b> — 메인 진입 구조 설계의 기준</p></div>
-  <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
-    <div class="num">0.101<u>events/session</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
-    <p class="obs">퀵메뉴 수요는 두 집단 동일(REVISIT 0.106) — 격차 6%. 다만 사용량이 곧 사업적 중요도를 뜻하지는 않음.</p>
-    <p class="imp">→ <b>카테고리 탐색 수요는 실재 — 4종 유지보다 실사용 기준 선별 검토</b></p></div>
-  <div class="card stat"><div class="src"><span class="b b-cl">Clarity</span></div>
-    <div class="num">54.8<u>% of FIRST sessions</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
-    <p class="obs">Quick back(빠른 되돌아옴). Dead click 2.4%·Rage click 0.1%로 낮음 — 요소 고장이 아니라 기대 불일치 계열. 녹화 표본(300건)에서 즉시복귀는 요금제 탐색 경로에 집중.</p>
-    <p class="imp">→ <b>요금제 진입 시 도착 화면이 기대와 일치하도록 진입 구조를 재검토</b></p></div>
-</div>
-<p class="small" style="margin-top:14px">스크롤 도달률 44.5% / 39.2% of sessions(F/R), 화면 분기 관련 관측(구성 동일 · 행동 10개 중 5개 ±10% 이내)은 04·11절에서 해당 문제·결정과 함께 다룹니다.</p>
-</div></section>
-
-<section id="c04"><div class="wrap">
-<div class="shead"><span class="sn">04 · KEY PROBLEMS</span>
-<h2>확인된 사실이 가리키는 문제 6건</h2>
-<p class="lede">각 문제에서 FACT(관측)와 INTERPRETATION(해석)을 분리했습니다. 해석은 제안의 이유이지 증명이 아닙니다.</p></div>
-<div class="grid g2">
-<div class="card prob"><div class="ph"><span class="pid">P-01</span><b>목적 시작 전에 화면부터 치워야 한다</b></div>
-<dl><dt>FACT</dt><dd>팝업 닫기 0.766 / 0.714 closes/session(GA4, F/R) — 단일 최대 행동. 미클릭률 90.2%(동일 도구 내 파생 · 매핑 추정 조건부)</dd>
-<dt>INTERPRETATION</dt><dd>모든 목적의 앞단에 공통 마찰이 있다 — 단 "미클릭 = 불필요"로 해석하지 않는다</dd>
-<dt>PROPOSAL</dt><dd><b>운영 규칙 확인(DV-03) 후 팝업 정책 재설계</b>를 선행 과제로 → D-07</dd></dl></div>
-<div class="card prob"><div class="ph"><span class="pid">P-07</span><b>P0 목적의 전용 영역이 도달 범위 밖이다</b></div>
-<dl><dt>FACT</dt><dd>SearchFee y1802~2202px vs 평균 도달선 y1461~1658px(파생) · 클릭 0.0079 / 0.0067 events/session</dd>
-<dt>INTERPRETATION</dt><dd>낮은 클릭은 무관심이 아니라 미노출로 해석할 여지</dd>
-<dt>PROPOSAL</dt><dd><b>요금제 탐색을 첫 화면 직후로</b> → D-02</dd></dl></div>
-<div class="card prob"><div class="ph"><span class="pid">P-04</span><b>최대 수요(로그인)가 부가 요소로 취급된다</b></div>
-<dl><dt>FACT</dt><dd>다음 이동 1위 로그인 43.9% / 21.6% of sessions(GA4) · 전체메뉴를 연 뒤 로그인 이동 78~88% of recorded sample(70/90 · 53/60)<br>
-로그인 대 상품경로(요금제+가입) 비율이 <b>FIRST 2.08배 → REVISIT 0.73배로 역전</b>된다 — 상품 행동이 우세한 쪽은 첫 방문 화면이 아니라 재방문 화면이다</dd>
-<dt>INTERPRETATION</dt><dd>로그인 수요가 배너·전체메뉴로 우회되고 있다. 설계 전제("신규에게 상품을")와 관측의 방향이 다르다 — 이 불일치가 <span class="mono">D-12</span> 타깃 재정의로 이어졌다</dd>
-<dt>PROPOSAL</dt><dd><b>헤더 직접 노출</b> — 최상위 진입점으로. 목적이 갈린 방문자가 각자의 목적을 최단 경로로 처리하게 한다 <a href="./targetuser.html#r08">타깃 정의</a></dd></dl></div>
-<div class="card prob"><div class="ph"><span class="pid">P-02</span><b>요금제 탐색의 절반 이상이 되돌아온다</b></div>
-<dl><dt>FACT</dt><dd>Quick back 54.8% / 39.3% of sessions(Clarity) · Dead 2.4%·Rage 0.1% · 녹화 표본에서 즉시복귀는 요금제 경로에 집중</dd>
-<dt>INTERPRETATION</dt><dd>요소 고장이 아니라 클릭 결과가 기대와 다른 문제</dd>
-<dt>PROPOSAL</dt><dd><b>관측된 판단 축(데이터 구간·가격)으로 진입 조건을 먼저 선택</b>하게 하는 구조</dd></dl></div>
-<div class="card prob"><div class="ph"><span class="pid">P-05</span><b>하단 절반은 도달되지 않는데 콘텐츠는 쌓인다</b></div>
-<dl><dt>FACT</dt><dd>스크롤 도달 44.5% / 39.2% of sessions(Clarity) · 시안은 하단에 신설 영역 4개 추가 예정</dd>
-<dt>INTERPRETATION</dt><dd>쌓을수록 각 영역의 실효 노출이 줄어든다</dd>
-<dt>PROPOSAL</dt><dd><b>하단 압축(접힘 구조) + 콘텐츠 총량 동결</b></dd></dl></div>
-<div class="card prob"><div class="ph"><span class="pid">P-06</span><b>두 화면 분기의 가치 근거가 없다</b></div>
-<dl><dt>FACT</dt><dd>두 화면 구성 요소 동일(GTM 시그니처 일치) · 행동 이벤트 10개 중 5개 ±10% 이내 · 분기 판정(쿠키) 부정확</dd>
-<dt>INTERPRETATION</dt><dd>"가치 없음"이 아니라 <b>"가치가 있다는 근거가 없다"</b> — 운영은 2벌</dd>
-<dt>PROPOSAL</dt><dd><b>단일 메인 통합 검토</b> → D-01</dd></dl></div>
-</div>
-</div></section>
 
 <section id="c05"><div class="wrap">
-<div class="shead"><span class="sn">05 · EXISTING REQUEST</span>
+<div class="shead"><span class="sn">02 · CURRENT REQUEST</span>
 <h2>원래 무엇을 요청받았는가</h2>
 <p class="lede">「20260825_모바일 메인화면 개편안」의 요구를 원문 의미대로 기록합니다. 이 절에서는 평가하지 않습니다 — 평가는 06절에서 합니다.</p></div>
 <div class="tw"><table>
@@ -487,8 +422,104 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <p class="small">요구 27건 중 근거가 함께 서술된 것은 REQ-08의 CMS 제약 1건입니다. 목적·KPI·대상 사용자 정의는 문서에 없습니다.</p>
 </div></section>
 
+
+<section id="c14"><div class="wrap">
+<div class="shead"><span class="sn">03 · WHO USES THIS PAGE</span>
+<h2>누가 이 화면을 이용하는가</h2>
+<p class="lede">요청 문서에는 대상 사용자 정의가 없었습니다. <b>"신규 고객 중심"은 시안 구성에서 되짚어 만든 전제</b>였고, 이 전제를 데이터로 검증한 뒤 대상을 다시 정의했습니다.</p></div>
+
+<div class="claim" style="max-width:760px"><b>설계 대상 정의</b> <span class="b b-nv">D-12 확정 · 2026-08-27</span><br>
+U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채</b> 방문하여 <b>자기 목적을 가장 빠른 길로 처리하려는 것</b>을 중심으로 설계한다.
+<span class="small" style="display:block;margin-top:6px">나누는 축은 방문 이력이 아니라 <b>목적</b>이다.</span></div>
+
+<div class="tw"><table>
+<thead><tr><th style="width:150px">구분</th><th>현재 상태</th></tr></thead>
+<tbody>
+<tr><td><b>요청이 의도한 대상</b></td><td>신규 고객 중심 — <b>요청 문서에 명시된 정의가 아니라</b> 시안 구성에서 추정된 전제 <span class="b b-unv">UNVERIFIED</span></td></tr>
+<tr><td><b>데이터로 확인되는 대상</b></td><td>이 URL을 연 <b>방문자</b>. 그 이상은 이 화면에서 식별되지 않는다</td></tr>
+<tr><td><b>확인되는 행동 특성</b></td><td>목적이 <b>분산</b>돼 있다 — 로그인 · 요금제 확인 · 이벤트 확인 · 가입/개통이 각각 존재하고, 두 화면 공통 1위 행동은 <b>로그인(43.9% / 21.6% of sessions)</b>이다</td></tr>
+<tr><td><b>확인할 수 없는 것</b></td><td>이 화면은 로그인 전이므로 <b>방문자의 계정 보유 여부를 확인할 수단이 없다</b>. 따라서 "신규 고객이 몇 %인가"에는 답할 수 없다 <span class="b b-unv">UNVERIFIED</span></td></tr>
+<tr><td><b>도구 간 불일치</b></td><td>서비스 분기와 GA4의 방문 이력 판정이 <b>23.9%</b> 어긋난다(39,957 중 9,541). 어느 값도 "정답"이라고 볼 근거가 없다</td></tr>
+</tbody>
+</table></div>
+
+<div class="note"><b>확정된 것과 확정되지 않은 것을 나눠 읽어야 합니다.</b> <b>설계 기준(D-12)은 확정</b>됐습니다. 그러나 <b>이 화면 방문자의 실제 구성 비율은 여전히 확인 불가</b>입니다. 이 문서 어디에서도 <b>"신규 고객이 아니다" · "기존 고객이다" · "신규 고객 비중이 낮다"</b>로 읽지 않습니다 — 데이터가 답할 수 있는 범위를 넘어섭니다.</div>
+
+<p class="small" style="margin-top:14px">검증 과정 전문 — <a href="./targetuser.html">02 TARGET USER · 이 화면의 실제 이용자는 누구인가</a> · 결정 카드는 <a href="#c11">07절 D-12</a></p>
+</div></section>
+
+
+<section id="c03"><div class="wrap">
+<div class="shead"><span class="sn">04 · WHAT DATA SHOWS</span>
+<h2>데이터에서 확인된 것</h2>
+<p class="lede">의사결정에 필요한 관측만 담았습니다. GA4와 Clarity는 모수 정의가 달라 도구 간 절대값을 직접 비교하지 않으며, 교차 도구 파생 비율은 사용하지 않습니다.</p></div>
+<div class="legend"><span><span class="b b-ga">GA4</span> 세션 126,749(FIRST) + 31,861(REVISIT)</span><span><span class="b b-cl">Clarity</span> 세션 104,367 + 29,198 · 녹화 표본 300건</span></div>
+<div class="grid g3">
+  <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
+    <div class="num">43.9<u>% of FIRST sessions</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
+    <p class="obs">메인에서의 다음 이동 1위는 로그인 (REVISIT 21.6%). Clarity 클릭 집계 53,278 clicks와 교차 일치.<br><span class="small"><b>주의</b> — 이 화면은 로그인 전이라 <b>계정 보유 여부는 확인되지 않습니다</b>. 43.9%를 기존 고객 비율로 바꿔 읽지 않습니다.</span></p>
+    <p class="imp">→ <b>로그인은 헤더의 보조 기능이 아니라 최상위 진입점으로 검토할 가치가 있음</b></p></div>
+  <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
+    <div class="num">0.766<u>popup closes/session</u></div><a class="mini" href="./audit.html#a04">검증 · 수치 감사</a>
+    <p class="obs">팝업 닫기가 단일 최대 행동 (REVISIT 0.714/session). 태깅 이벤트의 78.2%(133,059/170,053 events)가 팝업 관련.<br><span class="small"><b>읽는 법</b> — 세션 100건당 닫기 약 77회(97,067 events ÷ 126,749 sessions)라는 뜻이며, <b>"세션의 76.6%가 닫았다"는 의미가 아닙니다</b>. 한 세션에서 여러 번 닫으면 중복 집계됩니다. 같은 단위로 퀵메뉴는 0.101 — 약 7.6배입니다.</span></p>
+    <p class="imp">→ <b>영역 재배치 이전에, 진입 마찰 자체를 선행 과제로 검토할 필요</b> — 미클릭이 곧 "불필요"를 뜻하지는 않음</p></div>
+  <div class="card stat"><div class="src"><span class="b b-cl">Clarity</span></div>
+    <div class="num">y1802<u>px vs 도달선 y1461~1658px</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
+    <p class="obs">요금제 전용 탐색 영역(SearchFee)이 평균 스크롤 도달선 아래. 클릭은 0.0079 events/session(FIRST)으로 최하위권. ※도달선은 도달률×문서 높이 환산 파생값.</p>
+    <p class="imp">→ <b>낮은 클릭은 무관심이 아니라 미노출로 해석할 여지</b> — 위치 재검토 대상</p></div>
+  <div class="card stat"><div class="src"><span class="b b-cl">Clarity</span><span class="small">pricList 목록 페이지</span></div>
+    <div class="num">91.4<u>% of sort usage</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
+    <p class="obs">요금제 목록에서 정렬은 '가격 낮은 순'에 집중. 필터 1위는 데이터 축(14,484 uses).</p>
+    <p class="imp">→ <b>사용자의 요금제 판단 축은 데이터 구간 + 가격 2축으로 관측됨</b> — 메인 진입 구조 설계의 기준</p></div>
+  <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
+    <div class="num">0.101<u>events/session</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
+    <p class="obs">퀵메뉴 수요는 두 집단 동일(REVISIT 0.106) — 격차 6%. 다만 사용량이 곧 사업적 중요도를 뜻하지는 않음.</p>
+    <p class="imp">→ <b>카테고리 탐색 수요는 실재 — 4종 유지보다 실사용 기준 선별 검토</b></p></div>
+  <div class="card stat"><div class="src"><span class="b b-cl">Clarity</span></div>
+    <div class="num">54.8<u>% of FIRST sessions</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
+    <p class="obs">Quick back(빠른 되돌아옴). Dead click 2.4%·Rage click 0.1%로 낮음 — 요소 고장이 아니라 기대 불일치 계열. 녹화 표본(300건)에서 즉시복귀는 요금제 탐색 경로에 집중.</p>
+    <p class="imp">→ <b>요금제 진입 시 도착 화면이 기대와 일치하도록 진입 구조를 재검토</b></p></div>
+</div>
+<p class="small" style="margin-top:14px">스크롤 도달률 44.5% / 39.2% of sessions(F/R), 화면 분기 관련 관측(구성 동일 · 행동 10개 중 5개 ±10% 이내)은 04·11절에서 해당 문제·결정과 함께 다룹니다.</p>
+</div></section>
+
+
+<section id="c04"><div class="wrap">
+<div class="shead"><span class="sn">04-1 · KEY PROBLEMS</span>
+<h2>확인된 사실이 가리키는 문제 6건</h2>
+<p class="lede">각 문제에서 FACT(관측)와 INTERPRETATION(해석)을 분리했습니다. 해석은 제안의 이유이지 증명이 아닙니다.</p></div>
+<div class="grid g2">
+<div class="card prob"><div class="ph"><span class="pid">P-01</span><b>목적 시작 전에 화면부터 치워야 한다</b></div>
+<dl><dt>FACT</dt><dd>팝업 닫기 0.766 / 0.714 closes/session(GA4, F/R) — 단일 최대 행동. 미클릭률 90.2%(동일 도구 내 파생 · 매핑 추정 조건부)</dd>
+<dt>INTERPRETATION</dt><dd>모든 목적의 앞단에 공통 마찰이 있다 — 단 "미클릭 = 불필요"로 해석하지 않는다</dd>
+<dt>PROPOSAL</dt><dd><b>운영 규칙 확인(DV-03) 후 팝업 정책 재설계</b>를 선행 과제로 → D-07</dd></dl></div>
+<div class="card prob"><div class="ph"><span class="pid">P-07</span><b>P0 목적의 전용 영역이 도달 범위 밖이다</b></div>
+<dl><dt>FACT</dt><dd>SearchFee y1802~2202px vs 평균 도달선 y1461~1658px(파생) · 클릭 0.0079 / 0.0067 events/session</dd>
+<dt>INTERPRETATION</dt><dd>낮은 클릭은 무관심이 아니라 미노출로 해석할 여지</dd>
+<dt>PROPOSAL</dt><dd><b>요금제 탐색을 첫 화면 직후로</b> → D-02</dd></dl></div>
+<div class="card prob"><div class="ph"><span class="pid">P-04</span><b>최대 수요(로그인)가 부가 요소로 취급된다</b></div>
+<dl><dt>FACT</dt><dd>다음 이동 1위 로그인 43.9% / 21.6% of sessions(GA4) · 전체메뉴를 연 뒤 로그인 이동 78~88% of recorded sample(70/90 · 53/60)<br>
+로그인 대 상품경로(요금제+가입) 비율이 <b>FIRST 2.08배 → REVISIT 0.73배로 역전</b>된다 — 상품 행동이 우세한 쪽은 첫 방문 화면이 아니라 재방문 화면이다</dd>
+<dt>INTERPRETATION</dt><dd>로그인 수요가 배너·전체메뉴로 우회되고 있다. 설계 전제("신규에게 상품을")와 관측의 방향이 다르다 — 이 불일치가 <span class="mono">D-12</span> 타깃 재정의로 이어졌다</dd>
+<dt>PROPOSAL</dt><dd><b>헤더 직접 노출</b> — 최상위 진입점으로. 목적이 갈린 방문자가 각자의 목적을 최단 경로로 처리하게 한다 <a href="./targetuser.html#r08">타깃 정의</a></dd></dl></div>
+<div class="card prob"><div class="ph"><span class="pid">P-02</span><b>요금제 탐색의 절반 이상이 되돌아온다</b></div>
+<dl><dt>FACT</dt><dd>Quick back 54.8% / 39.3% of sessions(Clarity) · Dead 2.4%·Rage 0.1% · 녹화 표본에서 즉시복귀는 요금제 경로에 집중</dd>
+<dt>INTERPRETATION</dt><dd>요소 고장이 아니라 클릭 결과가 기대와 다른 문제</dd>
+<dt>PROPOSAL</dt><dd><b>관측된 판단 축(데이터 구간·가격)으로 진입 조건을 먼저 선택</b>하게 하는 구조</dd></dl></div>
+<div class="card prob"><div class="ph"><span class="pid">P-05</span><b>하단 절반은 도달되지 않는데 콘텐츠는 쌓인다</b></div>
+<dl><dt>FACT</dt><dd>스크롤 도달 44.5% / 39.2% of sessions(Clarity) · 시안은 하단에 신설 영역 4개 추가 예정</dd>
+<dt>INTERPRETATION</dt><dd>쌓을수록 각 영역의 실효 노출이 줄어든다</dd>
+<dt>PROPOSAL</dt><dd><b>하단 압축(접힘 구조) + 콘텐츠 총량 동결</b></dd></dl></div>
+<div class="card prob"><div class="ph"><span class="pid">P-06</span><b>두 화면 분기의 가치 근거가 없다</b></div>
+<dl><dt>FACT</dt><dd>두 화면 구성 요소 동일(GTM 시그니처 일치) · 행동 이벤트 10개 중 5개 ±10% 이내 · 분기 판정(쿠키) 부정확</dd>
+<dt>INTERPRETATION</dt><dd>"가치 없음"이 아니라 <b>"가치가 있다는 근거가 없다"</b> — 운영은 2벌</dd>
+<dt>PROPOSAL</dt><dd><b>단일 메인 통합 검토</b> → D-01</dd></dl></div>
+</div>
+</div></section>
+
+
 <section id="c06"><div class="wrap">
-<div class="shead"><span class="sn">06 · REQUEST vs DATA</span>
+<div class="shead"><span class="sn">05 · REQUEST vs DATA</span>
 <h2>요청과 데이터를 대조한 결과</h2>
 <p class="lede">개별 REQ 기준 27건 — <b>KEEP 6 · CHANGE 6 · REMOVE 3 · HOLD 8 · NEEDS VALIDATION 4</b>. <b>KEEP은 "데이터로 완전히 검증됐다"는 뜻이 아니라 "유지를 제안한다"는 뜻</b>이며, 판단 성격 열이 그 차이를 담습니다. 요청과 데이터가 상충하는 곳은 DATA CONFLICT로 표시했습니다.</p></div>
 <div class="chips" role="group" aria-label="판정 필터">
@@ -529,8 +560,9 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <p class="small">묶음 행(REQ-12·13 / 15·16 / 17~20 / 21·22)은 동일 판정이며 개별 전개로 집계했습니다. 판단 성격: 방향 일치 · 방향 조정 · 근거 부족 · 데이터 상충 · 판단 불가.</p>
 </div></section>
 
+
 <section id="c07"><div class="wrap">
-<div class="shead"><span class="sn">07 · DATA-DRIVEN PROPOSAL</span>
+<div class="shead"><span class="sn">06 · WHAT WE PROPOSE</span>
 <h2>최종 개선안 5건</h2></div>
 
 <div class="prop"><div class="phd"><span class="no">01</span><b>요금제 탐색을 첫 화면 직후로 — 도달선 밖의 P0를 가시권으로</b></div>
@@ -587,8 +619,9 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <span class="why">이 제안의 수치는 매핑 가정이 들어간 조건부 등급입니다 — 감사 기록에 분자·분모가 있습니다.</span></div></div>
 </div></section>
 
+
 <section id="c08"><div class="wrap">
-<div class="shead"><span class="sn">08 · PROPOSED INFORMATION ARCHITECTURE</span>
+<div class="shead"><span class="sn">06-1 · PROPOSED IA</span>
 <h2>제안 IA — 근거가 확인된 목적이 위로</h2>
 <p class="lede">PHASE 6에서 확정한 M-01~M-11 구조입니다. 새로 설계하지 않았습니다. 아래에 있는 영역은 "덜 중요해서"가 아니라 "이미 작동 중이거나, 아직 근거가 없어서" 아래에 있습니다.</p></div>
 <div class="ia">
@@ -607,10 +640,11 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <div class="note warn" style="margin-top:18px"><b>이 순서는 D-02에 조건부입니다.</b> REQ-04(타임딜 우선)가 원문대로 확정되면 M-03/M-04 배치가 뒤집힙니다.</div>
 </div></section>
 
+
 <section id="c09"><div class="wrap">
-<div class="shead"><span class="sn">09 · HIGH-FIDELITY UI</span>
+<div class="shead"><span class="sn">06-2 · HIGH-FIDELITY UI</span>
 <h2>제안 구조의 실제 화면</h2>
-<p class="lede">PHASE 7-4 High-Fidelity Prototype — 이 문서를 위해 새로 디자인한 화면이 아니라, 제안된 IA가 실제 화면에서 어떻게 구현되는지 보여주는 검증용 결과물입니다.</p>
+<p class="lede">PHASE 7-4 High-Fidelity Prototype — 이 문서를 위해 새로 디자인한 화면이 아니라, 제안된 IA가 실제 화면에서 어떻게 구현되는지 보여주는 검증용 결과물입니다. <b>아래는 정지 화면이며, 동작·상태·예외는 프로토타입에서 직접 확인합니다.</b> 프로토타입은 <b>근거 문서가 아니라 제안 결과물</b>입니다.</p>
 <div class="xref"><a href="./index.html">프로토타입 · 개선 방향 확인</a><a href="./alignment.html#s10">영역별 개선안 원본</a>
 <span class="why">확정 디자인이 아닙니다. 눌러서 동작을 확인하는 용도이며, 표시된 상품 정보는 구조 검증용 예시입니다.</span></div></div>
 <div class="protolay">
@@ -627,8 +661,9 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 </div>
 </div></section>
 
+
 <section id="c10"><div class="wrap">
-<div class="shead"><span class="sn">10 · BEFORE / AFTER</span>
+<div class="shead"><span class="sn">06-3 · BEFORE / AFTER</span>
 <h2>구조가 어떻게 달라지는가</h2></div>
 <div class="ba">
   <div class="col"><h4>CURRENT — 요청·운영 기반 우선순위</h4>
@@ -663,8 +698,9 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 </table></div>
 </div></section>
 
+
 <section id="c11"><div class="wrap">
-<div class="shead"><span class="sn">11 · DECISION ITEMS</span>
+<div class="shead"><span class="sn">07 · WHAT NEEDS DECISION</span>
 <h2>지금 결정해야 하는 것 10건</h2>
 <p class="lede">최우선 3건(D-01 · D-02 · D-07)을 먼저 배치했습니다. 이 문서는 결론을 강요하지 않습니다 — 데이터가 문제를 보여주고, 제안이 방향을 제시하며, 결정은 관계자가 합니다.</p></div>
 <div class="legend">
@@ -704,7 +740,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <div class="dfeat" style="border-color:var(--ok)"><div class="dhd"><span class="n" style="color:var(--ok)">D-12</span><b>이 페이지의 대상을 목적 중심으로 정의한다</b><span class="st"><span class="b b-keep">확정 · 2026-08-27</span></span></div>
 <dl class="dl2"><dt>REQUEST</dt><dd>요청 문서에 대상 사용자 정의가 없다. "신규 고객 중심"은 시안 구성에서 되짚어 만든 전제였다</dd>
 <dt>EVIDENCE</dt><dd>두 화면 공통 1위 행동이 로그인(43.9% / 21.6% of sessions) · 상품 행동이 우세한 쪽은 재방문 화면(2.08배 → 0.73배 역전) · 계정 사용 흔적 유입 9,381 sessions · 가입 완료 후 복귀 4,654 sessions · 판정 쿠키 3종 불일치</dd>
-<dt>DECISION</dt><dd><b>U+유모바일을 이미 알고 직접 찾아온 사람이, 로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채 방문하여, 자기 목적을 가장 빠른 길로 처리하려는 것을 중심으로 설계한다.</b> 나누는 축은 방문 이력이 아니라 목적이다</dd>
+<dt>DECISION</dt><dd>대상을 <b>방문 이력이 아니라 목적</b>으로 정의한다 — 정의 문장과 상태 구분은 <a href="#c14">03절</a>에 있다</dd>
 <dt>OPEN-05</dt><dd>로그인 영역의 목적은 <b>병행</b>으로 확정 — 로그인을 최상위 진입점으로 두되 회원가입 동선을 함께 노출한다</dd>
 <dt>IMPACT</dt><dd>개선안의 <b>방향은 바뀌지 않는다</b>. 재분석 0건 · KEEP 6 · 해석만 수정 2 · 재검증 3(전부 기존 미정/HOLD) · 재설계 1(가입 완료 복귀 미구현)</dd>
 <dt>RISK</dt><dd>계정 보유 비율을 세는 수단이 없다는 사실은 그대로다. "신규 고객이 적다"로 읽지 않는다 <a href="./targetuser.html#r08">검증 전문</a></dd></dl></div>
@@ -734,8 +770,9 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 </div>
 </div></section>
 
+
 <section id="c12"><div class="wrap">
-<div class="shead"><span class="sn">12 · OPEN ISSUES / VALIDATION</span>
+<div class="shead"><span class="sn">07-1 · OPEN ISSUES</span>
 <h2>남아 있는 불확실성</h2>
 <p class="lede">숨기지 않습니다. 아래 항목이 해소되기 전에는 해당 부분을 확정으로 다루지 않습니다. 확인 주체는 기존 자료에 명시된 경우에만 적었습니다.</p></div>
 
@@ -796,8 +833,9 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <dt>IMPACT</dt><dd>각 항목은 해당 결정(D-02~D-08)의 조건으로 연결되어 있음 — 전체 목록과 해소 방법은 audit.html·alignment.html 15절</dd><dt>STATUS</dt><dd>개별 추적 중</dd></dl></div></details>
 </div></section>
 
+
 <section id="c13"><div class="wrap">
-<div class="shead"><span class="sn">13 · NEXT STEP</span>
+<div class="shead"><span class="sn">08 · NEXT STEP</span>
 <h2>개발보다 합의가 먼저입니다</h2>
 <p class="lede">이 문서의 다음 단계는 개발 착수가 아닙니다.</p></div>
 <div class="steps">
@@ -814,17 +852,17 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 비로그인 메인 개편안 · Stakeholder Alignment · 2026-08-27 — 근거 원본 <a href="./alignment.html">alignment.html</a> · 검증 기록 <a href="./audit.html">audit.html</a> · 프로토타입 <a href="./index.html">index.html</a><br>
 본 문서의 모든 수치는 GA4(2026-07-28~08-24) · Clarity(2026-07-29~08-25) 관측이며, 도구 간 절대값 비교와 교차 도구 파생 비율은 사용하지 않았습니다. 프로토타입의 상품 정보는 구조 검증용 [SAMPLE]입니다.
 </div></footer>
+
 <footer class="pjfoot"><div class="in">
-<span class="lb">U+유모바일 · 비로그인 메인 개편 · 문서 이동</span>
+<span class="lb">다음으로 볼 문서</span>
 <ul>
-<li><a href="./stakeholder.html" aria-current="page">FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
-<li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./audit.html">AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
-<li><a href="./targetuser.html">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
-<li><a href="./timedeal.html">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
+<li><a href="./targetuser.html"><em>02 TARGET USER</em>대상 이용자 분석 보기 →<i>이 화면의 실제 이용자는 누구인가</i></a></li>
+<li><a href="./timedeal.html"><em>03 TIME DEAL</em>타임딜 요청 분석 보기 →<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
+<li><a href="./alignment.html"><em>04 EVIDENCE</em>수치와 근거 확인하기 →<i>왜 그렇게 판단했는가</i></a></li>
+<li><a href="./audit.html"><em>05 AUDIT</em>근거가 검증된 과정 보기 →<i>그 근거가 검증되었는가</i></a></li>
+<li><a href="./index.html"><em>06 PROTOTYPE</em>화면에서 직접 확인하기 →<i>화면은 어떻게 달라지는가</i></a></li>
 </ul>
-<p class="note">이 다섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
+<p class="note">이 여섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. <b>결론은 FINAL REPORT, 근거는 EVIDENCE, 검증은 AUDIT</b>에 있다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
 </div></footer>
 
 <script>

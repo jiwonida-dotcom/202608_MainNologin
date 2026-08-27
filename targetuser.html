@@ -194,17 +194,21 @@ td.src,.src{color:var(--mut)}
 .pjnav li a[aria-current="page"]{color:#fff;border-bottom-color:#8878E6}
 .pjnav li a i{display:block;font-style:normal;font-size:10px;font-weight:400;color:#7E77A8;margin-top:1px}
 .pjnav li a[aria-current="page"] i{color:#B9B2DE}
+.pjnav li a b{display:inline-block;font-size:9.5px;font-weight:700;color:#7E77A8;margin-right:5px;
+  font-family:ui-monospace,monospace;vertical-align:1px}
+.pjnav li a[aria-current="page"] b{color:#B9B2DE}
 .pjfoot{min-width:0; background:#F2F1F7;border-top:1px solid #DEDCE8;
   font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 .pjfoot .in{max-width:1040px;margin:0 auto;padding:22px 20px 30px}
 .pjfoot .lb{font-size:10.5px;letter-spacing:.14em;color:#6E6A85;font-family:ui-monospace,monospace;
   text-transform:uppercase;display:block;margin-bottom:10px}
-.pjfoot ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:8px;margin:0;padding:0;list-style:none}
-.pjfoot li a{display:block;padding:10px 12px;background:#fff;border:1px solid #DEDCE8;border-radius:9px;
+.pjfoot ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.pjfoot li a{display:block;padding:11px 13px;background:#fff;border:1px solid #DEDCE8;border-radius:9px;
   text-decoration:none;color:#33304A;font-size:12.5px;font-weight:600}
 .pjfoot li a:hover{border-color:#8878E6}
-.pjfoot li a i{display:block;font-style:normal;font-size:11px;font-weight:400;color:#6E6A85;margin-top:2px}
-.pjfoot li a[aria-current="page"]{background:#EFEDFB;border-color:#C7BFF0}
+.pjfoot li a i{display:block;font-style:normal;font-size:11.5px;font-weight:400;color:#6E6A85;margin-top:3px}
+.pjfoot li a em{font-style:normal;font-size:9.5px;font-weight:700;color:#8A85A3;
+  font-family:ui-monospace,monospace;display:block;margin-bottom:3px;letter-spacing:.08em}
 .pjfoot .note{margin:14px 0 0;font-size:11.5px;color:#6E6A85;line-height:1.6}
 @media (max-width:640px){ .pjnav .in,.pjfoot .in{padding-left:14px;padding-right:14px} }
 @media print{ .pjnav,.pjfoot{display:none} }
@@ -213,12 +217,12 @@ td.src,.src{color:var(--mut)}
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
 <div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
 <ul>
-<li><a href="./stakeholder.html">FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
-<li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./audit.html">AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
-<li><a href="./targetuser.html" aria-current="page">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
-<li><a href="./timedeal.html">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
+<li><a href="./stakeholder.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./targetuser.html" aria-current="page"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
+<li><a href="./timedeal.html"><b>03</b>TIME DEAL<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
+<li><a href="./alignment.html"><b>04</b>EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
+<li><a href="./audit.html"><b>05</b>AUDIT<i>그 근거가 검증되었는가</i></a></li>
+<li><a href="./index.html"><b>06</b>PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
 </ul>
 </div></nav>
 <main>
@@ -240,7 +244,8 @@ td.src,.src{color:var(--mut)}
 <span class="snum">결론</span>
 <h2>먼저 결론</h2>
 <div class="head1">
-<b class="v">"신규 고객 중심"은 데이터로 유지할 수 없다.<br>그러나 다시 해야 할 분석은 없다.</b>
+<b class="v">"신규 고객 중심"은 <u>판단 근거로</u> 쓸 수 없다.<br>그러나 다시 해야 할 분석은 없다.</b>
+<p class="small" style="margin:2px 0 12px"><b>읽는 방향에 주의한다.</b> 이것은 <b>전제를 근거로 쓸 수 없다</b>는 뜻이지, <b>"신규 고객이 아니다" · "기존 고객이다" · "신규 고객 비중이 낮다"</b>는 뜻이 아니다. 이 화면은 계정을 확인하지 않으므로 <b>구성 비율 자체를 셀 수 없다.</b></p>
 <p><b>①</b> 이 화면은 로그인 전이라 계정을 확인하지 않는다. 그래서 방문자가 고객인지 아닌지 알 수 없다. <span class="g g-f">FACT</span></p>
 <p><b>②</b> "신규"를 판정하는 쿠키가 세 종류인데, 셋이 서로 다른 답을 준다. <span class="g g-f">FACT</span></p>
 <p><b>③</b> 그런데 우리 분석은 처음부터 이 전제를 쓰지 않았다. 판단 근거는 전부 관측된 행동이었다. <span class="g g-f">FACT</span></p>
@@ -428,7 +433,7 @@ td.src,.src{color:var(--mut)}
 <tr><td class="id">2</td><td>방문자 대부분이 브랜드를 알고 온다 — 브랜드를 모르는 경로는 두 화면 모두 한 자릿수</td></tr>
 <tr><td class="id">3</td><td>다음 행동이 여러 갈래로 나뉜다 — 특히 재방문 쪽은 12~22%로 분산된다</td></tr>
 <tr><td class="id">4</td><td>계정 사용 흔적을 가진 유입이 첫 방문용 화면에 9,381 sessions 있다</td></tr>
-<tr><td class="id">5</td><td>가입을 마친 뒤 이 화면으로 돌아온 세션이 4,654건 있다</td></tr>
+<tr><td class="id">5</td><td>가입을 마친 뒤 이 화면으로 돌아온 세션이 <b>4,654 sessions</b> 있다</td></tr>
 </tbody></table></div>
 
 <h4 style="color:var(--acc)">제안하는 정의 <span class="g g-p">PROPOSAL</span></h4>
@@ -482,7 +487,7 @@ td.src,.src{color:var(--mut)}
 ㉡ 방문자 대부분이 <b>브랜드를 알고</b> 온다 — 모르는 경로는 두 화면 다 한 자릿수<br>
 ㉢ 상품·가입 행동이 더 많은 쪽은 첫 방문용이 아니라 <b>재방문용 화면</b>이다 — 21.1% vs 29.5%<br>
 ㉣ 첫 방문용 화면에 <b>계정 사용 흔적을 가진 유입</b>이 9,381 sessions 있다<br>
-㉤ 가입을 마치고 <b>돌아온 세션</b>이 4,654건 있다<br>
+㉤ 가입을 마치고 <b>돌아온 세션</b>이 4,654 sessions 있다<br>
 ㉥ 방문 이력을 판정하는 <b>쿠키 셋이 서로 다른 답</b>을 준다</dd>
 
 <dt>데이터가<br>확인하지 못한 것</dt>
@@ -492,7 +497,8 @@ td.src,.src{color:var(--mut)}
 · 판정 불일치의 <b>주된 이유</b> — 쿠키 수명인지 직접 URL 진입인지</dd>
 
 <dt>가장 타당한<br>타깃 정의 <span class="g g-p">PROPOSAL</span></dt>
-<dd style="font-size:15px;line-height:1.7"><b>U+유모바일을 이미 알고 직접 찾아온 사람</b>이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채</b> 방문하여 <b>자기 목적을 가장 빠른 길로 처리하려는 것</b>을 중심으로 설계한다.</dd>
+<dd style="font-size:15px;line-height:1.7"><b>U+유모바일을 이미 알고 직접 찾아온 사람</b>이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채</b> 방문하여 <b>자기 목적을 가장 빠른 길로 처리하려는 것</b>을 중심으로 설계한다.
+<span class="small" style="display:block;margin-top:8px"><b>이 문장은 제안이었고, 2026-08-27에 <span class="mono">D-12</span>로 채택되었다.</b> 확정된 결정으로서의 기록은 <a href="./stakeholder.html#c14">FINAL REPORT 03절</a>에 있다 — 이 문서는 <b>그 판단이 어떻게 만들어졌는지를 남기는 검증 기록</b>이다.</span></dd>
 
 <dt>채택하면<br>달라지는 것</dt>
 <dd>· <b>개선안의 방향은 그대로다.</b> 로그인 승격·요금제 상단화·이벤트 유지는 이 정의와 더 잘 맞는다<br>
@@ -540,16 +546,13 @@ td.src,.src{color:var(--mut)}
 </section>
 </main>
 <footer class="pjfoot"><div class="in">
-<span class="lb">U+유모바일 · 비로그인 메인 개편 · 문서 이동</span>
+<span class="lb">다음으로 볼 문서</span>
 <ul>
-<li><a href="./stakeholder.html">FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
-<li><a href="./alignment.html">EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./audit.html">AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html">PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
-<li><a href="./targetuser.html" aria-current="page">TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
-<li><a href="./timedeal.html">TIME DEAL<i>타임딜 요청을 왜 이렇게 해석했는가</i></a></li>
+<li><a href="./stakeholder.html"><em>01 FINAL REPORT</em>결정해야 할 항목으로 돌아가기 →<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./timedeal.html"><em>03 TIME DEAL</em>타임딜 요청 분석 보기 →<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
+<li><a href="./alignment.html"><em>04 EVIDENCE</em>수치와 근거 확인하기 →<i>왜 그렇게 판단했는가</i></a></li>
 </ul>
-<p class="note">이 다섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
+<p class="note">이 여섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. <b>결론은 FINAL REPORT, 근거는 EVIDENCE, 검증은 AUDIT</b>에 있다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
 </div></footer>
 
 </html>
