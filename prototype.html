@@ -304,6 +304,9 @@ svg{display:block}
 .rrow[aria-disabled="true"] .rp u,.rrow[aria-disabled="true"] .rp i,
 .rrow[aria-disabled="true"] .rd{color:var(--n-400)}
 .rrow[aria-disabled="true"]:hover{background:var(--n-25)}
+/* [REFINE VP-3] 이동 불가 상태에서는 이동 표식을 보이지 않는다 — 어포던스 정합(UI-P5).
+   레이아웃 유지를 위해 visibility만 끈다. 상태 정의·동작(CH-21) 불변. */
+.rrow[aria-disabled="true"] .rc{visibility:hidden}
 .rrow[aria-disabled="true"]:hover .rc{transform:none}
 .rp[data-empty="1"] b{color:var(--text-3)}
 
@@ -389,6 +392,9 @@ svg{display:block}
 
 /* ══════════════ M-06 휴대폰 ══════════════ */
 .collap{margin-top:var(--s-4); background:transparent; border-top:1px solid var(--hairline); border-bottom:none}
+/* [REFINE VP-1] 인접한 접힘 모듈은 간격 없이 헤어라인 하나로 잇는다 — 갭 밴드 불균일 제거.
+   확대·강조 없음(DD-11 준수). 구분은 colhd의 기존 border-bottom이 담당한다. */
+.mod:has(>.collap)+.mod>.collap{margin-top:0; border-top:0}
 .colhd{width:100%; min-height:58px; display:flex; align-items:center; gap:var(--s-2);
   padding:0 var(--pad); text-align:left; border-bottom:1px solid var(--hairline)}
 .colhd:hover{background:var(--n-25)}
@@ -420,6 +426,10 @@ svg{display:block}
   line-height:1.35; letter-spacing:var(--tr-base)}
 .pcard .pp{display:block; margin-top:3px; font-size:var(--fs-12); color:var(--text-3)}
 .pcard .pp em{font-style:normal; font-weight:700; color:var(--brand-600)}
+/* [REFINE VP-4] 실패 화면의 유일한 유효 행동 — 비활성 요소와 구분되도록 기존 토큰으로 보조 채움.
+   구조·동작·토큰 값 불변. 토큰 자체는 B-05 미확정이므로 reference로만 사용. */
+#m03retry{background:var(--brand-50); border-color:var(--brand-200); color:var(--brand-600); font-weight:700}
+#m03retry:hover{background:var(--brand-100)}
 .colmore{margin-top:var(--s-4); width:100%; min-height:44px; border:1px solid var(--border-strong);
   border-radius:var(--r-sm); font-size:var(--fs-13); font-weight:600; color:var(--text-2);
   display:flex; align-items:center; justify-content:center; gap:4px}
@@ -724,6 +734,14 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
 /* 프로토타입에서는 상단 고정을 쓰지 않는다 — 여기서 보는 것은 문서가 아니라 화면이고,
    고정 바가 기기 목업 위에 계속 떠 있으면 화면 판단을 방해한다. 고정은 리포트 문서에만 적용한다. */
 .pjnav{position:static}
+/* [REFINE VP-5] 모바일에서 리뷰 셸을 1줄로 축소 — 서비스 화면 잠식 최소화.
+   서비스 UI가 아니라 프로토타입 리뷰 셸이며, SPEC과 무관하다. */
+@media (max-width:640px){
+  .pjnav .id{display:none}
+  .pjnav li a i{display:none}
+  .pjnav li a{padding:13px 11px; min-height:44px; display:flex; align-items:center}
+  .pjnav ul{padding:0}
+}
 footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
 .stage .pjfoot{margin:24px -20px 0}
 @media (max-width:640px){ .stage .pjfoot{margin:0} }
