@@ -209,11 +209,9 @@ svg{display:block}
 .qitem:hover{background:var(--surface-2)}
 .qitem:active{background:var(--n-50)}
 .qitem .i3d{display:grid; --i3d-size:30px}
-.qitem .qt{display:flex; flex-direction:column; gap:1px; min-width:0}
+.qitem .qt{display:flex; min-width:0}
 .qitem span{font-size:var(--fs-12); font-weight:700; color:var(--text); line-height:1.25;
   letter-spacing:var(--tr-base); white-space:nowrap}
-.qitem small{font-size:10px; font-weight:400; color:var(--text-3); line-height:1.25; white-space:nowrap}
-.screen[data-bp="s"] .qitem small{display:none}
 .screen[data-bp="s"] .qitem .i3d{--i3d-size:26px}
 
 /* ══════════════ 3D 아이콘 ══════════════
@@ -255,38 +253,15 @@ svg{display:block}
 .gap{height:var(--s-3); background:var(--bg)}
 
 /* ══════════════ M-03 요금제 탐색 (GPT 시안 반영) ══════════════ */
-.hero{position:relative; padding:var(--s-2) 0 var(--s-5); overflow:visible}
+/* 서브 카피·SIM 그래픽 제거 후 헤드라인 단독. 비워진 만큼 상하 여백을 조였다 */
+.hero{padding:var(--s-1) 0 var(--s-4)}
 .heroT{font-size:var(--fs-22); font-weight:700; line-height:1.42; letter-spacing:var(--tr-tight); color:var(--text)}
 .heroT em{font-style:normal; color:var(--brand-500)}
-.heroS{margin-top:var(--s-3); font-size:var(--fs-13); color:var(--text-2); line-height:1.5; max-width:60%}
-/* 장식 — 3D SIM 컴포지션 (CSS 재현) */
-.sim3d{position:absolute; right:-6px; top:-6px; width:132px; height:132px; pointer-events:none}
-.sim3d .ring{position:absolute; border-radius:50%; border:10px solid rgba(102,45,145,.10)}
-.sim3d .ring.r1{width:118px; height:118px; right:0; top:6px}
-.sim3d .ring.r2{width:74px; height:74px; right:74px; top:52px; border-width:7px; border-color:rgba(102,45,145,.07)}
-.sim3d .chip{position:absolute; right:22px; top:20px; width:66px; height:84px;
-  border-radius:12px 12px 12px 26px; transform:rotate(14deg);
-  background:linear-gradient(155deg,#FFFFFF 0%,#EFEDFF 55%,#D0D1FF 100%);
-  box-shadow:inset 0 1px 1px #fff, 0 8px 18px -8px rgba(74,25,114,.35);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px;
-  font-size:10px; font-weight:700; letter-spacing:.12em; color:var(--brand-600)}
-.sim3d .chip u{display:block; width:26px; height:20px; border-radius:4px; text-decoration:none;
-  background:linear-gradient(150deg,#E4E2FC,#BFBEF5);
-  box-shadow:inset 0 0 0 1px rgba(102,45,145,.25), inset 0 6px 0 -5px rgba(102,45,145,.25), inset 0 -7px 0 -5px rgba(102,45,145,.25)}
-.screen[data-bp="s"] .sim3d{width:112px; right:-10px}
-.screen[data-bp="s"] .heroS{max-width:56%}
 .m03card{background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--card-sh); overflow:hidden}
 .m03foot{display:flex; gap:6px; align-items:flex-start; padding:var(--s-3) var(--s-4);
   border-top:1px solid var(--hairline); font-size:var(--fs-11); color:var(--text-3); line-height:1.5}
 .m03foot svg{width:13px; height:13px; flex:none; margin-top:1px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round}
 .ranges{margin:0; background:var(--surface)}
-/* 라디오 — 선택 상태 표시(기본은 전 행 미선택) */
-.rdo{flex:none; width:20px; height:20px; border-radius:50%; border:2px solid var(--n-300);
-  display:grid; place-items:center; transition:border-color var(--dur) var(--ease)}
-.rdo::after{content:""; width:10px; height:10px; border-radius:50%; background:var(--brand-500);
-  transform:scale(0); transition:transform .16s var(--ease)}
-.rrow[aria-current="true"] .rdo{border-color:var(--brand-500)}
-.rrow[aria-current="true"] .rdo::after{transform:scale(1)}
 /* 용도 아이콘 타일 — 구간별 파스텔(동일 크기·동일 강도) */
 .rtile{flex:none; width:36px; height:36px; border-radius:10px; display:grid; place-items:center}
 .rtile svg{width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
@@ -294,9 +269,13 @@ svg{display:block}
    구간 식별은 색이 아니라 글리프 형태와 라벨이 담당한다 — 5구간 동일 강도(DD-03) */
 .rt1,.rt2,.rt3,.rt4,.rt5{background:var(--ico-t-fill); color:var(--ico-t-glyph)}
 .rrow{position:relative; width:100%; min-height:70px; display:flex; align-items:center;
-  gap:8px; padding:10px var(--s-3) 10px var(--s-3); text-align:left;
-  border-bottom:1px solid var(--hairline); transition:background var(--dur) var(--ease)}
-.ranges .rrow:last-child{border-bottom:none}
+  gap:12px; padding:12px var(--s-4); text-align:left;
+  transition:background var(--dur) var(--ease)}
+/* 구분선을 행 전체가 아니라 콘텐츠 시작선부터 그린다 — 격자가 아니라 리듬으로 읽힌다 */
+.rrow::after{content:""; position:absolute; left:calc(var(--s-4) + 36px + 12px); right:var(--s-4);
+  bottom:0; height:1px; background:var(--hairline)}
+.ranges .rrow:last-child::after{display:none}
+.rrow[aria-current="true"]::after,.rrow[aria-current="true"]+.rrow::after{display:none}
 .rrow:hover{background:var(--n-25)}
 .rrow:active{background:var(--n-50)}
 .rrow .rt{flex:1; min-width:0}
@@ -306,18 +285,16 @@ svg{display:block}
   letter-spacing:var(--tr-base); line-height:1.35; white-space:nowrap}
 .rrow .rl em{font-style:normal; font-size:16px; font-weight:700;
   color:var(--text); letter-spacing:var(--tr-tight); margin-right:4px; font-variant-numeric:tabular-nums}
-.rmeta2{flex:none; display:flex; flex-direction:column; align-items:flex-end; gap:2px}
-.rcnt{font-size:10.5px; color:var(--text-3); white-space:nowrap}
 .rrow .rp{flex:none; text-align:right; white-space:nowrap; display:flex; align-items:baseline; gap:2px}
 .rrow .rp i{font-style:normal; font-size:11px; color:var(--text-3); font-weight:400; margin-right:1px}
 .rrow .rp b{font-size:15px; font-weight:700; color:var(--brand-500);
   font-variant-numeric:tabular-nums; letter-spacing:var(--tr-tight)}
 .rrow .rp u{text-decoration:none; font-size:11px; color:var(--brand-500); font-weight:600}
-.rrow .rc{flex:none; width:14px; height:14px; color:var(--icon-deco); fill:none;
-  stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;
-  transition:transform var(--dur) var(--ease)}
+.rrow .rc{flex:none; width:15px; height:15px; margin-left:2px; color:var(--n-300); fill:none;
+  stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
+  transition:transform var(--dur) var(--ease), color var(--dur) var(--ease)}
 .rrow:hover .rc{transform:translateX(2px); color:var(--text-3)}
-.rrow[aria-current="true"]{background:var(--lav); box-shadow:inset 0 0 0 2px var(--brand-500); border-radius:14px}
+.rrow[aria-current="true"]{background:var(--lav); box-shadow:inset 0 0 0 1.5px var(--brand-500); border-radius:14px}
 .rrow[aria-current="true"] .rl{color:var(--brand-600)}
 .rrow[aria-current="true"] .rl em{color:var(--brand-700)}
 .rrow[aria-current="true"] .rp b{color:var(--brand-700)}
@@ -731,15 +708,15 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
           <nav class="quick" aria-label="바로가기">
             <button type="button" class="qitem" data-pric="all" data-name="전체 요금제">
               <span class="i3d"><svg viewBox="0 0 24 24"><path d="M4 6.5h16M4 12h9M4 17.5h6"/><circle cx="17.5" cy="16" r="3.2"/><path d="M20 18.4L22.3 20.6"/></svg></span>
-              <span class="qt"><span>전체 요금제</span><small>요금제 전체보기</small></span>
+              <span class="qt"><span>전체 요금제</span></span>
             </button>
             <button type="button" class="qitem" data-go="/shop/mobile/mobileJoinIntro" data-name="휴대폰">
               <span class="i3d"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 18.6h3"/></svg></span>
-              <span class="qt"><span>휴대폰</span><small>다양한 모델 보기</small></span>
+              <span class="qt"><span>휴대폰</span></span>
             </button>
             <button type="button" class="qitem" data-go="/shop/self/openingGuide" data-name="셀프개통">
               <span class="i3d"><svg viewBox="0 0 24 24"><path d="M12 2.8l7.2 3.1v5.4c0 4.3-3 7.7-7.2 9-4.2-1.3-7.2-4.7-7.2-9V5.9z"/><path d="M9.3 12l2 2 3.5-3.7"/></svg></span>
-              <span class="qt"><span>셀프개통</span><small>유심으로 바로개통</small></span>
+              <span class="qt"><span>셀프개통</span></span>
             </button>
           </nav>
         </div>
@@ -750,8 +727,6 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
           <section class="sec p0" aria-labelledby="m03h">
             <div class="hero">
               <h2 id="m03h" class="heroT">나에게 딱 맞는<br><em>데이터 요금제</em>를 찾아보세요</h2>
-              <p class="heroS">쓰는 만큼 고르면 조건이 적용된 목록으로 이동합니다.</p>
-              <div class="sim3d" aria-hidden="true"><i class="ring r1"></i><i class="ring r2"></i><span class="chip">DATA<u></u></span></div>
             </div>
             <div class="m03card">
               <div class="ranges" id="ranges"></div>
@@ -1224,6 +1199,7 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
       <tr><td class="mono">CH-25</td><td><strong>브랜드 컬러 계열</strong></td><td class="src">임시 마젠타</td><td><strong>레퍼런스 바이올렛</strong>(#8C63F4 / #A99BFF)으로 전면 교체. 요청자 확정 사항이며 토큰 블록만 교체했다</td><td class="c"><span class="badge b-warn">교체</span></td></tr>
       <tr><td class="mono">CH-26</td><td><strong>3D 아이콘 시스템</strong></td><td class="src">선 아이콘</td><td>M-02·M-05·M-06 진입점을 <strong>3D 칩</strong>으로. P3(M-07)와 텍스트 링크(M-08)는 <strong>플랫 유지</strong> — 3D를 우선순위 신호로 쓴다(UI-P4)</td><td class="c"><span class="badge b-new">추가</span></td></tr>
       <tr><td class="mono">CH-34</td><td><strong>QuickMenu 재디자인</strong></td><td class="src">세로 아이콘 그리드(65px)</td><td>요청자 피드백 반영 — <strong>가로 필 3개</strong>(3D 칩 26px + 인라인 라벨, 영역 70px). 아이콘 런처가 아니라 숏컷 바로 읽힌다. 3종 구성·순서·목적지는 불변</td><td class="c"><span class="badge b-warn">변경</span></td></tr>
+      <tr><td class="mono">CH-60</td><td><strong>요소 정리 · 어쿠스틱 리스트</strong></td><td class="src">퀵메뉴 서브카피 · 히어로 서브카피+SIM 그래픽 · 라디오 · "요금제 N종"</td><td>요청자 지시로 4종을 제거하고 비워진 만큼 영역을 재조정했다. <strong>① M-02</strong> 퀵메뉴 서브카피 3건 삭제 — 목적지 이름만 남는다. <strong>② M-03 히어로</strong> 서브카피와 CSS 3D SIM 그래픽 삭제, 상하 여백을 조여 <strong>배너 상단이 폴드 쪽으로 회수됐다</strong>(CH-58에서 기록한 스필오버 소멸의 부분 복구). <strong>③ 구간 행</strong> 라디오 컴포넌트 삭제 — 선택 상태는 배경·링·색으로만 표시한다(터치 타깃은 행 전체라 손실 없음). <strong>④ "요금제 N종" 재제거</strong> — CH-14에서 철회했다가 CH-58에서 요청자 지시로 복원했던 항목을 다시 뺀다. CH-14의 원래 판단(상품 수는 구간 선택의 판단 축이 아니다)으로 돌아가는 것이며 <strong>구간 보조 설명(dan2 라벨 승계, CH-44)은 유지</strong>한다. <strong>⑤ 어쿠스틱 톤</strong> — 셰브런을 2.2→1.6 굵기·옅은 회색으로 낮춰 호버에서만 진해지게 하고, 행 구분선을 전폭에서 <strong>콘텐츠 시작선 인셋</strong>으로 바꿨다. 격자가 아니라 리듬으로 읽힌다. 좌우 여백은 라디오가 빠진 만큼 12→16px로 통일</td><td class="c"><span class="badge b-warn">정리</span></td></tr>
       <tr><td class="mono">CH-59</td><td><strong>A타입 컬러·아이콘 전환</strong></td><td class="src">운영 실측 퍼플 #662D91 · 3D 그라디언트 아이콘</td><td><span class="badge b-warn">UNVERIFIED</span> 요청자 지시로 첨부 시안(A)의 <strong>인디고 #6B55E6</strong>과 <strong>플랫 단색 아이콘</strong>으로 전환. <strong>① 컬러</strong> — hue 307°→284°, 스케일 8단 재생성. 흰 글씨 대비가 8.94:1 → 5.16:1로 내려가 채운 버튼은 600(7.00:1)으로 올렸다. <strong>② 아이콘</strong> — 그라디언트·인셋·글로 제거, solid/tint/neutral 3종. <strong>③ 구간 타일</strong> — 5색(보라·초록·파랑·빨강·보라)을 단일 인디고 틴트로 통일. 단일 강조색 원칙에 맞고 5구간 동일 강도(DD-03)와도 합치한다. <strong>남는 문제</strong>: BI(<span class="mono">#4A1972</span>/<span class="mono">#CD0769</span>)는 hue 305°/1°로 그대로라 본문 인디고와 계열이 갈린다 — 로고만 색이 튀는 것은 <strong>미해소</strong>. <strong>되돌리기</strong>: 토큰 블록 8줄만 실측값으로 교체하면 원복된다</td><td class="c"><span class="badge b-warn">전환</span></td></tr>
       <tr><td class="mono">CH-58</td><td><strong>GPT 시안 반영</strong></td><td class="src">에디토리얼 패스(웜 그라운드·세리프·탈카드)</td><td>요청자 제공 시안 기준으로 재전환 — 라벤더 그라운드(#F5F3FA) + 흰 카드, 퀵메뉴 3열 카드(아이콘+타이틀+서브카피), M-03 <strong>히어로 헤드라인 + CSS 3D SIM 그래픽 + 라디오·용도 아이콘 리스트 카드</strong>, 배너 카드형+칩+아웃라인 CTA 복귀, M-05 라벤더 타일, <strong>M-07·M-08 아코디언화</strong>, 푸터 시안 구성. <strong>조정 3건</strong>: ① "요금제 N종" 복원은 요청자 지시로 CH-14 철회를 번복하되 수치는 시안 임의값이 아닌 <strong>관측값(28/20/30/22/23)</strong> ② 시안의 첫 행 선택 표시는 <strong>선택 상태 예시로 해석</strong> — 기본값은 전 행 미선택(DD-07 유지) ③ 유튜브 로고는 타사 상표라 일반 재생 아이콘으로 대체. <strong>부작용 기록</strong>: 히어로 추가로 배너 상단 829px — AtF 배너 스필오버 소멸(M-03 자체는 폴드 안 유지), M-08 고객지원(P2)이 접힘 상태로 전환됨</td><td class="c"><span class="badge b-warn">전환</span></td></tr>
       <tr><td class="mono">CH-54</td><td><strong>Art Direction 전환</strong></td><td class="src">카드 중심 · 쿨 라벤더 그라운드</td><td><strong>Editorial/Spatial</strong>로 전환 — 그라운드를 웜 화이트(#FAF9F7)로, 하부 존은 웜 그레이 단(段), 카드·필·그림자를 걷어내고 <strong>타이포·여백·헤어라인</strong>이 위계를 만든다. 퍼플은 배너·선택 상태·M-05 아이콘 2개로 집중(반복 장식 해제). IA·모듈·순서는 불변</td><td class="c"><span class="badge b-warn">전환</span></td></tr>
@@ -1396,7 +1372,6 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
       if(failed) b.setAttribute("aria-disabled","true");
       else if(S.range === r.id) b.setAttribute("aria-current","true");
 
-      b.appendChild(el("span","rdo"));                       /* 라디오 — 선택 상태 표시 */
       var tile = el("span","rtile " + r.tile);               /* 용도 아이콘 */
       var ts = document.createElementNS(NS,"svg"); ts.setAttribute("viewBox","0 0 24 24");
       r.icon.split("M").filter(Boolean).forEach(function(d){
@@ -1411,8 +1386,6 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
       t.appendChild(rl);
       t.appendChild(el("span","rd", r.desc));
 
-      var meta = el("div","rmeta2");
-      meta.appendChild(el("span","rcnt","요금제 " + r.count + "종"));
       var p = el("div","rp");
       if(noPrice || failed){
         p.dataset.empty = "1";
@@ -1422,11 +1395,10 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
         p.appendChild(el("b", null, won(r.price)));
         p.appendChild(el("u", null, "원~"));
       }
-      meta.appendChild(p);
-      b.appendChild(t); b.appendChild(meta);
+      b.appendChild(t); b.appendChild(p);
       b.appendChild(svg("M9 5l7 7-7 7", "rc"));
       b.setAttribute("aria-label",
-        "데이터 " + r.label + ", 요금제 " + r.count + "종" +
+        "데이터 " + r.label +
         ((noPrice||failed) ? "" : ", 월 " + won(r.price) + "원부터") +
         (failed ? ", 현재 이용할 수 없음" : ", 요금제 목록으로 이동"));
       box.appendChild(b);
