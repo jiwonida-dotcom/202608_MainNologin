@@ -169,13 +169,20 @@ svg{display:block}
 /* ══════════════ M-01 Header ══════════════ */
 #m01{position:sticky; top:0; z-index:30}
 .appbar{border-bottom:none}
-.appbar{height:56px; background:var(--surface); display:flex; align-items:center;
+/* [R2-M01] 좌 로그인 · 중앙 BI · 우 검색/전체메뉴.
+   BI는 절대 배치로 화면 정중앙에 고정한다 — 좌우 덩어리(85px / 92px)가 7px 달라
+   auto 마진으로는 중심이 3.5px 어긋난다. BI는 비대화형이라 흐름에서 빼도 조작에 영향이 없다.
+   DOM 순서는 화면 순서(좌→우)와 일치시켜 탭 이동 순서를 보존한다. */
+.appbar{position:relative; height:56px; background:var(--surface); display:flex; align-items:center;
   gap:var(--s-1); padding:0 var(--pad); transition:box-shadow var(--dur) var(--ease)}
 #m01.scrolled .appbar{box-shadow:0 1px 0 var(--border), 0 4px 14px -10px rgba(22,25,29,.35)}
 /* [R2] BI — 원본 로고 이미지를 변형 없이 그대로 사용한다(2026-08-27 지시).
    형태·색·비율을 CSS로 재구성하지 않는다. 원본 174×40을 20px 높이로만 축소 표시. */
-.bi{display:inline-flex; align-items:center; margin-right:auto; padding:6px 2px; line-height:1}
+.bi{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  display:inline-flex; align-items:center; padding:6px 2px; line-height:1; pointer-events:none}
 .bi-img{display:block; height:20px; width:auto}
+/* 로그인이 좌측 선두 · 나머지 컨트롤은 우측으로 밀린다 */
+.appbar .loginbtn{margin-right:auto}
 /* [R2] 화면 내부 포커스 링은 브랜드로 — 문서 크롬(pink)과 분리 */
 .screen :focus-visible{outline:2px solid var(--brand-500); outline-offset:2px}
 .iconbtn{width:44px; height:44px; display:grid; place-items:center; border-radius:var(--r-full);
@@ -849,12 +856,12 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
         <div class="mod" id="m01">
           <span class="anno">M-01 · P0</span>
           <header class="appbar">
+            <button type="button" class="loginbtn" data-go="/login/app" data-name="로그인">
+              <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10.5 16.5L15 12l-4.5-4.5"/><path d="M15 12H3.5"/></svg>로그인
+            </button>
             <span class="bi" role="img" aria-label="U+유모바일"><img class="bi-img" src="data:image/png;base64,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" alt=""></span>
             <button type="button" class="iconbtn" id="btnSearch" aria-label="검색">
               <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5L16.2 16.2"/></svg>
-            </button>
-            <button type="button" class="loginbtn" data-go="/login/app" data-name="로그인">
-              <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10.5 16.5L15 12l-4.5-4.5"/><path d="M15 12H3.5"/></svg>로그인
             </button>
             <button type="button" class="iconbtn" id="btnGnb" aria-label="전체메뉴" aria-expanded="false">
               <svg viewBox="0 0 24 24"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></svg>
