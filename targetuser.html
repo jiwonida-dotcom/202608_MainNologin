@@ -29,7 +29,7 @@
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth; scroll-padding-top:24px}
+html{scroll-behavior:smooth; scroll-padding-top:calc(var(--pjnav-h,0px) + 24px)}
 body{margin:0; background:var(--paper); color:var(--ink);
   font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
   font-size:15px; line-height:1.7; word-break:keep-all; -webkit-font-smoothing:antialiased}
@@ -179,10 +179,13 @@ td.src,.src{color:var(--mut)}
 }
 
 /* ═══ PHASE 9.5 · 프로젝트 공통 내비게이션 (자체 완결 — 문서 토큰에 의존하지 않는다) ═══ */
-.pjnav{min-width:0; background:#14121F;color:#E8E6F2;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+/* 상단 고정 — 문서를 내려도 어디에 있는지, 어디로 갈 수 있는지가 계속 보인다.
+   문서 자체의 절 내비게이션은 이 높이(--pjnav-h) 아래에 붙는다. */
+.pjnav{min-width:0; position:sticky; top:0; z-index:100;
+  background:#14121F;color:#E8E6F2;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 .pjnav a{color:inherit;text-decoration:none}
 .pjnav .in{max-width:1040px;margin:0 auto;padding:0 20px}
-.pjnav .id{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:13px 0 9px}
+.pjnav .id{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;padding:9px 0 5px}
 .pjnav .id b{font-size:13px;font-weight:700;letter-spacing:-.012em}
 .pjnav .id span{font-size:11px;color:#9A94BE;letter-spacing:.02em}
 .pjnav ul{display:flex;gap:2px;margin:0;padding:0 0 2px;list-style:none;overflow-x:auto;scrollbar-width:none}
@@ -210,28 +213,37 @@ td.src,.src{color:var(--mut)}
 .pjfoot li a em{font-style:normal;font-size:9.5px;font-weight:700;color:#8A85A3;
   font-family:ui-monospace,monospace;display:block;margin-bottom:3px;letter-spacing:.08em}
 .pjfoot .note{margin:14px 0 0;font-size:11.5px;color:#6E6A85;line-height:1.6}
-@media (max-width:640px){ .pjnav .in,.pjfoot .in{padding-left:14px;padding-right:14px} }
+@media (max-width:640px){ .pjnav .in,.pjfoot .in{padding-left:14px;padding-right:14px}
+  .pjnav .id span{display:none} }
+@media print{ .pjnav{position:static} }
 @media print{ .pjnav,.pjfoot{display:none} }
 </style>
 
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
 <div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
 <ul>
-<li><a href="./stakeholder.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./index.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
 <li><a href="./targetuser.html" aria-current="page"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
 <li><a href="./timedeal.html"><b>03</b>TIME DEAL<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
 <li><a href="./alignment.html"><b>04</b>EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
 <li><a href="./audit.html"><b>05</b>AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html"><b>06</b>PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
+<li><a href="./prototype.html"><b>06</b>PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
 </ul>
 </div></nav>
+<script>/* 고정 내비 높이를 문서에 알려준다 — 문서 자체의 절 내비가 이 아래에 붙도록 */
+(function(){var n=document.currentScript.previousElementSibling;
+function u(){var h=n.getBoundingClientRect().height||0;
+  document.documentElement.style.setProperty('--pjnav-h',h+'px');}
+u();addEventListener('resize',u);
+if(window.ResizeObserver){new ResizeObserver(u).observe(n);}
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</script>
 <main>
 
 <header class="dochd">
   <span class="eyebrow">PHASE 9.5 · Target Revalidation Report</span>
   <h1>"신규 고객 중심"이라는 전제는 유지할 수 있는가</h1>
   <p class="sub">기존 기획은 이 페이지를 신규 고객용으로 본다. 그 전제가 데이터로 버티는지 따로 확인했다. 디자인은 손대지 않는다. 타깃을 바꿀지도 여기서 정하지 않는다.</p>
-  <p class="small" style="margin-top:10px">결정 항목은 <a href="./stakeholder.html">FINAL REPORT</a>, 요청 대조는 <a href="./alignment.html#s09">EVIDENCE</a>, 수치 검증은 <a href="./audit.html#a06">AUDIT</a>에 있다.</p>
+  <p class="small" style="margin-top:10px">결정 항목은 <a href="./index.html">FINAL REPORT</a>, 요청 대조는 <a href="./alignment.html#s09">EVIDENCE</a>, 수치 검증은 <a href="./audit.html#a06">AUDIT</a>에 있다.</p>
   <div class="docmeta">
     <span>GA4 2026-07-28~08-24 · FIRST 126,749 / REVISIT 31,861 sessions</span>
     <span>Clarity 2026-07-29~08-25</span>
@@ -499,7 +511,7 @@ td.src,.src{color:var(--mut)}
 
 <dt>가장 타당한<br>타깃 정의 <span class="g g-p">PROPOSAL</span></dt>
 <dd style="font-size:15px;line-height:1.7"><b>U+유모바일을 이미 알고 직접 찾아온 사람</b>이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채</b> 방문하여 <b>자기 목적을 가장 빠른 길로 처리하려는 것</b>을 중심으로 설계한다.
-<span class="small" style="display:block;margin-top:8px"><b>이 문장은 제안이었고, 2026-08-27에 <span class="mono">D-12</span>로 채택되었다.</b> 확정된 결정으로서의 기록은 <a href="./stakeholder.html#c14">FINAL REPORT 03절</a>에 있다 — 이 문서는 <b>그 판단이 어떻게 만들어졌는지를 남기는 검증 기록</b>이다.</span></dd>
+<span class="small" style="display:block;margin-top:8px"><b>이 문장은 제안이었고, 2026-08-27에 <span class="mono">D-12</span>로 채택되었다.</b> 확정된 결정으로서의 기록은 <a href="./index.html#c14">FINAL REPORT 03절</a>에 있다 — 이 문서는 <b>그 판단이 어떻게 만들어졌는지를 남기는 검증 기록</b>이다.</span></dd>
 
 <dt>채택하면<br>달라지는 것</dt>
 <dd>· <b>개선안의 방향은 그대로다.</b> 로그인 승격·요금제 상단화·이벤트 유지는 이 정의와 더 잘 맞는다<br>
@@ -520,7 +532,7 @@ td.src,.src{color:var(--mut)}
 
 <div class="note warn"><b>이 문서가 요청하는 것은 하나다.</b> 타깃 정의를 <b>D-12</b>로 의사결정 항목에 올리고, 요청자에게 두 가지를 확인받는 것 — ㉠ "신규 고객 중심"이 요청자가 실제로 의도한 전제가 맞는지, ㉡ 로그인 영역의 목적이 신규 전환인지 기가입자 편의인지(OPEN-05).</div>
 
-<p style="margin:22px 0 0"><a href="./stakeholder.html#c11" style="display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:9px 15px;border:1px solid var(--acc-line);border-radius:999px;background:var(--card);font-size:12.5px;font-weight:600;color:var(--acc);text-decoration:none">← FINAL REPORT 의사결정 항목으로</a></p>
+<p style="margin:22px 0 0"><a href="./index.html#c11" style="display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:9px 15px;border:1px solid var(--acc-line);border-radius:999px;background:var(--card);font-size:12.5px;font-weight:600;color:var(--acc);text-decoration:none">← FINAL REPORT 의사결정 항목으로</a></p>
 </section>
 
 <section id="r09">
@@ -549,7 +561,7 @@ td.src,.src{color:var(--mut)}
 <footer class="pjfoot"><div class="in">
 <span class="lb">다음으로 볼 문서</span>
 <ul>
-<li><a href="./stakeholder.html"><em>01 FINAL REPORT</em>결정해야 할 항목으로 돌아가기 →<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./index.html"><em>01 FINAL REPORT</em>결정해야 할 항목으로 돌아가기 →<i>무엇을 결정해야 하는가</i></a></li>
 <li><a href="./timedeal.html"><em>03 TIME DEAL</em>타임딜 요청 분석 보기 →<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
 <li><a href="./alignment.html"><em>04 EVIDENCE</em>수치와 근거 확인하기 →<i>왜 그렇게 판단했는가</i></a></li>
 </ul>

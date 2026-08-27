@@ -29,7 +29,7 @@
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth; scroll-padding-top:24px}
+html{scroll-behavior:smooth; scroll-padding-top:calc(var(--pjnav-h,0px) + 24px)}
 body{margin:0; background:var(--paper); color:var(--ink);
   font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
   font-size:15px; line-height:1.7; word-break:keep-all; -webkit-font-smoothing:antialiased}
@@ -179,10 +179,13 @@ td.src,.src{color:var(--mut)}
 }
 
 /* ═══ PHASE 9.5 · 프로젝트 공통 내비게이션 (자체 완결 — 문서 토큰에 의존하지 않는다) ═══ */
-.pjnav{min-width:0; background:#14121F;color:#E8E6F2;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+/* 상단 고정 — 문서를 내려도 어디에 있는지, 어디로 갈 수 있는지가 계속 보인다.
+   문서 자체의 절 내비게이션은 이 높이(--pjnav-h) 아래에 붙는다. */
+.pjnav{min-width:0; position:sticky; top:0; z-index:100;
+  background:#14121F;color:#E8E6F2;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 .pjnav a{color:inherit;text-decoration:none}
 .pjnav .in{max-width:1040px;margin:0 auto;padding:0 20px}
-.pjnav .id{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:13px 0 9px}
+.pjnav .id{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;padding:9px 0 5px}
 .pjnav .id b{font-size:13px;font-weight:700;letter-spacing:-.012em}
 .pjnav .id span{font-size:11px;color:#9A94BE;letter-spacing:.02em}
 .pjnav ul{display:flex;gap:2px;margin:0;padding:0 0 2px;list-style:none;overflow-x:auto;scrollbar-width:none}
@@ -210,27 +213,36 @@ td.src,.src{color:var(--mut)}
 .pjfoot li a em{font-style:normal;font-size:9.5px;font-weight:700;color:#8A85A3;
   font-family:ui-monospace,monospace;display:block;margin-bottom:3px;letter-spacing:.08em}
 .pjfoot .note{margin:14px 0 0;font-size:11.5px;color:#6E6A85;line-height:1.6}
-@media (max-width:640px){ .pjnav .in,.pjfoot .in{padding-left:14px;padding-right:14px} }
+@media (max-width:640px){ .pjnav .in,.pjfoot .in{padding-left:14px;padding-right:14px}
+  .pjnav .id span{display:none} }
+@media print{ .pjnav{position:static} }
 @media print{ .pjnav,.pjfoot{display:none} }
 </style>
 
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
 <div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
 <ul>
-<li><a href="./stakeholder.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./index.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
 <li><a href="./targetuser.html"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
 <li><a href="./timedeal.html"><b>03</b>TIME DEAL<i>타임딜 요청을 어떻게 해석할 것인가</i></a></li>
 <li><a href="./alignment.html"><b>04</b>EVIDENCE<i>왜 그렇게 판단했는가</i></a></li>
 <li><a href="./audit.html" aria-current="page"><b>05</b>AUDIT<i>그 근거가 검증되었는가</i></a></li>
-<li><a href="./index.html"><b>06</b>PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
+<li><a href="./prototype.html"><b>06</b>PROTOTYPE<i>화면은 어떻게 달라지는가</i></a></li>
 </ul>
 </div></nav>
+<script>/* 고정 내비 높이를 문서에 알려준다 — 문서 자체의 절 내비가 이 아래에 붙도록 */
+(function(){var n=document.currentScript.previousElementSibling;
+function u(){var h=n.getBoundingClientRect().height||0;
+  document.documentElement.style.setProperty('--pjnav-h',h+'px');}
+u();addEventListener('resize',u);
+if(window.ResizeObserver){new ResizeObserver(u).observe(n);}
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</script>
 <main>
 <header class="dochd">
   <span class="eyebrow">PHASE 8.5 · Decision Integrity Review</span>
   <h1>Alignment Document 결정 무결성 감사</h1>
   <p class="sub">alignment.html의 모든 핵심 주장에 대해 "근거가 끊기는 지점이 없는가"를 검사한 감사 기록이다. 새로운 UX·IA·데이터 분석을 추가하지 않았다. 발견된 결함과 수정 내역, 최종 판정을 담는다.</p>
-<p class="small" style="margin-top:10px">감사 대상 원본은 <a href="./alignment.html">EVIDENCE</a>, 결정 항목은 <a href="./stakeholder.html">FINAL REPORT</a>에 있다.</p>
+<p class="small" style="margin-top:10px">감사 대상 원본은 <a href="./alignment.html">EVIDENCE</a>, 결정 항목은 <a href="./index.html">FINAL REPORT</a>에 있다.</p>
   <div class="docmeta">
     <span>대상 alignment.html + PHASE 1~7 산출물</span>
     <span>감사 2026-08-27</span>
@@ -433,7 +445,7 @@ td.src,.src{color:var(--mut)}
 </table></div>
 
 <h3>D. Final Recommendation</h3>
-<p style="margin:18px 0 0"><a href="./stakeholder.html" style="display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:9px 15px;border:1px solid var(--acc-line);border-radius:999px;background:var(--card);font-size:12.5px;font-weight:600;color:var(--acc);text-decoration:none">← FINAL REPORT 로 돌아가기</a></p>
+<p style="margin:18px 0 0"><a href="./index.html" style="display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:9px 15px;border:1px solid var(--acc-line);border-radius:999px;background:var(--card);font-size:12.5px;font-weight:600;color:var(--acc);text-decoration:none">← FINAL REPORT 로 돌아가기</a></p>
 <div class="claim"><b>READY FOR STAKEHOLDER ALIGNMENT</b> — 수정 반영 기준. 단 이는 문서 품질 판정이며, 회의 전에 확보되면 논의가 빨라지는 자료 2건이 남아 있다: <b>REQ-B의 8/25 삭제 사유</b>(요청자)와 <b>팝업 운영 규칙</b>(DV-03, 운영 부서). 둘 다 문서 결함이 아니라 미결 확인 사항으로 15절에 등재되어 있다.</div>
 </section>
 </main>
@@ -441,7 +453,7 @@ td.src,.src{color:var(--mut)}
 <span class="lb">다음으로 볼 문서</span>
 <ul>
 <li><a href="./alignment.html"><em>04 EVIDENCE</em>수치와 근거 확인하기 →<i>왜 그렇게 판단했는가</i></a></li>
-<li><a href="./stakeholder.html"><em>01 FINAL REPORT</em>결정해야 할 항목으로 돌아가기 →<i>무엇을 결정해야 하는가</i></a></li>
+<li><a href="./index.html"><em>01 FINAL REPORT</em>결정해야 할 항목으로 돌아가기 →<i>무엇을 결정해야 하는가</i></a></li>
 </ul>
 <p class="note">이 여섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. <b>결론은 FINAL REPORT, 근거는 EVIDENCE, 검증은 AUDIT</b>에 있다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
 </div></footer>

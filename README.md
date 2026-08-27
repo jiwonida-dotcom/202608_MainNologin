@@ -5,9 +5,21 @@ Clarity·GA4 행동 데이터로 재분석하고 설계한 개편안이다.
 
 ## 실행
 
-- 프로토타입: [index.html](./index.html) — GitHub Pages 배포 시 저장소 루트가 진입점이다.
+저장소 루트(`index.html`)가 **FINAL REPORT**다. 처음 여는 사람이 화면보다 **결정 항목**을 먼저 보도록 진입점을 맞췄다.
+
+| 순서 | 파일 | 답하는 질문 |
+|---|---|---|
+| 01 | [index.html](./index.html) | 무엇을 결정해야 하는가 |
+| 02 | [targetuser.html](./targetuser.html) | 이 화면의 실제 이용자는 누구인가 |
+| 03 | [timedeal.html](./timedeal.html) | 타임딜 요청을 어떻게 해석할 것인가 |
+| 04 | [alignment.html](./alignment.html) | 왜 그렇게 판단했는가 |
+| 05 | [audit.html](./audit.html) | 그 근거가 검증되었는가 |
+| 06 | [prototype.html](./prototype.html) | 화면은 어떻게 달라지는가 |
+
+- `stakeholder.html`은 이전 주소이며 `index.html`로 자동 이동한다.
+- 상단 메뉴는 리포트 5문서에서 **고정(sticky)** 이다. 프로토타입에서는 고정하지 않는다 — 기기 목업 위에 바가 떠 있으면 화면 판단을 방해한다.
 - 로컬 확인: 파일을 브라우저로 바로 열면 된다(외부 의존은 웹폰트 CDN뿐).
-- 모바일 폭(≤640px)에서는 디바이스 프레임 없이 전체화면으로 렌더된다.
+- 프로토타입은 모바일 폭(≤640px)에서 디바이스 프레임 없이 전체화면으로 렌더된다.
 - 우하단 톱니 버튼 = 검증용 Drawer. 기본 실행 화면은 실제 서비스 화면만 보여준다.
 
 ## 서체
