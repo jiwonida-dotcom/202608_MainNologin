@@ -191,6 +191,13 @@ svg{display:block}
   font-size:var(--fs-13); font-weight:600; color:var(--text); background:var(--surface);
   transition:border-color var(--dur) var(--ease), background var(--dur) var(--ease)}
 .loginbtn:hover{border-color:var(--brand-200); background:var(--brand-50)}
+/* OPEN-05 = 병행 — 로그인을 최상위로 두되 가입 동선을 부가 표기로 함께 노출.
+   버튼 비중·구조는 바꾸지 않는다 (D-12 · 2026-08-27) */
+.joinlink{height:44px; display:inline-flex; align-items:center; padding:0 8px;
+  font-size:var(--fs-12); font-weight:600; color:var(--text-3); background:none;
+  transition:color var(--dur) var(--ease)}
+.joinlink:hover{color:var(--brand-600)}
+.screen[data-bp="s"] .joinlink{display:none}
 .loginbtn:active{background:var(--brand-100)}
 .loginbtn svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8;
   stroke-linecap:round; stroke-linejoin:round}
@@ -749,6 +756,7 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
             <button type="button" class="loginbtn" data-go="/login/app" data-name="로그인">
               <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10.5 16.5L15 12l-4.5-4.5"/><path d="M15 12H3.5"/></svg>로그인
             </button>
+            <button type="button" class="joinlink" data-go="/util/join/joinIntro" data-name="회원가입">회원가입</button>
             <button type="button" class="iconbtn" id="btnGnb" aria-label="전체메뉴" aria-expanded="false">
               <svg viewBox="0 0 24 24"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></svg>
             </button>
@@ -1288,6 +1296,7 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
       <tr><td class="mono">CH-25</td><td><strong>브랜드 컬러 계열</strong></td><td class="src">임시 마젠타</td><td><strong>레퍼런스 바이올렛</strong>(#8C63F4 / #A99BFF)으로 전면 교체. 요청자 확정 사항이며 토큰 블록만 교체했다</td><td class="c"><span class="badge b-warn">교체</span></td></tr>
       <tr><td class="mono">CH-26</td><td><strong>3D 아이콘 시스템</strong></td><td class="src">선 아이콘</td><td>M-02·M-05·M-06 진입점을 <strong>3D 칩</strong>으로. P3(M-07)와 텍스트 링크(M-08)는 <strong>플랫 유지</strong> — 3D를 우선순위 신호로 쓴다(UI-P4)</td><td class="c"><span class="badge b-new">추가</span></td></tr>
       <tr><td class="mono">CH-34</td><td><strong>QuickMenu 재디자인</strong></td><td class="src">세로 아이콘 그리드(65px)</td><td>요청자 피드백 반영 — <strong>가로 필 3개</strong>(3D 칩 26px + 인라인 라벨, 영역 70px). 아이콘 런처가 아니라 숏컷 바로 읽힌다. 3종 구성·순서·목적지는 불변</td><td class="c"><span class="badge b-warn">변경</span></td></tr>
+      <tr><td class="mono">CH-61</td><td><strong>M-01 가입 동선 병기</strong></td><td class="src">로그인 버튼 단독</td><td><strong>D-12 · OPEN-05 = "병행" 확정에 따른 최소 수정.</strong> 로그인은 최상위 진입점으로 <strong>현행 유지</strong>하고, 그 옆에 회원가입 동선을 <strong>부가 표기</strong>로 추가했다(텍스트 링크 · 44px 타깃 · 360px에서는 숨김). 버튼 비중·구조·순서는 바꾸지 않았다. 목적지 <span class="mono">/util/join/joinIntro</span>는 GNB에 이미 존재하는 경로다</td><td class="c"><span class="badge b-new">추가</span></td></tr>
       <tr><td class="mono">CH-60</td><td><strong>요소 정리 · 어쿠스틱 리스트</strong></td><td class="src">퀵메뉴 서브카피 · 히어로 서브카피+SIM 그래픽 · 라디오 · "요금제 N종"</td><td>요청자 지시로 4종을 제거하고 비워진 만큼 영역을 재조정했다. <strong>① M-02</strong> 퀵메뉴 서브카피 3건 삭제 — 목적지 이름만 남는다. <strong>② M-03 히어로</strong> 서브카피와 CSS 3D SIM 그래픽 삭제, 상하 여백을 조여 <strong>배너 상단이 폴드 쪽으로 회수됐다</strong>(CH-58에서 기록한 스필오버 소멸의 부분 복구). <strong>③ 구간 행</strong> 라디오 컴포넌트 삭제 — 선택 상태는 배경·링·색으로만 표시한다(터치 타깃은 행 전체라 손실 없음). <strong>④ "요금제 N종" 재제거</strong> — CH-14에서 철회했다가 CH-58에서 요청자 지시로 복원했던 항목을 다시 뺀다. CH-14의 원래 판단(상품 수는 구간 선택의 판단 축이 아니다)으로 돌아가는 것이며 <strong>구간 보조 설명(dan2 라벨 승계, CH-44)은 유지</strong>한다. <strong>⑤ 어쿠스틱 톤</strong> — 셰브런을 2.2→1.6 굵기·옅은 회색으로 낮춰 호버에서만 진해지게 하고, 행 구분선을 전폭에서 <strong>콘텐츠 시작선 인셋</strong>으로 바꿨다. 격자가 아니라 리듬으로 읽힌다. 좌우 여백은 라디오가 빠진 만큼 12→16px로 통일</td><td class="c"><span class="badge b-warn">정리</span></td></tr>
       <tr><td class="mono">CH-59</td><td><strong>A타입 컬러·아이콘 전환</strong></td><td class="src">운영 실측 퍼플 #662D91 · 3D 그라디언트 아이콘</td><td><span class="badge b-warn">UNVERIFIED</span> 요청자 지시로 첨부 시안(A)의 <strong>인디고 #6B55E6</strong>과 <strong>플랫 단색 아이콘</strong>으로 전환. <strong>① 컬러</strong> — hue 307°→284°, 스케일 8단 재생성. 흰 글씨 대비가 8.94:1 → 5.16:1로 내려가 채운 버튼은 600(7.00:1)으로 올렸다. <strong>② 아이콘</strong> — 그라디언트·인셋·글로 제거, solid/tint/neutral 3종. <strong>③ 구간 타일</strong> — 5색(보라·초록·파랑·빨강·보라)을 단일 인디고 틴트로 통일. 단일 강조색 원칙에 맞고 5구간 동일 강도(DD-03)와도 합치한다. <strong>남는 문제</strong>: BI(<span class="mono">#4A1972</span>/<span class="mono">#CD0769</span>)는 hue 305°/1°로 그대로라 본문 인디고와 계열이 갈린다 — 로고만 색이 튀는 것은 <strong>미해소</strong>. <strong>되돌리기</strong>: 토큰 블록 8줄만 실측값으로 교체하면 원복된다</td><td class="c"><span class="badge b-warn">전환</span></td></tr>
       <tr><td class="mono">CH-58</td><td><strong>GPT 시안 반영</strong></td><td class="src">에디토리얼 패스(웜 그라운드·세리프·탈카드)</td><td>요청자 제공 시안 기준으로 재전환 — 라벤더 그라운드(#F5F3FA) + 흰 카드, 퀵메뉴 3열 카드(아이콘+타이틀+서브카피), M-03 <strong>히어로 헤드라인 + CSS 3D SIM 그래픽 + 라디오·용도 아이콘 리스트 카드</strong>, 배너 카드형+칩+아웃라인 CTA 복귀, M-05 라벤더 타일, <strong>M-07·M-08 아코디언화</strong>, 푸터 시안 구성. <strong>조정 3건</strong>: ① "요금제 N종" 복원은 요청자 지시로 CH-14 철회를 번복하되 수치는 시안 임의값이 아닌 <strong>관측값(28/20/30/22/23)</strong> ② 시안의 첫 행 선택 표시는 <strong>선택 상태 예시로 해석</strong> — 기본값은 전 행 미선택(DD-07 유지) ③ 유튜브 로고는 타사 상표라 일반 재생 아이콘으로 대체. <strong>부작용 기록</strong>: 히어로 추가로 배너 상단 829px — AtF 배너 스필오버 소멸(M-03 자체는 폴드 안 유지), M-08 고객지원(P2)이 접힘 상태로 전환됨</td><td class="c"><span class="badge b-warn">전환</span></td></tr>

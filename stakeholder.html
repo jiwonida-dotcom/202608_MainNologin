@@ -334,6 +334,9 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
   <span class="eyebrow">U+유모바일 · Stakeholder Alignment</span>
   <h1>비로그인 메인 개편안<br><em>Data-driven UX Proposal</em></h1>
   <p class="sub">기존 요청사항을 사용자 행동 데이터와 대조하여 개편 방향과 의사결정 항목을 제안합니다. 이 문서는 개발 명세가 아니라, 개발 착수 전에 방향을 합의하기 위한 자료입니다.</p>
+  <div class="claim" style="margin-top:20px;max-width:700px"><b>이 페이지의 대상</b> <span class="b b-nv">D-12 확정 · 2026-08-27</span><br>
+  U+유모바일을 <b>이미 알고 직접 찾아온 사람</b>이 <b>로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채</b> 방문하여 <b>자기 목적을 가장 빠른 길로 처리하려는 것</b>을 중심으로 설계한다.
+  <span class="small" style="display:block;margin-top:6px">나누는 축은 방문 이력이 아니라 <b>목적</b>이다. 두 화면 공통 1위 행동이 로그인(43.9% / 21.6% of sessions)이라는 관측이 이 재정의의 출발점이다. <a href="./targetuser.html#r08">검증 과정</a></span></div>
   <div class="chain" aria-label="문서 논리 흐름">
     <b>CURRENT REQUEST</b><i>→</i><b>DATA ANALYSIS</b><i>→</i><b>PROBLEM</b><i>→</i><b>PROPOSAL</b><i>→</i><b class="hot">DECISION</b>
   </div>
@@ -373,6 +376,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
   <div class="card"><b>일부 요청은 데이터 근거가 부족</b><p style="margin:8px 0 0;font-size:13.5px;color:var(--ink2)">유심 구매 링크·부가 혜택 등은 관련 이동 경로가 상위에 나타나지 않아, 메인의 자리를 배정할 근거를 확인하지 못했습니다.</p></div>
   <div class="card"><b>일부 요청은 행동 데이터와 방향이 상충</b><p style="margin:8px 0 0;font-size:13.5px;color:var(--ink2)">"타임딜을 요금제보다 우선"(REQ-04)·"휴대폰 2순위 대영역"(REQ-12~13)은 관측된 사용자 행동과 방향이 다릅니다 — 본문에 DATA CONFLICT로 표시했습니다.</p></div>
   <div class="card"><b>일부 항목은 현재 검증이 불가능</b><p style="margin:8px 0 0;font-size:13.5px;color:var(--ink2)">타임딜·유픽·제휴혜택은 미운영/신규 서비스라 판단할 데이터 자체가 없습니다. 이런 항목은 판단하지 않고 NEEDS VALIDATION으로 분리했습니다.</p></div>
+  <div class="card"><b>대상 사용자 정의가 요청에 없었다</b><p style="margin:8px 0 0;font-size:13.5px;color:var(--ink2)">요청 문서에 페르소나도 세그먼트도 없습니다. "신규 고객 중심"이라는 전제는 시안 구성에서 되짚어 만든 것이고, 이 화면은 로그인 전이라 계정 보유를 확인할 수단이 없습니다. 그래서 대상을 <b>목적 중심으로 재정의</b>해 <span class="mono">D-12</span>로 확정했습니다. <a href="./targetuser.html">타깃 재검증</a></p></div>
 </div>
 <p style="margin-top:20px"><b>따라서 요청사항을 그대로 구현하기 전에, 데이터로 확인된 것과 확인되지 않은 것을 구분하고 우선순위와 역할을 재정의할 필요가 있습니다.</b> 이 문서가 그 재정의안이며, 최종 확정은 11절의 의사결정으로 이뤄집니다.</p>
 </div></section>
@@ -385,7 +389,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <div class="grid g3">
   <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
     <div class="num">43.9<u>% of FIRST sessions</u></div><a class="mini" href="./audit.html#a06">검증 · 근거 강도</a>
-    <p class="obs">메인에서의 다음 이동 1위는 로그인 (REVISIT 21.6%). Clarity 클릭 집계 53,278 clicks와 교차 일치.</p>
+    <p class="obs">메인에서의 다음 이동 1위는 로그인 (REVISIT 21.6%). Clarity 클릭 집계 53,278 clicks와 교차 일치.<br><span class="small"><b>주의</b> — 이 화면은 로그인 전이라 <b>계정 보유 여부는 확인되지 않습니다</b>. 43.9%를 기존 고객 비율로 바꿔 읽지 않습니다.</span></p>
     <p class="imp">→ <b>로그인은 헤더의 보조 기능이 아니라 최상위 진입점으로 검토할 가치가 있음</b></p></div>
   <div class="card stat"><div class="src"><span class="b b-ga">GA4</span></div>
     <div class="num">0.766<u>popup closes/session</u></div><a class="mini" href="./audit.html#a04">검증 · 수치 감사</a>
@@ -425,9 +429,10 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <dt>INTERPRETATION</dt><dd>낮은 클릭은 무관심이 아니라 미노출로 해석할 여지</dd>
 <dt>PROPOSAL</dt><dd><b>요금제 탐색을 첫 화면 직후로</b> → D-02</dd></dl></div>
 <div class="card prob"><div class="ph"><span class="pid">P-04</span><b>최대 수요(로그인)가 부가 요소로 취급된다</b></div>
-<dl><dt>FACT</dt><dd>다음 이동 1위 로그인 43.9% / 21.6% of sessions(GA4) · 전체메뉴를 연 뒤 로그인 이동 78~88% of recorded sample(70/90 · 53/60)</dd>
-<dt>INTERPRETATION</dt><dd>로그인 수요가 배너·전체메뉴로 우회되고 있다</dd>
-<dt>PROPOSAL</dt><dd><b>헤더 직접 노출</b> — 최상위 진입점으로</dd></dl></div>
+<dl><dt>FACT</dt><dd>다음 이동 1위 로그인 43.9% / 21.6% of sessions(GA4) · 전체메뉴를 연 뒤 로그인 이동 78~88% of recorded sample(70/90 · 53/60)<br>
+로그인 대 상품경로(요금제+가입) 비율이 <b>FIRST 2.08배 → REVISIT 0.73배로 역전</b>된다 — 상품 행동이 우세한 쪽은 첫 방문 화면이 아니라 재방문 화면이다</dd>
+<dt>INTERPRETATION</dt><dd>로그인 수요가 배너·전체메뉴로 우회되고 있다. 설계 전제("신규에게 상품을")와 관측의 방향이 다르다 — 이 불일치가 <span class="mono">D-12</span> 타깃 재정의로 이어졌다</dd>
+<dt>PROPOSAL</dt><dd><b>헤더 직접 노출</b> — 최상위 진입점으로. 목적이 갈린 방문자가 각자의 목적을 최단 경로로 처리하게 한다 <a href="./targetuser.html#r08">타깃 정의</a></dd></dl></div>
 <div class="card prob"><div class="ph"><span class="pid">P-02</span><b>요금제 탐색의 절반 이상이 되돌아온다</b></div>
 <dl><dt>FACT</dt><dd>Quick back 54.8% / 39.3% of sessions(Clarity) · Dead 2.4%·Rage 0.1% · 녹화 표본에서 즉시복귀는 요금제 경로에 집중</dd>
 <dt>INTERPRETATION</dt><dd>요소 고장이 아니라 클릭 결과가 기대와 다른 문제</dd>
@@ -501,7 +506,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <tr data-a="CHANGE"><td class="id">REQ-01</td><td>주메뉴 7개 신설</td><td>탐색 수요 실재(0.101/0.106 events/session) — 7개 구성 근거 없음, 시안에서 메뉴 잘림</td><td><span class="b b-chg">CHANGE</span><br><span class="small">방향 조정</span></td><td>실사용 순 퀵메뉴 3종</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="KEEP"><td class="id">REQ-02</td><td>이벤트 배너 + 전체보기</td><td>이벤트 상위 이동 목적(8.4/15.8% of sessions) · 직행 경로 실사용</td><td><span class="b b-keep">KEEP</span><br><span class="small">방향 일치</span></td><td>유지 — 단 3순위가 아니라 P1</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="KEEP"><td class="id">REQ-03</td><td>로그인 영역 신설</td><td>가장 강하게 확인됨 — 이동 1위, GA4·Clarity 교차 일치</td><td><span class="b b-keep">KEEP</span><br><span class="small">방향 일치</span></td><td>부가 영역이 아니라 헤더 최상위 진입점으로</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
-<tr data-a="HOLD"><td class="id">REQ-04</td><td>타임딜 운영 시 <b>요금제보다 우선</b> 노출</td><td><b>정의 재분석(8.6)</b> — "우선"의 대상이 원문 버전 간 상이(영역/상품) · "우선=첫 화면" 표현은 원문에 없음 · 전용 영역 데이터는 없으나 <b>동명 콘텐츠가 현재 팝업으로 운영</b>됨</td><td><span class="b b-hold">HOLD</span><br><span class="small">정의 미확정 — 상충 단정 불가</span></td><td>운영 시에만 켜지는 단일 슬롯으로 반영 · 정의와 위치는 D-02</td><td><a class="mini" href="./timedeal.html#t01">타임딜 원문</a></td></tr>
+<tr data-a="HOLD"><td class="id">REQ-04</td><td>타임딜 운영 시 <b>요금제보다 우선</b> 노출</td><td><b>정의 재분석(8.6)</b> — "우선"의 대상이 원문 버전 간 상이(영역/상품) · "우선=첫 화면" 표현은 원문에 없음 · 전용 영역 데이터는 없으나 <b>동명 콘텐츠가 현재 팝업으로 운영</b>됨</td><td><span class="b b-hold">HOLD</span><br><span class="small">타깃은 D-12로 확정 · <b>"우선"의 대상 정의는 여전히 미확정</b></span></td><td>운영 시에만 켜지는 단일 슬롯으로 반영 · 정의와 위치는 D-02<br><span class="small">타깃이 "목적 중심"으로 확정돼 <b>"신규에게 프로모션 집중"이라는 전제 근거는 사라졌다</b></span></td><td><a class="mini" href="./timedeal.html#t01">타임딜 원문</a></td></tr>
 <tr data-a="NV"><td class="id">REQ-05</td><td>타임딜 상세항목</td><td>미운영 — 판단 데이터 없음</td><td><span class="b b-nv">NEEDS VALIDATION</span><br><span class="small">판단 불가</span></td><td>오픈 시 측정 설계 동반</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="NV"><td class="id">REQ-06</td><td>카테고리 프로모션 / 듀얼 등록</td><td>현행에 카테고리 구분이 없어 비교군 부재</td><td><span class="b b-nv">NEEDS VALIDATION</span><br><span class="small">판단 불가</span></td><td>도입하되 사후 측정 조건</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="CHANGE"><td class="id">REQ-07</td><td>필터 — 통신망·데이터·소진속도</td><td>실측 — 사용 1위 축은 데이터(14,484 uses), 정렬 91.4%는 가격</td><td><span class="b b-chg">CHANGE</span><br><span class="small">방향 조정</span></td><td>메인 진입은 데이터 5구간 단일 축, 나머지는 목록에서</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
@@ -514,7 +519,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <tr data-a="REMOVE"><td class="id">REQ-15·16</td><td>특별관 · 쓰던폰 보상 · 보험</td><td>경로 상위에 없음 · BenefitService 0.0091/0.0095 events/session</td><td><span class="b b-rm">REMOVE</span><br><span class="small">근거 부족</span></td><td>메인 본문 제외 — 휴대폰 카테고리 내부로</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="HOLD"><td class="id">REQ-17~20</td><td>브랜드혜택 (배너 2건 고정 등)</td><td>제휴 경로 상위에 없음 · 9월 오픈 전 데이터 부재 — 단 제휴영업팀 협의 완료(조직 확정)</td><td><span class="b b-hold">HOLD</span><br><span class="small">판단 불가 · 제약 수용</span></td><td>P0/P1 비침범 위치로 한정 수용</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="KEEP"><td class="id">REQ-21·22</td><td>이벤트·셀프개통 기존 페이지 재사용</td><td>수요 확인 — 재사용 자체는 문제 없음</td><td><span class="b b-keep">KEEP</span><br><span class="small">방향 일치</span></td><td>유지 · 이벤트 우선순위만 상향</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
-<tr data-a="HOLD"><td class="id">REQ-A</td><td>메인 요금제 노출 차별화</td><td>판단용 전환 데이터 미확보 · REQ-07과 충돌 가능</td><td><span class="b b-hold">HOLD</span><br><span class="small">판단 불가</span></td><td>노출 규칙 통합/분리 결정 후 진행</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
+<tr data-a="HOLD"><td class="id">REQ-A</td><td>메인 요금제 노출 차별화</td><td>판단용 전환 데이터 미확보 · REQ-07과 충돌 가능<br><b>"메인 = 신규용"이라는 구분 기준 자체가 D-12에서 폐기됐다</b></td><td><span class="b b-hold">HOLD</span><br><span class="small">전제 폐기 · 새 기준 필요</span></td><td>차별화 기준을 <b>방문 이력이 아니라 목적</b>으로 다시 세운 뒤 진행</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="KEEP"><td class="id">REQ-B</td><td>신청서 직행 (8/25 삭제)</td><td>Quick back 54.8%와 방향 일치(인과 아님) · <b>삭제 이유 기록 없음(UNVERIFIED)</b></td><td><span class="b b-keep">KEEP</span><br><span class="small">복원 제안</span></td><td>복원 제안 — 단 삭제 사유를 요청자 확인 후</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="NV"><td class="id">REQ-C</td><td>타임딜 항목 협의</td><td>8/25에서 REQ-05로 흡수 — 데이터 동일하게 없음</td><td><span class="b b-nv">NEEDS VALIDATION</span><br><span class="small">판단 불가</span></td><td>REQ-05와 함께</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
 <tr data-a="HOLD"><td class="id">REQ-D</td><td>메뉴 명칭 확정</td><td>'브랜드혜택'은 확정 반영 · '타임딜'은 가칭 잔존</td><td><span class="b b-hold">HOLD</span><br><span class="small">운영 결정 대기</span></td><td>잔여 명칭 확정 후 반영</td><td><a class="mini" href="./alignment.html#s09">근거</a></td></tr>
@@ -533,7 +538,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <dt>EVIDENCE</dt><dd>SearchFee y1802px vs 도달선 y1461~1658px(파생) · 0.0079 events/session · 요금제는 공통 2위 목적 13.3/17.2% of sessions</dd>
 <dt>PROBLEM</dt><dd>P0 목적의 전용 수단이 구조적으로 노출되지 않음 (P-07)</dd>
 <dt>PROPOSAL</dt><dd class="hot">M-03 요금제 탐색을 AtF 직후 고정 배치. 타임딜은 이벤트 슬롯 또는 요금제 아래 한정</dd>
-<dt>WHY</dt><dd>두 영역 중 요금제만 실패 중 — 이벤트·타임딜 자리는 이미 작동하거나 데이터가 없음</dd>
+<dt>WHY</dt><dd>두 영역 중 요금제만 실패 중 — 이벤트·타임딜 자리는 이미 작동하거나 데이터가 없음. <b>목적이 갈린 방문자에게 "요금제 확인"이라는 목적의 최단 경로를 여는 것</b>이 이 제안의 역할이다 <span class="mono">D-12</span></dd>
 <dt>DECISION</dt><dd><b>D-02</b> — "우선"의 대상 확정 + 순서. 이 결정이 IA 순서를 좌우</dd>
 <dt>RISK</dt><dd>"미노출이 원인"은 해석 — 순서 변경의 효과는 개편 후 측정으로만 확인됨</dd></dl>
 <div class="xref"><a href="./timedeal.html#t09">타임딜 판단 근거</a><a href="./alignment.html#s09">REQ-04 대조</a><a href="./index.html">화면에서 확인</a>
@@ -544,7 +549,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <dt>EVIDENCE</dt><dd>목록 필터 1위 데이터 축 14,484 uses · 정렬 91.4%가 가격 낮은 순 · 운영 목록 dan2 5구간과 1:1 실측</dd>
 <dt>PROBLEM</dt><dd>Quick back 54.8% of sessions — 진입 후 도착 화면이 기대와 어긋나는 문제 (P-02)</dd>
 <dt>PROPOSAL</dt><dd class="hot">데이터 5구간 + 구간별 최저가로 조건을 먼저 선택 → 조건 적용된 목록으로 이동. 5구간 동일 강도(추천 없음)</dd>
-<dt>WHY</dt><dd>"혜택 많이" 축은 관측되지 않음 — 관측된 축만 사용하고, 목록 도착 시 화면이 기대와 일치하도록</dd>
+<dt>WHY</dt><dd>"혜택 많이" 축은 관측되지 않음 — 관측된 축만 사용하고, 목록 도착 시 화면이 기대와 일치하도록. <b>신규에게 상품을 잘 보여주는 것이 아니라, 요금제를 보러 온 사람이 조건을 먼저 좁히게 하는 것</b>이 목적이다 <span class="mono">D-12</span></dd>
 <dt>DECISION</dt><dd>REQ-E 재정의 수용 (06절 CHANGE)</dd>
 <dt>RISK</dt><dd>Quick back 감소는 기대 — 개편 후 검증 필요. 구간 이해도는 사용자 테스트 미수행</dd></dl>
 <div class="xref"><a href="./alignment.html#s09">REQ-07 · REQ-E 대조</a><a href="./index.html">5구간 직접 조작</a>
@@ -671,7 +676,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 
 <div class="dfeat"><div class="dhd"><span class="n">D-01</span><b>두 화면(nologfirst / revisit)을 단일 메인으로 통합할 것인가</b><span class="st"><span class="b b-nv">RECOMMEND W/ VALIDATION</span></span></div>
 <dl class="dl2"><dt>REQUEST</dt><dd>요청 문서는 두 화면을 구분하지 않음 (OPEN-01)</dd>
-<dt>EVIDENCE</dt><dd>구성 요소 동일 · 행동 10개 중 5개 ±10% 이내 · 분기 판정(쿠키) 부정확 · 운영 2벌</dd>
+<dt>EVIDENCE</dt><dd>구성 요소 동일 · 행동 10개 중 5개 ±10% 이내 · 운영 2벌<br><b>분기 판정이 어긋난 세션 23.9%</b>(39,957 중 9,541) · 첫 방문용 화면에 <b>계정 사용 흔적 유입 9,381 sessions</b>(7.4%) · 한 세션에서 두 화면을 본 경우 1.2%<br>판정 쿠키 3종이 서로 다른 답을 준다 — 서비스 100%/0% · Clarity 96.5%/36.0% · GA4 77.6%/26.9%</dd>
 <dt>PROPOSAL</dt><dd><b>통합</b> — 분기 가치의 근거가 확인되지 않음</dd>
 <dt>IMPACT</dt><dd>IA 적용 단위 · 운영/QA 부담 · 콘텐츠 등록 체계</dd>
 <dt>RISK</dt><dd>ProductBanner 재방문 우위(+74%)가 화면 효과였을 가능성 — 원인 미분리라 보조 근거로만 취급, 통합 후 측정으로 확인</dd></dl>
@@ -682,7 +687,7 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <dt>DEFINITION</dt><dd>타임딜 = <b>캠페인 기간에만 켜지는 운영 슬롯형 프로모션 오퍼</b>(마감시간·기본료·최종혜택가·이벤트코드 등 6종, on/off). 탐색 진입점이 아니다 — 원문 확인</dd>
 <dt>EVIDENCE</dt><dd>요금제 = 확인된 P0(공통 2위 목적 · 전용 영역 도달선 밖). 타임딜 = <b>전용 영역 데이터 없음</b>(현행에 영역이 없어 생성 불가), 단 <b>동명 콘텐츠가 팝업으로 운영 중</b>(<span class="mono">Popup_79</span> 깜짝타임딜 62 sessions) — 본문 영역화는 P-01과 정합 가능</dd>
 <dt>PROPOSAL</dt><dd>운영 시에만 켜지는 <b>단일 슬롯</b> — 기본안 M-03·M-04 사이, 대안 M-04 배너 고정 슬롯. <b>어느 안도 "요금제보다 위"는 충족하지 않는다</b></dd>
-<dt>NEEDED</dt><dd>① "우선"의 대상(영역/상품) ② 요금제보다 아래여도 수용 가능한지 ③ 운영 주기(OPEN-08) ④ 타임세일 정의 ⑤ <span class="mono">Popup_79</span>와 동일 캠페인인지</dd>
+<dt>NEEDED</dt><dd>① "우선"의 대상(영역/상품) ② 요금제보다 아래여도 수용 가능한지 ③ 운영 주기(OPEN-08) ④ 타임세일 정의 ⑤ <span class="mono">Popup_79</span>와 동일 캠페인인지<br><b>D-12 확정으로 하나가 정리됐다</b> — "신규에게 프로모션을 집중한다"는 근거는 더 이상 쓸 수 없다. 남은 것은 위 5건이다</dd>
 <dt>IMPACT</dt><dd><b>①이 IA 충돌 여부 자체를 좌우한다</b> — "영역"이면 M-03/M-04 순서 문제, "상품"이면 요금제 목록 정렬 문제로 IA와 무관해진다</dd>
 <dt>RISK</dt><dd>원문대로 요금제 위에 두면 <b>이번 개편이 고치려던 P-07(요금제가 도달선 밖)을 다시 만드는 구조</b>가 된다. 반대로 데이터가 없다는 이유로 요구를 제거하지도 않는다</dd></dl>
 <div class="xref"><a href="./timedeal.html#t03">"우선"의 의미 분해</a><a href="./timedeal.html#t07">반영안 4가지</a><a href="./timedeal.html#t09">최종 판단</a><a href="./index.html">현재 IA 확인</a>
@@ -695,6 +700,14 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <dt>IMPACT</dt><dd>미결정 시 <b>P-01 대응 전체가 이월</b> — 최대 문제 미착수 상태로 개편 진행</dd>
 <dt>RISK</dt><dd>팝업 의존 캠페인 노출 감소 — 개별 팝업 효율 산출로 보완 가능</dd></dl>
 <div class="xref"><a href="./audit.html#a04">78.2% · 90.2% 산식</a><a href="./alignment.html#s05">발견 1</a></div></div>
+
+<div class="dfeat" style="border-color:var(--ok)"><div class="dhd"><span class="n" style="color:var(--ok)">D-12</span><b>이 페이지의 대상을 목적 중심으로 정의한다</b><span class="st"><span class="b b-keep">확정 · 2026-08-27</span></span></div>
+<dl class="dl2"><dt>REQUEST</dt><dd>요청 문서에 대상 사용자 정의가 없다. "신규 고객 중심"은 시안 구성에서 되짚어 만든 전제였다</dd>
+<dt>EVIDENCE</dt><dd>두 화면 공통 1위 행동이 로그인(43.9% / 21.6% of sessions) · 상품 행동이 우세한 쪽은 재방문 화면(2.08배 → 0.73배 역전) · 계정 사용 흔적 유입 9,381 sessions · 가입 완료 후 복귀 4,654 sessions · 판정 쿠키 3종 불일치</dd>
+<dt>DECISION</dt><dd><b>U+유모바일을 이미 알고 직접 찾아온 사람이, 로그인·요금제 확인·혜택 확인이라는 서로 다른 목적을 각자 가진 채 방문하여, 자기 목적을 가장 빠른 길로 처리하려는 것을 중심으로 설계한다.</b> 나누는 축은 방문 이력이 아니라 목적이다</dd>
+<dt>OPEN-05</dt><dd>로그인 영역의 목적은 <b>병행</b>으로 확정 — 로그인을 최상위 진입점으로 두되 회원가입 동선을 함께 노출한다</dd>
+<dt>IMPACT</dt><dd>개선안의 <b>방향은 바뀌지 않는다</b>. 재분석 0건 · KEEP 6 · 해석만 수정 2 · 재검증 3(전부 기존 미정/HOLD) · 재설계 1(가입 완료 복귀 미구현)</dd>
+<dt>RISK</dt><dd>계정 보유 비율을 세는 수단이 없다는 사실은 그대로다. "신규 고객이 적다"로 읽지 않는다 <a href="./targetuser.html#r08">검증 전문</a></dd></dl></div>
 
 <div class="grid g2" style="margin-top:8px">
 <div class="dcard"><div class="dhd"><span class="n">D-03</span><b>퀵메뉴 3종 정비</b><span class="st"><span class="b b-keep">RECOMMEND</span></span></div>
@@ -730,6 +743,16 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 <dl><dt>WHAT</dt><dd>신청서 직행 동선이 8/25 버전에서 삭제된 이유가 어느 자료에도 없음</dd>
 <dt>WHY</dt><dd>복원 제안(06절)의 전제 — 기술·정책 제약으로 뺐다면 복원 판단이 달라짐</dd>
 <dt>OWNER</dt><dd>요청자</dd><dt>IMPACT</dt><dd>REQ-B 복원 여부</dd><dt>STATUS</dt><dd>확인 대기</dd></dl></div></details>
+
+<details><summary><span class="id">계정 데이터</span>로그인 성공 세션에 계정 생성일을 붙일 수 있는가 <span class="b b-open" style="background:var(--stop-soft);color:var(--stop)">OPEN</span></summary><div class="bd">
+<dl><dt>WHAT</dt><dd>로그인에 성공한 세션과 계정 생성일을 결합할 수 있는지 · 결합이 가능한 시스템·권한이 있는지</dd>
+<dt>WHY</dt><dd>이 화면 방문자 중 <b>계정을 가진 사람의 비율</b>을 알 수 있는 유일한 길이다. 지금은 셀 수단이 없다</dd>
+<dt>IMPACT</dt><dd>D-12 타깃 정의의 정밀도 · REQ-A 차별화 기준</dd><dt>STATUS</dt><dd>확인 대기</dd></dl></div></details>
+
+<details><summary><span class="id">분기 쿠키</span>서비스 분기 쿠키의 이름·수명·설정 시점 <span class="b b-open" style="background:var(--stop-soft);color:var(--stop)">OPEN</span></summary><div class="bd">
+<dl><dt>WHAT</dt><dd>화면을 나누는 쿠키의 이름·만료 기간·언제 심는지</dd>
+<dt>WHY</dt><dd>판정이 23.9% 어긋나는 주된 이유를 좁힌다 — 쿠키 수명 때문인지, 광고·북마크로 URL에 직접 들어와 분기 로직을 지나치기 때문인지</dd>
+<dt>IMPACT</dt><dd>D-01 화면 통합 판단</dd><dt>STATUS</dt><dd>확인 대기</dd></dl></div></details>
 
 <details><summary><span class="id">REQ-04</span>타임딜 "우선"의 대상 · 사업 목적 <span class="b b-open" style="background:var(--stop-soft);color:var(--stop)">OPEN</span></summary><div class="bd">
 <dl><dt>WHAT</dt><dd>"우선"의 대상이 원문 버전 간 상이(요금제 영역 / 요금제 상품). 사업 목적·"우선"의 이유·타임세일 정의·운영 주기가 원문에 없음. 타임딜의 IA 귀착 모듈도 명시적 결정으로 기록되지 않음</dd>
