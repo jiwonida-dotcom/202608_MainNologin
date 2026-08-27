@@ -1,4 +1,51 @@
-# 내부 자료 — 공개 저장소에 올리지 않는다.
-# 공개해도 되는 자료라고 판단되면 이 두 줄을 지우고 다시 커밋한다.
+# 세션에서 직접 삭제할 수 없어 모아 둔 삭제 대기 파일
+_to_delete/
+
+# 전송·백업용 압축 파일
+*.zip
+
+# Node 의존 — playwright 설치 시 생성.
+# push.ps1 이 `git add -A` 를 쓰므로 반드시 제외해야 한다 (수만 개 파일이 커밋된다).
+node_modules/
+
+# playwright 산출물 · 캐시
+playwright-report/
+test-results/
+.playwright/
+ms-playwright/
+
+# 공유용 인라인본 — 정본은 루트 index.html (00_Project/MARKUP.md 1절)
+*-standalone.html
+
+# 임시 · 백업 · 스크래치
+*.tmp
+*.bak
+*~
+_scratch/
+_incoming.*
+_update.*
+*.log
+
+# 임시 작업 영역의 산출물 — 정본만 커밋한다
+99_Working/**/*.tmp
+99_Working/**/~$*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Office 임시 파일
+~$*
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ─────────────────────────────────────────────
+# 이 프로젝트 전용 — 내부 자료. 공개 저장소에 올리지 않는다.
+# push.ps1 이 `git add -A` 를 쓰므로 여기서 막지 않으면 그대로 올라간다.
+# 공개해도 되는 자료로 판단되면 아래 두 줄을 지우고 다시 커밋한다.
 01_Source/
 03_Analysis/
