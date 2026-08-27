@@ -400,53 +400,64 @@ svg{display:block}
    확대·강조 없음(DD-11 준수). 구분은 colhd의 기존 border-bottom이 담당한다. */
 .mod:has(>.collap)+.mod>.collap{margin-top:0; border-top:0}
 .colhd{width:100%; min-height:58px; display:flex; align-items:center; gap:var(--s-2);
-  padding:0 var(--pad); text-align:left; border-bottom:1px solid var(--hairline)}
+  padding:0 var(--pad); text-align:left; border-bottom:1px solid var(--hairline);
+  transition:background var(--dur) var(--ease)}
 .colhd:hover{background:var(--n-25)}
+.colhd:active{background:var(--n-50)}
+.colhd[aria-expanded="true"]{background:var(--surface-2)}
 .colhd b{font-size:var(--fs-16); font-weight:600; color:var(--text); letter-spacing:var(--tr-base)}
 .colhd .cc{margin-left:auto; width:17px; height:17px; color:var(--n-400); fill:none;
   stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
   transition:transform var(--dur) var(--ease)}
 .colhd[aria-expanded="true"] .cc{transform:rotate(180deg)}
-.colbody{padding:var(--s-3) var(--pad) var(--s-6); display:none; border-bottom:1px solid var(--hairline)}
+.colbody{padding:var(--s-5) var(--pad) var(--s-6); display:none; background:var(--surface-2);
+  border-bottom:1px solid var(--hairline)}
 .colbody.on{display:block; animation:acc .22s var(--ease)}
 @keyframes acc{from{opacity:0; transform:translateY(-5px)}to{opacity:1; transform:none}}
 /* 세그먼트 — 트랙 안에서 하나가 떠오르는 형태. 무채색으로만 처리(M-06은 NDV) */
-.tabs{display:flex; gap:2px; padding:3px; background:var(--n-50);
-  border-radius:var(--r-full); margin-bottom:var(--s-4)}
+.tabs{display:flex; gap:2px; padding:4px; background:var(--n-50);
+  border:1px solid var(--hairline); border-radius:var(--r-full); margin-bottom:var(--s-5)}
 .tab{flex:1; min-height:44px; border-radius:var(--r-full); font-size:var(--fs-13);
   font-weight:500; color:var(--text-3); letter-spacing:var(--tr-base);
   transition:background var(--dur) var(--ease), color var(--dur) var(--ease)}
 .tab:hover{color:var(--text-2)}
-.tab[aria-selected="true"]{background:var(--surface); color:var(--text); font-weight:600;
-  box-shadow:0 1px 2px rgba(25,25,25,.06), 0 1px 1px rgba(25,25,25,.04)}
-.pcards{display:grid; grid-template-columns:1fr 1fr; gap:var(--s-3)}
-.pcard{text-align:left; border:1px solid var(--hairline); border-radius:var(--r-md);
-  background:var(--surface); padding:var(--s-3); transition:border-color var(--dur) var(--ease)}
+.tab[aria-selected="true"]{background:var(--surface); color:var(--text); font-weight:700;
+  box-shadow:0 1px 2px rgba(25,25,25,.10), 0 0 0 1px rgba(25,25,25,.05)}
+.pcards{display:grid; grid-template-columns:1fr 1fr; gap:var(--s-5) var(--s-3)}
+.pcard{text-align:left; border:1px solid var(--hairline); border-radius:14px;
+  background:var(--surface); padding:var(--s-3) var(--s-3) 14px; transition:border-color var(--dur) var(--ease)}
 .pcard:hover{border-color:var(--border-strong)}
-.ph{height:88px; border-radius:var(--r-sm); background:linear-gradient(160deg,var(--n-25),var(--n-50));
-  margin-bottom:var(--s-2); display:grid; place-items:center}
-.ph .i3d{--i3d-size:52px}
-.pcard b{display:block; font-size:var(--fs-13); font-weight:600; color:var(--text);
-  line-height:1.35; letter-spacing:var(--tr-base)}
-.pcard .pp{display:block; margin-top:3px; font-size:var(--fs-12); color:var(--text-3)}
-.pcard .pp em{font-style:normal; font-weight:700; color:var(--brand-600)}
+.pcard:hover .ph{background:var(--n-100)}
+.pcard:active{transform:scale(.99)}
+/* [R2-M06] 그라디언트 플레이트 → 평평한 중성 면. 그 위에 세로 단말 실루엣 한 겹.
+   장식이 아니라 "사진이 들어갈 자리"임을 형태로 알린다. 색·크기 모두 중성(DD-11). */
+.ph{height:96px; border-radius:10px; background:var(--n-50);
+  margin-bottom:11px; display:grid; place-items:center}
+.ph .i3d{--i3d-size:58px; background:transparent; border-radius:0}
+.ph .i3d svg{width:100%; height:100%; stroke:var(--n-300); stroke-width:1.3}
+.pcard b{display:block; font-size:var(--fs-14); font-weight:600; color:var(--text);
+  line-height:1.4; letter-spacing:var(--tr-base)}
+/* 브랜드색 가격은 M-03(Primary)에만 남긴다 — 여기서는 잉크로 되돌려 위계를 지킨다 */
+.pcard .pp{display:block; margin-top:5px; font-size:var(--fs-12); color:var(--text-3); line-height:1.4}
+.pcard .pp em{font-style:normal; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums}
 /* [REFINE VP-4] 실패 화면의 유일한 유효 행동 — 비활성 요소와 구분되도록 기존 토큰으로 보조 채움.
    구조·동작·토큰 값 불변. 토큰 자체는 B-05 미확정이므로 reference로만 사용. */
 /* [R2] 오류 조합: 원인(경고) → 행동(재시도)의 수직 구성. 재시도는 화면의 유일한 유효
    행동이므로 1차 버튼(채움)으로 승격 — 토큰은 B-05 확정 전 reference. */
 #m03err:not(:empty){padding:0 var(--s-4) var(--s-4)}
 #m03err .notice{margin-top:var(--s-3); border-radius:var(--r-md); padding:var(--s-3) var(--s-4)}
-#m03retry{min-height:48px; border:none; border-radius:var(--r-md); background:var(--brand-600);
+#m03retry{min-height:48px; border:1px solid transparent; border-radius:var(--r-md); background:var(--brand-600);
   color:#fff; font-size:var(--fs-14); font-weight:700; letter-spacing:var(--tr-base)}
 #m03retry:hover{background:var(--brand-700)}
 #m03retry:active{transform:translateY(1px)}
-.colmore{margin-top:var(--s-4); width:100%; min-height:44px; border:1px solid var(--border-strong);
-  border-radius:var(--r-md); font-size:var(--fs-13); font-weight:600; color:var(--text-2);
-  display:flex; align-items:center; justify-content:center; gap:4px}
-.colmore:hover{background:var(--n-25)}
+.colmore{margin-top:var(--s-5); width:100%; min-height:46px; border:1px solid var(--hairline);
+  border-radius:var(--r-md); background:var(--surface);
+  font-size:var(--fs-13); font-weight:600; color:var(--text-2);
+  display:flex; align-items:center; justify-content:center; gap:5px}
+.colmore:hover{background:var(--n-25); border-color:var(--border-strong)}
 .colmore svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .miniskel{height:200px; border-radius:var(--r-md);
-  background:linear-gradient(100deg,var(--n-100) 30%,var(--n-50) 46%,var(--n-100) 62%);
+  background:linear-gradient(100deg,var(--n-100) 30%,var(--n-0) 46%,var(--n-100) 62%);
   background-size:300% 100%; animation:sh 1.4s ease infinite}
 
 /* ══════════════ M-07 브랜드·혜택 ══════════════ */
