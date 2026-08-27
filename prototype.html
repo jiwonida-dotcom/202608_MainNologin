@@ -191,12 +191,15 @@ svg{display:block}
 .iconbtn:active{background:var(--n-100)}
 .iconbtn svg{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.7;
   stroke-linecap:round; stroke-linejoin:round}
-.loginbtn{height:44px; min-width:44px; padding:0 var(--s-3) 0 11px; display:inline-flex;
-  align-items:center; gap:5px; border:1px solid var(--border-strong); border-radius:var(--r-sm);
-  font-size:var(--fs-13); font-weight:600; color:var(--text); background:var(--surface);
-  transition:border-color var(--dur) var(--ease), background var(--dur) var(--ease)}
-.loginbtn:hover{border-color:var(--brand-200); background:var(--brand-50)}
-.loginbtn:active{background:var(--brand-100)}
+/* [R2-M01] 테두리·면 없는 텍스트 행동. 헤더 세 요소(로그인·BI·아이콘)가 모두 "선 없는 요소"가
+   되어 유틸리티 층이 콘텐츠와 경쟁하지 않는다. 라벨로 오독되지 않도록 굵기를 700으로 올리고
+   진입 아이콘을 유지한다. 타깃 44 · 좌측 정렬선 16px은 음수 마진으로 지킨다. */
+.loginbtn{height:44px; min-width:44px; padding:0 var(--s-2); margin-left:calc(var(--s-2) * -1);
+  display:inline-flex; align-items:center; gap:5px; border:0; border-radius:var(--r-sm);
+  font-size:var(--fs-13); font-weight:700; color:var(--text); background:transparent;
+  transition:background var(--dur) var(--ease), color var(--dur) var(--ease)}
+.loginbtn:hover{background:var(--n-50)}
+.loginbtn:active{background:var(--n-100)}
 .loginbtn svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8;
   stroke-linecap:round; stroke-linejoin:round}
 
