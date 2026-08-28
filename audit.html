@@ -242,6 +242,8 @@ td.src,.src{color:var(--mut)}
   color:var(--acc); text-transform:uppercase}
 .byline b{font-weight:700}
 
+
+
 /* ══════ REPORT EXPERIENCE LAYER — 자동 생성 · 손으로 고치지 않는다 ══════ */
 :root{
   /* Spacing rhythm — 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 */
@@ -259,7 +261,7 @@ td.src,.src{color:var(--mut)}
   --t-badge:10.5px;
   /* 좌표계(ID·수치) 서체 = 본문과 같은 Pretendard. 정렬은 tabular-nums가 담당한다 */
   --mono:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-  --rail-w:216px;
+  --rail-w:196px;
   --stick: calc(var(--pjnav-h,0px) + var(--navh,0px));
 }
 /* ── 1. Typography ───────────────────────────────────────────
@@ -352,13 +354,11 @@ td[align="right"],th[align="right"],.num{text-align:right; font-variant-numeric:
 .rux-rail a[aria-current="true"]{color:var(--acc); font-weight:700; border-left-color:var(--acc)}
 .rux-rail .pos{margin-top:12px; padding-left:13px; font-family:var(--mono); font-size:10px;
   color:var(--mut); letter-spacing:.04em}
-/* 레일이 설 자리를 만든다 — 본문 폭은 그대로 두고 본문+레일 묶음을 화면 중앙에 놓는다.
-   본문 줄 길이(1040)를 줄이지 않으므로 가독성은 변하지 않는다. */
-@media (min-width:1440px){
-  .rux-rail{display:block}
-  .wrap,main,.pjnav .in,.pjfoot .in{
-    margin-left:calc((100vw - (1040px + 32px + var(--rail-w))) / 2); margin-right:0}
-}
+/* 본문은 어떤 폭에서도 화면 중앙 1040px 그대로 둔다 — 6종 문서(프로토타입 포함)의
+   가로 기준선이 완전히 같아야 문서를 옮겨 다녀도 화면이 흔들리지 않는다.
+   레일은 본문을 밀지 않고, 오른쪽 여백에 자리가 남을 때만 그 안에 들어간다.
+   필요 폭 = (100vw − 1040)/2 ≥ 28 + 196 + 10 → 1512px */
+@media (min-width:1512px){ .rux-rail{display:block} }
 
 /* ── 6-1. Decision Workspace — 결정이 문서가 아니라 작업 공간으로 읽히게 한다 ── */
 .dhd .n{display:inline-flex; align-items:center; font-family:var(--mono);
@@ -406,7 +406,7 @@ td[align="right"],th[align="right"],.num{text-align:right; font-variant-numeric:
 .rux-sec .t{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .rux-sec svg{width:13px; height:13px; flex:none; fill:none; stroke:currentColor; stroke-width:2.2;
   stroke-linecap:round; stroke-linejoin:round; opacity:.5}
-@media (max-width:1439px){ .rux-sec{display:flex} }
+@media (max-width:1511px){ .rux-sec{display:flex} }
 html.rux-nofit .rux-sec{display:flex}
 html.rux-nofit .rux-rail{display:none!important}
 .rux-sheet{position:fixed; inset:0; z-index:125; display:none}
@@ -734,10 +734,10 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
             document.querySelector('section .in, .in');
     if(!w) return;
     var r = w.getBoundingClientRect();
-    var need = r.right + 32 + 216 + 12;
+    var need = r.right + 28 + 196 + 10;
     var fits = need <= window.innerWidth;
     docEl.classList.toggle('rux-nofit', !fits);
-    if (fits) rail.style.left = (r.right + 32) + 'px';
+    if (fits) rail.style.left = (r.right + 28) + 'px';
   }
 
   /* 고정 헤더 높이 — 표 sticky 헤더가 가리지 않도록 */
