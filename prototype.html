@@ -826,6 +826,21 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
 
 
 
+/* ── 작성자 레이블 ── */
+/* 상단 프로젝트 바의 오른쪽 끝 — 6종 문서가 공유하는 유일한 위치다.
+   .pjnav 관리 블록 밖에 두어 내비 재생성에 영향받지 않는다. */
+.pjnav .id{align-items:center}
+.pjnav .byline{margin-left:auto; display:inline-flex; align-items:baseline; gap:7px;
+  flex:none; font-size:11.5px; font-weight:700; color:#E8E6F2; letter-spacing:-.004em;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14);
+  border-radius:999px; padding:4px 12px; white-space:nowrap}
+.pjnav .byline em{font-style:normal; font-weight:700; font-size:9.5px; letter-spacing:.14em;
+  color:#A9A3CC; text-transform:uppercase}
+.pjnav .byline b{font-weight:700}
+@media (max-width:640px){ .pjnav .byline{display:none} }
+
+
+
 /* ══════ PROTOTYPE CHROME — 리포트 공통 시각 언어 (자동 생성) ══════ */
 /* 문서 크롬만 교체한다. .screen 내부(서비스 화면)는 --f-sans / --n-* 토큰을 그대로 쓴다. */
 :root{
@@ -902,15 +917,6 @@ tbody tr:hover{background:var(--doc-line-2)}
   box-shadow:inset 0 0 0 1px var(--doc-line)}
 .b-stop{background:var(--doc-stop-soft); color:var(--doc-stop)}
 
-/* ── 작성자 ── */
-.byline{display:inline-flex; align-items:center; gap:8px; flex:none;
-  font-size:12px; font-weight:700; color:var(--doc-ink); letter-spacing:-.004em;
-  background:var(--doc-card); border:1px solid var(--doc-line); border-radius:999px;
-  padding:6px 14px}
-.byline em{font-style:normal; font-weight:600; color:var(--doc-muted); font-size:11px;
-  letter-spacing:.06em}
-.byline b{font-weight:700}
-
 /* ── 컨트롤 라운드 체계 통일 (5 / 6 / 10 / 14) ── */
 .chlog{border-radius:14px}
 .call{border-radius:10px}
@@ -935,7 +941,7 @@ tbody tr:hover{background:var(--doc-line-2)}
 </style>
 
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
-<div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
+<div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span><span class="byline"><em>작성</em><b>DX혁신팀 허지원 책임</b></span></div>
 <ul>
 <li><a href="./index.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
 <li><a href="./targetuser.html"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
@@ -959,7 +965,6 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
     <span class="eyebrow">PHASE 7-4</span>
     <span class="sep"></span>
     <h1>U+유모바일 비로그인 메인 개편안</h1>
-    <span class="byline"><em>작성</em><b>DX혁신팀 허지원 책임</b></span>
     <span class="hint">390 × 844 · 검증 도구는 우하단 · <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 요금제·상품 정보는 구조 검증용 예시입니다</span>
   </div>
 

@@ -233,16 +233,21 @@ td.src,.src{color:var(--mut)}
 
 
 
+
+
+
 /* ── 작성자 레이블 ── */
-.byline{display:inline-flex; align-items:center; gap:8px; flex:none;
-  font-family:inherit; font-size:12px; font-weight:700; color:var(--ink);
-  letter-spacing:-.004em; background:var(--card); border:1px solid var(--acc-line);
-  border-radius:999px; padding:6px 14px}
-.byline em{font-style:normal; font-weight:700; font-size:10px; letter-spacing:.14em;
-  color:var(--acc); text-transform:uppercase}
-.byline b{font-weight:700}
-
-
+/* 상단 프로젝트 바의 오른쪽 끝 — 6종 문서가 공유하는 유일한 위치다.
+   .pjnav 관리 블록 밖에 두어 내비 재생성에 영향받지 않는다. */
+.pjnav .id{align-items:center}
+.pjnav .byline{margin-left:auto; display:inline-flex; align-items:baseline; gap:7px;
+  flex:none; font-size:11.5px; font-weight:700; color:#E8E6F2; letter-spacing:-.004em;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14);
+  border-radius:999px; padding:4px 12px; white-space:nowrap}
+.pjnav .byline em{font-style:normal; font-weight:700; font-size:9.5px; letter-spacing:.14em;
+  color:#A9A3CC; text-transform:uppercase}
+.pjnav .byline b{font-weight:700}
+@media (max-width:640px){ .pjnav .byline{display:none} }
 
 /* ══════ REPORT EXPERIENCE LAYER — 자동 생성 · 손으로 고치지 않는다 ══════ */
 :root{
@@ -443,7 +448,7 @@ details > summary:hover{color:var(--acc)}
 </style>
 
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
-<div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
+<div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span><span class="byline"><em>작성</em><b>DX혁신팀 허지원 책임</b></span></div>
 <ul>
 <li><a href="./index.html"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
 <li><a href="./targetuser.html"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
@@ -467,7 +472,6 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
   <p class="sub">alignment.html의 모든 핵심 주장에 대해 "근거가 끊기는 지점이 없는가"를 검사한 감사 기록이다. 새로운 UX·IA·데이터 분석을 추가하지 않았다. 발견된 결함과 수정 내역, 최종 판정을 담는다.</p>
 <p class="small" style="margin-top:10px">감사 대상 원본은 <a href="./alignment.html">EVIDENCE</a>, 결정 항목은 <a href="./index.html">FINAL REPORT</a>에 있다.</p>
   <div class="docmeta">
-    <span class="byline"><em>작성</em><b>DX혁신팀 허지원 책임</b></span>
     <span>대상 alignment.html + PHASE 1~7 산출물</span>
     <span>감사 2026-08-27</span>
     <span>결과 Critical 3 · Minor 3 — 전건 수정 반영</span>

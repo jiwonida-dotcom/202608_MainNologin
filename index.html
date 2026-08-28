@@ -366,16 +366,21 @@ a.mini:hover{color:var(--acc);border-color:var(--acc-line)}
 
 
 
+
+
+
 /* ── 작성자 레이블 ── */
-.byline{display:inline-flex; align-items:center; gap:8px; flex:none;
-  font-family:inherit; font-size:12px; font-weight:700; color:var(--ink);
-  letter-spacing:-.004em; background:var(--card); border:1px solid var(--acc-line);
-  border-radius:999px; padding:6px 14px}
-.byline em{font-style:normal; font-weight:700; font-size:10px; letter-spacing:.14em;
-  color:var(--acc); text-transform:uppercase}
-.byline b{font-weight:700}
-
-
+/* 상단 프로젝트 바의 오른쪽 끝 — 6종 문서가 공유하는 유일한 위치다.
+   .pjnav 관리 블록 밖에 두어 내비 재생성에 영향받지 않는다. */
+.pjnav .id{align-items:center}
+.pjnav .byline{margin-left:auto; display:inline-flex; align-items:baseline; gap:7px;
+  flex:none; font-size:11.5px; font-weight:700; color:#E8E6F2; letter-spacing:-.004em;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14);
+  border-radius:999px; padding:4px 12px; white-space:nowrap}
+.pjnav .byline em{font-style:normal; font-weight:700; font-size:9.5px; letter-spacing:.14em;
+  color:#A9A3CC; text-transform:uppercase}
+.pjnav .byline b{font-weight:700}
+@media (max-width:640px){ .pjnav .byline{display:none} }
 
 /* ══════ REPORT EXPERIENCE LAYER — 자동 생성 · 손으로 고치지 않는다 ══════ */
 :root{
@@ -576,7 +581,7 @@ details > summary:hover{color:var(--acc)}
 </style>
 
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
-<div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span></div>
+<div class="id"><b>U+유모바일 · 비로그인 메인 개편</b><span>Evidence-based UX Renewal · 2026-08</span><span class="byline"><em>작성</em><b>DX혁신팀 허지원 책임</b></span></div>
 <ul>
 <li><a href="./index.html" aria-current="page"><b>01</b>FINAL REPORT<i>무엇을 결정해야 하는가</i></a></li>
 <li><a href="./targetuser.html"><b>02</b>TARGET USER<i>이 화면의 실제 이용자는 누구인가</i></a></li>
@@ -614,7 +619,6 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
   <span class="eyebrow">U+유모바일 · Stakeholder Alignment</span>
   <h1>비로그인 메인 개편안<br><em>Data-driven UX Proposal</em></h1>
   <p class="sub">기존 요청사항을 사용자 행동 데이터와 대조하여 개편 방향과 의사결정 항목을 제안합니다. 이 문서는 개발 명세가 아니라, 개발 착수 전에 방향을 합의하기 위한 자료입니다.</p>
-  <div class="bymeta"><span class="byline"><em>작성</em><b>DX혁신팀 허지원 책임</b></span></div>
   <div class="chain" aria-label="문서 논리 흐름">
     <b>REQUEST</b><i>→</i><b>WHO</b><i>→</i><b>DATA</b><i>→</i><b>DIFFERENCE</b><i>→</i><b>PROPOSAL</b><i>→</i><b class="hot">DECISION</b>
   </div>
