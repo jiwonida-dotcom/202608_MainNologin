@@ -817,6 +817,94 @@ footer{margin-top:70px; padding-top:24px; border-top:1px solid var(--doc-line);
 footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
 .stage .pjfoot{margin:24px -20px 0}
 @media (max-width:640px){ .stage .pjfoot{margin:0} }
+
+/* ══════ PROTOTYPE CHROME — 리포트 공통 시각 언어 (자동 생성) ══════ */
+/* 문서 크롬만 교체한다. .screen 내부(서비스 화면)는 --f-sans / --n-* 토큰을 그대로 쓴다. */
+:root{
+  /* 리포트 5종과 동일한 팔레트로 통일 */
+  --doc-paper:#F7F6FB; --doc-card:#FFFFFF; --doc-ink:#191922; --doc-ink-2:#43434E;
+  --doc-muted:#6F6F7C; --doc-line:#E5E4EE; --doc-line-2:#EFEFF6;
+  --doc-accent:#5B44D6; --doc-accent-soft:#EFEDFB;
+  --doc-warn:#8A5A00; --doc-warn-soft:#F7EDD6;
+  --doc-stop:#A03028; --doc-stop-soft:#F7E3E0;
+  --doc-ok:#1E6B44;   --doc-ok-soft:#E2F1E9;
+  --doc-hold:#585864; --doc-hold-soft:#EBEBF1;
+  --doc-shadow:0 1px 2px rgba(20,20,40,.05), 0 12px 32px -22px rgba(20,20,40,.4);
+}
+/* 리포트는 라이트 단일 테마다 — 문서부도 같은 규칙을 따른다 */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --doc-paper:#F7F6FB; --doc-card:#FFFFFF; --doc-ink:#191922; --doc-ink-2:#43434E;
+    --doc-muted:#6F6F7C; --doc-line:#E5E4EE; --doc-line-2:#EFEFF6;
+    --doc-accent:#5B44D6; --doc-accent-soft:#EFEDFB;
+    --doc-warn:#8A5A00; --doc-warn-soft:#F7EDD6;
+    --doc-stop:#A03028; --doc-stop-soft:#F7E3E0;
+    --doc-ok:#1E6B44;   --doc-ok-soft:#E2F1E9;
+    --doc-hold:#585864; --doc-hold-soft:#EBEBF1;
+    --doc-shadow:0 1px 2px rgba(20,20,40,.05), 0 12px 32px -22px rgba(20,20,40,.4);
+  }
+}
+
+/* ── Typography — Pretendard 단일. 숫자는 tabular ── */
+body{font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  font-size:15.5px; line-height:1.72; letter-spacing:-.004em;
+  font-variant-numeric:tabular-nums; font-feature-settings:"tnum" 1,"case" 1}
+.mono,.stagehd .eyebrow,.stagehd .hint,.secno,.sechead .en,
+.drawer h3 span,.ctl .lbl,.ctl button,.kv dt,.kv dd,#log,.dnote code,
+.devtoggle,thead th,.badge,footer{
+  font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  font-variant-numeric:tabular-nums; letter-spacing:.02em}
+.screen,.screen *{font-family:var(--f-sans)}   /* 서비스 화면은 원래 서체 유지 */
+.docwrap h2,.sechead h2{letter-spacing:-.022em}
+.docwrap section.doc > p{font-size:15.5px; line-height:1.72}
+
+/* ── 문서 폭·리듬을 리포트와 맞춘다 (1040 / 24) ── */
+.docwrap{max-width:1040px; padding:0 24px 110px}
+section.doc{margin-top:64px}
+.sechead{padding-bottom:14px; margin-bottom:24px}
+.secno{font-weight:700; font-size:12px; letter-spacing:.04em}
+.sechead .en{font-size:11px; letter-spacing:.14em; font-weight:600}
+
+/* ── 표 ── */
+.tw{border-radius:14px}
+table{font-size:13px; line-height:1.58}
+thead th{position:sticky; top:0; z-index:3; font-size:10.5px; letter-spacing:.09em;
+  font-weight:600; background:var(--doc-paper); box-shadow:inset 0 -1px 0 var(--doc-line)}
+tbody tr{transition:background .14s ease}
+tbody tr:hover{background:var(--doc-line-2)}
+
+/* ── 상태 배지 — 리포트와 동일한 형태 언어 ── */
+.badge{font-family:inherit; font-size:10.5px; font-weight:700; letter-spacing:.04em;
+  padding:2.5px 8px; border-radius:5px; border:1px solid transparent}
+.b-ok{background:var(--doc-ok-soft); color:var(--doc-ok)}
+.b-new{background:var(--doc-accent-soft); color:var(--doc-accent)}
+.b-warn{background:transparent; color:var(--doc-warn);
+  box-shadow:inset 0 0 0 1px var(--doc-warn-soft)}
+.b-hold{background:transparent; color:var(--doc-hold);
+  box-shadow:inset 0 0 0 1px var(--doc-line)}
+.b-stop{background:var(--doc-stop-soft); color:var(--doc-stop)}
+
+/* ── 컨트롤 라운드 체계 통일 (5 / 6 / 10 / 14) ── */
+.chlog{border-radius:14px}
+.call{border-radius:10px}
+.ctl button{border-radius:6px}
+.devtoggle{font-size:12px; font-weight:600}
+
+/* ── 스크롤 — 리포트와 같은 진행 바·맨 위로 ── */
+.rux-prog{position:fixed; left:0; top:0; height:2px; width:0; z-index:920;
+  background:var(--doc-accent); transition:width .08s linear; pointer-events:none}
+.rux-top{position:fixed; right:20px; bottom:74px; z-index:910;
+  width:44px; height:44px; display:grid; place-items:center; border-radius:50%;
+  background:var(--doc-card); color:var(--doc-ink-2); border:1px solid var(--doc-line);
+  box-shadow:var(--doc-shadow); cursor:pointer; opacity:0; transform:translateY(6px);
+  pointer-events:none; transition:opacity .2s ease, transform .2s ease, color .2s ease}
+.rux-top.on{opacity:1; transform:none; pointer-events:auto}
+.rux-top:hover{color:var(--doc-accent)}
+.rux-top svg{width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round}
+@media (max-width:640px){ .rux-top{right:12px; bottom:66px} }
+@media print{ .rux-prog,.rux-top{display:none!important} }
+/* ══════ /PROTOTYPE CHROME ══════ */
 </style>
 
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
@@ -1999,5 +2087,26 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
   log("INIT","프로토타입 시작 · 팝업 자동 노출 없음");
 })();
 </script>
+<!-- PROTOTYPE CHROME JS -->
+<script>
+(function(){
+  var prog = document.createElement('div'); prog.className='rux-prog'; document.body.appendChild(prog);
+  var top = document.createElement('button');
+  top.type='button'; top.className='rux-top'; top.setAttribute('aria-label','맨 위로');
+  top.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 19V6"/><path d="M6 11.5L12 5.5l6 6"/></svg>';
+  top.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  document.body.appendChild(top);
+  var t=false;
+  function up(){
+    var st=window.scrollY||document.documentElement.scrollTop;
+    var mx=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(mx>0?(st/mx*100):0)+'%';
+    top.classList.toggle('on', st>window.innerHeight*0.9);
+  }
+  addEventListener('scroll',function(){ if(!t){t=true;requestAnimationFrame(function(){up();t=false;});} },{passive:true});
+  up();
+})();
+</script>
+<!-- /PROTOTYPE CHROME JS -->
 
 </html>

@@ -226,6 +226,10 @@ td.src,.src{color:var(--mut)}
 
 
 
+
+
+
+
 /* ══════ REPORT EXPERIENCE LAYER — 자동 생성 · 손으로 고치지 않는다 ══════ */
 :root{
   /* Spacing rhythm — 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 */
@@ -337,9 +341,9 @@ td[align="right"],th[align="right"],.num{text-align:right; font-variant-numeric:
   color:var(--mut); letter-spacing:.04em}
 /* 레일이 설 자리를 만든다 — 본문 폭은 그대로 두고 본문+레일 묶음을 화면 중앙에 놓는다.
    본문 줄 길이(1040)를 줄이지 않으므로 가독성은 변하지 않는다. */
-@media (min-width:1400px){
+@media (min-width:1440px){
   .rux-rail{display:block}
-  .wrap,.pjnav .in,.pjfoot .in{
+  .wrap,main,.pjnav .in,.pjfoot .in{
     margin-left:calc((100vw - (1040px + 32px + var(--rail-w))) / 2); margin-right:0}
 }
 
@@ -389,7 +393,9 @@ td[align="right"],th[align="right"],.num{text-align:right; font-variant-numeric:
 .rux-sec .t{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .rux-sec svg{width:13px; height:13px; flex:none; fill:none; stroke:currentColor; stroke-width:2.2;
   stroke-linecap:round; stroke-linejoin:round; opacity:.5}
-@media (max-width:1399px){ .rux-sec{display:flex} }
+@media (max-width:1439px){ .rux-sec{display:flex} }
+html.rux-nofit .rux-sec{display:flex}
+html.rux-nofit .rux-rail{display:none!important}
 .rux-sheet{position:fixed; inset:0; z-index:125; display:none}
 .rux-sheet.on{display:block}
 .rux-sheet .dim{position:absolute; inset:0; background:rgba(16,16,28,.42)}
@@ -1074,11 +1080,14 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
   /* 레일 위치 — 본문 컨테이너 오른쪽 빈 여백에 놓는다 */
   function place(){
     if(!rail) return;
-    var w = document.querySelector('.wrap, .in');
+    var w = document.querySelector('.wrap, main') ||
+            document.querySelector('section .in, .in');
     if(!w) return;
     var r = w.getBoundingClientRect();
-    var lim = window.innerWidth - 216 - 20;
-    rail.style.left = Math.min(r.right + 32, lim) + 'px';
+    var need = r.right + 32 + 216 + 12;
+    var fits = need <= window.innerWidth;
+    docEl.classList.toggle('rux-nofit', !fits);
+    if (fits) rail.style.left = (r.right + 32) + 'px';
   }
 
   /* 고정 헤더 높이 — 표 sticky 헤더가 가리지 않도록 */
