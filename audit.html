@@ -230,6 +230,18 @@ td.src,.src{color:var(--mut)}
 
 
 
+
+
+
+/* ── 작성자 레이블 ── */
+.byline{display:inline-flex; align-items:center; gap:8px; flex:none;
+  font-family:inherit; font-size:12px; font-weight:700; color:var(--ink);
+  letter-spacing:-.004em; background:var(--card); border:1px solid var(--acc-line);
+  border-radius:999px; padding:6px 14px}
+.byline em{font-style:normal; font-weight:700; font-size:10px; letter-spacing:.14em;
+  color:var(--acc); text-transform:uppercase}
+.byline b{font-weight:700}
+
 /* ══════ REPORT EXPERIENCE LAYER — 자동 생성 · 손으로 고치지 않는다 ══════ */
 :root{
   /* Spacing rhythm — 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 */
@@ -291,10 +303,11 @@ a .mono, .mono a{background:none; padding:0}
 .b-cf{background:var(--stop); color:#fff}
 .b-ga,.b-cl{border-color:transparent}
 
-/* ── 4. Table — 긴 표에서 열의 의미를 잃지 않게 한다 ── */
+/* ── 4. Table — 긴 표에서 행을 놓치지 않게 한다.
+   ⚠ thead sticky는 쓰지 않는다. .tw가 overflow-x 스크롤 컨테이너라서
+      sticky의 기준이 뷰포트가 아니라 .tw 박스가 되고, 헤더가 표 한가운데
+      떠서 본문 행을 덮는다(2026-08-28 실제 발생 · AUDIT 04절). ── */
 .tw{border-radius:var(--rr4)}
-thead th{position:sticky; top:var(--stick); z-index:3;
-  background:var(--card); box-shadow:inset 0 -1px 0 var(--line)}
 tbody tr{transition:background .14s ease}
 tbody tr:hover{background:var(--line2)}
 td,th{transition:none}
@@ -454,6 +467,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
   <p class="sub">alignment.html의 모든 핵심 주장에 대해 "근거가 끊기는 지점이 없는가"를 검사한 감사 기록이다. 새로운 UX·IA·데이터 분석을 추가하지 않았다. 발견된 결함과 수정 내역, 최종 판정을 담는다.</p>
 <p class="small" style="margin-top:10px">감사 대상 원본은 <a href="./alignment.html">EVIDENCE</a>, 결정 항목은 <a href="./index.html">FINAL REPORT</a>에 있다.</p>
   <div class="docmeta">
+    <span class="byline"><em>작성</em><b>DX혁신팀 허지원 책임</b></span>
     <span>대상 alignment.html + PHASE 1~7 산출물</span>
     <span>감사 2026-08-27</span>
     <span>결과 Critical 3 · Minor 3 — 전건 수정 반영</span>
