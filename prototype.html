@@ -839,6 +839,8 @@ footer.pjfoot{display:block; margin:24px -20px 0; padding:0; border-top:0}
 
 
 
+
+
 /* ══════ PROTOTYPE CHROME — 리포트 공통 시각 언어 (자동 생성) ══════ */
 /* 문서 크롬만 교체한다. .screen 내부(서비스 화면)는 --f-sans / --n-* 토큰을 그대로 쓴다. */
 :root{
@@ -915,14 +917,15 @@ tbody tr:hover{background:var(--doc-line-2)}
   box-shadow:inset 0 0 0 1px var(--doc-line)}
 .b-stop{background:var(--doc-stop-soft); color:var(--doc-stop)}
 
-/* ── 작성자 ── */
-.byline{display:inline-flex; align-items:center; gap:8px; flex:none;
-  font-size:12px; font-weight:700; color:var(--doc-ink); letter-spacing:-.004em;
-  background:var(--doc-card); border:1px solid var(--doc-line); border-radius:999px;
-  padding:6px 14px}
-.byline em{font-style:normal; font-weight:600; color:var(--doc-muted); font-size:11px;
-  letter-spacing:.06em}
-.byline b{font-weight:700}
+/* ── APPENDIX — 현재 최종안과 과거 작업 이력을 눈으로 가른다.
+   내용·접힘 상태는 그대로 두고 머리표시만 낮춘다. ── */
+.sechead.apx{border-bottom-color:var(--doc-line-2)}
+.sechead.apx .secno{font-size:9.5px; letter-spacing:.16em; font-weight:800;
+  color:var(--doc-muted); background:var(--doc-line-2); border-radius:4px;
+  padding:3px 8px; align-self:center}
+.sechead.apx h2{font-size:clamp(17px,2vw,21px); color:var(--doc-ink-2)}
+section.doc:has(.sechead.apx){margin-top:76px; padding-top:34px;
+  border-top:1px solid var(--doc-line)}
 
 /* ── 컨트롤 라운드 체계 통일 (5 / 6 / 10 / 14) ── */
 .chlog{border-radius:14px}
@@ -1367,7 +1370,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
   </div>
 </section>
 <section class="doc">
-  <div class="sechead"><span class="secno">4</span><h2>PHASE 7-1 대비 변경사항</h2><span class="en">visual only</span></div>
+  <div class="sechead apx"><span class="secno">APPENDIX</span><h2>디자인 변경 이력</h2><span class="en">PHASE 7-1 대비 · visual only</span></div>
   <p>이 절은 <strong>SPEC-01~05가 근거 ID로 인용하는 <span class="mono">CH-13 ~ CH-64</span>의 정의</strong>를 보존하기 위해 남겨 둔다. <strong>IA·모듈·순서·우선순위는 변경하지 않았다.</strong> 아래는 전부 시각 구현 수준의 결정이며, 7-1의 규칙을 어기는 항목은 없다.</p>
   <details class="chlog"><summary>변경 이력 52건 펼치기 — CH-13 ~ CH-64</summary>
 <div class="tw"><table>
