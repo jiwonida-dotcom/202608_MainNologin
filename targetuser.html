@@ -217,6 +217,210 @@ td.src,.src{color:var(--mut)}
   .pjnav .id span{display:none} }
 @media print{ .pjnav{position:static} }
 @media print{ .pjnav,.pjfoot{display:none} }
+
+
+
+
+
+
+
+
+
+/* ══════ REPORT EXPERIENCE LAYER — 자동 생성 · 손으로 고치지 않는다 ══════ */
+:root{
+  /* Spacing rhythm — 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 */
+  --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp6:24px; --sp8:32px; --sp12:48px; --sp16:64px;
+  /* Radius — 배지 5 · 칩 6 · 컨트롤 10 · 카드 14 · 면 18 */
+  --rr1:5px; --rr2:6px; --rr3:10px; --rr4:14px; --rr5:18px;
+  /* Typography scale — Pretendard 단일. 장식 서체를 두지 않는다 */
+  --t-kpi:clamp(30px,3.4vw,42px);   /* 대형 지표 */
+  --t-h2:clamp(21px,2.3vw,27px);
+  --t-h3:17px;
+  --t-body:15.5px;
+  --t-meta:13px;
+  --t-cap:12px;
+  --t-id:11.5px;
+  --t-badge:10.5px;
+  /* 좌표계(ID·수치) 서체 = 본문과 같은 Pretendard. 정렬은 tabular-nums가 담당한다 */
+  --mono:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --rail-w:216px;
+  --stick: calc(var(--pjnav-h,0px) + var(--navh,0px));
+}
+/* ── 1. Typography ───────────────────────────────────────────
+   숫자는 전부 tabular — 표·지표·본문 어디서든 자릿수가 흔들리지 않는다. */
+body{font-size:var(--t-body); line-height:1.72; letter-spacing:-.004em;
+  font-variant-numeric:tabular-nums; font-feature-settings:"tnum" 1,"case" 1}
+.mono{font-family:var(--mono); font-size:.92em; font-weight:600; letter-spacing:.01em;
+  font-variant-numeric:tabular-nums}
+h2{letter-spacing:-.022em}
+h3,h4{letter-spacing:-.014em}
+.small,.cap,figcaption{font-size:var(--t-cap); line-height:1.62}
+p{text-wrap:pretty}
+
+/* ── 2. ID = 좌표. 본문 흐름의 텍스트가 아니라 집어낼 수 있는 조각으로 보이게 한다 ── */
+dd .mono, td .mono, li .mono, p .mono{
+  padding:1px 6px; border-radius:var(--rr1); background:var(--line2);
+  color:var(--ink2); font-size:var(--t-id); font-weight:600; white-space:nowrap}
+a .mono, .mono a{background:none; padding:0}
+
+/* ── 3. Status Visual Language ───────────────────────────────
+   같은 의미는 같은 형태를 쓴다. 색 하나로 구분하지 않는다.
+     확정·관측  = 채운 면        (안정 · 더 볼 것 없음)
+     제안·변경  = 강조 채움      (사람이 내린 판단)
+     미확인     = 외곽선         (조용하지만 명확)
+     미결·제거  = 채움 + 점 표식 (시선을 끌어야 한다)
+     보류       = 중성 외곽선
+     충돌       = 단색 강조      (즉시 눈에 띈다) */
+.b{display:inline-flex; align-items:center; font-size:var(--t-badge); font-weight:700;
+  letter-spacing:.04em; padding:2.5px 8px; border-radius:var(--rr1);
+  border:1px solid transparent; white-space:nowrap; vertical-align:1px; line-height:1.5}
+.b i{font-family:var(--mono); font-weight:600; opacity:.62; letter-spacing:.02em}
+.b-keep,.b-ok,.b-obs{background:var(--ok-soft); color:var(--ok)}
+.b-nv,.b-conf,.b-new,.b-mv,.b-chg{background:var(--acc-soft); color:var(--acc-deep)}
+.b-unv,.b-warn{background:transparent; color:var(--warn); border-color:var(--warn-soft);
+  box-shadow:inset 0 0 0 1px var(--warn-soft)}
+.b-hold{background:transparent; color:var(--hold); border-color:var(--line);
+  box-shadow:inset 0 0 0 1px var(--line)}
+.b-open,.b-rm{background:var(--stop-soft); color:var(--stop)}
+.b-open::before,.b-rm::before{content:""; width:5px; height:5px; border-radius:50%;
+  background:currentColor; margin-right:6px; flex:none}
+.b-cf{background:var(--stop); color:#fff}
+.b-ga,.b-cl{border-color:transparent}
+
+/* ── 4. Table — 긴 표에서 열의 의미를 잃지 않게 한다 ── */
+.tw{border-radius:var(--rr4)}
+thead th{position:sticky; top:var(--stick); z-index:3;
+  background:var(--card); box-shadow:inset 0 -1px 0 var(--line)}
+tbody tr{transition:background .14s ease}
+tbody tr:hover{background:var(--line2)}
+td,th{transition:none}
+/* 숫자 열은 오른쪽 정렬 · 자릿수 고정 — 비교를 위한 정렬이다 */
+td[align="right"],th[align="right"],.num{text-align:right; font-variant-numeric:tabular-nums}
+
+/* ── 5. Scroll — 스크롤 자체가 탐색이 되도록 ── */
+.rux-prog{position:fixed; left:0; top:0; height:2px; width:0; z-index:120;
+  background:var(--acc); transition:width .08s linear; pointer-events:none}
+.rux-top{position:fixed; right:22px; bottom:22px; z-index:110;
+  width:44px; height:44px; display:grid; place-items:center; border-radius:50%;
+  background:var(--card); color:var(--ink2); border:1px solid var(--line);
+  box-shadow:0 6px 20px -12px rgba(20,20,40,.5); cursor:pointer;
+  opacity:0; transform:translateY(6px); pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease, color .2s ease}
+.rux-top.on{opacity:1; transform:none; pointer-events:auto}
+.rux-top:hover{color:var(--acc)}
+.rux-top svg{width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round}
+
+/* 절 내비 — 현재 절을 표시한다(FINAL REPORT) */
+.nav a{position:relative; transition:color .16s ease}
+.nav a[aria-current="true"]{color:var(--acc); font-weight:700}
+.nav a[aria-current="true"]::after{content:""; position:absolute; left:11px; right:11px; bottom:0;
+  height:2px; background:var(--acc); border-radius:2px}
+
+/* ── 6. Context Rail — 데스크톱의 빈 여백을 문맥으로 회수한다 ── */
+.rux-rail{position:fixed; top:calc(var(--stick) + 28px); z-index:30;
+  width:var(--rail-w); display:none; font-size:var(--t-cap)}
+.rux-rail .lb{display:block; font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--mut); margin-bottom:10px; font-weight:600}
+.rux-rail ol{list-style:none; margin:0; padding:0; max-height:62vh; overflow-y:auto;
+  scrollbar-width:none; border-left:1px solid var(--line)}
+.rux-rail ol::-webkit-scrollbar{display:none}
+.rux-rail a{display:flex; gap:8px; align-items:baseline; padding:5px 0 5px 13px;
+  margin-left:-1px; border-left:2px solid transparent;
+  color:var(--mut); text-decoration:none; line-height:1.45;
+  transition:color .16s ease, border-color .16s ease}
+.rux-rail a:hover{color:var(--ink2)}
+.rux-rail a .n{font-family:var(--mono); font-size:10px; font-weight:600; flex:none; opacity:.7}
+.rux-rail a .t{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.rux-rail a[aria-current="true"]{color:var(--acc); font-weight:700; border-left-color:var(--acc)}
+.rux-rail .pos{margin-top:12px; padding-left:13px; font-family:var(--mono); font-size:10px;
+  color:var(--mut); letter-spacing:.04em}
+/* 레일이 설 자리를 만든다 — 본문 폭은 그대로 두고 본문+레일 묶음을 화면 중앙에 놓는다.
+   본문 줄 길이(1040)를 줄이지 않으므로 가독성은 변하지 않는다. */
+@media (min-width:1400px){
+  .rux-rail{display:block}
+  .wrap,.pjnav .in,.pjfoot .in{
+    margin-left:calc((100vw - (1040px + 32px + var(--rail-w))) / 2); margin-right:0}
+}
+
+/* ── 6-1. Decision Workspace — 결정이 문서가 아니라 작업 공간으로 읽히게 한다 ── */
+.dhd .n{display:inline-flex; align-items:center; font-family:var(--mono);
+  font-variant-numeric:tabular-nums; letter-spacing:.03em; font-weight:700;
+  border-radius:var(--rr2); cursor:pointer; transition:background .16s ease, color .16s ease}
+.dhd .n:hover{background:var(--acc-soft); color:var(--acc-deep)}
+.dhd .n.copied{background:var(--ok-soft); color:var(--ok)}
+.rux-idx{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 var(--sp6)}
+.rux-idx a{display:inline-flex; align-items:center; gap:7px; text-decoration:none;
+  padding:6px 11px 6px 9px; border-radius:var(--rr3);
+  background:var(--card); border:1px solid var(--line); color:var(--ink2);
+  font-size:var(--t-cap); line-height:1.4; max-width:100%;
+  transition:border-color .16s ease, color .16s ease, background .16s ease}
+.rux-idx a:hover{border-color:var(--acc-line); color:var(--acc-deep); background:var(--acc-soft)}
+.rux-idx a .n{font-family:var(--mono); font-size:10.5px; font-weight:700; letter-spacing:.03em;
+  color:var(--acc); flex:none}
+.rux-idx a .t{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:26ch}
+.rux-idx a .d{width:5px; height:5px; border-radius:50%; flex:none}
+.rux-idx a .d.rm{background:var(--stop)} .rux-idx a .d.keep{background:var(--ok)}
+.rux-idx a .d.nv{background:var(--acc)} .rux-idx a .d.hold{background:var(--hold)}
+.rux-idx-lb{display:block; font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--mut); font-weight:600; margin:0 0 10px}
+/* 관계 — 문서가 고립돼 보이지 않게 한다 */
+.xref{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
+.xref a{display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+  font-size:var(--t-cap); color:var(--mut); padding:4px 10px; border-radius:var(--rr3);
+  border:1px solid var(--line); background:var(--card);
+  transition:border-color .16s ease, color .16s ease}
+.xref a::before{content:"→"; font-size:9px; opacity:.55}
+.xref a:hover{color:var(--acc-deep); border-color:var(--acc-line)}
+/* 복사 알림 */
+.rux-toast{position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(8px);
+  z-index:130; background:var(--ink); color:#fff; font-size:12px; font-weight:600;
+  padding:9px 16px; border-radius:999px; opacity:0; pointer-events:none;
+  transition:opacity .18s ease, transform .18s ease}
+.rux-toast.on{opacity:1; transform:translateX(-50%)}
+
+/* ── 6-2. Mobile / Tablet — 레일을 지우는 대신 시트로 접는다(정보를 삭제하지 않는다) ── */
+.rux-sec{position:fixed; right:22px; bottom:74px; z-index:110;
+  height:44px; padding:0 15px 0 13px; display:none; align-items:center; gap:8px;
+  border-radius:999px; background:var(--card); color:var(--ink2);
+  border:1px solid var(--line); box-shadow:0 6px 20px -12px rgba(20,20,40,.5);
+  font-size:12px; font-weight:700; cursor:pointer; max-width:min(72vw,320px)}
+.rux-sec .n{font-family:var(--mono); font-size:10px; color:var(--acc); font-weight:700; flex:none}
+.rux-sec .t{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.rux-sec svg{width:13px; height:13px; flex:none; fill:none; stroke:currentColor; stroke-width:2.2;
+  stroke-linecap:round; stroke-linejoin:round; opacity:.5}
+@media (max-width:1399px){ .rux-sec{display:flex} }
+.rux-sheet{position:fixed; inset:0; z-index:125; display:none}
+.rux-sheet.on{display:block}
+.rux-sheet .dim{position:absolute; inset:0; background:rgba(16,16,28,.42)}
+.rux-sheet .panel{position:absolute; left:0; right:0; bottom:0; max-height:74vh; overflow-y:auto;
+  background:var(--card); border-radius:18px 18px 0 0; padding:10px 0 calc(18px + env(safe-area-inset-bottom,0px));
+  animation:ruxUp .22s cubic-bezier(.22,.61,.36,1)}
+@keyframes ruxUp{from{transform:translateY(14px); opacity:.5}to{transform:none; opacity:1}}
+.rux-sheet .hd{display:flex; align-items:center; padding:8px 20px 12px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--mut); font-weight:600}
+.rux-sheet .hd span{margin-left:auto; letter-spacing:.04em}
+.rux-sheet a{display:flex; gap:10px; align-items:baseline; padding:11px 20px;
+  min-height:44px; text-decoration:none; color:var(--ink2); font-size:13.5px; line-height:1.4;
+  border-top:1px solid var(--line2)}
+.rux-sheet a .n{font-family:var(--mono); font-size:10.5px; font-weight:700; color:var(--mut); flex:none; min-width:26px}
+.rux-sheet a[aria-current="true"]{color:var(--acc); font-weight:700; background:var(--acc-soft)}
+.rux-sheet a[aria-current="true"] .n{color:var(--acc)}
+@media (max-width:520px){ .rux-top{right:16px; bottom:16px} .rux-sec{right:16px; bottom:68px} }
+
+/* ── 7. Empty space — 절 시작과 결론 앞뒤를 비운다 ── */
+section > .wrap > .shead, section > .wrap > .sechead{margin-bottom:var(--sp6)}
+
+/* ── 8. Micro interaction ── */
+a{transition:color .16s ease}
+details > summary{transition:background .16s ease, color .16s ease}
+details > summary:hover{color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc); outline-offset:3px; border-radius:3px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+@media print{.rux-prog,.rux-top,.rux-rail{display:none!important}}
+/* ══════ /REPORT EXPERIENCE LAYER ══════ */
 </style>
 
 <nav class="pjnav" aria-label="프로젝트 문서"><div class="in">
@@ -568,5 +772,205 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 </ul>
 <p class="note">이 여섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. <b>결론은 FINAL REPORT, 근거는 EVIDENCE, 검증은 AUDIT</b>에 있다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
 </div></footer>
+<!-- REPORT EXPERIENCE LAYER JS -->
+<script>
+/* Report Experience Layer — 표현 계층 전용. 콘텐츠를 읽기만 하고 바꾸지 않는다. */
+(function(){
+  var docEl = document.documentElement;
+
+  /* 스크롤 진행 */
+  var prog = document.createElement('div'); prog.className = 'rux-prog'; document.body.appendChild(prog);
+
+  /* 맨 위로 */
+  var top = document.createElement('button');
+  top.type = 'button'; top.className = 'rux-top'; top.setAttribute('aria-label','맨 위로');
+  top.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 19V6"/><path d="M6 11.5L12 5.5l6 6"/></svg>';
+  top.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+  document.body.appendChild(top);
+
+  /* 절 수집 — 마크업을 바꾸지 않고 있는 것만 읽는다 */
+  var secs = [].slice.call(document.querySelectorAll('section[id]')).filter(function(s){
+    return s.querySelector('h2');
+  }).map(function(s, i){
+    var h = s.querySelector('h2');
+    var num = s.querySelector('.sn, .secno, .n');
+    var label = (num && num.textContent.trim().split(/\s|·/)[0]) || String(i+1);
+    return { el:s, id:s.id, n:label.replace(/[^0-9\-–]/g,'') || String(i+1),
+             t:(h.textContent||'').trim() };
+  });
+
+  /* 문맥 레일 */
+  var rail = null;
+  if (secs.length > 3) {
+    rail = document.createElement('nav');
+    rail.className = 'rux-rail'; rail.setAttribute('aria-label','문서 절 이동');
+    var html = '<span class="lb">Sections</span><ol>';
+    secs.forEach(function(s){
+      html += '<li><a href="#'+s.id+'"><span class="n">'+s.n+'</span><span class="t">'+
+              s.t.replace(/</g,'&lt;')+'</span></a></li>';
+    });
+    html += '</ol><div class="pos" id="ruxPos"></div>';
+    rail.innerHTML = html;
+    document.body.appendChild(rail);
+  }
+
+  /* 레일 위치 — 본문 컨테이너 오른쪽 빈 여백에 놓는다 */
+  function place(){
+    if(!rail) return;
+    var w = document.querySelector('.wrap, .in');
+    if(!w) return;
+    var r = w.getBoundingClientRect();
+    var lim = window.innerWidth - 216 - 20;
+    rail.style.left = Math.min(r.right + 32, lim) + 'px';
+  }
+
+  /* 고정 헤더 높이 — 표 sticky 헤더가 가리지 않도록 */
+  function navh(){
+    var n = document.querySelector('.nav');
+    docEl.style.setProperty('--navh', (n ? n.getBoundingClientRect().height : 0) + 'px');
+  }
+
+  /* 모바일·태블릿 — 현재 절 버튼 + 시트 */
+  var secBtn = null, sheet = null, sheetLinks = [];
+  if (secs.length > 3){
+    secBtn = document.createElement('button');
+    secBtn.type = 'button'; secBtn.className = 'rux-sec';
+    secBtn.setAttribute('aria-haspopup','dialog');
+    secBtn.innerHTML = '<span class="n"></span><span class="t"></span>' +
+      '<svg viewBox="0 0 24 24"><path d="M5.5 9.5l6.5 6 6.5-6"/></svg>';
+    document.body.appendChild(secBtn);
+
+    sheet = document.createElement('div');
+    sheet.className = 'rux-sheet'; sheet.setAttribute('role','dialog');
+    sheet.setAttribute('aria-modal','true'); sheet.setAttribute('aria-label','절 이동');
+    var sh = '<div class="dim" data-close></div><div class="panel"><div class="hd">Sections' +
+             '<span id="ruxSheetPos"></span></div>';
+    secs.forEach(function(x){
+      sh += '<a href="#'+x.id+'"><span class="n">'+x.n+'</span><span>'+
+            x.t.replace(/</g,'&lt;')+'</span></a>';
+    });
+    sheet.innerHTML = sh + '</div>';
+    document.body.appendChild(sheet);
+    sheetLinks = [].slice.call(sheet.querySelectorAll('a[href^="#"]'));
+
+    var close = function(){ sheet.classList.remove('on'); document.body.style.overflow=''; };
+    secBtn.addEventListener('click', function(){
+      sheet.classList.add('on'); document.body.style.overflow='hidden';
+    });
+    sheet.addEventListener('click', function(e){
+      if (e.target.closest('[data-close]') || e.target.closest('a')) close();
+    });
+    addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+  }
+
+  var railLinks = rail ? [].slice.call(rail.querySelectorAll('a')) : [];
+  var navLinks  = [].slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  var cur = -1;
+
+  function onScroll(){
+    var st = window.scrollY || docEl.scrollTop;
+    var max = docEl.scrollHeight - window.innerHeight;
+    prog.style.width = (max > 0 ? (st / max * 100) : 0) + '%';
+    top.classList.toggle('on', st > window.innerHeight * 0.9);
+
+    var line = st + (parseFloat(getComputedStyle(docEl).getPropertyValue('--pjnav-h')) || 0) + 140;
+    var idx = 0;
+    for (var i = 0; i < secs.length; i++){
+      if (secs[i].el.offsetTop <= line) idx = i; else break;
+    }
+    if (idx !== cur){
+      cur = idx;
+      railLinks.forEach(function(a,i){
+        if(i===idx) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current');
+      });
+      var id = secs[idx] && secs[idx].id;
+      navLinks.forEach(function(a){
+        if(a.getAttribute('href') === '#'+id) a.setAttribute('aria-current','true');
+        else a.removeAttribute('aria-current');
+      });
+      var pos = document.getElementById('ruxPos');
+      if (pos) pos.textContent = (idx+1) + ' / ' + secs.length;
+      var sp = document.getElementById('ruxSheetPos');
+      if (sp) sp.textContent = (idx+1) + ' / ' + secs.length;
+      sheetLinks.forEach(function(a,i){
+        if(i===idx) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current');
+      });
+      if (secBtn && secs[idx]){
+        secBtn.querySelector('.n').textContent = secs[idx].n;
+        secBtn.querySelector('.t').textContent = secs[idx].t;
+      }
+      if (railLinks[idx] && rail){
+        var ol = rail.querySelector('ol');
+        var a = railLinks[idx];
+        if (a.offsetTop < ol.scrollTop || a.offsetTop > ol.scrollTop + ol.clientHeight - 30)
+          ol.scrollTop = a.offsetTop - ol.clientHeight/2;
+      }
+    }
+  }
+
+  /* ── 결정 좌표계 — 문서에 있는 것만 읽어 인덱스를 만든다(문장을 새로 쓰지 않는다) ── */
+  var toast = document.createElement('div'); toast.className = 'rux-toast';
+  document.body.appendChild(toast);
+  var toastT = null;
+  function say(m){
+    toast.textContent = m; toast.classList.add('on');
+    clearTimeout(toastT); toastT = setTimeout(function(){ toast.classList.remove('on'); }, 1400);
+  }
+
+  var cards = [].slice.call(document.querySelectorAll('.dfeat, .dcard')).filter(function(c){
+    return c.querySelector('.dhd .n') && c.querySelector('.dhd b');
+  });
+  if (cards.length > 2){
+    var idx = document.createElement('div'); idx.className = 'rux-idx';
+    idx.setAttribute('aria-label','결정 항목 바로가기');
+    var lb = document.createElement('span'); lb.className = 'rux-idx-lb'; lb.textContent = 'Decisions';
+    var tone = {'b-rm':'rm','b-open':'rm','b-keep':'keep','b-nv':'nv','b-hold':'hold'};
+    cards.forEach(function(c){
+      var id = c.querySelector('.dhd .n').textContent.trim();
+      var t  = c.querySelector('.dhd b').textContent.trim();
+      var bd = c.querySelector('.dhd .b');
+      var k  = 'nv';
+      if (bd) for (var cl in tone) if (bd.classList.contains(cl)) { k = tone[cl]; break; }
+      if (!c.id) c.id = 'dx-' + id.replace(/[^A-Za-z0-9\-]/g,'');
+      var a = document.createElement('a');
+      a.href = '#' + c.id;
+      a.innerHTML = '<span class="d ' + k + '"></span><span class="n">' + id +
+                    '</span><span class="t">' + t.replace(/</g,'&lt;') + '</span>';
+      a.title = id + ' · ' + t;
+      idx.appendChild(a);
+    });
+    /* 절 머리 바로 아래 — 결정 영역의 좌표계를 먼저 보여준다 */
+    var sec = cards[0].closest('section');
+    var head = sec && (sec.querySelector('.shead') || sec.querySelector('.sechead'));
+    if (head && head.parentNode){
+      head.parentNode.insertBefore(idx, head.nextSibling);
+      head.parentNode.insertBefore(lb, idx);
+    } else {
+      cards[0].parentNode.insertBefore(lb, cards[0]);
+      cards[0].parentNode.insertBefore(idx, cards[0]);
+    }
+  }
+
+  /* ID 클릭 = 좌표 복사 */
+  document.addEventListener('click', function(e){
+    var n = e.target.closest && e.target.closest('.dhd .n');
+    if (!n) return;
+    var v = n.textContent.trim();
+    var done = function(){ n.classList.add('copied'); say(v + ' 복사됨');
+      setTimeout(function(){ n.classList.remove('copied'); }, 900); };
+    if (navigator.clipboard && navigator.clipboard.writeText)
+      navigator.clipboard.writeText(v).then(done, function(){ say(v); });
+    else done();
+  });
+
+  var tick = false;
+  function req(){ if(!tick){ tick = true; requestAnimationFrame(function(){ onScroll(); tick=false; }); } }
+  addEventListener('scroll', req, {passive:true});
+  addEventListener('resize', function(){ place(); navh(); req(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ place(); navh(); req(); });
+  place(); navh(); onScroll();
+})();
+</script>
+<!-- /REPORT EXPERIENCE LAYER JS -->
 
 </html>
