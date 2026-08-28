@@ -253,6 +253,10 @@ td.src,.src{color:var(--mut)}
 .pjnav .byline b{font-weight:700}
 @media (max-width:640px){ .pjnav .byline{display:none} }
 
+
+
+
+
 /* ══════ REPORT EXPERIENCE LAYER — 자동 생성 · 손으로 고치지 않는다 ══════ */
 :root{
   /* Spacing rhythm — 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 */
@@ -390,6 +394,37 @@ td[align="right"],th[align="right"],.num{text-align:right; font-variant-numeric:
 .rux-idx a .d.nv{background:var(--acc)} .rux-idx a .d.hold{background:var(--hold)}
 .rux-idx-lb{display:block; font-family:var(--mono); font-size:10px; letter-spacing:.14em;
   text-transform:uppercase; color:var(--mut); font-weight:600; margin:0 0 10px}
+/* Decision Gate — 선행 결정과 후속 처리를 눈으로 갈라 놓는다 */
+.rux-gate{display:grid; gap:1px; background:var(--line); border:1px solid var(--line);
+  border-radius:var(--rr4); overflow:hidden; margin:0 0 var(--sp6)}
+.gate{background:var(--card); display:grid; grid-template-columns:200px 1fr; gap:0}
+.gate .gh{padding:14px 16px; border-right:1px solid var(--line2); background:var(--card)}
+.gate .gh .g{display:inline-block; font-family:var(--mono); font-size:10px; font-weight:800;
+  letter-spacing:.08em; color:var(--acc); background:var(--acc-soft);
+  border-radius:4px; padding:2px 7px; margin-bottom:7px}
+.gate .gh b{display:block; font-size:12.5px; font-weight:800; letter-spacing:.02em; color:var(--ink)}
+.gate .gh i{display:block; margin-top:3px; font-style:normal; font-size:11.5px; color:var(--mut)}
+.gate .gl{display:flex; flex-wrap:wrap; gap:6px; align-content:flex-start; padding:14px 16px}
+.gate .gl a{display:inline-flex; align-items:center; gap:7px; text-decoration:none;
+  padding:6px 11px 6px 9px; border-radius:var(--rr3); background:var(--card);
+  border:1px solid var(--line); color:var(--ink2); font-size:var(--t-cap); line-height:1.4;
+  transition:border-color .16s ease, color .16s ease, background .16s ease}
+.gate .gl a:hover{border-color:var(--acc-line); color:var(--acc-deep); background:var(--acc-soft)}
+.gate .gl a.blk{border-color:var(--stop-soft); background:#FFFBFA}
+.gate .gl a .n{font-family:var(--mono); font-size:10.5px; font-weight:700; letter-spacing:.03em;
+  color:var(--acc); flex:none}
+.gate .gl a .t{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:30ch}
+.gate .gl a .d{width:5px; height:5px; border-radius:50%; flex:none}
+.gate .gl a .d.rm{background:var(--stop)} .gate .gl a .d.keep{background:var(--ok)}
+.gate .gl a .d.nv{background:var(--acc)} .gate .gl a .d.hold{background:var(--hold)}
+.gate .gl a .bl{font-size:9.5px; font-weight:800; letter-spacing:.06em; color:var(--stop);
+  background:var(--stop-soft); border-radius:3px; padding:1px 5px; flex:none}
+.gate .ge{margin:0; font-size:12px; color:var(--mut); line-height:1.6}
+.gate .ge b{color:var(--ink2); font-weight:700}
+@media (max-width:760px){ .gate{grid-template-columns:1fr}
+  .gate .gh{border-right:0; border-bottom:1px solid var(--line2); padding-bottom:10px}
+  .gate .gl a .t{max-width:22ch} }
+
 /* 관계 — 문서가 고립돼 보이지 않게 한다 */
 .xref{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
 .xref a{display:inline-flex; align-items:center; gap:6px; text-decoration:none;
@@ -953,27 +988,50 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
     return c.querySelector('.dhd .n') && c.querySelector('.dhd b');
   });
   if (cards.length > 2){
-    var idx = document.createElement('div'); idx.className = 'rux-idx';
+    var idx = document.createElement('div'); idx.className = 'rux-gate';
     idx.setAttribute('aria-label','결정 항목 바로가기');
-    var lb = document.createElement('span'); lb.className = 'rux-idx-lb'; lb.textContent = 'Decisions';
+    var lb = document.createElement('span'); lb.className = 'rux-idx-lb'; lb.textContent = 'Decision Gate';
     var tone = {'b-rm':'rm','b-open':'rm','b-keep':'keep','b-nv':'nv','b-hold':'hold'};
+    /* Gate 배치는 각 결정 카드가 이미 밝힌 영향 범위를 따른다 — 새로 분류 기준을 만들지 않는다.
+       선행(blocking) 표시는 08절이 지목한 D-01 · D-02 · D-07 세 건이다. */
+    var GATE = {
+      'G1':{t:'PRODUCT', d:'서비스 구조 · 우선순위', ids:['D-01','D-02','D-03','D-04','D-05','D-06','D-09']},
+      'G2':{t:'CONTENT / OPERATION', d:'콘텐츠 · 운영 정책', ids:['D-07','D-08']},
+      'G3':{t:'VISUAL', d:'브랜드 · 비주얼 시스템', ids:['D-10']},
+      'G4':{t:'DATA / DEVELOPMENT', d:'데이터 전달 · 기술 구현', ids:[]}
+    };
+    var BLOCKING = ['D-01','D-02','D-07'];
+    var byId = {};
     cards.forEach(function(c){
       var id = c.querySelector('.dhd .n').textContent.trim();
-      var t  = c.querySelector('.dhd b').textContent.trim();
-      var bd = c.querySelector('.dhd .b');
-      var k  = 'nv';
-      if (bd) for (var cl in tone) if (bd.classList.contains(cl)) { k = tone[cl]; break; }
       if (!c.id) c.id = 'dx-' + id.replace(/[^A-Za-z0-9\-]/g,'');
-      var a = document.createElement('a');
-      a.href = '#' + c.id;
-      a.innerHTML = '<span class="d ' + k + '"></span><span class="n">' + id +
-                    '</span><span class="t">' + t.replace(/</g,'&lt;') + '</span>';
-      a.title = id + ' · ' + t;
-      idx.appendChild(a);
+      byId[id] = c;
+    });
+    Object.keys(GATE).forEach(function(g){
+      var G = GATE[g];
+      var row = document.createElement('div'); row.className = 'gate';
+      var head = '<div class="gh"><span class="g">' + g + '</span><b>' + G.t +
+                 '</b><i>' + G.d + '</i></div>';
+      var items = '';
+      G.ids.forEach(function(id){
+        var c = byId[id]; if (!c) return;
+        var t = c.querySelector('.dhd b').textContent.trim();
+        var bd = c.querySelector('.dhd .b'); var k = 'nv';
+        if (bd) for (var cl in tone) if (bd.classList.contains(cl)) { k = tone[cl]; break; }
+        var block = BLOCKING.indexOf(id) >= 0;
+        items += '<a href="#' + c.id + '"' + (block ? ' class="blk"' : '') + ' title="' + id + ' · ' + t + '">' +
+                 '<span class="d ' + k + '"></span><span class="n">' + id + '</span>' +
+                 '<span class="t">' + t.replace(/</g,'&lt;') + '</span>' +
+                 (block ? '<span class="bl">선행</span>' : '') + '</a>';
+      });
+      if (!items) items = '<p class="ge">이 문서의 결정 항목에는 없다 — 개발 확인 항목은 <b>SPEC 결정 요청서</b>에 있다</p>';
+      row.innerHTML = head + '<div class="gl">' + items + '</div>';
+      idx.appendChild(row);
     });
     /* 절 머리 바로 아래 — 결정 영역의 좌표계를 먼저 보여준다 */
     var sec = cards[0].closest('section');
-    var head = sec && (sec.querySelector('.shead') || sec.querySelector('.sechead'));
+    /* 결론 요약(.fdec)이 있으면 그 다음 — 요약 → 게이트 → 상세 카드 순서를 지킨다 */
+    var head = sec && (sec.querySelector('.fdec') || sec.querySelector('.shead') || sec.querySelector('.sechead'));
     if (head && head.parentNode){
       head.parentNode.insertBefore(idx, head.nextSibling);
       head.parentNode.insertBefore(lb, idx);
