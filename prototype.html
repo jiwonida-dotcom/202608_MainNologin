@@ -432,12 +432,19 @@ svg{display:block}
 .tab[aria-selected="true"]{background:var(--surface); color:var(--text); font-weight:700;
   box-shadow:0 1px 2px rgba(25,25,25,.10), 0 0 0 1px rgba(25,25,25,.05)}
 .pcards{display:grid; grid-template-columns:1fr 1fr; gap:var(--s-5) var(--s-3)}
-.pcard{text-align:left; border:1px solid var(--hairline); border-radius:14px;
+.pcard{text-align:center; border:1px solid var(--hairline); border-radius:14px;
   background:var(--surface); padding:var(--s-3) var(--s-3) 14px; transition:border-color var(--dur) var(--ease)}
 .pcard:hover{border-color:var(--border-strong)}
 .pcard:hover .ph{background:var(--n-100)}
 .pcard:hover .ph .i3d{box-shadow:0 1px 0 rgba(22,25,29,.04), 0 8px 16px -10px rgba(22,25,29,.5), 0 0 0 1px var(--n-300)}
 .pcard:active{transform:scale(.99)}
+/* ══════ [R2-M06-2] 상품 카드 텍스트 정렬 ══════
+   .pcard 텍스트를 센터 정렬한다 — 근거 3건.
+     · 운영 서비스 동일 컴포넌트(.phone-item .tit)가 center / weight 700 (실측 2026-09-01)
+     · 카드 내부 축 일치 — 이미지 슬롯(.ph)이 정사각 프레임 중앙 배치이므로 축을 하나로
+     · 기기명 실측 폭 75~130px / 컨테이너 136px — 대부분 1행이라 센터 정렬의
+       다행 래그드 문제가 발생하지 않는다(2행 케이스 iPhone 15 Pro 128G 1건은 AS-IS 동일)
+   ⚠ 적용 범위는 .pcard 한정. label/value 양끝 정렬 구조(.rrow 등)에는 적용하지 않는다. */
 /* ══════ [R2-M06] 상품 이미지 슬롯 ══════
    .ph 는 "상품 이미지가 들어갈 자리"다. 실제 이미지 자산이 확보되면 이 슬롯 안에
    <img>를 넣기만 하면 되고 CSS 재설계는 필요 없다 — 규격은 아래와 같다.
@@ -465,10 +472,12 @@ svg{display:block}
   box-shadow:inset 0 0 0 1px rgba(22,25,29,.06)}
 .ph .i3d::after{content:""; position:absolute; left:50%; top:8%; width:7%; aspect-ratio:1;
   transform:translateX(-50%); border-radius:var(--r-full); background:var(--n-200)}
-.pcard b{display:block; font-size:var(--fs-14); font-weight:600; color:var(--text);
-  line-height:1.4; letter-spacing:var(--tr-base)}
+/* 기기명 볼륨 — 15px/700. 16px는 "iPhone 14 128G"가 139px로 컨테이너(136px)를 넘어
+   줄바꿈되므로 단행 유지 상한은 15px다(실측). 자간은 굵기 상승분만큼 tight로 조인다. */
+.pcard b{display:block; font-size:var(--fs-15); font-weight:700; color:var(--text);
+  line-height:1.35; letter-spacing:var(--tr-tight)}
 /* 브랜드색 가격은 M-03(Primary)에만 남긴다 — 여기서는 잉크로 되돌려 위계를 지킨다 */
-.pcard .pp{display:block; margin-top:5px; font-size:var(--fs-12); color:var(--text-3); line-height:1.4}
+.pcard .pp{display:block; margin-top:4px; font-size:var(--fs-12); color:var(--text-3); line-height:1.4}
 .pcard .pp em{font-style:normal; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums}
 /* [REFINE VP-4] 실패 화면의 유일한 유효 행동 — 비활성 요소와 구분되도록 기존 토큰으로 보조 채움.
    구조·동작·토큰 값 불변. 토큰 자체는 B-05 미확정이므로 reference로만 사용. */
