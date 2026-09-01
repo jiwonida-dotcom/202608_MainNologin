@@ -441,15 +441,15 @@ svg{display:block}
 /* ══════ [R2-M06] 상품 이미지 슬롯 ══════
    .ph 는 "상품 이미지가 들어갈 자리"다. 실제 이미지 자산이 확보되면 이 슬롯 안에
    <img>를 넣기만 하면 되고 CSS 재설계는 필요 없다 — 규격은 아래와 같다.
-     · 비율      4 : 3 (가로형 프레임 · 세로형 단말을 여백과 함께 담는다)
-     · 맞춤      object-fit:contain — 잘라내지 않는다(제품 형태 왜곡 금지)
+     · 비율      1 : 1 (정사각 프레임 · 운영 자산이 480×480 정사각이므로 프레임 비율을 맞춘다)
+     · 맞춤      object-fit:contain + 안쪽 여백 — 단말 상·하단이 프레임에 붙지 않고 전체가 보인다
      · 바닥      중성 면(--n-50) — 배경이 비치는 PNG·흰 배경 JPG 모두 수용
      · 대체      이미지가 없거나 로드 실패 시 아래 중립 단말 목업이 그대로 보인다
    ⚠ 실제 제품 사진 적용은 이미지 자산 출처·사용 범위 확인이 선행되어야 한다 — 미확정.
    현재는 특정 제조사를 지시하지 않는 중립 단말 목업을 표시한다(DD-11 · 강조 없음). */
-.ph{aspect-ratio:4/3; border-radius:10px; background:var(--n-50); overflow:hidden;
+.ph{aspect-ratio:1/1; border-radius:10px; background:var(--n-50); overflow:hidden;
   margin-bottom:11px; display:grid; place-items:center}
-.ph img{grid-area:1/1; width:100%; height:100%; object-fit:contain; padding:9px}
+.ph img{grid-area:1/1; width:100%; height:100%; object-fit:contain; padding:10px}
 .ph:has(img){background:var(--n-0); box-shadow:inset 0 0 0 1px var(--border)}
 .ph:has(img) .i3d{display:none}
 /* 중립 단말 목업 — 아이콘이 아니라 기기 하나가 놓인 것처럼 읽히도록 몸체·화면·전면부를 나눈다.
