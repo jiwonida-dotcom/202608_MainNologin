@@ -508,8 +508,8 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <header class="dochd">
   <span class="eyebrow">PHASE 8 · Alignment Document</span>
   <h1>U+유모바일 비로그인 메인 개편 — 데이터 기반 개선 제안</h1>
-  <p class="sub">기존 개편 요청사항을 GA4·Clarity 행동 데이터로 재검증하고, 무엇을 유지·변경·제외할지 관계자가 의사결정할 수 있도록 정리한 문서다. 개발 명세가 아니다.</p>
-<p class="small" style="margin-top:10px">이 문서는 <b>판단의 근거</b>를 담는다. 결정 항목만 보려면 <a href="./index.html">FINAL REPORT</a>, 수치 검증 기록은 <a href="./audit.html">AUDIT</a>, REQ-04는 <a href="./timedeal.html">TIME DEAL</a>에 별도로 있다.</p>
+  <p class="sub">기존 개편 요청사항 × GA4·Clarity 행동 데이터 재검증. 유지·변경·제외 판단을 관계자가 결정할 수 있도록 정리한 문서. 개발 명세 아님.</p>
+<p class="small" style="margin-top:10px">이 문서 = <b>판단의 근거</b>. 결정 항목만 확인하려면 <a href="./index.html">FINAL REPORT</a>, 수치 검증 기록은 <a href="./audit.html">AUDIT</a>, REQ-04는 <a href="./timedeal.html">TIME DEAL</a>에 별도로 있다.</p>
   <div class="docmeta">
     
     <span>대상 /nologfirst · /nologrevisit</span>
@@ -541,19 +541,19 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <section id="s01">
 <span class="snum">01</span>
 <h2>Executive Summary</h2>
-<p class="lede">기존 요청은 "무엇을 만들 것인가"를 정의했지만 "왜"가 없었다. 데이터로 그 공백을 채웠고, 그 결과 <b>일부 요청은 방향이 바뀌어야 하고, 요청에 없던 문제가 가장 크다</b>는 것이 확인됐다.</p>
+<p class="lede">기존 요청은 "무엇을 만들 것인가"만 정의, "왜" 부재. 데이터로 공백 보완 → <b>일부 요청의 방향 전환 필요 + 요청에 없던 문제가 최대 규모</b> 확인.</p>
 
 <h3>① 무엇을 요청받았는가</h3>
-<p>2026-08-25 공유된 「모바일 메인화면 개편안」 — 주메뉴 7개 신설, 타임딜 우선 노출, 로그인 영역 신설, 카테고리별 프로모션, 휴대폰·유픽·브랜드혜택 영역 신설 등 <b>요구 22건 + 검토 5건</b>. 목적·KPI·근거 서술은 문서에 없다(현행 CMS 제약 1건만 명시).</p>
+<p>2026-08-25 공유된 「모바일 메인화면 개편안」 — 주메뉴 7개 신설, 타임딜 우선 노출, 로그인 영역 신설, 카테고리별 프로모션, 휴대폰·유픽·브랜드혜택 영역 신설 등 <b>요구 22건 + 검토 5건</b>. 목적·KPI·근거 서술 문서에 없음(현행 CMS 제약 1건만 명시).</p>
 
 <h3>② 데이터에서 무엇이 발견됐는가</h3>
 <div class="tw tight"><table>
 <tbody>
-<tr><td class="id">발견 1</td><td><b>이벤트의 78.2%가 팝업이고, 그중 90%는 내용이 클릭되지 않은 채 닫힌다.</b> 요청 문서에 없는 문제가 화면의 단일 최대 행동이다</td></tr>
-<tr><td class="id">발견 2</td><td><b>요금제 전용 탐색 영역이 평균 스크롤 도달선 밖에 있다</b>(y1802 vs 도달선 y1461~1658). 세션당 클릭 0.0079/0.0067 — 무관심이 아니라 미노출로 해석된다</td></tr>
-<tr><td class="id">발견 3</td><td><b>두 화면 공통 다음 행동 1위는 로그인이다</b>(43.9% / 21.6%). 화면의 설계 전제(신규 가입 탐색)와 실제 최대 수요가 다르다</td></tr>
-<tr><td class="id">발견 4</td><td><b>nologfirst / nologrevisit 분기가 가치를 만든다는 근거가 확인되지 않았다.</b> 두 화면의 구성 요소는 동일하고, 행동 차이는 화면이 아니라 유입 구성 차이로 설명될 여지가 크다</td></tr>
-<tr><td class="id">발견 5</td><td><b>화면 하단 절반은 도달되지 않는다</b>(스크롤 도달 44.5% / 39.2%) — 시안은 그 아래에 신설 영역 4개를 추가하려 한다</td></tr>
+<tr><td class="id">발견 1</td><td><b>이벤트의 78.2%가 팝업 · 그중 90%는 내용 미클릭 상태로 닫힘.</b> 요청 문서에 없던 문제가 화면 단일 최대 행동</td></tr>
+<tr><td class="id">발견 2</td><td><b>요금제 전용 탐색 영역이 평균 스크롤 도달선 밖</b>(y1802 vs 도달선 y1461~1658). 세션당 클릭 0.0079/0.0067 — 무관심 아님, 미노출로 해석</td></tr>
+<tr><td class="id">발견 3</td><td><b>두 화면 공통 다음 행동 1위 = 로그인</b>(43.9% / 21.6%). 설계 전제(신규 가입 탐색) × 실제 최대 수요 불일치</td></tr>
+<tr><td class="id">발견 4</td><td><b>nologfirst / nologrevisit 분기의 가치 근거 미확인.</b> 두 화면 구성 요소 동일 · 행동 차이는 화면 아닌 유입 구성 차이로 설명 가능</td></tr>
+<tr><td class="id">발견 5</td><td><b>화면 하단 절반 미도달</b>(스크롤 도달 44.5% / 39.2%) — 시안은 그 아래에 신설 영역 4개 추가 예정</td></tr>
 </tbody>
 </table></div>
 
@@ -565,32 +565,32 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <div class="claim">기존 요청에 <b>팝업 정책은 없었으나</b>, 분석 결과 <b>팝업 닫기가 두 화면 모두 단일 최대 행동</b>(세션당 0.766 / 0.714)임이 확인되었기 때문에, <b>팝업 운영 정책 재설계를 개편의 선행 과제로 추가</b>할 것을 제안한다. <span class="mono">P-01 · DV-03</span></div>
 
 <h3>④ 기존 요청과 무엇이 달라졌는가</h3>
-<p>27건 전건(REQ-01~22 · A~E, 개별 기준) — <b>KEEP 6 · CHANGE 6 · REMOVE 3 · HOLD 8 · NEEDS VALIDATION 4</b> (09절 표). 요청의 큰 방향(탐색 구조화·로그인 강화·이벤트 유지)은 데이터와 일치하며, 달라진 것은 <b>우선순위 배치</b>다 — 시안의 순위와 데이터의 순위가 어긋나는 지점(타임딜·이벤트·휴대폰)에서 변경을 제안한다.</p>
+<p>27건 전건(REQ-01~22 · A~E, 개별 기준) — <b>KEEP 6 · CHANGE 6 · REMOVE 3 · HOLD 8 · NEEDS VALIDATION 4</b> (09절 표). 요청의 큰 방향(탐색 구조화·로그인 강화·이벤트 유지)은 데이터와 일치. 변경 대상 = <b>우선순위 배치</b> — 시안 순위 × 데이터 순위 불일치 지점(타임딜·이벤트·휴대폰)에서 변경 제안.</p>
 
 <h3>⑤ 무엇을 결정해 달라는 것인가</h3>
-<p>의사결정 10건을 14절에 분리했다. 최우선 3건 — <b>D-01</b> 두 화면을 단일 메인으로 통합할 것인가, <b>D-02</b> 타임딜 운영 시에도 요금제를 위에 둘 것인가(REQ-04와 상충), <b>D-07</b> 팝업 정책 재설계를 개편 범위에 포함할 것인가.</p>
+<p>의사결정 10건 14절 분리. 최우선 3건 — <b>D-01</b> 두 화면의 단일 메인 통합 여부, <b>D-02</b> 타임딜 운영 시 요금제 상단 유지 여부(REQ-04와 상충), <b>D-07</b> 팝업 정책 재설계의 개편 범위 포함 여부.</p>
 </section>
 
 <section id="s02">
 <span class="snum">02</span>
 <h2>프로젝트 배경 / 기존 업무 요청</h2>
-<p class="lede">요청 문서는 화면 시안 중심이며, 개편의 목적·성과 지표·근거가 서술되어 있지 않다. 이 프로젝트는 그 근거를 데이터로 보완하기 위해 수행됐다.</p>
+<p class="lede">요청 문서 = 화면 시안 중심. 개편 목적·성과 지표·근거 미서술. 본 프로젝트는 그 근거를 데이터로 보완하기 위해 수행.</p>
 <div class="tw tight"><table>
 <tbody>
 <tr><td class="id">요청 문서</td><td>「20260825_모바일 메인화면 개편안」 (pptx, 8/14 → 8/21 → 8/25 3개 버전)</td></tr>
 <tr><td class="id">대상 화면</td><td><span class="mono">/nologfirst</span> · <span class="mono">/nologrevisit</span> — 단, 문서에는 두 화면의 구분이 없다 (OPEN-01)</td></tr>
 <tr><td class="id">문서에 있는 것</td><td>메뉴 구성, 영역 시안, 운영 on/off 요구, 구현 우선순위 1~3순위</td></tr>
-<tr><td class="id">문서에 없는 것</td><td><b>목적 · KPI · 대상 사용자 정의 · 데이터 근거</b> (현행 CMS 제약 1건만 명시). "이탈 감소", "전환율 향상" 같은 성과 목표는 한 번도 등장하지 않는다</td></tr>
-<tr><td class="id">버전 간 변화</td><td>8/14의 사용자 행동 관점 항목(동선 효율화 등)이 8/25에서 삭제되고 운영·구현 관점이 강화됨 — 개편 무게중심이 운영 편의로 이동한 것으로 보인다 <span class="b b-unv">가설</span></td></tr>
+<tr><td class="id">문서에 없는 것</td><td><b>목적 · KPI · 대상 사용자 정의 · 데이터 근거</b> (현행 CMS 제약 1건만 명시). "이탈 감소" · "전환율 향상" 등 성과 목표 0회 등장</td></tr>
+<tr><td class="id">버전 간 변화</td><td>8/14의 사용자 행동 관점 항목(동선 효율화 등) 8/25에서 삭제 · 운영·구현 관점 강화 — 개편 무게중심의 운영 편의 이동 <span class="b b-unv">가설</span></td></tr>
 </tbody>
 </table></div>
-<div class="note">이 문서의 역할 — 요청사항을 그대로 구현하기 전에, <b>각 요청이 실제 사용자 행동과 일치하는지</b> 확인하고 유지/변경/제외를 결정할 수 있게 한다. 요청사항 원문과 분석 결과는 전 구간에서 분리해 표기한다.</div>
+<div class="note">이 문서의 역할 — 요청사항 구현 전 <b>각 요청 × 실제 사용자 행동 일치 여부</b> 확인 → 유지/변경/제외 결정 지원. 요청 원문과 분석 결과는 전 구간 분리 표기.</div>
 </section>
 
 <section id="s03">
 <span class="snum">03</span>
 <h2>기존 요청사항 정리</h2>
-<p class="lede">요청 문서(8/25 ver) 원문 의미를 유지한 구조화다. 여기서는 재해석하지 않는다 — 분석 결과와의 대조는 09절에서 한다.</p>
+<p class="lede">요청 문서(8/25 ver) 원문 의미 유지 구조화. 이 절은 재해석 없음 — 분석 결과 대조는 09절.</p>
 
 <h3>필수 요구 (1~3순위 부여)</h3>
 <div class="tw tight"><table>
@@ -623,149 +623,149 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <tr><td class="id">REQ-E</td><td>'내게 맞는 요금제 찾기' 3탭 — 데이터 많이 / 혜택 많이 / 요금 적게</td><td>8/14 규칙 명시 → 8/25 설명 삭제, 화면에만 존재</td></tr>
 </tbody>
 </table></div>
-<div class="note"><b>근거 존재 여부 요약</b> — 27건 중 데이터·문서 근거가 함께 제시된 요청은 <b>REQ-08 1건</b>(CMS 제약)뿐이다. 나머지는 모두 이번 분석에서 근거를 새로 확인해야 했다.</div>
+<div class="note"><b>근거 존재 여부 요약</b> — 27건 중 데이터·문서 근거가 함께 제시된 요청은 <b>REQ-08 1건</b>(CMS 제약)뿐. 나머지 전건은 이번 분석에서 근거 신규 확인.</div>
 </section>
 
 <section id="s04">
 <span class="snum">04</span>
 <h2>데이터 분석 Summary</h2>
-<p class="lede">두 도구를 동일 화면·유사 기간으로 맞췄다. 모수 정의가 다르므로 도구 간 절대값을 직접 비교하지 않고, 각 도구 안의 비율·방향으로만 해석한다.</p>
+<p class="lede">두 도구를 동일 화면·유사 기간으로 정렬. 모수 정의 상이 → 도구 간 절대값 직접 비교 없음. 각 도구 내부의 비율·방향으로만 해석.</p>
 <div class="tw tight"><table>
 <thead><tr><th>구분</th><th>GA4</th><th>Clarity</th></tr></thead>
 <tbody>
 <tr><td class="id">기간</td><td>2026-07-28 ~ 08-24</td><td>2026-07-29 ~ 08-25 (1일 어긋남)</td></tr>
 <tr><td class="id">모수</td><td class="num"><b>세션</b> FIRST 126,749 · REVISIT 31,861<br><b>경로탐색 시작 세션</b> FIRST 130,607 · REVISIT 33,402</td><td class="num">FIRST 104,367 · REVISIT 29,198 세션</td></tr>
-<tr><td class="id">분모 구분</td><td><b>GA4 리포트마다 세션 집계가 다르다.</b> 같은 기간인데도 참여도 리포트는 126,749, 경로탐색 리포트는 130,607을 준다(원자료 기록 — 이탈률 126,749 / 경로탐색 130,607 / 채널 126,421).<br><b>다음 행동 비율</b>(로그인 43.9% 등)은 <b>경로탐색 시작 세션</b>이 분모다. <b>세션당 발생률</b>(팝업 닫기 0.766회/세션 등)과 <b>유입 경로 비율</b>(계정 흔적 7.4% 등)은 <b>세션</b>이 분모다. 두 분모를 섞어 계산하지 않는다. <b>차이의 GA4 내부 원인은 확인되지 않았다</b> — 확인 필요 항목이다</td><td>—</td></tr>
+<tr><td class="id">분모 구분</td><td><b>GA4 리포트별 세션 집계 상이.</b> 동일 기간에도 참여도 리포트 126,749 / 경로탐색 리포트 130,607(원자료 기록 — 이탈률 126,749 / 경로탐색 130,607 / 채널 126,421).<br><b>다음 행동 비율</b>(로그인 43.9% 등)은 <b>경로탐색 시작 세션</b>이 분모다. <b>세션당 발생률</b>(팝업 닫기 0.766회/세션 등)과 <b>유입 경로 비율</b>(계정 흔적 7.4% 등)은 <b>세션</b>이 분모. 두 분모 혼합 계산 금지. <b>차이의 GA4 내부 원인 미확인</b> — 확인 필요 항목</td><td>—</td></tr>
 <tr><td class="id">주 용도</td><td>진입·경로·전환·이벤트 규모</td><td>클릭 좌표·스크롤 도달·세션 녹화·Frustration</td></tr>
-<tr><td class="id">한계</td><td><span class="mono">MAIN_NOTLOGIN</span> 태깅 요소만 — 햄버거·로그인·검색·푸터 이벤트 미포함. 이탈률 컬럼 정합성 불일치로 방향성만 사용</td><td>URL 필터가 세션 범위라 화면 밖 행동이 섞일 수 있음 — 검색 수치는 INTERPRETATION 등급</td></tr>
+<tr><td class="id">한계</td><td><span class="mono">MAIN_NOTLOGIN</span> 태깅 요소만 — 햄버거·로그인·검색·푸터 이벤트 미포함. 이탈률 컬럼 정합성 불일치로 방향성만 사용</td><td>URL 필터가 세션 범위 → 화면 밖 행동 혼입 가능 — 검색 수치는 INTERPRETATION 등급</td></tr>
 </tbody>
 </table></div>
-<p class="small">근거 등급 — <span class="b b-obs">OBSERVED</span> 도구에서 직접 관측 · <span class="b b-conf">CONFIRMED</span> 복수 근거로 판단 가능 · <span class="b b-unv">UNVERIFIED</span> 현재 데이터로 확인 불가 · <span class="b b-open">OPEN ISSUE</span> 관계자/추가 검증 필요. UNVERIFIED는 이 문서 어디에서도 확정 근거로 쓰지 않는다.</p>
-<div class="note"><b>계정 식별의 한계</b> — 이 화면은 로그인 전이므로 <b>방문자의 계정 보유 여부를 확인할 수단이 없다</b>. 두 도구가 나누는 것은 쿠키 기준의 방문 이력이며, 그 판정조차 도구마다 다르다(서비스 100%/0% · Clarity 96.5%/36.0% · GA4 77.6%/26.9%). <b>다만 하한선은 관측된다</b> — 이 화면을 본 세션의 <b>37.6%</b>가 같은 세션에서 로그인 후 페이지(<span class="mono">/my/main</span>)까지 갔다(44,514 / 118,537 · GA4 2026-07-30~08-26 · <b>다른 기간의 분모와 섞지 않는다</b>). 나머지에 계정이 없다는 뜻은 아니다. 따라서 이 문서는 <b>"신규 고객"이라는 표현을 쓰지 않는다.</b> 대상 정의는 <span class="mono">D-12</span>에서 목적 중심으로 확정했다 <a href="./targetuser.html">타깃 재검증</a></div>
+<p class="small">근거 등급 — <span class="b b-obs">OBSERVED</span> 도구에서 직접 관측 · <span class="b b-conf">CONFIRMED</span> 복수 근거로 판단 가능 · <span class="b b-unv">UNVERIFIED</span> 현재 데이터로 확인 불가 · <span class="b b-open">OPEN ISSUE</span> 관계자/추가 검증 필요. UNVERIFIED는 이 문서 어디에서도 확정 근거로 미사용.</p>
+<div class="note"><b>계정 식별의 한계</b> — 이 화면은 로그인 전이므로 <b>방문자의 계정 보유 여부 확인 수단 없음</b>. 두 도구의 구분 축 = 쿠키 기준 방문 이력. 판정 기준도 도구마다 상이(서비스 100%/0% · Clarity 96.5%/36.0% · GA4 77.6%/26.9%). <b>단 하한선은 관측</b> — 이 화면을 본 세션의 <b>37.6%</b>가 동일 세션에서 로그인 후 페이지(<span class="mono">/my/main</span>)까지 갔다(44,514 / 118,537 · GA4 2026-07-30~08-26 · <b>타 기간 분모와 혼용 금지</b>). 나머지 = 계정 없음, 아님. 따라서 이 문서는 <b>"신규 고객" 표현 미사용.</b> 대상 정의는 <span class="mono">D-12</span>에서 목적 중심으로 확정 <a href="./targetuser.html">타깃 재검증</a></div>
 </section>
 
 <section id="s05">
 <span class="snum">05</span>
 <h2>핵심 사용자 행동 발견</h2>
-<p class="lede">데이터 나열이 아니라 관측 → 의미 → 문제의 흐름으로 정리한다. 데이터가 직접 증명하지 못하는 단계는 해석임을 표기했다.</p>
+<p class="lede">데이터 나열 아님 — 관측 → 의미 → 문제 흐름으로 정리. 데이터가 직접 증명하지 못하는 단계는 해석으로 표기.</p>
 
-<div class="flow"><div class="fh"><b>발견 1 — 화면의 최대 행동은 콘텐츠가 아니라 팝업 닫기다</b><span class="b b-obs">OBSERVED</span></div>
-<dl><dt>OBSERVED</dt><dd>GA4 <span class="mono">LK_GTM_CA=MAIN_NOTLOGIN</span> 이벤트 170,053건(7/28~8/24) 중 팝업 관련 <b>133,059건 = 78.2%</b>. PopupClose 세션당 <b>0.766 / 0.714</b>(F/R). 미클릭률 = 1 − PopupTop ÷ (PopupTop+PopupClose) = 1 − 13,020 ÷ 132,834 = <b>90.2%</b> — 전부 동일 도구·동일 기간 안의 산출이다</dd>
-<dt>WHAT IT MEANS</dt><dd>팝업의 약 90%는 내용이 클릭되지 않은 채 닫힌다는 해석 — 단 <b>PopupTop="팝업 내 콘텐츠 클릭" 매핑은 GTM 소스로 확정되지 않은 추정에서 출발</b>했으므로 이 수치의 등급은 CONDITIONAL이다. 재방문자의 PopupTop −38%는 반복 노출 피로라는 해석과 부합</dd>
-<dt>증명 범위</dt><dd><b>"미클릭 = 불필요한 팝업"으로 자동 해석하지 않는다.</b> 데이터가 증명하는 것은 "내용 클릭 없이 닫힘"까지다 — 노출만으로 고지 목적을 달성하는 팝업이 있을 수 있으며, 그래서 제안도 "제거"가 아니라 <b>운영 규칙 확인(DV-03) 후 정책 재설계</b>다</dd>
-<dt>PROBLEM</dt><dd>사용자는 목적을 시작하기 전에 화면부터 치워야 한다 (P-01)</dd></dl></div>
+<div class="flow"><div class="fh"><b>발견 1 — 화면 최대 행동 = 콘텐츠 아님, 팝업 닫기</b><span class="b b-obs">OBSERVED</span></div>
+<dl><dt>OBSERVED</dt><dd>GA4 <span class="mono">LK_GTM_CA=MAIN_NOTLOGIN</span> 이벤트 170,053건(7/28~8/24) 중 팝업 관련 <b>133,059건 = 78.2%</b>. PopupClose 세션당 <b>0.766 / 0.714</b>(F/R). 미클릭률 = 1 − PopupTop ÷ (PopupTop+PopupClose) = 1 − 13,020 ÷ 132,834 = <b>90.2%</b> — 전량 동일 도구·동일 기간 내 산출</dd>
+<dt>WHAT IT MEANS</dt><dd>팝업의 약 90%가 내용 미클릭 상태로 닫힘 — 해석. 단 <b>PopupTop="팝업 내 콘텐츠 클릭" 매핑이 GTM 소스 미확정 추정에서 출발</b> → 등급 CONDITIONAL. 재방문자 PopupTop −38%는 반복 노출 피로 해석과 부합</dd>
+<dt>증명 범위</dt><dd><b>"미클릭 = 불필요한 팝업" 자동 해석 금지.</b> 데이터의 증명 범위 = "내용 클릭 없이 닫힘"까지. 노출만으로 고지 목적을 달성하는 팝업 존재 가능 → 제안도 "제거" 아님, <b>운영 규칙 확인(DV-03) 후 정책 재설계</b></dd>
+<dt>PROBLEM</dt><dd>사용자가 목적 시작 전 화면 정리부터 수행 (P-01)</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>발견 2 — 요금제 전용 탐색 영역이 보이지 않는 위치에 있다</b><span class="b b-obs">OBSERVED</span></div>
+<div class="flow"><div class="fh"><b>발견 2 — 요금제 전용 탐색 영역, 비가시 위치</b><span class="b b-obs">OBSERVED</span></div>
 <dl><dt>OBSERVED</dt><dd>SearchFee 영역 <b>y1802~2202</b> vs 평균 스크롤 도달선 <b>y1461~1658</b>. 세션당 클릭 <b>0.0079 / 0.0067</b> — 관측 이벤트 중 최하위권. 스크롤 도달률 44.5% / 39.2%</dd>
-<dt>WHAT IT MEANS</dt><dd>영역 전체가 평균 도달선 아래다. 낮은 클릭은 무관심이 아니라 <b>미노출</b>로 해석된다 (위치·클릭률 동시 관측에 근거한 해석이며 인과 증명은 아니다)</dd>
-<dt>PROBLEM</dt><dd>P0 목적(요금제 탐색)의 전용 영역이 구조적으로 실패하고 있다 (P-07)</dd></dl></div>
+<dt>WHAT IT MEANS</dt><dd>영역 전체가 평균 도달선 아래. 낮은 클릭 = 무관심 아님, <b>미노출</b>로 해석 (위치·클릭률 동시 관측 기반 해석. 인과 증명 아님)</dd>
+<dt>PROBLEM</dt><dd>P0 목적(요금제 탐색) 전용 영역의 구조적 실패 (P-07)</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>발견 3 — 최대 수요는 로그인인데 화면은 신규 탐색 전제로 설계돼 있다</b><span class="b b-obs">OBSERVED</span></div>
+<div class="flow"><div class="fh"><b>발견 3 — 최대 수요 로그인 / 화면은 신규 탐색 전제 설계</b><span class="b b-obs">OBSERVED</span></div>
 <dl><dt>OBSERVED</dt><dd>다음 행동 1위 로그인 — FIRST <b>43.9%</b> / REVISIT <b>21.6%</b>. Clarity 로그인 클릭 53,278로 GA4 49,486과 교차 일치. 세션 녹화에서 전체메뉴(햄버거)를 연 뒤 로그인으로 이동한 비율 <b>78~88%</b>(표본 A 70/90 · 표본 B 53/60 — 녹화 300건 표본 조사, nologfirst 한정)</dd>
-<dt>WHAT IT MEANS</dt><dd>로그인 수요가 배너·전체메뉴 두 경로에 흩어져 우회되고 있다</dd>
-<dt>PROBLEM</dt><dd>최대 수요가 부가 요소로 취급된다 (P-04)</dd>
-<dt>타깃 함의</dt><dd>로그인은 계정 보유자만 하는 행동이다. 이 관측이 <b>"신규 고객 중심" 전제를 재검증</b>하게 만들었고, 대상을 <b>목적 중심</b>으로 다시 정의하는 <span class="mono">D-12</span>로 이어졌다</dd></dl></div>
+<dt>WHAT IT MEANS</dt><dd>로그인 수요가 배너·전체메뉴 2경로로 분산 우회</dd>
+<dt>PROBLEM</dt><dd>최대 수요의 부가 요소 취급 (P-04)</dd>
+<dt>타깃 함의</dt><dd>로그인 = 계정 보유자 한정 행동. 이 관측이 <b>"신규 고객 중심" 전제 재검증</b>의 계기 → 대상을 <b>목적 중심</b>으로 재정의한 <span class="mono">D-12</span>로 연결</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>발견 4 — 요금제는 두 화면 공통 2위 목적이고 선택 축도 뚜렷하다</b><span class="b b-obs">OBSERVED</span></div>
+<div class="flow"><div class="fh"><b>발견 4 — 요금제 = 두 화면 공통 2위 목적 · 선택 축 명확</b><span class="b b-obs">OBSERVED</span></div>
 <dl><dt>OBSERVED</dt><dd>다음 경로 요금제 <b>13.3% / 17.2%</b> vs 이벤트 8.4% / 15.8%. 요금제 목록에서 필터 1위 = <b>데이터 축 14,484</b>, 정렬의 <b>91.4%가 '가격 낮은 순'</b></dd>
-<dt>WHAT IT MEANS</dt><dd>사용자의 요금제 판단 축은 데이터 구간과 가격 두 개로 수렴한다</dd>
-<dt>PROBLEM</dt><dd>메인에는 이 축으로 탐색을 시작할 수단이 도달권 안에 없다 (P-07·P-08과 연결)</dd></dl></div>
+<dt>WHAT IT MEANS</dt><dd>사용자의 요금제 판단 축 = 데이터 구간 + 가격 2축으로 수렴</dd>
+<dt>PROBLEM</dt><dd>메인의 도달권 안에 이 축 기반 탐색 시작 수단 없음 (P-07·P-08과 연결)</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>발견 5 — 탐색을 시작해도 절반 이상이 되돌아온다</b><span class="b b-obs">OBSERVED</span></div>
+<div class="flow"><div class="fh"><b>발견 5 — 탐색 시작 후 절반 이상 되돌아옴</b><span class="b b-obs">OBSERVED</span></div>
 <dl><dt>OBSERVED</dt><dd>Quick back <b>54.8% / 39.3%</b>. 반면 Dead click 2.4% · Rage click 0.1%로 낮다</dd>
-<dt>WHAT IT MEANS</dt><dd>요소 고장이 아니다 — 클릭 결과가 기대와 달랐다는 뜻. 세션 녹화(300건 표본, nologfirst 한정)에서 즉시복귀는 요금제 탐색 경로에 집중되고(pplrPpn 22~36% · pricList 20~25%), 로그인(이동 71건)·셀프개통(11건)·이벤트(9건)는 <b>즉시복귀 0%</b> — 이벤트·셀프개통은 소표본이라 방향성 확인용이다</dd>
-<dt>PROBLEM</dt><dd>요금제 경로에서만 기대 불일치가 반복된다 (P-02)</dd></dl></div>
+<dt>WHAT IT MEANS</dt><dd>요소 고장 아님 — 클릭 결과와 기대의 불일치. 세션 녹화(300건 표본, nologfirst 한정)에서 즉시복귀는 요금제 탐색 경로에 집중되고(pplrPpn 22~36% · pricList 20~25%), 로그인(이동 71건)·셀프개통(11건)·이벤트(9건)는 <b>즉시복귀 0%</b> — 이벤트·셀프개통은 소표본, 방향성 확인용</dd>
+<dt>PROBLEM</dt><dd>요금제 경로에서만 기대 불일치 반복 (P-02)</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>발견 6 — 두 화면 분기가 가치를 만든다는 근거가 없다</b><span class="b b-conf">CONFIRMED</span></div>
+<div class="flow"><div class="fh"><b>발견 6 — 두 화면 분기의 가치 근거 없음</b><span class="b b-conf">CONFIRMED</span></div>
 <dl><dt>OBSERVED</dt><dd>두 화면의 GTM 시그니처·라벨 집합·문서 높이 완전 일치(순서 차이는 캐러셀 자동 회전). 행동 이벤트 10개 중 5개가 ±10% 이내. REVISIT의 유입은 브랜드검색광고 32.3%로 FIRST(10.1%)의 3.2배</dd>
-<dt>WHAT IT MEANS</dt><dd>행동 차이(ProductBanner +74% 등)는 화면 효과인지 사용자 구성 효과인지 분리되지 않는다. 분기 판정(쿠키)도 실제 사용자 상태와 어긋난다</dd>
-<dt>PROBLEM</dt><dd>"가치 없음"이 아니라 <b>"가치가 있다는 근거가 없다"</b> — 운영은 2벌로 이중이다 (P-06)</dd></dl></div>
+<dt>WHAT IT MEANS</dt><dd>행동 차이(ProductBanner +74% 등)의 원인 — 화면 효과 / 사용자 구성 효과 분리 불가. 분기 판정(쿠키)도 실제 사용자 상태와 불일치</dd>
+<dt>PROBLEM</dt><dd>"가치 없음" 아님. <b>"가치의 근거 없음"</b> — 운영은 2벌 이중 (P-06)</dd></dl></div>
 </section>
 
 <section id="s06">
 <span class="snum">06</span>
 <h2>현재 문제 정의</h2>
-<p class="lede">발견을 문제 6건으로 압축했다. 각 문제는 05절의 관측에만 근거하며, 검증 과정에서 철회된 근거(16절)는 사용하지 않았다.</p>
+<p class="lede">발견을 문제 6건으로 압축. 각 문제의 근거는 05절 관측 한정. 검증 과정 철회 근거(16절) 미사용.</p>
 <div class="tw"><table>
 <thead><tr><th>ID</th><th>문제</th><th>행동 증거</th><th>사용자 영향</th><th>비즈니스 영향</th></tr></thead>
 <tbody>
-<tr><td class="id">P-01</td><td><b>목적 시작 전에 화면부터 치워야 한다</b></td><td>팝업 닫기 0.766/0.714 — 단일 최대 행동, 90% 미클릭</td><td>진입 마찰, 반복 노출 피로</td><td>모든 전환 경로의 앞단 손실</td></tr>
-<tr><td class="id">P-02</td><td><b>요금제 탐색의 절반 이상이 되돌아온다</b></td><td>Quick back 54.8%/39.3% · Dead/Rage 낮음 · 녹화상 요금제 경로 국한</td><td>기대 불일치 반복, 탐색 시간 증가</td><td>요금제 상세 진입 손실</td></tr>
-<tr><td class="id">P-04</td><td><b>최대 수요(로그인)가 부가 요소로 취급된다</b></td><td>로그인 43.9%/21.6% 1위 · 전체메뉴→로그인 78~88%(녹화 표본)<br><b>로그인:상품경로 FIRST 2.08배 → REVISIT 0.73배 역전</b> · 계정 사용 흔적 유입 9,381 sessions</td><td>우회 동선</td><td>기가입자 경험 저하 · 설계 전제와 관측의 불일치 (D-12로 해소)</td></tr>
+<tr><td class="id">P-01</td><td><b>목적 시작 전, 화면 정리 부담</b></td><td>팝업 닫기 0.766/0.714 — 단일 최대 행동, 90% 미클릭</td><td>진입 마찰, 반복 노출 피로</td><td>모든 전환 경로의 앞단 손실</td></tr>
+<tr><td class="id">P-02</td><td><b>요금제 탐색 절반 이상 되돌아옴</b></td><td>Quick back 54.8%/39.3% · Dead/Rage 낮음 · 녹화상 요금제 경로 국한</td><td>기대 불일치 반복, 탐색 시간 증가</td><td>요금제 상세 진입 손실</td></tr>
+<tr><td class="id">P-04</td><td><b>최대 수요(로그인)의 부가 요소 취급</b></td><td>로그인 43.9%/21.6% 1위 · 전체메뉴→로그인 78~88%(녹화 표본)<br><b>로그인:상품경로 FIRST 2.08배 → REVISIT 0.73배 역전</b> · 계정 사용 흔적 유입 9,381 sessions</td><td>우회 동선</td><td>기가입자 경험 저하 · 설계 전제와 관측의 불일치 (D-12로 해소)</td></tr>
 <tr><td class="id">P-05</td><td><b>하단 절반은 도달되지 않는데 콘텐츠는 아래로 쌓인다</b></td><td>스크롤 도달 44.5%/39.2% · 시안은 하단에 4개 영역 추가 예정</td><td>존재를 모르는 콘텐츠</td><td>신설 영역 투자 무효화 위험</td></tr>
-<tr><td class="id">P-06</td><td><b>화면 분기의 가치 근거가 없다</b></td><td>구성 동일 · 행동 5/10 ±10% 이내 · 분기 판정 부정확</td><td>재방문자가 매번 다른 화면을 볼 위험(타임딜 on/off 결합 시)</td><td>운영·QA 2벌</td></tr>
-<tr><td class="id">P-07</td><td><b>P0 목적의 전용 영역이 도달 범위 밖이다</b></td><td>SearchFee y1802 vs 도달선 y1461~1658 · 클릭 0.0079/0.0067</td><td>핵심 탐색 수단 미인지</td><td>요금제 유입 기회 손실</td></tr>
+<tr><td class="id">P-06</td><td><b>화면 분기의 가치 근거 없음</b></td><td>구성 동일 · 행동 5/10 ±10% 이내 · 분기 판정 부정확</td><td>재방문자가 매번 다른 화면을 볼 위험(타임딜 on/off 결합 시)</td><td>운영·QA 2벌</td></tr>
+<tr><td class="id">P-07</td><td><b>P0 목적 전용 영역, 도달 범위 밖</b></td><td>SearchFee y1802 vs 도달선 y1461~1658 · 클릭 0.0079/0.0067</td><td>핵심 탐색 수단 미인지</td><td>요금제 유입 기회 손실</td></tr>
 </tbody>
 </table></div>
-<div class="note">P-03(메인이 탐색 출발점 역할을 못 한다)은 초기 분석에 있었으나 주 근거("전체메뉴가 퀵메뉴의 5배")가 <b>검증 과정에서 철회</b>되어 문제 목록에서 제외했다. 유지되는 관측(퀵메뉴 수요 0.101/0.106 회/세션, 전체메뉴→로그인 88%)은 P-04에 통합돼 있다. — 16절 참조</div>
+<div class="note">P-03(메인의 탐색 출발점 역할 미수행)은 초기 분석에 존재. 주 근거("전체메뉴가 퀵메뉴의 5배")가 <b>검증 과정에서 철회</b> → 문제 목록 제외. 유지 관측(퀵메뉴 수요 0.101/0.106 회/세션, 전체메뉴→로그인 88%)은 P-04에 통합. — 16절 참조</div>
 </section>
 
 <section id="s07">
 <span class="snum">07</span>
 <h2>데이터 기반 개선 목적</h2>
-<p class="lede">개편의 상위 목적 4개. 모두 06절의 문제에서 도출했고, 일반적인 UX 원칙만으로 만든 목적은 없다.</p>
+<p class="lede">개편 상위 목적 4개. 전부 06절 문제에서 도출. 일반 UX 원칙만으로 만든 목적 없음.</p>
 
-<div class="flow"><div class="fh"><b>목적 1 — 진입 마찰을 제거한다</b></div>
+<div class="flow"><div class="fh"><b>목적 1 — 진입 마찰 제거</b></div>
 <dl><dt>EVIDENCE</dt><dd>팝업 78.2% · 90% 미클릭 · 재방문 반응 −38%</dd>
-<dt>PROBLEM</dt><dd>P-01 — 모든 목적의 앞단에 동일한 마찰이 있다</dd>
-<dt>WHY NOW</dt><dd>영역을 아무리 재배치해도 진입 마찰이 그대로면 개편 효과가 앞단에서 상쇄된다. 개편과 분리할 수 없는 선행 과제다</dd></dl></div>
+<dt>PROBLEM</dt><dd>P-01 — 모든 목적의 앞단에 동일 마찰 존재</dd>
+<dt>WHY NOW</dt><dd>영역 재배치만으로는 진입 마찰 잔존 시 개편 효과가 앞단에서 상쇄. 개편과 분리 불가한 선행 과제</dd></dl></div>
 
 <div class="flow"><div class="fh"><b>목적 2 — P0 목적(요금제 탐색)을 가시권에 둔다</b></div>
 <dl><dt>EVIDENCE</dt><dd>SearchFee 도달선 밖(y1802 vs y1461~1658) · 요금제는 공통 2위 목적(13.3/17.2%) · 판단 축은 데이터 구간+가격으로 수렴(필터 1위 14,484 · 정렬 91.4%)</dd>
-<dt>PROBLEM</dt><dd>P-07 · P-02 — 수요는 있는데 수단이 보이지 않고, 보이는 수단은 기대와 어긋난다</dd>
+<dt>PROBLEM</dt><dd>P-07 · P-02 — 수요 실재 / 수단 미노출 · 노출된 수단은 기대와 불일치</dd>
 <dt>WHY NOW</dt><dd>이번 개편이 유일하게 "실패 중"으로 확인된 P0 목적. 위치와 탐색 구조를 함께 고쳐야 Quick back 문제까지 닿는다</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>목적 3 — 실제 수요 순서대로 진입 구조를 만든다</b></div>
+<div class="flow"><div class="fh"><b>목적 3 — 실제 수요 순 진입 구조 구성</b></div>
 <dl><dt>EVIDENCE</dt><dd>로그인 1위(43.9/21.6%) · 요금제 2위 · 이벤트 상위(복귀율 0%) · 휴대폰 상위 경로 부재(0.3% 미만)</dd>
-<dt>PROBLEM</dt><dd>P-04 — 시안의 우선순위(타임딜·휴대폰 상위)와 데이터의 우선순위가 어긋난다</dd>
-<dt>WHY NOW</dt><dd>화면 자리는 유한하다. 근거가 확인된 목적이 근거 없는 콘텐츠 아래로 내려가는 구조를 이번에 바로잡지 않으면, 신설 영역이 늘어날수록 어긋남이 커진다</dd></dl></div>
+<dt>PROBLEM</dt><dd>P-04 — 시안 우선순위(타임딜·휴대폰 상위) × 데이터 우선순위 불일치</dd>
+<dt>WHY NOW</dt><dd>화면 자리 = 유한 자원. 근거 확인 목적이 근거 없는 콘텐츠 아래로 내려가는 구조를 미교정 시, 신설 영역 증가에 따라 불일치 확대</dd></dl></div>
 
 <div class="flow"><div class="fh"><b>목적 4 — 콘텐츠 총량을 도달 범위에 맞춘다</b></div>
 <dl><dt>EVIDENCE</dt><dd>스크롤 도달 44.5%/39.2% · 시안은 하단에 신설 영역 4개 추가 예정</dd>
-<dt>PROBLEM</dt><dd>P-05 — 쌓을수록 각 영역의 실효 노출은 줄어든다</dd>
-<dt>WHY NOW</dt><dd>신설 요구(타임딜·유픽·브랜드혜택)를 수용하기 전에 총량 원칙을 먼저 합의해야 한다. 수용 후에는 되돌리기 어렵다</dd></dl></div>
+<dt>PROBLEM</dt><dd>P-05 — 콘텐츠 누적 → 영역별 실효 노출 감소</dd>
+<dt>WHY NOW</dt><dd>신설 요구(타임딜·유픽·브랜드혜택) 수용 전 총량 원칙 합의 선행 필요. 수용 후 원복 난이도 높음</dd></dl></div>
 </section>
 
 <section id="s08">
 <span class="snum">08</span>
 <h2>데이터 기반 개선 목표</h2>
-<p class="lede">목적을 화면·IA 수준의 목표로 전환한다. Expected User Behavior는 기대이며 실제 성과가 아니다 — 검증 지표는 15절과 함께 본다.</p>
+<p class="lede">목적을 화면·IA 수준 목표로 전환. Expected User Behavior = 기대치, 실제 성과 아님 — 검증 지표는 15절과 함께 확인.</p>
 
-<div class="flow"><div class="fh"><b>G-01 — AtF를 "목적 선택"으로 재구성한다</b><span class="small">목적 2·3</span></div>
+<div class="flow"><div class="fh"><b>G-01 — AtF를 "목적 선택"으로 재구성</b><span class="small">목적 2·3</span></div>
 <dl><dt>EVIDENCE</dt><dd>로그인 1위 · 요금제 2위 · SearchFee 도달선 밖</dd>
 <dt>PROBLEM</dt><dd>P-04 · P-07</dd>
 <dt>DIRECTION</dt><dd>Header에 로그인·검색 상시 노출, 그 직후 요금제 탐색(M-03)을 배치. 요금제 전용 영역을 y1802 → 첫 화면 안으로</dd>
-<dt>EXPECTED</dt><dd>스크롤 없이 두 최대 목적(로그인·요금제)에 도달한다</dd></dl></div>
+<dt>EXPECTED</dt><dd>스크롤 없이 2대 목적(로그인·요금제) 도달</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>G-02 — 요금제 탐색을 실제 판단 축으로 시작하게 한다</b><span class="small">목적 2</span></div>
+<div class="flow"><div class="fh"><b>G-02 — 요금제 탐색을 실제 판단 축에서 시작</b><span class="small">목적 2</span></div>
 <dl><dt>EVIDENCE</dt><dd>필터 1위 데이터 축 14,484 · 정렬 91.4% 가격 낮은 순 · 운영 목록 <span class="mono">dan2</span> 5구간 실측</dd>
-<dt>PROBLEM</dt><dd>P-02 — 현행 진입은 클릭 결과가 기대와 어긋난다</dd>
+<dt>PROBLEM</dt><dd>P-02 — 현행 진입의 클릭 결과 × 기대 불일치</dd>
 <dt>DIRECTION</dt><dd>데이터 5구간(3GB 이하 ~ 71GB 이상) + 구간별 최저가로 진입 조건을 선택하게 하고, 선택 구간이 적용된 목록으로 이동. 구간은 필터가 아니라 <b>진입 조건 선택</b>이며 5구간 동일 강도(추천 없음)</dd>
-<dt>EXPECTED</dt><dd>목록 도착 시 화면이 기대와 일치해 Quick back이 줄어든다 <span class="b b-unv">검증 필요</span></dd></dl></div>
+<dt>EXPECTED</dt><dd>목록 도착 화면 = 기대 일치 → Quick back 감소 <span class="b b-unv">검증 필요</span></dd></dl></div>
 
-<div class="flow"><div class="fh"><b>G-03 — 퀵메뉴를 실사용 순 3종으로 정비한다</b><span class="small">목적 3</span></div>
+<div class="flow"><div class="fh"><b>G-03 — 퀵메뉴 실사용 순 3종 정비</b><span class="small">목적 3</span></div>
 <dl><dt>EVIDENCE</dt><dd>퀵메뉴 수요 0.101/0.106 회/세션(집단 격차 6%) · 항목별 실사용에서 이벤트는 별도 직행 경로가 이미 강함</dd>
-<dt>PROBLEM</dt><dd>REQ-01의 7개 구성은 근거가 없고 시안에서 이미 잘린다</dd>
+<dt>PROBLEM</dt><dd>REQ-01의 7개 구성 근거 없음 · 시안에서 이미 잘림</dd>
 <dt>DIRECTION</dt><dd>전체 요금제 · 휴대폰 · 셀프개통 3종, 실사용 순. 이벤트는 배너 영역(M-04)이 전담</dd>
-<dt>EXPECTED</dt><dd>중복 진입점 없이 카테고리 탐색 수요를 흡수한다</dd></dl></div>
+<dt>EXPECTED</dt><dd>중복 진입점 없이 카테고리 탐색 수요 흡수</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>G-04 — 이벤트는 P1로 유지하고 직행 경로를 보존한다</b><span class="small">목적 3</span></div>
+<div class="flow"><div class="fh"><b>G-04 — 이벤트 P1 유지 + 직행 경로 보존</b><span class="small">목적 3</span></div>
 <dl><dt>EVIDENCE</dt><dd>이벤트 경로 8.4/15.8% · 상세 즉시복귀 0%(녹화 소표본 — 방향성) · 배너 반응 두 집단 격차 3%</dd>
 <dt>PROBLEM</dt><dd>시안은 3순위로 배정 — 데이터와 어긋남</dd>
 <dt>DIRECTION</dt><dd>요금제 바로 아래 배너 캐러셀 + 전체보기. 이미 작동하는 영역이므로 구조 변경 최소화</dd>
-<dt>EXPECTED</dt><dd>현행 이벤트 성과를 유지한 채 요금제와의 순서만 정렬된다</dd></dl></div>
+<dt>EXPECTED</dt><dd>현행 이벤트 성과 유지 + 요금제와의 순서만 정렬</dd></dl></div>
 
-<div class="flow"><div class="fh"><b>G-05 — 하단은 총량을 늘리지 않고 압축한다</b><span class="small">목적 4</span></div>
+<div class="flow"><div class="fh"><b>G-05 — 하단 총량 동결 + 압축</b><span class="small">목적 4</span></div>
 <dl><dt>EVIDENCE</dt><dd>스크롤 도달 44.5%/39.2% · 휴대폰 상위 경로 부재 · 부가 혜택 세션당 1% 미만</dd>
 <dt>PROBLEM</dt><dd>P-05</dd>
-<dt>DIRECTION</dt><dd>휴대폰·브랜드혜택·고객지원은 접힘(아코디언) 구조로 압축, 신규 콘텐츠 영역은 추가하지 않는다. 유심 구매 링크는 메인이 아니라 셀프개통 흐름 안으로</dd>
-<dt>EXPECTED</dt><dd>하단 도달 시 선택지가 정리된 형태로 보인다</dd></dl></div>
+<dt>DIRECTION</dt><dd>휴대폰·브랜드혜택·고객지원 접힘(아코디언) 구조로 압축 · 신규 콘텐츠 영역 추가 없음. 유심 구매 링크는 메인 제외 → 셀프개통 흐름으로</dd>
+<dt>EXPECTED</dt><dd>하단 도달 시 선택지 정리 상태로 노출</dd></dl></div>
 </section>
 
 <section id="s09">
 <span class="snum">09</span>
 <h2>기존 요청사항 vs 데이터 기반 개선안</h2>
-<p class="lede">이 문서의 중심 표다. KEEP은 "데이터로 증명됐다"가 아니라 "유지를 제안한다"는 뜻이며, 판단 성격 열이 그 구분을 담는다. 집계는 개별 REQ 기준 27건(묶음 행은 전개, REQ-C·D 포함)이다.</p>
+<p class="lede">이 문서의 중심 표. KEEP = "데이터 증명" 아님, "유지 제안". 구분은 판단 성격 열에 표기. 집계 = 개별 REQ 기준 27건(묶음 행 전개, REQ-C·D 포함).</p>
 <div class="legend">
 <span><span class="b b-keep">KEEP</span> 유지</span>
 <span><span class="b b-chg">CHANGE</span> 방향 조정</span>
@@ -776,7 +776,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <div class="tw"><table>
 <thead><tr><th>ID</th><th>기존 요청</th><th>데이터 확인 결과</th><th>판단</th><th>판단 성격</th><th>데이터 기반 개선안 / 변경 이유</th></tr></thead>
 <tbody>
-<tr><td class="id">REQ-01</td><td>주메뉴 7개 신설, on/off</td><td>탐색 수요 실재(0.101/0.106 회/세션) — 그러나 7개 구성·순서 근거 없음, 시안에서 이미 잘림</td><td><span class="b b-chg">CHANGE</span></td><td>유효하나 방향 조정</td><td>실사용 순 <b>퀵메뉴 3종</b>(전체 요금제·휴대폰·셀프개통)으로 정비. 근거 없는 메뉴 승격을 하지 않는다</td></tr>
+<tr><td class="id">REQ-01</td><td>주메뉴 7개 신설, on/off</td><td>탐색 수요 실재(0.101/0.106 회/세션) — 그러나 7개 구성·순서 근거 없음, 시안에서 이미 잘림</td><td><span class="b b-chg">CHANGE</span></td><td>유효하나 방향 조정</td><td>실사용 순 <b>퀵메뉴 3종</b>(전체 요금제·휴대폰·셀프개통)으로 정비. 근거 없는 메뉴 승격 없음</td></tr>
 <tr><td class="id">REQ-02</td><td>이벤트 배너 + 전체보기</td><td>이벤트 상위 목적 · 직행 경로 실사용 · 복귀율 0%</td><td><span class="b b-keep">KEEP</span></td><td><b>요청과 데이터 일치</b></td><td>유지. 단 시안의 3순위 배정은 데이터상 P1로 상향</td></tr>
 <tr><td class="id">REQ-03</td><td>로그인 영역 신설</td><td><b>가장 강하게 지지됨</b> — 1위 수요, GA4·Clarity 교차 일치</td><td><span class="b b-keep">KEEP</span></td><td><b>요청과 데이터 일치</b></td><td>유지하되 부가 영역이 아니라 Header 최상위 진입점으로 승격</td></tr>
 <tr><td class="id">REQ-04</td><td>타임딜 운영 시 <b>요금제보다 우선</b> 노출</td><td><b>PHASE 8.6 재분석</b> — ① "우선"의 대상이 원문 버전 간 상이(8/25 "요금제 <b>영역</b>" vs 이전 "요금제 <b>상품</b>") ② "우선 = AtF 배치" 등식은 원문에 없음 ③ 전용 영역 데이터는 없으나 <b>동명 콘텐츠가 팝업(<span class="mono">Popup_79</span> 깜짝타임딜)으로 운영 중</b> — 본문 영역화는 P-01과 정합 가능 ④ 타임딜은 "홈의 변형 상태"로 요청됨(운영시에만 노출)</td><td><span class="b b-hold">HOLD</span><br><span class="b b-nv">NEEDS VALIDATION</span></td><td>정의 미확정 — 상충 단정 불가<br><span class="small">대상이 "영역"이면 상충 성립, "상품"이면 IA 순서와 무관</span></td><td><b>운영 시에만 켜지는 단일 슬롯</b>으로 반영(기본안 D: M-03·M-04 사이 / 대안 B: M-04 배너 고정 슬롯). <b>"우선"의 대상 정의와 위치는 D-02로 회부</b></td></tr>
@@ -793,7 +793,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <tr><td class="id">REQ-17~20</td><td>브랜드혜택 (배너 2건 고정 등)</td><td>제휴 경로 상위에 없음 · 제휴혜택은 9월 오픈이라 데이터 부재. 단 <b>제휴영업팀 협의 완료 = 조직 확정 제약</b></td><td><span class="b b-hold">HOLD</span></td><td>판단 불가 · 조직 제약 수용</td><td>수용하되 P0/P1을 침범하지 않는 위치로 한정, 배너 고정도 도달 범위 안에서만</td></tr>
 <tr><td class="id">REQ-21~22</td><td>이벤트·셀프개통 기존 페이지 재사용</td><td>수요 확인 — 재사용 자체는 문제 없음</td><td><span class="b b-keep">KEEP</span></td><td>일치</td><td>유지. 이벤트 우선순위만 상향(REQ-02와 동일)</td></tr>
 <tr><td class="id">REQ-A</td><td>메인 요금제를 요금제 메뉴와 다르게 운영</td><td>판단에 필요한 요금제별 전환 데이터 미확보 · REQ-07과 충돌 가능(메인에서 본 요금제를 목록에서 못 찾는 불일치)</td><td><span class="b b-hold">HOLD</span></td><td>판단 불가 · 충돌 위험</td><td>노출 규칙 통합/분리를 먼저 결정한 뒤 진행</td></tr>
-<tr><td class="id">REQ-B</td><td>신청서 직행 동선 (8/14 제안 → 8/25 삭제)</td><td>Quick back 54.8%는 동선 단축 필요와 <b>방향이 일치</b>한다(인과 증명 아님). <b>8/25에서 삭제된 이유는 문서에 기록되어 있지 않다</b> <span class="b b-unv">UNVERIFIED</span></td><td><span class="b b-keep">KEEP</span></td><td><b>복원 제안</b></td><td>복원을 제안하되, <b>삭제 사유를 요청자에게 먼저 확인</b>한다 — 기술·정책 제약으로 뺐다면 복원 판단 자체가 달라진다</td></tr>
+<tr><td class="id">REQ-B</td><td>신청서 직행 동선 (8/14 제안 → 8/25 삭제)</td><td>Quick back 54.8%는 동선 단축 필요와 <b>방향 일치</b>(인과 증명 아님). <b>8/25 삭제 사유 문서 미기록</b> <span class="b b-unv">UNVERIFIED</span></td><td><span class="b b-keep">KEEP</span></td><td><b>복원 제안</b></td><td>복원 제안 + <b>삭제 사유 요청자 확인 선행</b> — 기술·정책 제약이 사유면 복원 판단 자체가 변경</td></tr>
 <tr><td class="id">REQ-C</td><td>타임딜 상세항목 담당자 협의 (8/21)</td><td>8/25에서 항목이 기술되어 <b>REQ-05로 흡수</b>됨 — 타임딜 미운영으로 판단 데이터는 동일하게 없음</td><td><span class="b b-nv">NEEDS VALIDATION</span></td><td>판단 불가 (REQ-05와 동일)</td><td>오픈 시 측정 설계와 함께</td></tr>
 <tr><td class="id">REQ-D</td><td>메뉴 명칭 확정 — '타임딜(가칭)' · '제휴 브랜드관(가칭)'</td><td>'브랜드혜택'은 8/25에서 확정 반영. <b>'타임딜'은 가칭 상태 잔존</b></td><td><span class="b b-hold">HOLD</span></td><td>운영 결정 대기</td><td>잔여 명칭은 요청자 확정 후 반영 (DC-01 라벨 정책과 함께)</td></tr>
 <tr><td class="id">REQ-E</td><td>3탭 — 데이터 많이/혜택 많이/요금 적게</td><td>실제 선택 축은 <b>데이터 구간 + 가격</b>으로 실측됨. "혜택 많이" 축은 관측되지 않음</td><td><span class="b b-chg">CHANGE</span></td><td>부분 상충 — 3축 중 1축("혜택 많이") 미관측</td><td>관측된 2축 기반 5구간 진입으로 재정의 (G-02)</td></tr>
@@ -804,7 +804,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <section id="s10">
 <span class="snum">10</span>
 <h2>최종 개선안</h2>
-<p class="lede">확정 IA(M-01~M-11) 기준. 각 영역을 CURRENT → PROBLEM → IMPROVEMENT → EVIDENCE → DECISION으로 정리한다.</p>
+<p class="lede">확정 IA(M-01~M-11) 기준. 영역별 CURRENT → PROBLEM → IMPROVEMENT → EVIDENCE → DECISION 정리.</p>
 <div class="tw"><table>
 <thead><tr><th>영역</th><th>CURRENT</th><th>PROBLEM</th><th>IMPROVEMENT</th><th>EVIDENCE</th><th>DECISION</th></tr></thead>
 <tbody>
@@ -826,12 +826,12 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <section id="s11">
 <span class="snum">11</span>
 <h2>IA 개편안</h2>
-<p class="lede">순서의 논리 — 근거가 확인된 목적이 위, 근거 없는 콘텐츠가 아래. "중요하지 않아서"가 아니라 "이미 작동 중이거나, 아직 근거가 없어서" 아래에 있다.</p>
+<p class="lede">순서 논리 — 근거 확인 목적이 상단 / 근거 없는 콘텐츠가 하단. 하단 배치 사유 = "덜 중요"가 아니라 "이미 작동 중" 또는 "근거 없음".</p>
 <div class="tw tight"><table>
 <thead><tr><th>순서</th><th>모듈</th><th>등급</th><th>이 위치인 이유</th></tr></thead>
 <tbody>
 <tr><td class="num">1</td><td class="id">M-01 Header</td><td>P0</td><td>로그인·검색 — 1위 수요의 최단 경로. sticky로 전 구간 유지</td></tr>
-<tr><td class="num">2</td><td class="id">M-02 QuickMenu</td><td>P2</td><td>P2인데 상단인 이유 — 목적이 뚜렷한 사용자를 본문 진입 전에 분기해, 아래 P0 영역이 탐색 사용자에게 집중되게 한다</td></tr>
+<tr><td class="num">2</td><td class="id">M-02 QuickMenu</td><td>P2</td><td>P2의 상단 배치 사유 — 목적이 뚜렷한 사용자를 본문 진입 전 분기 → 하단 P0 영역을 탐색 사용자에게 집중</td></tr>
 <tr><td class="num">3</td><td class="id">M-03 요금제 탐색</td><td>P0</td><td>유일하게 실패 중으로 확인된 P0 목적 — 도달선 밖(y1802)에서 첫 화면 안으로</td></tr>
 <tr><td class="num">4</td><td class="id">M-04 이벤트</td><td>P1</td><td>이미 작동 중(경로 상위 · 즉시복귀 0% — 녹화 소표본)이라 한 칸 아래여도 손실이 작다. 실측상 배너 상단 758px로 뷰포트 안</td></tr>
 <tr><td class="num">5</td><td class="id">M-05 가입·개통</td><td>P1</td><td>탐색 다음 단계의 자연 순서</td></tr>
@@ -843,19 +843,19 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <tr><td class="num">—</td><td class="id">M-11 GNB</td><td>—</td><td>전역 메뉴 — 현행 실구조 관측 미완(이월)</td></tr>
 </tbody>
 </table></div>
-<div class="note warn"><b>M-02/M-03 순서는 개편 후 검증 대상이다.</b> 두 모듈의 상하는 데이터로 확정되지 않았다(DV-05). 또한 <b>REQ-04(타임딜 우선)</b>가 확정되면 이 순서 자체가 바뀐다 — D-02.</div>
+<div class="note warn"><b>M-02/M-03 순서 = 개편 후 검증 대상.</b> 두 모듈의 상하 데이터 미확정(DV-05). <b>REQ-04(타임딜 우선)</b> 확정 시 이 순서 자체 변경 — D-02.</div>
 </section>
 
 <section id="s12">
 <span class="snum">12</span>
 <h2>UI Prototype</h2>
-<p class="lede">프로토타입은 이 문서의 논리를 <b>화면으로 보여주는</b> 결과물이다. 데이터 → 문제 → 방향 → IA → UI 순서의 마지막 단계이며, 여기서 새로 디자인하지 않는다. <b>근거가 아니라 제안의 결과물</b>이다.</p>
+<p class="lede">프로토타입 = 이 문서의 논리를 <b>화면으로 구현한</b> 결과물. 데이터 → 문제 → 방향 → IA → UI 순서의 마지막 단계. 신규 디자인 없음. <b>근거 아님 — 제안의 결과물</b>.</p>
 <div class="tw tight"><table>
 <tbody>
 <tr><td class="id">실행</td><td><a href="./prototype.html">index.html</a> — 저장소 루트 / GitHub Pages 배포 시 동일 경로. 모바일 폭에서 전체화면 렌더</td></tr>
 <tr><td class="id">구현 범위</td><td>M-01~M-09 전 모듈 · 5구간 선택→목록 이동 흐름 · 상태(선택/비활성/오류/로딩) · 우하단 검증 Drawer</td></tr>
 <tr><td class="id">검증</td><td>전 텍스트 노드 대비 자동 감사 실패 0건 · 360/390/430/480px 가로 스크롤 없음 · 가격 정합성 5/5 자동 감사 · 터치 타깃 44px</td></tr>
-<tr><td class="id">주의</td><td><b>확정 디자인이 아니다.</b> 표시된 요금제·가격·이벤트는 구조 검증용이며(구간·대표가는 관측값, 개별 상품명은 예시) 실제 판매 조건이 아니다. 현재 적용된 인디고 컬러는 요청자 지시에 따른 것으로 <b>운영 실측값이 아니며</b>(UNVERIFIED) BI와의 정합은 미해소 — D-10</td></tr>
+<tr><td class="id">주의</td><td><b>확정 디자인 아님.</b> 표시 요금제·가격·이벤트는 구조 검증용(구간·대표가는 관측값, 개별 상품명은 예시). 실제 판매 조건 아님. 현재 인디고 컬러는 요청자 지시 반영분 — <b>운영 실측값 아님</b>(UNVERIFIED). BI 정합 미해소 — D-10</td></tr>
 </tbody>
 </table></div>
 </section>
@@ -863,7 +863,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <section id="s13">
 <span class="snum">13</span>
 <h2>주요 변경사항</h2>
-<p class="lede">분석~프로토타입 과정에서 방향이 바뀐 결정만 추린다. 전체 이력은 프로토타입 문서 탭(CH-01~CH-61)에 있다.</p>
+<p class="lede">분석~프로토타입 과정에서 방향이 변경된 결정만 수록. 전체 이력은 프로토타입 문서 탭(CH-01~CH-61) 참조.</p>
 <div class="tw tight"><table>
 <thead><tr><th>변경</th><th>내용</th></tr></thead>
 <tbody>
@@ -881,28 +881,28 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <section id="s14">
 <span class="snum">14</span>
 <h2>의사결정 필요사항</h2>
-<p class="lede">회의에서 바로 논의할 수 있도록 결정 사항을 분리했다. D-01·D-02·D-07이 최우선이다.</p>
+<p class="lede">회의 즉시 논의 가능하도록 결정 사항 분리. 최우선 = D-01·D-02·D-07.</p>
 
 <div class="dec"><div class="dh"><span class="n">D-01</span><b>두 화면(nologfirst/revisit)을 단일 메인으로 통합할 것인가</b></div>
 <dl><dt>EXISTING</dt><dd>요청 문서는 두 화면을 구분하지 않음 (OPEN-01)</dd>
 <dt>EVIDENCE</dt><dd>구성 요소 완전 동일 · 행동 5/10 ±10% 이내 · 분기 판정(쿠키) 부정확 · 운영 2벌</dd>
 <dt>PROPOSED</dt><dd><b>통합</b> — 분기 가치의 근거가 확인되지 않았고 유일한 반증(ProductBanner +74%)은 원인 미분리</dd>
 <dt>NEEDED</dt><dd>통합 승인 여부 + 분기 유지 시 그 목적의 문서화</dd>
-<dt>RISK</dt><dd>ProductBanner 우위가 화면 효과였다면 재방문 요금제 경로 일부 손실 — 통합 후 측정으로 확인</dd></dl></div>
+<dt>RISK</dt><dd>ProductBanner 우위가 화면 효과인 경우 재방문 요금제 경로 일부 손실 — 통합 후 측정으로 확인</dd></dl></div>
 
-<div class="dec"><div class="dh"><span class="n">D-02</span><b>타임딜 — "우선"의 정의를 확정하고, 요금제와의 순서를 정한다</b></div>
+<div class="dec"><div class="dh"><span class="n">D-02</span><b>타임딜 — "우선"의 정의 확정 + 요금제와의 순서 결정</b></div>
 <dl><dt>EXISTING</dt><dd>REQ-04 — 8/25 "요금제 <b>영역</b>보다 우선 노출" / 이전 ver "요금제 <b>상품</b>보다 우선하여 노출"</dd>
 <dt>EVIDENCE</dt><dd>요금제 = 확인된 P0(공통 2위 목적 · 전용 영역 실패 중). 타임딜 = 전용 영역 데이터 없음, 단 <b>동명 콘텐츠가 현재 팝업으로 운영</b>되어 본문 영역화는 P-01과 정합 가능. 원문에 "첫 화면"·"상단" 표현 없음</dd>
-<dt>PROPOSED</dt><dd>운영 시에만 켜지는 <b>단일 슬롯</b> — 기본안 M-03·M-04 사이, 대안 M-04 배너 고정 슬롯. 어느 안도 "요금제보다 위"는 충족하지 않는다</dd>
-<dt>NEEDED</dt><dd>① "우선"의 대상(영역/상품) ② 요금제보다 아래여도 수용 가능한지 ③ 운영 주기(OPEN-08) ④ 타임세일 정의 ⑤ <span class="mono">Popup_79</span>와 동일 캠페인인지 — <b>①이 IA 충돌 여부 자체를 좌우한다</b></dd>
-<dt>RISK</dt><dd>프로모션 소진 목표와의 상충. 원문대로 요금제 위에 두면 <b>이번 개편이 고치려던 P-07(요금제가 도달선 밖)을 다시 만드는 구조</b>가 된다</dd></dl></div>
+<dt>PROPOSED</dt><dd>운영 시에만 켜지는 <b>단일 슬롯</b> — 기본안 M-03·M-04 사이, 대안 M-04 배너 고정 슬롯. 두 안 모두 "요금제보다 위" 미충족</dd>
+<dt>NEEDED</dt><dd>① "우선"의 대상(영역/상품) ② 요금제보다 아래여도 수용 가능한지 ③ 운영 주기(OPEN-08) ④ 타임세일 정의 ⑤ <span class="mono">Popup_79</span>와 동일 캠페인 여부 — <b>①이 IA 충돌 여부를 좌우</b></dd>
+<dt>RISK</dt><dd>프로모션 소진 목표와 상충. 원문대로 요금제 위 배치 → <b>P-07(요금제 도달선 밖) 재발 구조</b></dd></dl></div>
 
 <div class="dec"><div class="dh"><span class="n">D-03</span><b>주메뉴 7개 신설 대신 퀵메뉴 3종 정비를 수용할 것인가</b></div>
 <dl><dt>EXISTING</dt><dd>REQ-01 — 7개 주메뉴, on/off flexible</dd>
 <dt>EVIDENCE</dt><dd>탐색 수요 실재(0.101/0.106 회/세션) · 7개 구성 근거 없음 · 시안에서 메뉴 잘림</dd>
 <dt>PROPOSED</dt><dd>전체 요금제 · 휴대폰 · 셀프개통 3종 (실사용 순)</dd>
 <dt>NEEDED</dt><dd>7개 요구의 철회/축소 승인. on/off 운영 요구는 별도 논의</dd>
-<dt>RISK</dt><dd>운영 유연성(P-2 지향점) 축소로 받아들여질 수 있음 — 목적 정렬 필요</dd></dl></div>
+<dt>RISK</dt><dd>운영 유연성(P-2 지향점) 축소로 인식될 소지 — 목적 정렬 필요</dd></dl></div>
 
 <div class="dec"><div class="dh"><span class="n">D-04</span><b>이벤트를 3순위에서 P1로 상향하는 것을 수용할 것인가</b></div>
 <dl><dt>EXISTING</dt><dd>REQ-21 — 이벤트 메뉴 3순위</dd>
@@ -939,7 +939,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <dt>NEEDED</dt><dd>비교 판단의 주체와 기준 (DC-02)</dd>
 <dt>RISK</dt><dd>결정 공백 상태로 개발 이관 시 범위 분쟁</dd></dl></div>
 
-<div class="dec"><div class="dh"><span class="n">D-09</span><b>검색은 승격하지 않고 유지하는 것으로 확정할 것인가</b></div>
+<div class="dec"><div class="dh"><span class="n">D-09</span><b>검색 — 승격 없이 현행 유지 확정 여부</b></div>
 <dl><dt>EXISTING</dt><dd>요청 문서에 검색 요구 없음</dd>
 <dt>EVIDENCE</dt><dd>검색 4,765/1,185 — 요금제찾기(3,541/1,167)와 유사 규모이나 Clarity URL 필터가 세션 범위라 과대추정 가능 (INTERPRETATION)</dd>
 <dt>PROPOSED</dt><dd>Header 아이콘으로 유지, 핵심 CTA 승격 보류</dd>
@@ -954,7 +954,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <dt>RISK</dt><dd>미확정 상태로 개발 이관 시 전면 재작업</dd></dl></div>
 
 <h3>Decision Matrix — 요약</h3>
-<p class="small">이 표는 <b>결정마다 어떤 관측이 뒷받침하는지</b>를 보여준다. <b>제안 내용과 "무엇을 결정해야 하는가"는 여기에 적지 않는다</b> — 그것은 결정 문서의 몫이다. 결정 카드 원본은 <a href="./index.html#c11">FINAL REPORT 07절</a>에 있다. D-01~D-10은 이 문서 작성 시점의 결정이고, <b>D-12는 2026-08-27에 신설·확정</b>됐다.</p>
+<p class="small">이 표 = <b>결정별 뒷받침 관측</b> 정리. <b>제안 내용과 결정 항목은 미수록</b> — 결정 문서의 영역. 결정 카드 원본은 <a href="./index.html#c11">FINAL REPORT 07절</a>. D-01~D-10은 이 문서 작성 시점 결정, <b>D-12는 2026-08-27 신설·확정</b>.</p>
 <div class="legend">
 <span><span class="b b-keep">RECOMMEND</span> 근거 충분 — 승인 요청</span>
 <span><span class="b b-nv">RECOMMEND W/ VALIDATION</span> 권고하되 사후 측정 조건</span>
@@ -982,7 +982,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <section id="s15">
 <span class="snum">15</span>
 <h2>미확정 / 추가 검증사항</h2>
-<p class="lede">이 문서의 어떤 제안도 아래 항목이 해소되기 전에는 해당 부분을 확정으로 다루지 않는다.</p>
+<p class="lede">아래 항목 해소 전까지 이 문서의 어떤 제안도 해당 부분을 확정 처리하지 않음.</p>
 <div class="tw tight"><table>
 <thead><tr><th>ID</th><th>항목</th><th>상태</th><th>해소 방법</th></tr></thead>
 <tbody>
@@ -1011,7 +1011,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <tr><td>G-05 하단 압축</td><td>스크롤 도달률(현행 44.5%/39.2%) · 아코디언 확장률(신규 이벤트 제안)</td><td>Clarity + GA4</td></tr>
 </tbody>
 </table></div>
-<p class="small">아코디언 확장률·구간 선택률은 현행에 없는 신규 이벤트다 — 측정하려면 태깅 추가가 필요하며, 측정 불가 지표를 KPI로 삼지 않는다.</p>
+<p class="small">아코디언 확장률·구간 선택률 = 현행 부재 신규 이벤트 — 측정에 태깅 추가 필요. 측정 불가 지표의 KPI 설정 없음.</p>
 </section>
 
 <section id="s16">
@@ -1047,7 +1047,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 </table></div>
 
 <h3>B. 검증 과정에서 철회된 근거</h3>
-<p>아래 4건은 분석 중 사용됐다가 <b>검증에서 탈락해 최종 제안 근거에서 제외</b>했다. 이 문서의 어떤 판단도 이 근거에 의존하지 않는다.</p>
+<p>아래 4건 = 분석 중 사용 후 <b>검증 탈락 → 최종 제안 근거에서 제외</b>. 이 문서의 어떤 판단도 해당 근거에 미의존.</p>
 <div class="tw tight"><table>
 <thead><tr><th>철회된 주장</th><th>철회 사유</th></tr></thead>
 <tbody>
@@ -1080,7 +1080,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <tr><td>Prototype이 분석과 연결되는가</td><td>데이터→문제→목적→목표→IA→UI 순서로 구성 · 프로토타입은 12절에서 결과로만 제시</td></tr>
 </tbody>
 </table></div>
-<p class="small">본 문서는 의사결정용이며 개발 명세가 아니다. HTML 구현 상세 · API · 파라미터 · 일정 · 개발 TC는 방향 확정 후 상세 설계 단계로 이관한다.</p><p style="margin:18px 0 0"><a href="./index.html" style="display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:9px 15px;border:1px solid var(--acc-line);border-radius:999px;background:var(--card);font-size:12.5px;font-weight:600;color:var(--acc);text-decoration:none">← FINAL REPORT 로 돌아가기</a></p>
+<p class="small">본 문서 = 의사결정용. 개발 명세 아님. HTML 구현 상세 · API · 파라미터 · 일정 · 개발 TC는 방향 확정 후 상세 설계 단계로 이관.</p><p style="margin:18px 0 0"><a href="./index.html" style="display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:9px 15px;border:1px solid var(--acc-line);border-radius:999px;background:var(--card);font-size:12.5px;font-weight:600;color:var(--acc);text-decoration:none">← FINAL REPORT 로 돌아가기</a></p>
 </section>
 </main>
 <footer class="pjfoot"><div class="in">
@@ -1091,7 +1091,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(u);}})();</sc
 <li><a href="./audit.html"><em>05 AUDIT</em>근거가 검증된 과정 보기 →<i>그 근거가 검증되었는가</i></a></li>
 <li><a href="./index.html"><em>01 FINAL REPORT</em>결정해야 할 항목으로 돌아가기 →<i>무엇을 결정해야 하는가</i></a></li>
 </ul>
-<p class="note">이 여섯 문서는 하나의 결과물이다 — 역할이 서로 다르며 내용을 중복하지 않는다. <b>결론은 FINAL REPORT, 근거는 EVIDENCE, 검증은 AUDIT</b>에 있다. 프로토타입은 <b>확정 디자인이 아니라 개선 방향 확인용</b>이며, 표시된 상품 정보는 구조 검증용 예시다.</p>
+<p class="note">여섯 문서 = 하나의 결과물. 역할 분리, 내용 중복 없음. <b>결론 FINAL REPORT / 근거 EVIDENCE / 검증 AUDIT</b>. 프로토타입은 <b>확정 디자인 아님 — 개선 방향 확인용</b>. 표시 상품 정보는 구조 검증용 예시.</p>
 </div></footer>
 <!-- REPORT EXPERIENCE LAYER JS -->
 <script>
